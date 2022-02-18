@@ -13,7 +13,7 @@
 
 ---
 
-# ✅ Pravidla clean code ✅ [#clean_code]
+# ✅ Pravidla clean code ✅
 - chceme mat cisty kod v ktorom sa bude dat lahko pracovat a lahko sa bude dat upravovat
 - nechceme aby kazdy pisal kod inak pretoze s toho vznikne gulas a jeden nebude chciet robit v kode toto druheho
 
