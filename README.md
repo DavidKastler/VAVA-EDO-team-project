@@ -8,12 +8,12 @@
   
 ---
 # OBSAH
-1. [Pravidla clean code ](#clean_code)
-2. [Veci co potrebujeme v projekte]()
+1. [Pravidla clean code ](#-pravidla-clean-code-)
+2. [Veci co potrebujeme v projekte](#zoznam-veci-ktore-musime-obsiahnut-v-projekte)
 
 ---
 
-# ✅ Pravidla clean code ✅ [#clean_code]
+# ✅ Pravidla clean code ✅
 - chceme mat cisty kod v ktorom sa bude dat lahko pracovat a lahko sa bude dat upravovat
 - nechceme aby kazdy pisal kod inak pretoze s toho vznikne gulas a jeden nebude chciet robit v kode toto druheho
 
@@ -66,7 +66,7 @@
 ![CleanCodeExample](mdFiles/CleanCodeExample.png)
 
 ---
-### Zoznam veci ktore musime obsiahnut v projekte
+# Zoznam veci ktore musime obsiahnut v projekte
 - **Priebezne sem budeme pridavat aj snippety kodu kde boli tieto veci pouzite**
 
 1. Kolekcie (treba vybrať vhodné dátové štruktúry podľa povahy/architektúry projektu)
@@ -81,7 +81,7 @@
 10. Dátové zložky musia byť zapúzdrené (všetky private)
 
 
-### Odovzdavame
+## Odovzdavame
 1. Zdrojove kody
 2. projektovy priecinok
 3. Video
