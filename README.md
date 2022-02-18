@@ -8,7 +8,7 @@
   
 ---
 # OBSAH
-1. [Pravidla clean code ](#clean_code)
+1. [Pravidla clean code ](#-pravidla-clean-code-)
 2. [Veci co potrebujeme v projekte]()
 
 ---
