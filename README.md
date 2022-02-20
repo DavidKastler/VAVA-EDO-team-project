@@ -4,7 +4,7 @@
   - David Kastler (veduci)
   - Peter Koszorus (zastupca veduceho)
   - Mario Kolenic
-  - Martin Benka
+  - Martin Beňa
   
 ---
 # OBSAH
