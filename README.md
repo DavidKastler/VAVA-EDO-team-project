@@ -39,6 +39,8 @@
 - je dobre nad kazdy cyklus a podmienku dat **komentar aspon 3-4 slovny** ktory povie cez co iteruje alebo co robi
 - pocet vstupnych parametrov do metody bude **max. 5 optimalne 3 vstupne parametre**
   - ak sa inak neda treba vytvorit **triedu s parametrami**
+- treba mysliet aj na chybne vstupy, co ak niekde pri vypocte nastala chyba a posielam None alebo podobne?
+  - mysliet na toto a davat na to podmienky a ak nastala chyba tak **rozlisitelny print napisat**(ziadne take, že sout(chyba))
 
 ### Pracovanie v gite 👨‍💻
 - kazdy ma vlastnu vetvu
@@ -64,6 +66,8 @@
 - v gite robim len vo svojom branchi
 ### Priklad takehoto kodu
 ![CleanCodeExample](mdFiles/CleanCodeExample.png)
+
+![img.png](mdFiles/CleanCodeExample2.png)
 
 ---
 # Zoznam veci ktore musime obsiahnut v projekte
