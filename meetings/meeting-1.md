@@ -43,4 +43,6 @@
 - treba sa podla skusenosti rozdelit
 
 ---
+### Questions
+1. Mozeme pouzivat Angular, React alebo nieco a komunikovat cez api s backendom?
 

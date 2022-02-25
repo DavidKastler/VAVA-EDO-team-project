@@ -1,11 +1,16 @@
 # VAVA-team-project
+- tento subor sa bude priebezne menit a rozvijat preto treba davat pozor na jeho zmeny
+
+## Gumkaci v akcii
 
 - spolocny projekt na ktorom sa zucastnili
   - David Kastler (veduci)
   - Peter Koszorus (zastupca veduceho)
   - Mario Kolenic
   - Martin Beňa
-  
+  - Adam Koričansky
+  - Juraj Glatz
+
 ---
 # OBSAH
 1. [Pravidla clean code ](#-pravidla-clean-code-)
@@ -30,6 +35,7 @@
 | konstanty            | SCREAMING_SNAKE_CASE |
 
 ### Styl pisania kodu ✍️
+- **kod a komentare piseme v anglickom jazyku**
 - pre triedy, rozhrania, metody, premenne treba mat **strucny a trefny nazov**  (napr. numberOfClearedFields)
   - ziadne veci ako int X = 5; !
 - kazda trieda, rozhranie, metoda (mimo getterov/setterov), zlozitejsi konstruktor **BUDE MAT JAVADOC**
@@ -57,6 +63,13 @@
   - veduci mergne zmeny do mastera
   - skusi sa spustit master ci zmena nevytvorila chybu
   - ostatny si pullnu zmeny
+
+### Organizacia
+- pre organizovanie spoluprace budeme pouzivat *github projects*
+- na vsetko co robite spravime issue a bude sa dat trackovat progress
+
+### Extrene subory
+- tabulky, dokumenty a ostatne veci budeme davat sem, spravime na to subor
 
 ### TLDR
 - drzim sa Java stylu kodu
