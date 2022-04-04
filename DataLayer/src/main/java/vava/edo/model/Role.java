@@ -12,7 +12,6 @@ import javax.persistence.*;
 @NoArgsConstructor
 @Entity
 @Table(name = "roles")
-@EntityListeners(AuditingEntityListener.class)
 public class Role {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -26,4 +25,20 @@ public class Role {
     private boolean teamLeaderRights;
     @Column(name = "admin_rights", nullable = false)
     private boolean adminRights;
+
+
+    /**
+     * Debugging method
+     * @return  string with method variables
+     */
+    @Override
+    public String toString() {
+        return "Role{" +
+                "rId=" + rId +
+                ", roleName='" + roleName + '\'' +
+                ", todoAccessRights=" + todoAccessRights +
+                ", teamLeaderRights=" + teamLeaderRights +
+                ", adminRights=" + adminRights +
+                '}';
+    }
 }

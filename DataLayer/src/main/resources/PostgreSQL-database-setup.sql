@@ -86,7 +86,7 @@ ALTER TABLE "users" ADD FOREIGN KEY ("role_id") REFERENCES "roles" ("r_id");
 
 ALTER TABLE "todo_table" ADD FOREIGN KEY ("user_id") REFERENCES "users" ("u_id");
 
-ALTER TABLE "assignements" ADD FOREIGN KEY ("user_id") REFERENCES "users" ("u_id");
+ALTER TABLE "assignments" ADD FOREIGN KEY ("user_id") REFERENCES "users" ("u_id");
 
 ALTER TABLE "groups" ADD FOREIGN KEY ("group_creator_id") REFERENCES "users" ("u_id");
 
@@ -98,9 +98,9 @@ ALTER TABLE "chat" ADD FOREIGN KEY ("group_id") REFERENCES "groups" ("gr_id");
 
 ALTER TABLE "chat" ADD FOREIGN KEY ("sender_id") REFERENCES "users" ("u_id");
 
-ALTER TABLE "relationship" ADD FOREIGN KEY ("first_user_id") REFERENCES "users" ("u_id");
+ALTER TABLE "relationships" ADD FOREIGN KEY ("first_user_id") REFERENCES "users" ("u_id");
 
-ALTER TABLE "relationship" ADD FOREIGN KEY ("second_user_id") REFERENCES "users" ("u_id");
+ALTER TABLE "relationships" ADD FOREIGN KEY ("second_user_id") REFERENCES "users" ("u_id");
 
 ALTER TABLE "reports" ADD FOREIGN KEY ("ch_id") REFERENCES "chat" ("ch_id");
 
