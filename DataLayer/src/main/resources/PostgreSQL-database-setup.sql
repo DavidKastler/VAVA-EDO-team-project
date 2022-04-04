@@ -18,23 +18,23 @@ CREATE TABLE "users" (
 );
 
 CREATE TABLE "roles" (
-  "id" SERIAL PRIMARY KEY,
+  "r_id" SERIAL PRIMARY KEY,
   "role_name" varchar,
-  "todo_acces_rights" boolean,
+  "todo_access_rights" boolean,
   "team_leader_rights" boolean,
   "admin_rights" boolean
 );
 
 CREATE TABLE "todo_table" (
-  "id" SERIAL PRIMARY KEY,
+  "td_id" SERIAL PRIMARY KEY,
   "user_id" integer,
   "task_name" varchar,
   "task_description" varchar,
   "due_time" date
 );
 
-CREATE TABLE "assignements" (
-  "id" SERIAL PRIMARY KEY,
+CREATE TABLE "assignments" (
+  "ass_id" SERIAL PRIMARY KEY,
   "user_id" integer,
   "title" varchar,
   "ass_start" date,
@@ -60,14 +60,14 @@ CREATE TABLE "chat" (
   "message" varchar
 );
 
-CREATE TABLE "relationship" (
+CREATE TABLE "relationships" (
   "first_user_id" integer,
   "second_user_id" integer,
   "status" friendship,
-  "since" integer
+  "since" date
 );
 
-CREATE TABLE "report" (
+CREATE TABLE "reports" (
   "rep_id" SERIAL UNIQUE PRIMARY KEY NOT NULL,
   "ch_id" integer NOT NULL,
   "reporter_id" integer NOT NULL,
@@ -82,7 +82,7 @@ CREATE TABLE "feedback" (
   "fb_message" varchar(255)
 );
 
-ALTER TABLE "users" ADD FOREIGN KEY ("role_id") REFERENCES "roles" ("id");
+ALTER TABLE "users" ADD FOREIGN KEY ("role_id") REFERENCES "roles" ("r_id");
 
 ALTER TABLE "todo_table" ADD FOREIGN KEY ("user_id") REFERENCES "users" ("u_id");
 
@@ -102,10 +102,10 @@ ALTER TABLE "relationship" ADD FOREIGN KEY ("first_user_id") REFERENCES "users" 
 
 ALTER TABLE "relationship" ADD FOREIGN KEY ("second_user_id") REFERENCES "users" ("u_id");
 
-ALTER TABLE "report" ADD FOREIGN KEY ("ch_id") REFERENCES "chat" ("ch_id");
+ALTER TABLE "reports" ADD FOREIGN KEY ("ch_id") REFERENCES "chat" ("ch_id");
 
-ALTER TABLE "report" ADD FOREIGN KEY ("reporter_id") REFERENCES "users" ("u_id");
+ALTER TABLE "reports" ADD FOREIGN KEY ("reporter_id") REFERENCES "users" ("u_id");
 
-ALTER TABLE "report" ADD FOREIGN KEY ("violator_id") REFERENCES "users" ("u_id");
+ALTER TABLE "reports" ADD FOREIGN KEY ("violator_id") REFERENCES "users" ("u_id");
 
 ALTER TABLE "feedback" ADD FOREIGN KEY ("u_id") REFERENCES "users" ("u_id");
