@@ -2,16 +2,17 @@
 <project version="4">
   <component name="CompilerConfiguration">
     <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
       <profile name="Maven default annotation processors profile" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="VAVA-gumkaci-projekt" />
-        <module name="VAVA-team-project" />
+        <module name="LogicLayer" />
+        <module name="DataLayer" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="VAVA-EDO" target="11" />
+      <module name="PresentationLayer" target="11" />
     </bytecodeTargetLevel>
   </component>
 </project>
