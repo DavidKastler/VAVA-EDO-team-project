@@ -1,4 +1,4 @@
-package vava.edo.exeption;
+package vava.edo.model.exeption;
 
 import java.text.MessageFormat;
 

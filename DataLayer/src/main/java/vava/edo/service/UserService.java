@@ -2,11 +2,9 @@ package vava.edo.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import vava.edo.exeption.Error404NotFoundException;
-import vava.edo.exeption.UserNotFoundException;
+import vava.edo.model.exeption.UserNotFoundException;
 import vava.edo.model.Role;
 import vava.edo.model.dto.UserDto;
-import vava.edo.repository.RoleRepository;
 import vava.edo.repository.UserRepository;
 import vava.edo.model.User;
 

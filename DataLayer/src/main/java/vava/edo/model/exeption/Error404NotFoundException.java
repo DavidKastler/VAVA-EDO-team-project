@@ -1,4 +1,4 @@
-package vava.edo.exeption;
+package vava.edo.model.exeption;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
