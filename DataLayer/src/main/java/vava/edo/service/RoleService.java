@@ -7,6 +7,9 @@ import vava.edo.model.exeption.RoleNotFoundException;
 import vava.edo.model.Role;
 import vava.edo.repository.RoleRepository;
 
+/**
+ * Service that operates over roles database table
+ */
 @Service
 public class RoleService {
 

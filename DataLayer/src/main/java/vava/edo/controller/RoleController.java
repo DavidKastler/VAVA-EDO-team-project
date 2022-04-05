@@ -9,7 +9,9 @@ import org.springframework.web.bind.annotation.RestController;
 import vava.edo.model.exeption.UserNotFoundException;
 import vava.edo.model.Role;
 import vava.edo.repository.RoleRepository;
-
+/**
+ * Class that provides endpoints for role operations
+ */
 @RestController
 @RequestMapping("/roles")
 public class RoleController {

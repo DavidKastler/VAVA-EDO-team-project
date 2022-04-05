@@ -5,8 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.springframework.data.jpa.domain.support.AuditingEntityListener;
-import vava.edo.model.dto.UserDto;
+import vava.edo.schema.UserRegister;
 
 import javax.persistence.*;
 
@@ -36,14 +35,14 @@ public class User {
 
 
     /**
-     * Static casting method from UserDto object
-     * @param userDto   userDto object that you want to casy
-     * @return          caster User object
+     * Static casting method from UserRegister object
+     * @param userRegister   UserRegister object that you want to casy
+     * @return          cast User object
      */
-    public static User from(UserDto userDto) {
+    public static User from(UserRegister userRegister) {
         User user = new User();
-        user.setUsername(userDto.getUsername());
-        user.setPassword(userDto.getPassword());
+        user.setUsername(userRegister.getUsername());
+        user.setPassword(userRegister.getPassword());
         return user;
     }
 
