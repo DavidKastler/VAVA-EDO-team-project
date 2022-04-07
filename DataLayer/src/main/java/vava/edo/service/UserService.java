@@ -5,8 +5,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.server.ResponseStatusException;
-import vava.edo.model.exeption.UserNotFoundException;
 import vava.edo.model.Role;
+import vava.edo.schema.UserLogin;
 import vava.edo.schema.UserRegister;
 import vava.edo.repository.UserRepository;
 import vava.edo.model.User;
@@ -40,6 +40,25 @@ public class UserService {
 
 
     /**
+     * Method to check password of user
+     * @param user      user you want to check
+     * @param password  password you want to validate
+     */
+    public void checkPassword(User user, String password) {
+        if (password == null) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Password for given user is null");
+        }
+        if (!password.equals(user.getPassword())) {
+            throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Password for given user is incorrect");
+        }
+    }
+    // Overloading
+    public void checkPassword(int userId, String password) {
+        checkPassword(getUser(userId), password);
+    }
+
+
+    /**
      * Metthod finds user by its username
      * @param username  username of user you wan to find
      * @return          found user by username
@@ -50,6 +69,7 @@ public class UserService {
         }
         return userRepository.findByUsername(username);
     }
+
 
     /**
      * Method returns all users in database
@@ -67,8 +87,7 @@ public class UserService {
      */
     public User getUser(int userId) {
         return userRepository.findById(userId).orElseThrow(
-                () -> new UserNotFoundException(userId));
-
+                () -> new ResponseStatusException(HttpStatus.NOT_FOUND, "User not found"));
     }
 
 
@@ -86,6 +105,16 @@ public class UserService {
         userToEdit.setUsername(updatedUserDto.getUsername());
         userToEdit.setPassword(updatedUserDto.getUsername());
         userToEdit.setUserRole(updatedRole);
+
+        return userToEdit;
+    }
+    // Over loading, basically does the same
+    @Transactional
+    public User editUser(int userId, UserLogin updatedUserDto) {
+        User userToEdit = getUser(userId);
+
+        userToEdit.setUsername(updatedUserDto.getUsername());
+        userToEdit.setPassword(updatedUserDto.getPassword());
 
         return userToEdit;
     }
