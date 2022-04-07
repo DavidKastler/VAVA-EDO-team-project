@@ -1,0 +1,10 @@
+insert into users (u_id, username, password, role_id) values (1, 'Laney', 'ZWNuDaQU', 5);
+insert into users (u_id, username, password, role_id) values (2, 'Clare', 'QBB5sLeIE', 4);
+insert into users (u_id, username, password, role_id) values (3, 'Pauletta', 'oFE0IChy8P', 4);
+insert into users (u_id, username, password, role_id) values (4, 'Ruggiero', 'RKnogE', 4);
+insert into users (u_id, username, password, role_id) values (5, 'Kalvin', 'VfP1MsV', 1);
+insert into users (u_id, username, password, role_id) values (6, 'Erroll', 'z6UrOP', 4);
+insert into users (u_id, username, password, role_id) values (7, 'Lorry', 'HLS26VLy', 2);
+insert into users (u_id, username, password, role_id) values (8, 'Donnell', 'NulgVFiMbcu', 2);
+insert into users (u_id, username, password, role_id) values (9, 'Russ', 'desltGlLzaN', 3);
+insert into users (u_id, username, password, role_id) values (10, 'Kikelia', 'bLtgTqV5pW8', 3);
