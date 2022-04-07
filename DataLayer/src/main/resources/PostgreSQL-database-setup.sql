@@ -20,6 +20,7 @@ CREATE TABLE "users" (
 CREATE TABLE "roles" (
   "r_id" SERIAL PRIMARY KEY,
   "role_name" varchar,
+  "basic_rights" boolean,
   "todo_access_rights" boolean,
   "team_leader_rights" boolean,
   "admin_rights" boolean
