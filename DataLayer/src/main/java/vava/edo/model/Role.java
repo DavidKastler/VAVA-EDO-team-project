@@ -19,8 +19,6 @@ public class Role {
     private int rId;
     @Column(name = "role_name", nullable = false)
     private String roleName;
-    @Column(name = "basic_rights", nullable = false)
-    private boolean basicRights;
     @Column(name = "todo_access_rights", nullable = false)
     private boolean todoAccessRights;
     @Column(name = "team_leader_rights", nullable = false)
@@ -38,7 +36,6 @@ public class Role {
         return "Role{" +
                 "rId=" + rId +
                 ", roleName='" + roleName + '\'' +
-                ", basicRights=" + basicRights +
                 ", todoAccessRights=" + todoAccessRights +
                 ", teamLeaderRights=" + teamLeaderRights +
                 ", adminRights=" + adminRights +
