@@ -31,7 +31,7 @@ public class UserService {
 
     /**
      * Method that checks if user has admin privileges
-     * @param userId    user ID you want to chceck
+     * @param userId    user ID you want to check
      * @return          true / false
      */
     public boolean isAdmin(int userId) {
@@ -59,8 +59,8 @@ public class UserService {
 
 
     /**
-     * Metthod finds user by its username
-     * @param username  username of user you wan to find
+     * Method finds user by its username
+     * @param username  username of user you want to find
      * @return          found user by username
      */
     public User getUserByUserName(String username) {
@@ -123,7 +123,7 @@ public class UserService {
     /**
      * Method converts DTO object to User object, finds wanted role for user if exists
      * and saves it to database
-     * @param userDto   user Data Transfer Object you want to converts to user
+     * @param userDto   user Data Transfer Object you want to convert to user
      * @return          created user
      */
     public User addUser(UserRegister userDto) {
