@@ -20,17 +20,19 @@ CREATE TABLE "users" (
 CREATE TABLE "roles" (
   "r_id" SERIAL PRIMARY KEY,
   "role_name" varchar,
+  "basic_rights" boolean,
   "todo_access_rights" boolean,
   "team_leader_rights" boolean,
   "admin_rights" boolean
 );
 
-CREATE TABLE "todo_table" (
+CREATE TABLE "todos" (
   "td_id" SERIAL PRIMARY KEY,
   "user_id" integer,
   "task_name" varchar,
   "task_description" varchar,
-  "due_time" date
+  "due_time" date,
+  "completed" boolean
 );
 
 CREATE TABLE "assignments" (
@@ -38,7 +40,8 @@ CREATE TABLE "assignments" (
   "user_id" integer,
   "title" varchar,
   "ass_start" date,
-  "ass_end" date
+  "ass_end" date,
+  "completed" boolean
 );
 
 CREATE TABLE "groups" (
@@ -84,7 +87,7 @@ CREATE TABLE "feedback" (
 
 ALTER TABLE "users" ADD FOREIGN KEY ("role_id") REFERENCES "roles" ("r_id");
 
-ALTER TABLE "todo_table" ADD FOREIGN KEY ("user_id") REFERENCES "users" ("u_id");
+ALTER TABLE "todos" ADD FOREIGN KEY ("user_id") REFERENCES "users" ("u_id");
 
 ALTER TABLE "assignments" ADD FOREIGN KEY ("user_id") REFERENCES "users" ("u_id");
 
