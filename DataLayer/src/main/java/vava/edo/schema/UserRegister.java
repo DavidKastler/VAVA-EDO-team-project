@@ -9,7 +9,6 @@ import lombok.EqualsAndHashCode;
  * Data transfer object for User class
  * It is used for registering user
  */
-
 @EqualsAndHashCode(callSuper = true)
 @Data
 public class UserRegister extends UserLogin{
