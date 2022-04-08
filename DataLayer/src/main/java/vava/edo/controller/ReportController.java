@@ -24,16 +24,21 @@ public class ReportController {
         this.userService = userService;
     }
 
+    /**
+     * Endpoint returning a list of all reports
+     * @param token     user account rights verification
+     * @return  list of reports
+     */
     @GetMapping("/get/all")
-    public ResponseEntity<List<Report>> getAllTasks(@RequestParam(value = "token") int token, @PathVariable(value = "id") Integer userId) {
+    public ResponseEntity<List<Report>> getAllReports(@RequestParam(value = "token") int token) {
 
-        if (userId != null && userService.isAdmin(token)) {
+        if (userService.isAdmin(token)) {
             return new ResponseEntity<>(reportService.getAllReports(), HttpStatus.OK);
         }
         throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "User needs to be the owner of the selected account.");
     }
 
-    //NEDOKONCENE
+    //NEDOKONCENE - dorobim
     @PostMapping("/get/all")
     public ResponseEntity<List<Report>> createReport(@RequestParam(value = "token") int token, @PathVariable(value = "id") Integer userId) {
 

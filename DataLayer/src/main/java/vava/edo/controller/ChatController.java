@@ -25,7 +25,7 @@ public class ChatController {
         this.chatService = chatService;
         this.userService = userService;
     }
-
+    //NEFUNKCNE - dorobim
     @GetMapping("/{id}")
     public ResponseEntity<List<Chat>> getAllTasks(@RequestParam(value = "token") int token, @PathVariable(value = "id") Integer userId) {
 

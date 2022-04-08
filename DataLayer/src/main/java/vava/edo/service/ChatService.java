@@ -8,6 +8,9 @@ import vava.edo.repository.TaskRepository;
 
 import java.util.List;
 
+/**
+ * Service that operates over chat database table
+ */
 @Service
 public class ChatService {
 

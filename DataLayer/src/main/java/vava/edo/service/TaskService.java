@@ -20,6 +20,9 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
+/**
+ * Service that operates over todos database table
+ */
 @Service
 public class TaskService {
 
@@ -43,6 +46,13 @@ public class TaskService {
 
     }
 
+    /**
+     * Method returns users completed tasks from first to second index
+     * @param userId id of user whose tasks we wish to return
+     * @param fromIndex index of first task in list
+     * @param toIndex index of last task in list
+     * @return list of task objects
+     */
     public List<Task> getCompletedTasks(int userId, int fromIndex, int toIndex)
     {
         List<Task> pageOfTasks = taskRepository.findAllByUserIdAndCompleted(userId, true, PageRequest.of(fromIndex, toIndex));
@@ -51,10 +61,11 @@ public class TaskService {
 
     }
 
-    public List<Task> getTasksByMonth(int userId, Integer month){
+    //NEFUNKCNE - prerobim
+    /*public List<Task> getTasksByMonth(int userId, Integer month){
 
         return taskRepository.findAllByUserIdAndDueTime(userId, month);
-    }
+    }*/
 
     @Transactional
     /**

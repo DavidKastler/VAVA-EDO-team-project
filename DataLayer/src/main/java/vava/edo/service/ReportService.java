@@ -8,6 +8,9 @@ import vava.edo.repository.ReportRepository;
 
 import java.util.List;
 
+/**
+ * Service that operates over reports database table
+ */
 @Service
 public class ReportService {
 
@@ -18,6 +21,10 @@ public class ReportService {
         this.reportRepository = reportRepository;
     }
 
+    /**
+     * Method that returns all reports
+     * @return list of report objects
+     */
     public List<Report> getAllReports(){
         return reportRepository.findAll();
     }

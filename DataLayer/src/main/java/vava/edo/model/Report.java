@@ -27,4 +27,20 @@ public class Report {
     private String reportMessage;
     @Column(name = "report_status", nullable = false)
     private String reportStatus;
+
+    /**
+     * Debugging method
+     * @return  string with method variables
+     */
+    @Override
+    public String toString() {
+        return "Report{" +
+                "reportId=" + reportId +
+                ", chatId='" + chatId + '\'' +
+                ", reporterId=" + reporterId +
+                ", violatorId=" + violatorId +
+                ", reportMessage=" + reportMessage +
+                ", reportStatus=" + reportStatus +
+                '}';
+    }
 }

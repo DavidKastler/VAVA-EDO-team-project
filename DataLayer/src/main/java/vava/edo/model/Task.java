@@ -31,6 +31,11 @@ public class Task {
     @Column(name = "completed", nullable = false)
     private boolean completed;
 
+    /**
+     * Static casting method from TaskCreate object
+     * @param taskCreate    TaskCreate object that you want to cast
+     * @return          cast Task object
+     */
     public static Task from(TaskCreate taskCreate) {
         Task task = new Task();
         task.setUserId(taskCreate.getUserId());

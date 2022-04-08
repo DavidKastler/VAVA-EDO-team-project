@@ -25,4 +25,19 @@ public class Chat {
     private Date timeSent;
     @Column(name = "message", nullable = false)
     private String message;
+
+    /**
+     * Debugging method
+     * @return  string with method variables
+     */
+    @Override
+    public String toString() {
+        return "Chat{" +
+                "chatId=" + chatId +
+                ", groupId='" + groupId + '\'' +
+                ", senderId=" + senderId +
+                ", timeSent=" + timeSent +
+                ", message=" + message +
+                '}';
+    }
 }
