@@ -31,14 +31,7 @@ public class UserController {
     public ResponseEntity<User> loginUser(@RequestBody UserLogin userLogin) {
         User user = userService.getUserByUserName(userLogin.getUsername());
 
-        // Checking given password
-        String password = userLogin.getPassword();
-        if (password == null) {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Password for given user is null");
-        }
-        if (!password.equals(user.getPassword())) {
-            throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Password for given user is incorrect");
-        }
+        userService.checkPassword(user, userLogin.getPassword());
 
         return new ResponseEntity<>(user, HttpStatus.OK);
     }
@@ -57,7 +50,7 @@ public class UserController {
     public ResponseEntity<User> getUserById(@RequestParam(value = "token") int token,
                                             @PathVariable(value = "userId", required = false) Integer userId){
         int wantedUserId = token;
-        // if userId is used and is not eqal to token and user is admin
+        // if userId is used and is not equal to token and user is admin
         if (userId != null && userId != token && userService.isAdmin(token)) {
             wantedUserId = userId;
         }
@@ -66,6 +59,25 @@ public class UserController {
         return new ResponseEntity<>(user, HttpStatus.OK);
     }
 
+
+    @PutMapping("/change/{userId}")
+    public ResponseEntity<User> editUser(@RequestParam(value = "token") int token,
+                                         @PathVariable("userId") Integer userId,
+                                         @RequestBody UserLogin updatedUser) {
+        int wantedUserId = token;
+        // if userId is used and is not equal to token and user is admin
+        if (userId != null && userId != token) {
+            if (userService.isAdmin(token)) {
+                wantedUserId = userId;
+            } else {
+                throw new ResponseStatusException(HttpStatus.FORBIDDEN, "You do not have rights to do this.");
+            }
+        }
+        // no need to chceck if user exists, it is handled inside this method
+        User user = userService.editUser(wantedUserId, updatedUser);
+
+        return new ResponseEntity<>(user, HttpStatus.OK);
+    }
 
     @DeleteMapping(value = "/del/{id}")
     public ResponseEntity<Object> deleteUserById(@RequestParam(value = "token") int token,

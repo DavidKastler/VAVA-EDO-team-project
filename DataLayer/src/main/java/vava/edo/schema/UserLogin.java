@@ -6,7 +6,6 @@ import lombok.Data;
  * Data transfer object for User class
  * It is used for logging in user
  */
-
 @Data
 public class UserLogin {
     private String username;

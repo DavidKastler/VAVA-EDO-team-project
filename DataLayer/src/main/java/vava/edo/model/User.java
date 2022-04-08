@@ -12,7 +12,6 @@ import javax.persistence.*;
 /**
  * Class representing user in users table
  */
-
 @Getter
 @Setter
 @AllArgsConstructor

@@ -7,12 +7,10 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="LogicLayer" />
+        <module name="VAVA-gumkaci-projekt" />
+        <module name="VAVA-team-project" />
         <module name="DataLayer" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="PresentationLayer" target="11" />
-    </bytecodeTargetLevel>
   </component>
 </project>
