@@ -1,6 +1,7 @@
 module vava.edo.presentationlayer {
     requires javafx.controls;
     requires javafx.fxml;
+    requires java.sql;
 
 
     opens vava.edo to javafx.fxml;

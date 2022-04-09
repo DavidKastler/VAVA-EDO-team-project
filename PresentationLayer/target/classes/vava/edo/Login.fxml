@@ -12,16 +12,16 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1100.0" spacing="25.0" style="-fx-background-color: #323232;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1100.0" spacing="20.0" style="-fx-background-color: #323232;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="vava.edo.controllers.LoginController">
    <children>
-      <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="241.0" prefWidth="531.0" text=" EVERYDAY ORGANIZER" textAlignment="CENTER" textFill="#d4d4d4" wrapText="true">
+      <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="198.0" prefWidth="531.0" text=" EVERYDAY ORGANIZER" textAlignment="CENTER" textFill="#d4d4d4" wrapText="true">
          <font>
-            <Font name="Source Sans Pro Bold" size="85.0" />
+            <Font name="Source Sans Pro Bold" size="75.0" />
          </font>
       </Label>
       <HBox alignment="CENTER_LEFT" maxWidth="-Infinity" minHeight="-Infinity" prefHeight="70.0" prefWidth="500.0" spacing="10.0" style="-fx-background-color: #D4D4D4; -fx-background-radius: 20;">
          <children>
-            <ImageView fitHeight="52.0" fitWidth="54.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="52.0" fitWidth="54.0" pickOnBounds="true">
                <image>
                   <Image url="@../../images/user.png" />
                </image>
@@ -42,7 +42,7 @@
       </HBox>
       <HBox alignment="CENTER_LEFT" maxWidth="-Infinity" minHeight="-Infinity" prefHeight="70.0" prefWidth="500.0" spacing="10.0" style="-fx-background-color: #D4D4D4; -fx-background-radius: 20;">
          <children>
-            <ImageView fitHeight="52.0" fitWidth="54.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="52.0" fitWidth="54.0" pickOnBounds="true">
                <image>
                   <Image url="@../../images/password.png" />
                </image>
@@ -69,11 +69,16 @@
             <Font name="Source Sans Pro Bold" size="20.0" />
          </font>
       </CheckBox>
-      <Button mnemonicParsing="false" prefHeight="60.0" prefWidth="210.0" style="-fx-background-color: C4C4C4; -fx-background-radius: 30;" text="LOGIN">
+      <Button fx:id="btnLogin" mnemonicParsing="false" onMouseClicked="#handleLoginButton" prefHeight="60.0" prefWidth="210.0" style="-fx-background-color: C4C4C4; -fx-background-radius: 30;" text="LOGIN">
          <font>
             <Font name="Source Sans Pro Bold" size="30.0" />
          </font>
       </Button>
+      <Label fx:id="wrongCredentials" alignment="CENTER" prefHeight="24.0" prefWidth="273.0" text="Uncorrect username or password" textFill="RED" visible="false">
+         <font>
+            <Font name="Source Sans Pro Bold" size="18.0" />
+         </font>
+      </Label>
       <HBox alignment="CENTER" maxWidth="-Infinity" prefHeight="41.0" prefWidth="500.0" spacing="80.0">
          <children>
             <Button alignment="CENTER" mnemonicParsing="false" style="-fx-background-color: transparent;" text="Register as new user" textAlignment="CENTER" textFill="#3994ff" underline="true">
@@ -88,5 +93,10 @@
             </Button>
          </children>
       </HBox>
+      <Button alignment="CENTER" mnemonicParsing="false" style="-fx-background-color: transparent;" text="Forgot password" textAlignment="CENTER" textFill="WHITE">
+         <font>
+            <Font name="Source Sans Pro Bold" size="18.0" />
+         </font>
+      </Button>
    </children>
 </VBox>
