@@ -3,6 +3,14 @@ module vava.edo.presentationlayer {
     requires javafx.fxml;
     requires java.sql;
 
+    //needed for HTTP
+    requires unirest.java;
+
+    //needed for JSON
+    requires gson;
+
+    //needed for JSON
+    opens vava.edo.models to gson;
 
     opens vava.edo to javafx.fxml;
     exports vava.edo;
