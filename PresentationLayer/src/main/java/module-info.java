@@ -8,6 +8,7 @@ module vava.edo.presentationlayer {
 
     //needed for JSON
     requires gson;
+    requires json;
 
     //needed for JSON
     opens vava.edo.models to gson;
