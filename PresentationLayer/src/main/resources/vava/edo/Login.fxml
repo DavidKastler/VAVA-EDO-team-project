@@ -4,6 +4,7 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -51,14 +52,11 @@
                      </image>
                   </ImageView>
                   <Line endX="-100.62132263183594" endY="69.29289245605469" startX="-100.0" startY="17.401981353759766" strokeWidth="3.0" />
-                  <TextField fx:id="textPassword" alignment="CENTER" maxWidth="-Infinity" prefHeight="70.0" prefWidth="389.0" promptText="**********" style="-fx-background-radius: 20; -fx-background-color: transparent;">
+                  <PasswordField fx:id="textPassword" alignment="CENTER" maxWidth="-Infinity" prefHeight="70.0" prefWidth="389.0" promptText="**********" style="-fx-background-color: transparent;">
                      <font>
                         <Font name="Source Sans Pro Bold" size="31.0" />
                      </font>
-                     <opaqueInsets>
-                        <Insets />
-                     </opaqueInsets>
-                  </TextField>
+                  </PasswordField>
                </children>
                <padding>
                   <Insets left="20.0" right="20.0" />

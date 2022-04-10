@@ -7,10 +7,7 @@ import com.mashape.unirest.http.Unirest;
 import com.mashape.unirest.http.exceptions.UnirestException;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import org.json.JSONObject;
 import vava.edo.models.User;
@@ -28,7 +25,7 @@ public class LoginController {
     private TextField textUsername;
 
     @FXML
-    private TextField textPassword;
+    private PasswordField textPassword;
 
     @FXML
     private CheckBox checkBoxRememberMe;
