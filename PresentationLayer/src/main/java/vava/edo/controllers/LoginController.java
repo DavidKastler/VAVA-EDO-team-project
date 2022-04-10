@@ -65,7 +65,8 @@ public class LoginController {
                 wrongCredentials.setVisible(true);
             }
         } catch (UnirestException e) {
-            e.printStackTrace();
+            System.out.println("Connection to localhost:8080 failed ! (PLease start backend server)");
+            // e.printStackTrace();
         }
     }
 }
