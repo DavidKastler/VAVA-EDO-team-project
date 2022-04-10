@@ -45,14 +45,20 @@ public class UserService {
      * @param password  password you want to validate
      */
     public void checkPassword(User user, String password) {
-        if (password == null) {
+        if (password == null || password.length() == 0) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Password for given user is null");
         }
         if (!password.equals(user.getPassword())) {
             throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Password for given user is incorrect");
         }
     }
-    // Overloading
+
+
+    /**
+     * Method to check password of user
+     * @param userId      user ID you want to check
+     * @param password  password you want to validate
+     */
     public void checkPassword(int userId, String password) {
         checkPassword(getUser(userId), password);
     }
@@ -67,7 +73,13 @@ public class UserService {
         if (username == null) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Username is none.");
         }
-        return userRepository.findByUsername(username);
+        User user = userRepository.findByUsername(username);
+
+        if (user == null) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "User not found.");
+        }
+
+        return user;
     }
 
 
@@ -108,7 +120,14 @@ public class UserService {
 
         return userToEdit;
     }
-    // Over loading, basically does the same
+
+
+    /**
+     * Method that updates found user by ID based on given UserDto class parameters
+     * @param userId            user ID you want to change
+     * @param updatedUserDto    userDto class with updated parameters
+     * @return                  updated user
+     */
     @Transactional
     public User editUser(int userId, UserLogin updatedUserDto) {
         User userToEdit = getUser(userId);
