@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="rootPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane fx:id="rootPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="vava.edo.controllers.TodosController">
    <children>
       <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1100.0" style="-fx-background-color: #323232;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -98,10 +98,13 @@
                                           <Image url="@../../images/all-tasks.png" />
                                        </image>
                                     </ImageView>
-                                    <Label alignment="CENTER" prefHeight="40.0" prefWidth="142.0" text="All" textFill="WHITE">
+                                    <Label prefHeight="40.0" prefWidth="142.0" text="All" textFill="WHITE">
                                        <font>
                                           <Font name="Source Sans Pro Bold" size="25.0" />
                                        </font>
+                                       <padding>
+                                          <Insets left="10.0" />
+                                       </padding>
                                     </Label>
                                  </children>
                               </HBox>
@@ -116,10 +119,13 @@
                                           <Image url="@../../images/today-tasks.png" />
                                        </image>
                                     </ImageView>
-                                    <Label alignment="CENTER" prefHeight="40.0" prefWidth="142.0" text="Today" textFill="WHITE">
+                                    <Label prefHeight="40.0" prefWidth="142.0" text="Today" textFill="WHITE">
                                        <font>
                                           <Font name="Source Sans Pro Bold" size="25.0" />
                                        </font>
+                                       <padding>
+                                          <Insets left="10.0" />
+                                       </padding>
                                     </Label>
                                  </children>
                               </HBox>
@@ -134,10 +140,13 @@
                                           <Image url="@../../images/tomorrow-tasks.png" />
                                        </image>
                                     </ImageView>
-                                    <Label alignment="CENTER" prefHeight="40.0" prefWidth="142.0" text="Tomorrow" textFill="WHITE">
+                                    <Label prefHeight="40.0" prefWidth="142.0" text="Tomorrow" textFill="WHITE">
                                        <font>
                                           <Font name="Source Sans Pro Bold" size="25.0" />
                                        </font>
+                                       <padding>
+                                          <Insets left="10.0" />
+                                       </padding>
                                     </Label>
                                  </children>
                               </HBox>
@@ -152,10 +161,13 @@
                                           <Image url="@../../images/completed-tasks.png" />
                                        </image>
                                     </ImageView>
-                                    <Label alignment="CENTER" prefHeight="40.0" prefWidth="142.0" text="Completed" textFill="WHITE">
+                                    <Label prefHeight="40.0" prefWidth="142.0" text="Completed" textFill="WHITE">
                                        <font>
                                           <Font name="Source Sans Pro Bold" size="25.0" />
                                        </font>
+                                       <padding>
+                                          <Insets left="10.0" />
+                                       </padding>
                                     </Label>
                                  </children>
                               </HBox>
@@ -164,6 +176,50 @@
                      </children>
                      <padding>
                         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                     </padding>
+                  </VBox>
+                  <VBox prefHeight="480.0" prefWidth="239.0" spacing="10.0">
+                     <children>
+                        <HBox alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="200.0">
+                           <children>
+                              <Button contentDisplay="CENTER" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="50.0" prefWidth="15.0" style="-fx-background-color: transparent;" HBox.hgrow="NEVER">
+                                 <graphic>
+                                    <ImageView fitHeight="15.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../../images/left-arrow.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                                 <font>
+                                    <Font name="Source Sans Pro Regular" size="13.0" />
+                                 </font>
+                              </Button>
+                              <Button contentDisplay="CENTER" mnemonicParsing="false" prefHeight="50.0" prefWidth="215.0" style="-fx-background-color: transparent;">
+                                 <graphic>
+                                    <HBox alignment="CENTER_LEFT" prefWidth="205.0">
+                                       <children>
+                                          <ImageView fitHeight="40.0" fitWidth="43.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../../images/close-folder.png" />
+                                             </image>
+                                          </ImageView>
+                                          <Label prefHeight="40.0" prefWidth="160.0" text="Škola" textFill="WHITE">
+                                             <padding>
+                                                <Insets left="10.0" />
+                                             </padding>
+                                             <font>
+                                                <Font name="Source Sans Pro Bold" size="25.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
+                                    </HBox>
+                                 </graphic>
+                              </Button>
+                           </children>
+                        </HBox>
+                     </children>
+                     <padding>
+                        <Insets bottom="20.0" left="5.0" right="5.0" top="20.0" />
                      </padding>
                   </VBox>
                </children>

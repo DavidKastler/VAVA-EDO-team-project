@@ -178,6 +178,50 @@
                         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                      </padding>
                   </VBox>
+                  <VBox prefHeight="480.0" prefWidth="239.0" spacing="10.0">
+                     <children>
+                        <HBox alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="200.0">
+                           <children>
+                              <Button contentDisplay="CENTER" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="50.0" prefWidth="15.0" style="-fx-background-color: transparent;" HBox.hgrow="NEVER">
+                                 <graphic>
+                                    <ImageView fitHeight="15.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../../images/left-arrow.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                                 <font>
+                                    <Font name="Source Sans Pro Regular" size="13.0" />
+                                 </font>
+                              </Button>
+                              <Button contentDisplay="CENTER" mnemonicParsing="false" prefHeight="50.0" prefWidth="215.0" style="-fx-background-color: transparent;">
+                                 <graphic>
+                                    <HBox alignment="CENTER_LEFT" prefWidth="205.0">
+                                       <children>
+                                          <ImageView fitHeight="40.0" fitWidth="43.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../../images/close-folder.png" />
+                                             </image>
+                                          </ImageView>
+                                          <Label prefHeight="40.0" prefWidth="160.0" text="Škola" textFill="WHITE">
+                                             <padding>
+                                                <Insets left="10.0" />
+                                             </padding>
+                                             <font>
+                                                <Font name="Source Sans Pro Bold" size="25.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
+                                    </HBox>
+                                 </graphic>
+                              </Button>
+                           </children>
+                        </HBox>
+                     </children>
+                     <padding>
+                        <Insets bottom="20.0" left="5.0" right="5.0" top="20.0" />
+                     </padding>
+                  </VBox>
                </children>
             </VBox>
          </children>
