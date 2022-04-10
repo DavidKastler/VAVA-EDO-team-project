@@ -33,8 +33,6 @@ public class LoginController {
     @FXML
     private Button btnLoginGuest;
 
-    @FXML
-    private Button btnForgotPassword;
 
     @FXML
     protected void handleLoginButton() {
