@@ -1,5 +1,6 @@
 package vava.edo.controllers;
 
+import com.google.gson.Gson;
 import com.mashape.unirest.http.HttpResponse;
 import com.mashape.unirest.http.JsonNode;
 import com.mashape.unirest.http.Unirest;
@@ -10,6 +11,7 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import org.json.JSONObject;
+import vava.edo.models.User;
 
 public class LoginController {
 
@@ -43,9 +45,9 @@ public class LoginController {
         try {
             HttpResponse<JsonNode> apiResponse = Unirest.post("http://localhost:8080/users/login")
                     .header("Content-Type", "application/json").body(jo).asJson();
-            // User user = new Gson().fromJson(apiResponse.getBody().toString(), User.class);
+            User user = new Gson().fromJson(apiResponse.getBody().toString(), User.class);
             System.out.println(apiResponse.getBody().toString());
-            // System.out.println(user.toString());
+            System.out.println(user.toString());
         } catch (UnirestException e) {
             e.printStackTrace();
         }
