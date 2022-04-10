@@ -46,8 +46,12 @@ public class LoginController {
             HttpResponse<JsonNode> apiResponse = Unirest.post("http://localhost:8080/users/login")
                     .header("Content-Type", "application/json").body(jo).asJson();
             User user = new Gson().fromJson(apiResponse.getBody().toString(), User.class);
-            System.out.println(apiResponse.getBody().toString());
-            System.out.println(user.toString());
+
+            if(user.getUsername() != null)
+                System.out.println("Loged in!");
+            else
+                System.out.println("Nesprávne údaje");
+
         } catch (UnirestException e) {
             e.printStackTrace();
         }
