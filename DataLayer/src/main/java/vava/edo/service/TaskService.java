@@ -15,10 +15,10 @@ import vava.edo.schema.TaskCreate;
 import vava.edo.schema.TaskUpdate;
 import vava.edo.schema.UserRegister;
 
+import javax.persistence.Tuple;
 import java.lang.invoke.CallSite;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
+import java.sql.Date;
 
 /**
  * Service that operates over todos database table
@@ -55,17 +55,31 @@ public class TaskService {
      */
     public List<Task> getCompletedTasks(int userId, int fromIndex, int toIndex)
     {
-        List<Task> pageOfTasks = taskRepository.findAllByUserIdAndCompleted(userId, true, PageRequest.of(fromIndex, toIndex));
+        List<Task> pageOfTasks = taskRepository.findAllByUserIdAndCompletedOrderByDueTime(userId, true, PageRequest.of(fromIndex, toIndex));
 
         return pageOfTasks;
 
     }
 
-    //NEFUNKCNE - prerobim
-    /*public List<Task> getTasksByMonth(int userId, Integer month){
 
-        return taskRepository.findAllByUserIdAndDueTime(userId, month);
-    }*/
+    public List<Task> getTasksByMonth(int userId, Integer month){
+
+        Map<Integer, Date[]> months = new HashMap<>();
+        months.put(1, new Date[]{Date.valueOf("2022-01-01"), Date.valueOf("2022-01-31")});
+        months.put(2, new Date[]{Date.valueOf("2022-02-01"), Date.valueOf("2022-02-28")});
+        months.put(3, new Date[]{Date.valueOf("2022-03-01"), Date.valueOf("2022-03-31")});
+        months.put(4, new Date[]{Date.valueOf("2022-04-01"), Date.valueOf("2022-04-30")});
+        months.put(5, new Date[]{Date.valueOf("2022-05-01"), Date.valueOf("2022-05-31")});
+        months.put(6, new Date[]{Date.valueOf("2022-06-01"), Date.valueOf("2022-06-30")});
+        months.put(7, new Date[]{Date.valueOf("2022-07-01"), Date.valueOf("2022-07-31")});
+        months.put(8, new Date[]{Date.valueOf("2022-08-01"), Date.valueOf("2022-08-31")});
+        months.put(9, new Date[]{Date.valueOf("2022-09-01"), Date.valueOf("2022-09-30")});
+        months.put(10, new Date[]{Date.valueOf("2022-10-01"), Date.valueOf("2022-10-31")});
+        months.put(11, new Date[]{Date.valueOf("2022-11-01"), Date.valueOf("2022-11-30")});
+        months.put(12, new Date[]{Date.valueOf("2022-12-01"), Date.valueOf("2022-12-31")});
+
+        return taskRepository.findAllByUserIdAndDueTimeBetween(userId, months.get(month)[0], months.get(month)[1]);
+    }
 
     @Transactional
     /**

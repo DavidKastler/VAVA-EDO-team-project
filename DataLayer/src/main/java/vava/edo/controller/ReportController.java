@@ -6,6 +6,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 import vava.edo.model.Report;
+import vava.edo.schema.ReportCreate;
 import vava.edo.service.ReportService;
 import vava.edo.service.UserService;
 
@@ -38,14 +39,16 @@ public class ReportController {
         throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "User needs to be the owner of the selected account.");
     }
 
-    //NEDOKONCENE - dorobim
-    @PostMapping("/get/all")
-    public ResponseEntity<List<Report>> createReport(@RequestParam(value = "token") int token, @PathVariable(value = "id") Integer userId) {
+    /**
+     * Endpoint used to create a new report
+     * @param reportDto     report body
+     * @return      created report object
+     */
+    @PostMapping("/create")
+    public ResponseEntity<Report> createReport(@RequestBody ReportCreate reportDto) {
 
-        if (userId != null && userService.isAdmin(token)) {
-            return new ResponseEntity<>(reportService.getAllReports(), HttpStatus.OK);
-        }
-        throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "User needs to be the owner of the selected account.");
+        return new ResponseEntity<>(reportService.createReport(reportDto), HttpStatus.OK);
+
     }
 
 }

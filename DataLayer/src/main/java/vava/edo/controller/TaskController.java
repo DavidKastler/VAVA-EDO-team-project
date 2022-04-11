@@ -103,23 +103,25 @@ public class TaskController {
      * @param toIndex   index of last task
      * @return  response entity contaning a list of completed tasks and http status 200 / 401 / 404
      */
-    @GetMapping("/{id}/getMoreCompletedTasks/{from}/{to}")
+    @GetMapping("/{id}/getMoreCompletedTasks")
     public ResponseEntity<List<Task>> getCompletedTasks(@RequestParam(value = "token") int token, @PathVariable(value = "id") Integer userId
-            , @PathVariable(value = "from") Integer fromIndex, @PathVariable(value = "to") Integer toIndex) {
+            , @RequestParam(value = "from", required = false) Integer fromIndex, @RequestParam(value = "to", required = false) Integer toIndex) {
 
         if (userId != null && (userService.isAdmin(token) || userId == token)) {
+            if (fromIndex == null) fromIndex = 0;
+            if (toIndex == null) toIndex = 20;
             return new ResponseEntity<>(taskService.getCompletedTasks(userId, fromIndex, toIndex), HttpStatus.OK);
         }
         throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "User needs to be the owner of the selected account.");
     }
 
-    //NEFUNKCNE - prerobim
-    /*@GetMapping("/{id}/{time_range}")
+
+    @GetMapping("/{id}/{time_range}")
     public ResponseEntity<List<Task>> getTasksByMonth(@RequestParam(value = "token") int token, @PathVariable(value = "id") Integer userId, @PathVariable(value = "time_range") Integer month) {
 
         if (userId != null && (userService.isAdmin(token) || userId == token)) {
             return new ResponseEntity<>(taskService.getTasksByMonth(userId, month), HttpStatus.OK);
         }
         throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "User needs to be the owner of the selected account.");
-    }*/
+    }
 }

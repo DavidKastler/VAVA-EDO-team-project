@@ -33,15 +33,15 @@ public class Task {
 
     /**
      * Static casting method from TaskCreate object
-     * @param taskCreate    TaskCreate object that you want to cast
+     * @param taskDto    TaskCreate object that you want to cast
      * @return          cast Task object
      */
-    public static Task from(TaskCreate taskCreate) {
+    public static Task from(TaskCreate taskDto) {
         Task task = new Task();
-        task.setUserId(taskCreate.getUserId());
-        task.setTaskName(taskCreate.getTaskName());
-        task.setTaskDescription(taskCreate.getTaskDescription());
-        task.setDueTime(taskCreate.getDueTime());
+        task.setUserId(taskDto.getUserId());
+        task.setTaskName(taskDto.getTaskName());
+        task.setTaskDescription(taskDto.getTaskDescription());
+        task.setDueTime(taskDto.getDueTime());
         return task;
     }
 
@@ -55,7 +55,7 @@ public class Task {
     public String toString() {
         return "Task{" +
                 "rId=" + todoId +
-                ", userId='" + userId + '\'' +
+                ", userId=" + userId +
                 ", taskName=" + taskName +
                 ", taskDescription=" + taskDescription +
                 ", dueTime=" + dueTime +
