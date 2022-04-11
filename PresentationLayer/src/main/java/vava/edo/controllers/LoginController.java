@@ -7,22 +7,19 @@ import com.mashape.unirest.http.Unirest;
 import com.mashape.unirest.http.exceptions.UnirestException;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
-import javafx.scene.Node;
-import javafx.scene.control.*;
-import javafx.scene.input.MouseEvent;
+import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
-import javafx.stage.Stage;
 import org.json.JSONObject;
 import vava.edo.models.User;
+import vava.edo.models.UserHolder;
 
 import java.io.IOException;
-import java.net.URL;
-import java.net.URLConnection;
 import java.time.LocalDateTime;
-import java.util.ResourceBundle;
 
-public class LoginController implements Initializable {
+public class LoginController {
 
     @FXML
     private AnchorPane rootPane;
@@ -31,7 +28,7 @@ public class LoginController implements Initializable {
     private TextField textUsername;
 
     @FXML
-    private PasswordField textPassword;
+    private TextField textPassword;
 
     @FXML
     private CheckBox checkBoxRememberMe;
@@ -48,22 +45,8 @@ public class LoginController implements Initializable {
     @FXML
     private Button btnForgotPassword;
 
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-        try {
-            URL checkConnectionURL = new URL("http://www.google.com");
-            URLConnection checkConnection = checkConnectionURL.openConnection();
-            checkConnection.connect();
-            System.out.println("Internet is connected");
-        } catch (IOException e) {
-            System.out.println("Internet is not connected");
-        }
-    }
-
     @FXML
-    protected void handleLoginButton(MouseEvent event) throws IOException {
-        Node node = (Node) event.getSource();
-        Stage stage = (Stage) node.getScene().getWindow();
+    protected void handleLoginButton() throws IOException {
         JSONObject jo = new JSONObject();
         jo.put("username", textUsername.getText());
         jo.put("password", textPassword.getText());
@@ -77,11 +60,12 @@ public class LoginController implements Initializable {
                 user.setLogged(true);
                 user.setLastActivity(LocalDateTime.now());
                 System.out.println("Logged in\t->\t" + user);
-
                 wrongCredentials.setVisible(false);
+                UserHolder userHolder = UserHolder.getInstance();
+                userHolder.setUser(user);
+
                 AnchorPane todoScreen = FXMLLoader.load(getClass().getResource("/vava/edo/Todos.fxml"));
                 rootPane.getChildren().setAll(todoScreen);
-                stage.setUserData(user);
             }
             else {
                 System.out.println("Nesprávne údaje");
