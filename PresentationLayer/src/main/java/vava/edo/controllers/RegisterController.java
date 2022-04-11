@@ -74,7 +74,7 @@ public class RegisterController implements Initializable {
             wrongInput.setVisible(false);
 
             JSONObject jo = new JSONObject();
-            jo.put("use rname", this.textUsername.getText());
+            jo.put("username", this.textUsername.getText());
             jo.put("password", this.textPassword1.getText());
             jo.put("confirm_password", this.textPassword2.getText());
             System.out.println(jo);
