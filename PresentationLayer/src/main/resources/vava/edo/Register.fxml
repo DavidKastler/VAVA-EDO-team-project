@@ -20,7 +20,7 @@
                      <children>
                               <TextField alignment="CENTER" maxWidth="-Infinity" prefHeight="70.0" prefWidth="486.0" promptText="Username:" style="-fx-background-radius: 20; -fx-background-color: transparent;">
                                   <font>
-                                      <Font size="31.0" />
+                                      <Font name="Arial" size="30.0" />
                                   </font>
                                   <opaqueInsets>
                                       <Insets />
@@ -34,7 +34,7 @@
                               </TextField>
                         <TextField alignment="CENTER" layoutX="10.0" layoutY="77.0" maxWidth="-Infinity" prefHeight="70.0" prefWidth="486.0" promptText="Password:" style="-fx-background-radius: 20; -fx-background-color: transparent;">
                            <font>
-                              <Font size="31.0" />
+                              <Font name="Arial" size="30.0" />
                            </font>
                            <opaqueInsets>
                               <Insets />
@@ -48,7 +48,7 @@
                         </TextField>
                         <TextField alignment="CENTER" maxWidth="-Infinity" prefHeight="70.0" prefWidth="486.0" promptText="*Password:" style="-fx-background-radius: 20; -fx-background-color: transparent;">
                            <font>
-                              <Font size="31.0" />
+                              <Font name="Arial" size="30.0" />
                            </font>
                            <opaqueInsets>
                               <Insets />
