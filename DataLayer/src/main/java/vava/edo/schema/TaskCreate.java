@@ -11,9 +11,8 @@ import java.sql.Date;
  * Data transfer object for Task class
  * It is used for creating a task
  */
-
 @Data
-public class TaskCreate{
+public class TaskCreate {
     @NotNull
     private int userId;
     private String taskName;
@@ -22,7 +21,7 @@ public class TaskCreate{
 
     @Override
     public String toString() {
-        return "UserRegister{" +
+        return "TaskCreate{" +
                 ", userId='" + userId + '\'' +
                 ", taskName=" + taskName +
                 ", taskDescription=" + taskDescription +

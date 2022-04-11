@@ -29,18 +29,22 @@ public class GroupController {
         this.userService = userService;
     }
 
+    // TODO edit group
+    // TODO get group for user
+
     /**
      * Endpoint returning a list of all groups
      * @param token     user account rights verification
      * @return          list of groups
      */
     @GetMapping(value = "/all")
-    public ResponseEntity<List<Group>> getAllGroups(@RequestParam(value = "token") int token){
+    public ResponseEntity<List<Group>> getAllGroups(@RequestParam(value = "token") int token) {
         if (!userService.isAdmin(token)) {
             throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "This action requires admin privileges.");
         }
         return new ResponseEntity<>(groupService.getAllGroups(), HttpStatus.OK);
     }
+
 
     /**
      * Endpoint returning a group with given id
@@ -50,21 +54,22 @@ public class GroupController {
      */
     @GetMapping(value = "/get/{groupId}")
     public ResponseEntity<Group> getGroupById(@RequestParam(value = "token") int token,
-                                              @PathVariable(value = "groupId") Integer groupId){
-//        int wantedGroupId = token;
-//        // if userId is used and is not equal to token and user is admin
-//        if (&& groupId != token && userService.isAdmin(token)) {
-//            wantedGroupId = groupId;
-//        }
+                                              @PathVariable(value = "groupId") int groupId) {
+        if (!userService.isAdmin(token)) {
+            throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "This action requires admin privileges.");
+        }
+
 
         Group group = groupService.getGroup(groupId);
+        System.out.println(group.toString());
         return new ResponseEntity<>(group, HttpStatus.OK);
     }
 
 
-    @GetMapping(value = "/get/{groupName}")
+    //TODO doc vsade
+    @GetMapping(value = "/get/name/{groupName}")
     public ResponseEntity<Group> getGroupByName(@RequestParam(value = "token") int token,
-                                              @PathVariable(value = "groupName", required = false) String groupId){
+                                              @PathVariable(value = "groupName", required = false) String groupId) {
         String wantedGroupName = null;
         if (groupId != null && userService.isAdmin(token)) {
             wantedGroupName = groupId;
@@ -79,6 +84,7 @@ public class GroupController {
     public ResponseEntity<Object> createNewGroup(@RequestBody GroupCreate userDto) {
         return new ResponseEntity<>(groupService.addGroup(userDto), HttpStatus.CREATED);
     }
+
 
     @DeleteMapping(value = "/del/{groupId}")
     public ResponseEntity<Object> deleteGroupById(@RequestParam(value = "token") int token,

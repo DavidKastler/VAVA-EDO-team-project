@@ -71,6 +71,7 @@ public class GroupService {
      * @return              updated group
      */
     @Transactional
+    //TODO spravi editGroup a dat optional parametre s tym ze dostanes GroupUpdate triedu
     public Group editGroupName(int groupID, String newGroupName) {
         Group groupToEdit = getGroup(groupID);
 
@@ -99,7 +100,7 @@ public class GroupService {
      */
     public Group deleteGroup(int groupId){
         Group group = getGroup(groupId);
-        System.out.println(group.toString());
+
         groupRepository.delete(group);
         return group;
     }
