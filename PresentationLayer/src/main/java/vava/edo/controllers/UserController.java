@@ -1,47 +1,10 @@
-package vava.edo.models;
+package vava.edo.controllers;
+
+import vava.edo.models.User;
 
 import java.io.*;
-import java.time.LocalDateTime;
 
-public class User implements Serializable {
-    private Integer uid = null;
-    private String username = null;
-    private String password = null;
-    private Role userRole = null;
-    private boolean isLogged = false;
-    private LocalDateTime lastActivity = null;
-
-    public void setLogged(boolean logged) {
-        isLogged = logged;
-    }
-
-    public void setLastActivity(LocalDateTime lastActivity) {
-        this.lastActivity = lastActivity;
-    }
-
-    public Integer getUid() {
-        return uid;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public Role getUserRole() {
-        return userRole;
-    }
-
-    public boolean isLogged() {
-        return isLogged;
-    }
-
-    public LocalDateTime getLastActivity() {
-        return lastActivity;
-    }
+public class UserController {
 
     public void  loadSerializeUser() {
         User user = null;
@@ -73,15 +36,5 @@ public class User implements Serializable {
         }
     }
 
-    @Override
-    public String toString() {
-        return "User{" +
-                "uid=" + uid +
-                ", username='" + username + '\'' +
-                ", password='" + password + '\'' +
-                ", userRole=" + userRole +
-                ", isLogged=" + isLogged +
-                ", lastActivity=" + lastActivity +
-                '}';
-    }
+
 }
