@@ -12,5 +12,8 @@
         <module name="DataLayer" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="PresentationLayer" target="11" />
+    </bytecodeTargetLevel>
   </component>
 </project>
