@@ -14,8 +14,10 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import org.json.JSONObject;
 import vava.edo.models.User;
+import vava.edo.models.UserHolder;
 
 import java.io.IOException;
+import java.time.LocalDateTime;
 
 public class LoginController {
 
@@ -55,8 +57,13 @@ public class LoginController {
             User user = new Gson().fromJson(apiResponse.getBody().toString(), User.class);
 
             if(user.getUsername() != null) {
+                user.setLogged(true);
+                user.setLastActivity(LocalDateTime.now());
                 System.out.println("Logged in\t->\t" + user);
                 wrongCredentials.setVisible(false);
+                UserHolder userHolder = UserHolder.getInstance();
+                userHolder.setUser(user);
+
                 AnchorPane todoScreen = FXMLLoader.load(getClass().getResource("/vava/edo/Todos.fxml"));
                 rootPane.getChildren().setAll(todoScreen);
             }

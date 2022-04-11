@@ -1,10 +1,15 @@
 package vava.edo.models;
 
-public class User {
+import java.io.Serializable;
+import java.time.LocalDateTime;
+
+public class User implements Serializable {
     private Integer uid = null;
     private String username = null;
     private String password = null;
     private Role userRole = null;
+    private boolean isLogged = false;
+    private LocalDateTime lastActivity = null;
 
     public Integer getUid() {
         return uid;
@@ -22,13 +27,31 @@ public class User {
         return userRole;
     }
 
+    public boolean isLogged() {
+        return isLogged;
+    }
+
+    public LocalDateTime getLastActivity() {
+        return lastActivity;
+    }
+
+    public void setLogged(boolean logged) {
+        isLogged = logged;
+    }
+
+    public void setLastActivity(LocalDateTime lastActivity) {
+        this.lastActivity = lastActivity;
+    }
+
     @Override
     public String toString() {
         return "User{" +
-                "uId=" + uid +
+                "uid=" + uid +
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
-                ", userRol=" + userRole +
+                ", userRole=" + userRole +
+                ", isLogged=" + isLogged +
+                ", lastActivity=" + lastActivity +
                 '}';
     }
 }

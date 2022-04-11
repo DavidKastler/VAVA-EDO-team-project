@@ -98,7 +98,7 @@
                                           <Image url="@../../images/all-tasks.png" />
                                        </image>
                                     </ImageView>
-                                    <Label prefHeight="40.0" prefWidth="142.0" text="All" textFill="WHITE">
+                                    <Label fx:id="labelLeftBarAll" prefHeight="40.0" prefWidth="142.0" text="All" textFill="WHITE">
                                        <font>
                                           <Font name="Source Sans Pro Bold" size="25.0" />
                                        </font>
