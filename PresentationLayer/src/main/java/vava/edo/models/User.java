@@ -8,6 +8,7 @@ public class User implements Serializable {
     private String username = null;
     private String password = null;
     private Role userRole = null;
+    private boolean rememberMe = false;
     private boolean isLogged = false;
     private LocalDateTime lastActivity = null;
 
@@ -35,6 +36,14 @@ public class User implements Serializable {
         return lastActivity;
     }
 
+    public boolean isRememberMe() {
+        return rememberMe;
+    }
+
+    public void setRememberMe(boolean rememberMe) {
+        this.rememberMe = rememberMe;
+    }
+
     public void setLogged(boolean logged) {
         isLogged = logged;
     }
@@ -50,6 +59,7 @@ public class User implements Serializable {
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
                 ", userRole=" + userRole +
+                ", rememberMe=" + rememberMe +
                 ", isLogged=" + isLogged +
                 ", lastActivity=" + lastActivity +
                 '}';

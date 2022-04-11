@@ -7,19 +7,19 @@ import com.mashape.unirest.http.Unirest;
 import com.mashape.unirest.http.exceptions.UnirestException;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.fxml.Initializable;
+import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import org.json.JSONObject;
 import vava.edo.models.User;
-import vava.edo.models.UserHolder;
 
 import java.io.IOException;
+import java.net.URL;
 import java.time.LocalDateTime;
+import java.util.ResourceBundle;
 
-public class LoginController {
+public class LoginController implements Initializable {
+    private User user;
 
     @FXML
     private AnchorPane rootPane;
@@ -28,7 +28,7 @@ public class LoginController {
     private TextField textUsername;
 
     @FXML
-    private TextField textPassword;
+    private PasswordField textPassword;
 
     @FXML
     private CheckBox checkBoxRememberMe;
@@ -45,6 +45,24 @@ public class LoginController {
     @FXML
     private Button btnForgotPassword;
 
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        /*UserHolder userHolder = UserHolder.getInstance();
+        userHolder.loadSerializeUSer();
+        this.user = userHolder.getUser();
+
+
+        if(user != null && !user.isLogged()) {
+            if(user.isRememberMe()) {
+                textUsername.setText(user.getUsername());
+                textPassword.setText(user.getPassword());
+            }
+        }
+        else {
+
+        }*/
+    }
+
     @FXML
     protected void handleLoginButton() throws IOException {
         JSONObject jo = new JSONObject();
@@ -54,17 +72,23 @@ public class LoginController {
         try {
             HttpResponse<JsonNode> apiResponse = Unirest.post("http://localhost:8080/users/login")
                     .header("Content-Type", "application/json").body(jo).asJson();
-            User user = new Gson().fromJson(apiResponse.getBody().toString(), User.class);
+            this.user = new Gson().fromJson(apiResponse.getBody().toString(), User.class);
 
             if(user.getUsername() != null) {
                 user.setLogged(true);
                 user.setLastActivity(LocalDateTime.now());
                 System.out.println("Logged in\t->\t" + user);
                 wrongCredentials.setVisible(false);
-                UserHolder userHolder = UserHolder.getInstance();
-                userHolder.setUser(user);
+                // UserHolder userHolder = UserHolder.getInstance();
+                // userHolder.setUser(user);
 
-                AnchorPane todoScreen = FXMLLoader.load(getClass().getResource("/vava/edo/Todos.fxml"));
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/vava/edo/Todos.fxml"));
+                AnchorPane todoScreen = loader.load();
+                TodosController todoController = loader.<TodosController>getController();
+                todoController.initController(user);
+
+                //AnchorPane todoScreen = FXMLLoader.load(getClass().getResource("/vava/edo/Todos.fxml"));
+                // TodosController todosController = new TodosController();
                 rootPane.getChildren().setAll(todoScreen);
             }
             else {
@@ -76,4 +100,10 @@ public class LoginController {
             // e.printStackTrace();
         }
     }
+
+   /* private void openScreen(String name) {
+        AnchorPane todoScreen = FXMLLoader.load(getClass().getResource("/vava/edo/Todos.fxml"));
+        TodosController todosController = new TodosController();
+        rootPane.getChildren().setAll(todoScreen);
+    }*/
 }

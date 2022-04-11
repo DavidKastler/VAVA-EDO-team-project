@@ -32,12 +32,9 @@ public final class UserHolder {
 
             in.close();
             fileIn.close();
-            System.out.println("Smeny sú načítané");
-        } catch (IOException i) {  // chyba pri deserializacii
-            i.printStackTrace();
-        } catch (ClassNotFoundException c) {  // chyba nenajdeneho suboru so serializaciou
-            System.out.println("Shifts class not found");
-            c.printStackTrace();
+            System.out.println("User was loaded");
+        } catch (IOException | ClassNotFoundException i) {  // chyba pri deserializacii
+            System.out.println("File \"user.ser\" was not found");
         }
     }
 
@@ -49,7 +46,7 @@ public final class UserHolder {
             out.writeObject(this.user);  // pridavanie jednotlivych objektov
             out.close();
             fileOut.close();  // zatvorenie suboru
-            System.out.println("Údaje boli uložené (user.ser)");
+            System.out.println("Data was successfully saved (user.ser)");
         } catch (IOException i) {  // ak sa nahodou nepodari subor vytvorit alebo pre inu chybu
             i.printStackTrace();  // vypis vynimky (problemu)
         }
