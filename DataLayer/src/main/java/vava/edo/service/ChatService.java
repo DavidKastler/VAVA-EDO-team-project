@@ -13,6 +13,7 @@ import vava.edo.schema.ReportCreate;
 
 import java.sql.Date;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * Service that operates over chat database table
@@ -44,11 +45,10 @@ public class ChatService {
      * @param userId        id of sender account
      * @return  int userId
      */
-    public boolean verifyUserOwnsAccount(MessageCreate messageDto, Integer userId) {
+    public boolean verifyIfUserOwnsAccount(MessageCreate messageDto, Integer userId) {
         Integer messageSenderId = messageDto.getSenderId();
 
-        if (userId == messageSenderId) return true;
-        return false;
+        return Objects.equals(userId, messageSenderId);
     }
 
     /**

@@ -39,7 +39,7 @@ public class ReportController {
         if (userService.isAdmin(token)) {
             return new ResponseEntity<>(reportService.getAllReports(), HttpStatus.OK);
         }
-        throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "User needs to be the owner of the selected account.");
+        throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "User needs to be admin.");
     }
 
     /**
@@ -50,6 +50,35 @@ public class ReportController {
     @PostMapping("/create")
     public ResponseEntity<Report> createReport(@RequestBody ReportCreate reportDto) {
         return new ResponseEntity<>(reportService.createReport(reportDto), HttpStatus.OK);
+    }
+
+    /**
+     * Endpoint used to accept a report
+     * @param token     verification of user privileges
+     * @param reportId      id of report we want to accept
+     * @return      resulting report object
+     */
+    @PutMapping("/accept")
+    public ResponseEntity<Report> acceptReport(@RequestParam(name = "token") Integer token, @RequestParam(name = "report_id") Integer reportId) {
+
+        if (userService.isAdmin(token)) {
+            return new ResponseEntity<>(reportService.acceptReport(reportId), HttpStatus.OK);
+        }
+        throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "User needs to be admin.");
+    }
+
+    /**
+     * Endpoint used to reject a report
+     * @param token     verification of user privileges
+     * @param reportId      id of report we want to reject
+     * @return      resulting report object
+     */
+    @PutMapping("/reject")
+    public ResponseEntity<Report> rejectReport(@RequestParam(name = "token") Integer token, @RequestParam(name = "report_id") Integer reportId) {
+        if (userService.isAdmin(token)) {
+            return new ResponseEntity<>(reportService.rejectReport(reportId), HttpStatus.OK);
+        }
+        throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "User needs to be admin.");
     }
 
 }
