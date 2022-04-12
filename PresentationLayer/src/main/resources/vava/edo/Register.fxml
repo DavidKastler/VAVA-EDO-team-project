@@ -11,136 +11,112 @@
 <?import javafx.scene.text.Font?>
 
 <AnchorPane fx:id="rootPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="vava.edo.controllers.RegisterController">
-    <children>
-        <VBox alignment="CENTER" layoutY="173.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="577.0" prefWidth="1100.0" spacing="20.0" style="-fx-background-color: #323232;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="173.0">
-            <children>
+   <children>
+      <VBox alignment="CENTER" layoutX="7.0" layoutY="7.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1100.0" spacing="20.0" style="-fx-background-color: #323232;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="198.0" prefWidth="531.0" text=" EVERYDAY ORGANIZER" textAlignment="CENTER" textFill="#d4d4d4" wrapText="true">
+               <font>
+                  <Font name="Arial" size="75.0" />
+               </font>
+            </Label>
             <HBox>
                <children>
-                  <VBox prefHeight="230.0" prefWidth="625.0">
+                  <Label alignment="CENTER_RIGHT" contentDisplay="CENTER" maxWidth="-Infinity" prefHeight="70.0" prefWidth="300.0" text="Username:" textAlignment="CENTER" textFill="#d4d4d4" wrapText="true">
+                     <font>
+                        <Font name="Arial" size="31.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                     <padding>
+                        <Insets right="10.0" />
+                     </padding>
+                  </Label>
+                  <HBox alignment="CENTER_LEFT" maxWidth="-Infinity" minHeight="-Infinity" prefHeight="70.0" prefWidth="500.0" spacing="10.0" style="-fx-background-color: #D4D4D4; -fx-background-radius: 20;">
                      <children>
-                              <TextField alignment="CENTER" maxWidth="-Infinity" prefHeight="70.0" prefWidth="486.0" promptText="Username:" style="-fx-background-radius: 20; -fx-background-color: transparent;">
-                                  <font>
-                                      <Font name="Arial" size="30.0" />
-                                  </font>
-                                  <opaqueInsets>
-                                      <Insets />
-                                  </opaqueInsets>
-                           <VBox.margin>
-                              <Insets top="10.0" />
-                           </VBox.margin>
-                           <padding>
-                              <Insets left="120.0" />
-                           </padding>
-                              </TextField>
-                        <TextField alignment="CENTER" layoutX="10.0" layoutY="77.0" maxWidth="-Infinity" prefHeight="70.0" prefWidth="486.0" promptText="Password:" style="-fx-background-radius: 20; -fx-background-color: transparent;">
+                        <TextField fx:id="textUsername" alignment="CENTER" maxWidth="-Infinity" prefHeight="70.0" prefWidth="487.0" style="-fx-background-radius: 20; -fx-background-color: transparent;">
                            <font>
-                              <Font name="Arial" size="30.0" />
+                              <Font name="Arial" size="31.0" />
                            </font>
                            <opaqueInsets>
                               <Insets />
                            </opaqueInsets>
-                           <VBox.margin>
-                              <Insets top="10.0" />
-                           </VBox.margin>
-                           <padding>
-                              <Insets left="120.0" />
-                           </padding>
-                        </TextField>
-                        <TextField alignment="CENTER" maxWidth="-Infinity" prefHeight="70.0" prefWidth="486.0" promptText="*Password:" style="-fx-background-radius: 20; -fx-background-color: transparent;">
-                           <font>
-                              <Font name="Arial" size="30.0" />
-                           </font>
-                           <opaqueInsets>
-                              <Insets />
-                           </opaqueInsets>
-                           <padding>
-                              <Insets left="118.0" />
-                           </padding>
-                           <VBox.margin>
-                              <Insets top="10.0" />
-                           </VBox.margin>
                         </TextField>
                      </children>
-                  </VBox>
-                  <VBox prefHeight="282.0" prefWidth="1100.0">
-                     <children>
-                        <HBox alignment="TOP_RIGHT" maxWidth="-Infinity" minHeight="-Infinity" prefHeight="70.0" prefWidth="500.0" spacing="10.0" style="-fx-background-color: #D4D4D4; -fx-background-radius: 20;">
-                           <children>
-                              <TextField fx:id="textUsername" alignment="CENTER" maxWidth="-Infinity" prefHeight="70.0" prefWidth="486.0" style="-fx-background-radius: 20; -fx-background-color: transparent;">
-                                 <font>
-                                    <Font size="31.0" />
-                                 </font>
-                                 <opaqueInsets>
-                                    <Insets />
-                                 </opaqueInsets>
-                              </TextField>
-                           </children>
-                           <padding>
-                              <Insets left="20.0" right="20.0" />
-                           </padding>
-                           <VBox.margin>
-                              <Insets top="10.0" />
-                           </VBox.margin>
-                        </HBox>
-                        <HBox alignment="CENTER_RIGHT" maxWidth="-Infinity" minHeight="-Infinity" prefHeight="70.0" prefWidth="500.0" spacing="10.0" style="-fx-background-color: #D4D4D4; -fx-background-radius: 20;">
-                           <children>
-                              <PasswordField fx:id="textPassword1" alignment="CENTER" layoutX="111.0" layoutY="10.0" maxWidth="-Infinity" prefHeight="70.0" prefWidth="474.0" style="-fx-background-color: transparent;">
-                                 <font>
-                                    <Font name="Source Sans Pro Bold" size="31.0" />
-                                 </font>
-                              </PasswordField>
-                           </children>
-                           <padding>
-                              <Insets left="20.0" right="20.0" />
-                           </padding>
-                           <VBox.margin>
-                              <Insets top="10.0" />
-                           </VBox.margin>
-                        </HBox>
-                        <HBox alignment="BOTTOM_RIGHT" maxWidth="-Infinity" minHeight="-Infinity" prefHeight="70.0" prefWidth="500.0" spacing="10.0" style="-fx-background-color: #D4D4D4; -fx-background-radius: 20;">
-                           <padding>
-                              <Insets left="20.0" right="20.0" />
-                           </padding>
-                           <children>
-                              <PasswordField fx:id="textPassword2" alignment="CENTER" layoutX="111.0" layoutY="10.0" maxWidth="-Infinity" prefHeight="70.0" prefWidth="482.0" style="-fx-background-color: transparent;">
-                                 <font>
-                                    <Font name="Source Sans Pro Bold" size="31.0" />
-                                 </font>
-                              </PasswordField>
-                           </children>
-                           <VBox.margin>
-                              <Insets top="10.0" />
-                           </VBox.margin>
-                        </HBox>
-                     </children>
-                  </VBox>
+                     <padding>
+                        <Insets left="20.0" right="20.0" />
+                     </padding>
+                  </HBox>
                </children>
             </HBox>
-                <Button fx:id="btnRegister" mnemonicParsing="false" onMouseClicked="#handleRegisterButton" prefHeight="60.0" prefWidth="210.0" style="-fx-background-color: C4C4C4; -fx-background-radius: 30;" text="REGISTER">
-                    <font>
-                        <Font name="Source Sans Pro Bold" size="30.0" />
-                    </font>
-                </Button>
-                <Label fx:id="wrongInput" alignment="CENTER" prefHeight="24.0" prefWidth="273.0" text="Wrong input! Try again!" textFill="RED" visible="false">
-                    <font>
-                        <Font name="Source Sans Pro Bold" size="18.0" />
-                    </font>
-                </Label>
-                <HBox alignment="CENTER" maxWidth="-Infinity" prefHeight="41.0" prefWidth="500.0" spacing="80.0">
-                    <children>
-                        <Button fx:id="btnBackToLogin" alignment="CENTER" mnemonicParsing="false" onMouseClicked="#handleBackToLoginButton" style="-fx-background-color: transparent;" text="Back to login" textAlignment="CENTER" textFill="#3994ff" underline="true">
-                            <font>
-                                <Font name="Source Sans Pro Bold" size="18.0" />
-                            </font>
-                        </Button>
-                    </children>
-                </HBox>
-            </children>
-        </VBox>
-          <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="198.0" prefWidth="1100.0" style="-fx-background-color: #323232;" text=" EVERYDAY ORGANIZER" textAlignment="CENTER" textFill="#d4d4d4" wrapText="true">
-              <font>
-                  <Font size="51.0" />
-              </font>
-          </Label>
-    </children>
+            <HBox>
+               <children>
+                  <Label alignment="CENTER_RIGHT" contentDisplay="CENTER" maxWidth="-Infinity" prefHeight="70.0" prefWidth="300.0" text="Password:" textAlignment="CENTER" textFill="#d4d4d4" wrapText="true">
+                     <font>
+                        <Font name="Arial" size="31.0" />
+                     </font>
+                     <padding>
+                        <Insets right="10.0" />
+                     </padding>
+                  </Label>
+                  <HBox alignment="CENTER_LEFT" maxWidth="-Infinity" minHeight="-Infinity" prefHeight="70.0" prefWidth="500.0" spacing="10.0" style="-fx-background-color: #D4D4D4; -fx-background-radius: 20;">
+                     <children>
+                        <PasswordField fx:id="textPassword1" alignment="CENTER" maxWidth="-Infinity" prefHeight="70.0" prefWidth="487.0" style="-fx-background-color: transparent;">
+                           <font>
+                              <Font name="Arial" size="31.0" />
+                           </font>
+                        </PasswordField>
+                     </children>
+                     <padding>
+                        <Insets left="20.0" right="20.0" />
+                     </padding>
+                  </HBox>
+               </children>
+            </HBox>
+            <HBox>
+               <children>
+                  <Label alignment="CENTER_RIGHT" contentDisplay="CENTER" maxWidth="-Infinity" prefHeight="70.0" prefWidth="300.0" text="*Password:" textAlignment="CENTER" textFill="#d4d4d4" wrapText="true">
+                     <font>
+                        <Font name="Arial" size="31.0" />
+                     </font>
+                     <padding>
+                        <Insets right="10.0" />
+                     </padding>
+                  </Label>
+                  <HBox alignment="CENTER_LEFT" maxWidth="-Infinity" minHeight="-Infinity" prefHeight="70.0" prefWidth="500.0" spacing="10.0" style="-fx-background-color: #D4D4D4; -fx-background-radius: 20;">
+                     <children>
+                        <PasswordField fx:id="textPassword2" alignment="CENTER" maxWidth="-Infinity" prefHeight="70.0" prefWidth="487.0" style="-fx-background-color: transparent;">
+                           <font>
+                              <Font name="Arial" size="31.0" />
+                           </font>
+                        </PasswordField>
+                     </children>
+                     <padding>
+                        <Insets left="20.0" right="20.0" />
+                     </padding>
+                  </HBox>
+               </children>
+            </HBox>
+            <Button fx:id="btnRegister" mnemonicParsing="false" onMouseClicked="#handleRegisterButton" prefHeight="60.0" prefWidth="210.0" style="-fx-background-color: C4C4C4; -fx-background-radius: 30;" text="REGISTER">
+               <font>
+                  <Font name="Arial" size="30.0" />
+               </font>
+            </Button>
+            <Label fx:id="wrongInput" alignment="CENTER" prefHeight="24.0" prefWidth="273.0" text="Wrong Input!" textFill="RED" visible="false">
+               <font>
+                  <Font name="Arial" size="18.0" />
+               </font>
+            </Label>
+            <HBox alignment="CENTER" maxWidth="-Infinity" prefHeight="41.0" prefWidth="500.0" spacing="80.0">
+               <children>
+                  <Button fx:id="btnBackToLogin" alignment="CENTER" mnemonicParsing="false" onMouseClicked="#handleBackToLoginButton" style="-fx-background-color: transparent;" text="Back to login" textAlignment="CENTER" textFill="#3994ff" underline="true">
+                     <font>
+                        <Font name="Arial" size="18.0" />
+                     </font>
+                  </Button>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </children>
 </AnchorPane>

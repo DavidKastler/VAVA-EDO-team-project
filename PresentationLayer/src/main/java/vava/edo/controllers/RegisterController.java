@@ -97,6 +97,7 @@ public class RegisterController implements Initializable {
         Stage stage = (Stage) node.getScene().getWindow();
 
         AnchorPane loginScreen = FXMLLoader.load(getClass().getResource("/vava/edo/Login.fxml"));
+
         this.rootPane.getChildren().setAll(new Node[]{loginScreen});
 
     }
