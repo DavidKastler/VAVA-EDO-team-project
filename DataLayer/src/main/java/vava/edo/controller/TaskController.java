@@ -13,7 +13,6 @@ import vava.edo.schema.TaskUpdate;
 import vava.edo.service.TaskService;
 import vava.edo.service.UserService;
 
-import java.sql.Timestamp;
 import java.util.Date;
 import java.util.List;
 
@@ -25,84 +24,102 @@ import java.util.List;
 public class TaskController {
 
     private final TaskService taskService;
+    private final UserService userService;
 
     @Autowired
-    public TaskController(TaskService taskService) {
+    public TaskController(TaskService taskService, UserService userService) {
         this.taskService = taskService;
+        this.userService = userService;
     }
 
     /**
      * Endpoint returning a list of all users tasks
-     * @param token   user account id whose messages we want to show
-     * @return list of users tasks and http status 200 / 404
+     * @param token   user account rights verification
+     * @param userId  id of user whose tasks we want to return
+     * @return list of users tasks and http status 200 / 401 / 404
      */
-    @GetMapping("/all")
-    public ResponseEntity<List<Task>> getAllTasks(@RequestParam(value = "token")  Integer token) {
-        return new ResponseEntity<>(taskService.getAllTasks(token), HttpStatus.OK);
+    @GetMapping("/{id}/all")
+    public ResponseEntity<List<Task>> getAllTasks(@RequestParam(value = "token") int token, @PathVariable(value = "id") Integer userId) {
+        if (userId != null && (userService.isAdmin(token) || userId == token)) {
+            return new ResponseEntity<>(taskService.getAllTasks(userId), HttpStatus.OK);
+        }
+        throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "User needs to be the owner of the selected account.");
     }
 
     /**
      * Endpoint used to create a new task
-     * @param token   user account id
+     * @param token   user account rights verification
+     * @param userId  id of user whose tasks we want to return
      * @param taskDto data transfer object for Task class
      * @return response entity containing task and http status 201 / 401 / 404
      */
-    @PostMapping("/add")
-    public ResponseEntity<Task> createTask(@RequestParam(value = "token") int token, @RequestBody TaskCreate taskDto) {
-        if (taskDto.getUserId() != token) throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "User needs to be the owner of the account.");
-
-        return new ResponseEntity<>(taskService.createTask(taskDto), HttpStatus.CREATED);
+    @PostMapping("/{id}/add")
+    public ResponseEntity<Task> createTask(@RequestParam(value = "token") int token, @PathVariable(value = "id") Integer userId, @RequestBody TaskCreate taskDto) {
+        if (userId != null && (userService.isAdmin(token) || userId == token)) {
+            return new ResponseEntity<>(taskService.createTask(taskDto), HttpStatus.CREATED);
+        }
+        throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "User needs to be the owner of the selected account.");
     }
 
     /**
      * Endpoint used to update a specific task
-     * @param token     user account id
+     * @param token     user account rights verification
+     * @param userId    id of user whose tasks we want to return
      * @param taskId    id of task we want to update
      * @param taskDto   data transfer object for Task class
      * @return response entity containing task and http status 200 / 400 / 404
      */
-    @PutMapping("/update/{task_id}")
-    public ResponseEntity<Task> updateTaskById(@RequestParam(value = "token") Integer token, @PathVariable(value = "task_id") Integer taskId, @RequestBody TaskUpdate taskDto) {
-        if (taskDto.getUserId() != token) throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "User needs to be the owner of the account.");
+    @PutMapping("/{id}/update/{task_id}")
+    public ResponseEntity<Task> updateTaskById(@RequestParam(value = "token") int token, @PathVariable(value = "id") Integer userId, @PathVariable(value = "task_id") Integer taskId,
+                                                @RequestBody TaskUpdate taskDto) {
 
-        return new ResponseEntity<>(taskService.updateTask(taskId, taskDto), HttpStatus.OK);
+        if (userId != null && (userService.isAdmin(token) || userId == token)) {
+            return new ResponseEntity<>(taskService.updateTask(taskId, taskDto), HttpStatus.OK);
+        }
+        throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "User needs to be the owner of the selected account.");
     }
 
     /**
      * Endpoint used to delete a specific task
-     * @param token     user account id
-     * @param taskId    id of task we want to delete
+     * @param token     user account rights verification
+     * @param userId    id of user whose tasks we want to return
+     * @param taskId    id of task we want to update
      * @return response entity containing deleted task and http status 204 / 401 / 404
      */
-    @DeleteMapping("/delete/{task_id}")
-    public ResponseEntity<Object> deleteTaskById(@RequestParam(value = "token") int token, @PathVariable(value = "task_id") Integer taskId) {
-        if (taskService.getUserIdFromTask(taskId) != token) throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "User needs to be the owner of the account.");
-        return new ResponseEntity<>(taskService.deleteTask(taskId), HttpStatus.NO_CONTENT);
+    @DeleteMapping("/{id}/delete/{task_id}")
+    public ResponseEntity<Object> deleteTaskById(@RequestParam(value = "token") int token, @PathVariable(value = "id") Integer userId, @PathVariable(value = "task_id") Integer taskId) {
+
+        if (userId != null && (userService.isAdmin(token) || userId == token)) {
+            return new ResponseEntity<>(taskService.deleteTask(taskId), HttpStatus.NO_CONTENT);
+        }
+        throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "User needs to be the owner of the selected account.");
     }
 
     /**
      * Endpoint returning a list of completed tasks between two indexes
-     * @param token     user account id
+     * @param token     user account rights verification
+     * @param userId    id of user whose tasks we want to return
      * @param fromIndex index of first task
      * @param toIndex   index of last task
      * @return  response entity contaning a list of completed tasks and http status 200 / 401 / 404
      */
-    @GetMapping("/getMoreCompletedTasks")
-    public ResponseEntity<List<Task>> getCompletedTasks(@RequestParam(value = "token") int token, @RequestParam(value = "from", required = false) Integer fromIndex, @RequestParam(value = "to", required = false) Integer toIndex) {
-        if (fromIndex == null) fromIndex = 0;
-        if (toIndex == null) toIndex = 20;
-        return new ResponseEntity<>(taskService.getCompletedTasks(token, fromIndex, toIndex), HttpStatus.OK);
+    @GetMapping("/{id}/getMoreCompletedTasks/{from}/{to}")
+    public ResponseEntity<List<Task>> getCompletedTasks(@RequestParam(value = "token") int token, @PathVariable(value = "id") Integer userId
+            , @PathVariable(value = "from") Integer fromIndex, @PathVariable(value = "to") Integer toIndex) {
+
+        if (userId != null && (userService.isAdmin(token) || userId == token)) {
+            return new ResponseEntity<>(taskService.getCompletedTasks(userId, fromIndex, toIndex), HttpStatus.OK);
+        }
+        throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "User needs to be the owner of the selected account.");
     }
 
-    /**
-     * Endpoint returning a list of tasks between times in unix formats
-     * @param token     user account id
-     * @param from      unix format of time we want to search from
-     * @param to        unix format of time we want to search to
-     * @return          list of found task objects
-     */
-    @GetMapping("/load")
-    public ResponseEntity<List<Task>> getTasksByTimeRange(@RequestParam(value = "token") Integer token, @RequestParam(value = "from", required = false) long from, @RequestParam(value = "to", required = false) long to) {
-        return new ResponseEntity<>(taskService.getTasksByTimeRange(token, from, to), HttpStatus.OK);
-    }
+    //NEFUNKCNE - prerobim
+    /*@GetMapping("/{id}/{time_range}")
+    public ResponseEntity<List<Task>> getTasksByMonth(@RequestParam(value = "token") int token, @PathVariable(value = "id") Integer userId, @PathVariable(value = "time_range") Integer month) {
+
+        if (userId != null && (userService.isAdmin(token) || userId == token)) {
+            return new ResponseEntity<>(taskService.getTasksByMonth(userId, month), HttpStatus.OK);
+        }
+        throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "User needs to be the owner of the selected account.");
+    }*/
 }
