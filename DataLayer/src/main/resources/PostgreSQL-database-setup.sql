@@ -50,7 +50,11 @@ CREATE TABLE "groups" (
   "group_creator_id" integer
 );
 
+drop table "reports";
+drop table "chat";
+
 CREATE TABLE "group_members" (
+  "gm_id" SERIAL PRIMARY KEY,
   "group_id" integer,
   "member_id" integer
 );

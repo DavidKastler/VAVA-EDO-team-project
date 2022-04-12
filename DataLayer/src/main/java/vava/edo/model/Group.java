@@ -8,6 +8,7 @@ import lombok.Setter;
 import vava.edo.schema.GroupCreate;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 /**
  * Class representing user in groups table
@@ -18,7 +19,7 @@ import javax.persistence.*;
 @NoArgsConstructor
 @Entity
 @Table(name = "groups")
-public class Group {
+public class Group implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "gr_id", nullable = false)
@@ -26,9 +27,17 @@ public class Group {
     @Column(name = "group_name", nullable = false)
     private String groupName;
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "group_creator_id", nullable = false)
     private User groupCreatorId;
+
+
+    public static Group from(GroupCreate groupCreate) {
+        Group group = new Group();
+        group.setGroupName(groupCreate.getGroupName());
+        return group;
+    }
+
 
     /**
      * Debugging method
@@ -43,19 +52,7 @@ public class Group {
                 '}';
     }
 
-    public static Group from(GroupCreate groupCreate) {
-        Group group = new Group();
-        group.setGroupName(groupCreate.getGroupName());
-        group.setGroupCreatorId(groupCreate.getCreatorId());
-        return group;
-    }
 }
-
-
-
-
-
-
 
 
 

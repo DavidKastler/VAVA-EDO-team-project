@@ -7,8 +7,10 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.server.ResponseStatusException;
 
 import vava.edo.model.Group;
+import vava.edo.model.User;
 import vava.edo.model.exeption.GroupNotFoundException;
 import vava.edo.repository.GroupRepository;
+import vava.edo.repository.UserRepository;
 import vava.edo.schema.GroupCreate;
 
 
@@ -18,10 +20,12 @@ import java.util.List;
 public class GroupService {
 
     private final GroupRepository groupRepository;
+    private final UserService userService;
 
     @Autowired
-    public GroupService(GroupRepository groupRepository) {
+    public GroupService(GroupRepository groupRepository, UserService userService) {
         this.groupRepository = groupRepository;
+        this.userService = userService;
     }
 
 
@@ -41,6 +45,20 @@ public class GroupService {
         }
 
         return group;
+    }
+
+
+    public List<Group> getGroupByNameAsList(String groupName){
+        if (groupName == null){
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Group name is none.");
+        }
+        List<Group> groups = groupRepository.findGroupByGroupName(groupName);
+
+        if (groups == null) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Group not found.");
+        }
+
+        return groups;
     }
 
 
@@ -86,8 +104,10 @@ public class GroupService {
      * @param groupDto  group Data Transfer Object you want to convert to group
      * @return          created group
      */
-    public Group addGroup(GroupCreate groupDto){
+    public Group addGroup(GroupCreate groupDto) {
+        User user = userService.getUser(groupDto.getCreatorId());
         Group group = Group.from(groupDto);
+        group.setGroupCreatorId(user);
 
         groupRepository.save(group);
         return group;
@@ -104,4 +124,5 @@ public class GroupService {
         groupRepository.delete(group);
         return group;
     }
+
 }

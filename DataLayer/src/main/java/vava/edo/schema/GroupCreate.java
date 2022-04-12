@@ -7,13 +7,15 @@ import vava.edo.model.User;
 @Data
 public class GroupCreate {
     @NotNull
-    private User creatorId;
+    private int creatorId;
+    @NotNull
     private String groupName;
+
 
     @Override
     public String toString() {
         return "GroupCreate{" +
-                ", userId='" + creatorId.getUId() + '\'' +
+                ", creatorId='" + creatorId +
                 ", groupName=" + groupName +
                 '}';
     }
