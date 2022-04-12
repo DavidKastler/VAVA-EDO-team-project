@@ -35,6 +35,7 @@ public class ReportService {
 
         return report;
     }
+
     /**
      * Method that returns all reports
      * @return list of report objects
@@ -42,4 +43,6 @@ public class ReportService {
     public List<Report> getAllReports(){
         return reportRepository.findAll();
     }
+
+    //TODO add update and optional parameter for searching
 }

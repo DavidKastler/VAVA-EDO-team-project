@@ -5,6 +5,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import vava.edo.model.Chat;
 import vava.edo.model.Report;
+import vava.edo.model.Task;
 import vava.edo.repository.ChatRepository;
 import vava.edo.repository.TaskRepository;
 import vava.edo.schema.MessageCreate;
@@ -28,10 +29,26 @@ public class ChatService {
 
     /**
      * Method returns last X messages between index fromIndex and toIndex
+     * @param userId id of user whose messages we want to show
+     * @param fromIndex index of first message we want to show
+     * @param toIndex   index of last message we want to show
      * @return list of chat objects
      */
     public List<Chat> getLastMessages(Integer userId, int fromIndex, int toIndex){
         return chatRepository.findAllByGroupIdOrderByTimeSent(userId, PageRequest.of(fromIndex, toIndex));
+    }
+
+    /**
+     * Method returns userId from given message data transfer object
+     * @param messageDto    data transfer object of given message
+     * @param userId        id of sender account
+     * @return  int userId
+     */
+    public boolean verifyUserOwnsAccount(MessageCreate messageDto, Integer userId) {
+        Integer messageSenderId = messageDto.getSenderId();
+
+        if (userId == messageSenderId) return true;
+        return false;
     }
 
     /**

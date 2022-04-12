@@ -23,6 +23,9 @@ import java.time.LocalDateTime;
 import java.time.ZoneOffset;
 import java.util.List;
 
+/**
+ * Class that provides endpoints for operations with chat
+ */
 @RestController
 @RequestMapping("/chat")
 public class ChatController {
@@ -40,79 +43,49 @@ public class ChatController {
 
     /**
      * Endpoint returning a list of all users groups
-     * @param token     user verification
-     * @param userId    id of user whose groups we want to show
+     * @param token     user id of account
      * @return          list of group objects
      */
-    @GetMapping("/{id}")
-    public ResponseEntity<List<Group>> getAllChats(@RequestParam(value = "token") int token, @PathVariable(value = "id") Integer userId) {
-
-        if (userId != null && (userService.isAdmin(token) || userId == token)) {
-            return new ResponseEntity<>(groupService.getAllUsersGroups(userId), HttpStatus.OK);
-        }
-        throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "User needs to be the owner of the selected account.");
+    @GetMapping("/all")
+    public ResponseEntity<List<Group>> getAllChatsForUserId(@RequestParam(value = "token") int token) {
+        return new ResponseEntity<>(groupService.getAllUsersGroups(token), HttpStatus.OK);
     }
 
     /**
      * Endpoint returning a list of last X messages in a specific chat room
-     * @param token     user verification
-     * @param userId    id of user whose messages we want to show
+     * @param token     user account id
      * @param groupId   chat room / group id
      * @param fromIndex optional parameter used to select specific message index range
      * @param toIndex   optional parameter used to select specific message index range
      * @return          list of chat objects
      */
-    @GetMapping("/{id}/{chat_id}")
-    public ResponseEntity<List<Chat>> getLastMessages(@RequestParam(value = "token") int token, @PathVariable(value = "id") Integer userId,
-                                                      @PathVariable(value = "chat_id") Integer groupId, @RequestParam(value = "from", required = false) Integer fromIndex,
+
+    @GetMapping("/open")
+    public ResponseEntity<List<Chat>> getLastMessages(@RequestParam(value = "token") int token,
+                                                      @RequestParam(value = "chat_id") int groupId,
+                                                      @RequestParam(value = "from", required = false) Integer fromIndex,
                                                       @RequestParam(value = "to", required = false) Integer toIndex) {
 
-        if (userId != null && (userService.isAdmin(token) || userId == token)) {
-            if (groupService.checkUserGroup(userId, groupId)) {
-                if (fromIndex == null) fromIndex = 0;
-                if (toIndex == null) toIndex = 20;
-                return new ResponseEntity<>(chatService.getLastMessages(groupId, fromIndex, toIndex), HttpStatus.OK);
-            }
-            else throw new UserNotInGroupException();
+        if (groupService.checkUserGroup(token, groupId)) {
+            if (fromIndex == null) fromIndex = 0;
+            if (toIndex == null) toIndex = 20;
+            return new ResponseEntity<>(chatService.getLastMessages(groupId, fromIndex, toIndex), HttpStatus.OK);
         }
-        throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "User needs to be the owner of the selected account.");
+        else throw new UserNotInGroupException();
+
     }
 
     /**
      * Endpoint used to create a new message
-     * @param token     user verification
-     * @param userId    sender ID
-     * @param groupId   id of chat room / group
+     * @param token     user account id
      * @param messageDto    message body containing all necessary information
      * @return      chat object
      */
-    @PostMapping("/{id}/{chat_id}/send")
-    public ResponseEntity<Chat> sendMessage(@RequestParam(value = "token") int token, @PathVariable(value = "id") Integer userId,
-                                                      @PathVariable(value = "chat_id") Integer groupId, @RequestBody MessageCreate messageDto) {
-
-        if (userId != null && (userService.isAdmin(token) || userId == token)) {
-            if (groupService.checkUserGroup(userId, groupId))
-                return new ResponseEntity<>(chatService.sendMessage(messageDto), HttpStatus.OK);
-                //return new ResponseEntity<>(chatService.sendMessageSimplified(groupId, userId, ), HttpStatus.OK);
-            else throw new UserNotInGroupException();
-        }
-        throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "User needs to be the owner of the selected account.");
+    @PostMapping("/send")
+    public ResponseEntity<Chat> sendMessage(@RequestParam(value = "token") int token, @RequestBody MessageCreate messageDto) {
+        if (chatService.verifyUserOwnsAccount(messageDto, token) && groupService.checkUserGroup(token, messageDto.getGroupId()))
+            return new ResponseEntity<>(chatService.sendMessage(messageDto), HttpStatus.OK);
+        else throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "User needs to be the owner of the selected account and part of the group.");
     }
 
-    /**
-     * Simplified endpoint for sending messages
-     * @param message   message text
-     * @return      chat object
-     */
-    @PostMapping("/{id}/{chat_id}/sendSimplified")
-    public ResponseEntity<Chat> sendMessageSimplified(@RequestParam(value = "token") int token, @PathVariable(value = "id") Integer userId,
-                                            @PathVariable(value = "chat_id") Integer groupId, @RequestBody String message) {
-
-        if (userId != null && (userService.isAdmin(token) || userId == token)) {
-            if (groupService.checkUserGroup(userId, groupId))
-                return new ResponseEntity<>(chatService.sendMessageSimplified(groupId, userId, Date.valueOf(LocalDate.now()), message), HttpStatus.OK);
-            else throw new UserNotInGroupException();
-        }
-        throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "User needs to be the owner of the selected account.");
-    }
 }

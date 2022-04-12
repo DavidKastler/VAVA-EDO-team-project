@@ -12,6 +12,9 @@ import vava.edo.service.UserService;
 
 import java.util.List;
 
+/**
+ * Class that provides endpoints for operations with reports
+ */
 @RestController
 @RequestMapping("/reports")
 public class ReportController {
@@ -46,9 +49,7 @@ public class ReportController {
      */
     @PostMapping("/create")
     public ResponseEntity<Report> createReport(@RequestBody ReportCreate reportDto) {
-
         return new ResponseEntity<>(reportService.createReport(reportDto), HttpStatus.OK);
-
     }
 
 }
