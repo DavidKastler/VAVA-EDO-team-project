@@ -83,7 +83,7 @@ public class ChatController {
      */
     @PostMapping("/send")
     public ResponseEntity<Chat> sendMessage(@RequestParam(value = "token") int token, @RequestBody MessageCreate messageDto) {
-        if (chatService.verifyUserOwnsAccount(messageDto, token) && groupService.checkUserGroup(token, messageDto.getGroupId()))
+        if (chatService.verifyIfUserOwnsAccount(messageDto, token) && groupService.checkUserGroup(token, messageDto.getGroupId()))
             return new ResponseEntity<>(chatService.sendMessage(messageDto), HttpStatus.OK);
         else throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "User needs to be the owner of the selected account and part of the group.");
     }

@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import vava.edo.model.Task;
 
+import java.sql.Timestamp;
 import java.util.Date;
 import java.util.List;
 
@@ -15,6 +16,6 @@ public interface TaskRepository extends JpaRepository<Task, Integer> {
 
     List<Task> findAllByUserIdAndCompletedOrderByDueTime(Integer userId, boolean completed, Pageable pageable);
 
-    List<Task> findAllByUserIdAndDueTimeBetween(Integer userId, Date firstDayOfMonth, Date lastDayOfMonth);
+    List<Task> findAllByUserIdAndDueTimeBetween(Integer userId, Timestamp fromTime, Timestamp toTime);
 
 }

@@ -80,19 +80,22 @@ public class TaskController {
         return new ResponseEntity<>(taskService.deleteTask(taskId), HttpStatus.NO_CONTENT);
     }
 
-    /**
+
+    /*
      * Endpoint returning a list of completed tasks between two indexes
      * @param token     user account id
      * @param fromIndex index of first task
      * @param toIndex   index of last task
      * @return  response entity contaning a list of completed tasks and http status 200 / 401 / 404
      */
+    /*
     @GetMapping("/getMoreCompletedTasks")
     public ResponseEntity<List<Task>> getCompletedTasks(@RequestParam(value = "token") int token, @RequestParam(value = "from", required = false) Integer fromIndex, @RequestParam(value = "to", required = false) Integer toIndex) {
         if (fromIndex == null) fromIndex = 0;
         if (toIndex == null) toIndex = 20;
         return new ResponseEntity<>(taskService.getCompletedTasks(token, fromIndex, toIndex), HttpStatus.OK);
-    }
+    }*/
+
 
     /**
      * Endpoint returning a list of tasks between times in unix formats
