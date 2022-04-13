@@ -5,6 +5,8 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import vava.edo.schema.RelationshipCreate;
+import vava.edo.schema.UserRegister;
 
 import javax.persistence.*;
 import java.sql.Date;
@@ -28,13 +30,21 @@ public class Relationships {
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "second_user_id", nullable = false)
     private User secondUserId;
+//    @Enumerated(EnumType.STRING)
     @Column(name = "status")
-    @Enumerated(EnumType.STRING)
-    private Friendship status;
+    private String status;
     @Column(name = "since")
     private Date since;
 
 
+    public static Relationships from(RelationshipCreate newRequest) {
+        Relationships request = new Relationships();
+        request.setFirstUserId(newRequest.getFirstUserId());
+        request.setSecondUserId(newRequest.getSecondUserId());
+        request.setStatus(newRequest.getStatus());
+        request.setSince(newRequest.getSince());
+        return request;
+    }
     /**
      * Debugging method
      * @return  string with method variables
