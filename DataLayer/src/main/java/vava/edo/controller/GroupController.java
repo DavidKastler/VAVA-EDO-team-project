@@ -10,6 +10,7 @@ import vava.edo.model.Group;
 import vava.edo.model.GroupMembers;
 import vava.edo.model.User;
 import vava.edo.schema.GroupCreate;
+import vava.edo.schema.GroupEdit;
 import vava.edo.schema.GroupUpdate;
 import vava.edo.service.GroupMembersService;
 import vava.edo.service.GroupService;
@@ -88,22 +89,32 @@ public class GroupController {
 
 
     //TODO Talk to David about non-unique group name
-    /**
-     *
-     * @param token
-     * @param groupName
-     * @return
-     */
-    @GetMapping(value = "/get/list/name/{groupName}")
-    public ResponseEntity<List<Group>> getGroupByNameAsList(@RequestParam(value = "token") int token,
-                                                @PathVariable(value = "groupName", required = false) String groupName) {
-        String wantedGroupName = null;
-        if (groupName != null && userService.isAdmin(token)) {
-            wantedGroupName = groupName;
-        }
+//    /**
+//     *
+//     * @param token
+//     * @param groupName
+//     * @return
+//     */
+//    @GetMapping(value = "/get/list/name/{groupName}")
+//    public ResponseEntity<List<Group>> getGroupByNameAsList(@RequestParam(value = "token") int token,
+//                                                @PathVariable(value = "groupName", required = false) String groupName) {
+//        String wantedGroupName = null;
+//        if (groupName != null && userService.isAdmin(token)) {
+//            wantedGroupName = groupName;
+//        }
+//
+//        List<Group> group = groupService.getGroupByNameAsList(wantedGroupName);
+//        return new ResponseEntity<>(group, HttpStatus.OK);
+//    }
 
-        List<Group> group = groupService.getGroupByNameAsList(wantedGroupName);
-        return new ResponseEntity<>(group, HttpStatus.OK);
+    @PostMapping(value = "/changeGroupName/{groupId}")
+    public ResponseEntity<Object> changeGroupName(@RequestParam(value = "token") int token,
+                                                  @PathVariable("groupId") Integer groupId,
+                                                  @RequestBody GroupEdit groupDto) {
+        if(token != groupService.getGroup(groupId).getGroupCreatorId().getUId()) {
+            throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "This action require you to be group owner.");
+        }
+        return new ResponseEntity<>(groupService.editGroupName(groupId, groupDto), HttpStatus.OK);
     }
 
 

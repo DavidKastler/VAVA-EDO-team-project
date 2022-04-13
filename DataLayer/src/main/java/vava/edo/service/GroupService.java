@@ -11,6 +11,7 @@ import vava.edo.model.User;
 import vava.edo.model.exeption.GroupNotFoundException;
 import vava.edo.repository.GroupRepository;
 import vava.edo.schema.GroupCreate;
+import vava.edo.schema.GroupEdit;
 
 
 import java.util.List;
@@ -81,19 +82,15 @@ public class GroupService {
     }
 
 
-    /**
-     * Method that update group name by it ID
-     * @param groupID       group ID you want to change
-     * @param newGroupName  new name for a group
-     * @return              updated group
-     */
-    @Transactional
+
+
     //TODO talk to David about non-unique group name
     //TODO spravi editGroup a dat optional parametre s tym ze dostanes GroupUpdate triedu
-    public Group editGroupName(int groupID, String newGroupName) {
+    @Transactional
+    public Group editGroupName(int groupID, GroupEdit groupDto) {
         Group groupToEdit = getGroup(groupID);
 
-        groupToEdit.setGroupName(newGroupName);
+        groupToEdit.setGroupName(groupDto.getGroupName());
 
         return groupToEdit;
     }

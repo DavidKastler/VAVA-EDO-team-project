@@ -21,7 +21,7 @@ import java.io.Serializable;
 @Table(name = "groups")
 public class Group implements Serializable {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "gr_id", nullable = false)
     private Integer grId;
     @Column(name = "group_name", nullable = false)
