@@ -49,7 +49,8 @@ public class RelationshipsController {
      * @return          list of friends {"username}
      */
     @GetMapping(value = "/friends")
-    public ResponseEntity<List<java.util.Map.Entry<String , Integer>>> getAllFriends(@RequestParam(value = "token") int token) {
+    public ResponseEntity<List<java.util.Map.Entry<String , Integer>>> getAllFriends(@RequestParam(value = "token")
+                                                                                                 int token) {
         if (!userService.isPleb(token)) {
             throw new ResponseStatusException(HttpStatus.UNAUTHORIZED,
                     "This action requires at least pleb privileges.");
@@ -140,4 +141,6 @@ public class RelationshipsController {
 
         return new ResponseEntity<>(requestRejected, HttpStatus.OK);
     }
+
+
 }

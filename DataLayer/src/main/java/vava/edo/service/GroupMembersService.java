@@ -9,6 +9,7 @@ import vava.edo.model.User;
 import vava.edo.repository.GroupMembersRepository;
 import vava.edo.schema.GroupUpdate;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -63,5 +64,17 @@ public class GroupMembersService {
 
         groupMembersRepository.deleteAll(groupMember);
         return groupMember;
+    }
+
+
+    public List<Group> getMyGroups(int userId){
+        User user = userService.getUser(userId);
+        List<GroupMembers> groupsWithMembers = groupMembersRepository.findAllByMemberId(user);
+        List<Group> myGroups = new ArrayList<>();
+        for (GroupMembers gm: groupsWithMembers) {
+            myGroups.add(gm.getGroupId());
+        }
+
+        return myGroups;
     }
 }

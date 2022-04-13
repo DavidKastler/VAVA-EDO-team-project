@@ -10,7 +10,6 @@ import vava.edo.model.Group;
 import vava.edo.model.User;
 import vava.edo.model.exeption.GroupNotFoundException;
 import vava.edo.repository.GroupRepository;
-import vava.edo.repository.UserRepository;
 import vava.edo.schema.GroupCreate;
 
 
@@ -47,7 +46,7 @@ public class GroupService {
         return group;
     }
 
-
+    //TODO talk to David about this
     public List<Group> getGroupByNameAsList(String groupName){
         if (groupName == null){
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Group name is none.");
@@ -89,6 +88,7 @@ public class GroupService {
      * @return              updated group
      */
     @Transactional
+    //TODO talk to David about non-unique group name
     //TODO spravi editGroup a dat optional parametre s tym ze dostanes GroupUpdate triedu
     public Group editGroupName(int groupID, String newGroupName) {
         Group groupToEdit = getGroup(groupID);

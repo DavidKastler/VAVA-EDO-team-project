@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 import vava.edo.model.Group;
 import vava.edo.model.GroupMembers;
+import vava.edo.model.User;
 import vava.edo.schema.GroupCreate;
 import vava.edo.schema.GroupUpdate;
 import vava.edo.service.GroupMembersService;
@@ -32,8 +33,6 @@ public class GroupController {
         this.groupMembersService = groupMembersService;
     }
 
-    // TODO edit group
-    // TODO get group for user
 
     /**
      * Endpoint returning a list of all groups
@@ -75,7 +74,6 @@ public class GroupController {
      * @param groupName name of wanted group
      * @return          group
      */
-    //TODO doc vsade DONE
     @GetMapping(value = "/get/name/{groupName}")
     public ResponseEntity<Group> getGroupByName(@RequestParam(value = "token") int token,
                                               @PathVariable(value = "groupName", required = false) String groupName) {
@@ -89,6 +87,13 @@ public class GroupController {
     }
 
 
+    //TODO Talk to David about non-unique group name
+    /**
+     *
+     * @param token
+     * @param groupName
+     * @return
+     */
     @GetMapping(value = "/get/list/name/{groupName}")
     public ResponseEntity<List<Group>> getGroupByNameAsList(@RequestParam(value = "token") int token,
                                                 @PathVariable(value = "groupName", required = false) String groupName) {
@@ -164,10 +169,25 @@ public class GroupController {
     public ResponseEntity<List<GroupMembers>> getGroupMembersById(@RequestParam(value = "token") int token,
                                                           @PathVariable(value = "groupId") int groupId) {
         if (!userService.isPleb(token)) {
-            throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "This action requires admin privileges.");
+            throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "This action requires at least pleb privileges.");
         }
         Group group = groupService.getGroup(groupId);
         return new ResponseEntity<>(groupMembersService.getGroupMembersById(group), HttpStatus.OK);
+    }
+
+
+    /**
+     * Endpoint getting user's groups
+     * @param token     user account rights verification
+     * @return          list of groups
+     */
+    @GetMapping(value = "/get/myGroups")
+    public ResponseEntity<List<Group>> getMyGroups(@RequestParam(value = "token") int token) {
+        if (!userService.isPleb(token)) {
+            throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "This action requires at least pleb privileges.");
+        }
+
+        return new ResponseEntity<>(groupMembersService.getMyGroups(token), HttpStatus.OK);
     }
 
 

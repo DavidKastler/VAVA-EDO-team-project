@@ -8,6 +8,9 @@ import vava.edo.model.User;
 
 import java.sql.Date;
 
+/**
+ * Data transfer object for Relationship class
+ */
 @Data
 public class RelationshipCreate {
     @NotNull
