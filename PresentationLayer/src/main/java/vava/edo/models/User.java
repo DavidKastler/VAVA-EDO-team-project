@@ -8,9 +8,9 @@ public class User implements Serializable {
     private String username = null;
     private String password = null;
     private Role userRole = null;
-    private boolean rememberMe = false;
-    private boolean isLogged = false;
-    private LocalDateTime lastActivity = null;
+    private boolean rememberMe = false;  // potrebné pre serializáciu dát (mimo db)
+    private boolean isLogged = false;  // potrebné pre serializáciu dát (mimo db)
+    private LocalDateTime lastActivity = null;  // potrebné pre serializáciu dát (mimo db)
 
     public Integer getUid() {
         return uid;
