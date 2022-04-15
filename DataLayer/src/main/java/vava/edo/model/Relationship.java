@@ -1,6 +1,9 @@
 package vava.edo.model;
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import vava.edo.schema.RelationshipEditStatus;
 
 import javax.persistence.*;
@@ -20,11 +23,9 @@ public class Relationship {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "r_id", nullable = false)
     private Integer rId;
-    @NonNull
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "first_user_id", nullable = false)
     private User firstUserId;
-    @NonNull
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "second_user_id", nullable = false)
     private User secondUserId;
@@ -35,7 +36,7 @@ public class Relationship {
     private Date since;
 
 
-    public Relationship(@NonNull User firstUserId, @NonNull User secondUserId, String status) {
+    public Relationship(User firstUserId, User secondUserId, String status) {
         this.firstUserId = firstUserId;
         this.secondUserId = secondUserId;
         this.status = status;

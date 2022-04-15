@@ -35,6 +35,11 @@ public class Assignments {
     private Boolean completed;
 
 
+    /**
+     * Debugging method
+     *
+     * @return string with method variables
+     */
     @Override
     public String toString() {
         return "Assignments{" +

@@ -15,6 +15,11 @@ public class GroupCreate {
     private String groupName;
 
 
+    /**
+     * Debugging method
+     *
+     * @return string with method variables
+     */
     @Override
     public String toString() {
         return "GroupCreate{" +

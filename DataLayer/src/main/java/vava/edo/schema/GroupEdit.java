@@ -10,6 +10,12 @@ import lombok.Data;
 public class GroupEdit {
     private String groupName;
 
+
+    /**
+     * Debugging method
+     *
+     * @return string with method variables
+     */
     @Override
     public String toString() {
         return "GroupEdit{" +

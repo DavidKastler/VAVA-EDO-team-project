@@ -17,6 +17,11 @@ public class GroupAddMember {
     private int groupId;
 
 
+    /**
+     * Debugging method
+     *
+     * @return string with method variables
+     */
     @Override
     public String toString() {
         return "GroupUpdate{" +

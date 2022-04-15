@@ -136,15 +136,14 @@ public class RelationshipService {
     /**
      * Method for rejecting pending requests, rejected request will delete it from database
      *
-     * @param sender    user who send request
-     * @param receiver  user who received request
+     * @param sender   user who send request
+     * @param receiver user who received request
      */
     public void rejectRequest(User sender, User receiver) {
         if (relationshipRepository.
                 existsByFirstUserIdAndAndSecondUserIdAndAndStatus(sender, receiver, "pending")) {
             relationshipRepository.delete(relationshipRepository.findByFirstUserIdAndSecondUserId(sender, receiver));
-        }
-        else {
+        } else {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST,
                     "There is nothing to delete.");
         }
