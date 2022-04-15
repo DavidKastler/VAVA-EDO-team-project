@@ -4,20 +4,21 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import org.springframework.web.server.ResponseStatusException;
 import vava.edo.model.Group;
 import vava.edo.model.GroupMembers;
-import vava.edo.model.User;
+import vava.edo.schema.GroupAddMember;
 import vava.edo.schema.GroupCreate;
 import vava.edo.schema.GroupEdit;
-import vava.edo.schema.GroupUpdate;
 import vava.edo.service.GroupMembersService;
 import vava.edo.service.GroupService;
 import vava.edo.service.UserService;
 
 import java.util.List;
 
+/**
+ * Class that provides endpoints for groups operations
+ */
 @RestController
 @RequestMapping("/groups")
 public class GroupController {
@@ -37,8 +38,9 @@ public class GroupController {
 
     /**
      * Endpoint returning a list of all groups
-     * @param token     user account rights verification
-     * @return          list of groups
+     *
+     * @param token user account rights verification
+     * @return list of groups
      */
     @GetMapping(value = "/all")
     public ResponseEntity<List<Group>> getAllGroups(@RequestParam(value = "token") int token) {
@@ -51,9 +53,10 @@ public class GroupController {
 
     /**
      * Endpoint returning a group with given id
-     * @param token     user account rights verification
-     * @param groupId   id of wanted group
-     * @return          group
+     *
+     * @param token   user account rights verification
+     * @param groupId id of wanted group
+     * @return group
      */
     @GetMapping(value = "/get/{groupId}")
     public ResponseEntity<Group> getGroupById(@RequestParam(value = "token") int token,
@@ -70,48 +73,38 @@ public class GroupController {
 
 
     /**
-     * Endpoint returning a group with given name
+     * Endpoint returning a groups which name contains given string
+     *
      * @param token     user account rights verification
-     * @param groupName name of wanted group
-     * @return          group
+     * @param groupName string which will be looking for
+     * @return list of groups
      */
     @GetMapping(value = "/get/name/{groupName}")
-    public ResponseEntity<Group> getGroupByName(@RequestParam(value = "token") int token,
-                                              @PathVariable(value = "groupName", required = false) String groupName) {
+    public ResponseEntity<List<Group>> getGroupByName(@RequestParam(value = "token") int token,
+                                                      @PathVariable(value = "groupName", required = false) String groupName) {
         String wantedGroupName = null;
         if (groupName != null && userService.isAdmin(token)) {
             wantedGroupName = groupName;
         }
 
-        Group group = groupService.getGroupByName(wantedGroupName);
-        return new ResponseEntity<>(group, HttpStatus.OK);
+        List<Group> groups = groupService.findGroupsMatchingName(wantedGroupName);
+        return new ResponseEntity<>(groups, HttpStatus.OK);
     }
 
 
-    //TODO Talk to David about non-unique group name
-//    /**
-//     *
-//     * @param token
-//     * @param groupName
-//     * @return
-//     */
-//    @GetMapping(value = "/get/list/name/{groupName}")
-//    public ResponseEntity<List<Group>> getGroupByNameAsList(@RequestParam(value = "token") int token,
-//                                                @PathVariable(value = "groupName", required = false) String groupName) {
-//        String wantedGroupName = null;
-//        if (groupName != null && userService.isAdmin(token)) {
-//            wantedGroupName = groupName;
-//        }
-//
-//        List<Group> group = groupService.getGroupByNameAsList(wantedGroupName);
-//        return new ResponseEntity<>(group, HttpStatus.OK);
-//    }
-
+    /**
+     * Endpoint returning a group with new name
+     *
+     * @param token    user account rights verification
+     * @param groupId  id of wanted group
+     * @param groupDto groupDto class with updated parameter
+     * @return group with changes parameter
+     */
     @PostMapping(value = "/changeGroupName/{groupId}")
     public ResponseEntity<Object> changeGroupName(@RequestParam(value = "token") int token,
                                                   @PathVariable("groupId") Integer groupId,
                                                   @RequestBody GroupEdit groupDto) {
-        if(token != groupService.getGroup(groupId).getGroupCreatorId().getUId()) {
+        if (token != groupService.getGroup(groupId).getGroupCreatorId().getUId()) {
             throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "This action require you to be group owner.");
         }
         return new ResponseEntity<>(groupService.editGroupName(groupId, groupDto), HttpStatus.OK);
@@ -120,12 +113,13 @@ public class GroupController {
 
     /**
      * Endpoint creating a group
-     * @param groupDto  new group
-     * @return          response entity containing new group
+     *
+     * @param groupDto new group
+     * @return response entity containing new group
      */
     @PostMapping(value = "/create")
     public ResponseEntity<Object> createNewGroup(@RequestBody GroupCreate groupDto) {
-        if (!(  userService.isAdmin(groupDto.getCreatorId()) ||
+        if (!(userService.isAdmin(groupDto.getCreatorId()) ||
                 userService.isAccountManager(groupDto.getCreatorId()) ||
                 userService.isTeamLeader(groupDto.getCreatorId()))) {
             throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "This action requires admin, account manager" +
@@ -137,15 +131,17 @@ public class GroupController {
 
 
     //TODO talk to Adam about deleting chats
+
     /**
      * Endpoint deleting a group with given id
-     * @param token     user account rights verification
-     * @param groupId   id of deleting group
-     * @return          response entity containing deleted group
+     *
+     * @param token   user account rights verification
+     * @param groupId id of deleting group
+     * @return response entity containing deleted group
      */
     @DeleteMapping(value = "/del/{groupId}")
     public ResponseEntity<Object> deleteGroupById(@RequestParam(value = "token") int token,
-                                                 @PathVariable(value = "groupId") int groupId) {
+                                                  @PathVariable(value = "groupId") int groupId) {
         if (!(userService.isAdmin(token) || userService.isAccountManager(token) || userService.isTeamLeader(token))) {
             throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "This action requires admin, account manager" +
                     " or team leader privileges.");
@@ -157,8 +153,9 @@ public class GroupController {
 
     /**
      * Endpoint getting all group members
+     *
      * @param token user account rights verification
-     * @return      list of all members with their groups
+     * @return list of all members with their groups
      */
     @GetMapping(value = "/allGroupMembers")
     public ResponseEntity<List<GroupMembers>> getAllGroupMembers(@RequestParam(value = "token") int token) {
@@ -172,13 +169,14 @@ public class GroupController {
 
     /**
      * Endpoint getting group members
-     * @param token     user account rights verification
-     * @param groupId   id of group
-     * @return          list of group members
+     *
+     * @param token   user account rights verification
+     * @param groupId id of group
+     * @return list of group members
      */
     @GetMapping(value = "/get/groupMembers/byID/{groupId}")
     public ResponseEntity<List<GroupMembers>> getGroupMembersById(@RequestParam(value = "token") int token,
-                                                          @PathVariable(value = "groupId") int groupId) {
+                                                                  @PathVariable(value = "groupId") int groupId) {
         if (!userService.isPleb(token)) {
             throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "This action requires at least pleb privileges.");
         }
@@ -189,8 +187,9 @@ public class GroupController {
 
     /**
      * Endpoint getting user's groups
-     * @param token     user account rights verification
-     * @return          list of groups
+     *
+     * @param token user account rights verification
+     * @return list of groups
      */
     @GetMapping(value = "/get/myGroups")
     public ResponseEntity<List<Group>> getMyGroups(@RequestParam(value = "token") int token) {
@@ -204,13 +203,14 @@ public class GroupController {
 
     /**
      * Endpoint adding a group member
-     * @param token             user account rights verification
-     * @param groupMemberDto    new group member
-     * @return                  response entity containing new group member
+     *
+     * @param token          user account rights verification
+     * @param groupMemberDto new group member
+     * @return response entity containing new group member
      */
     @PostMapping(value = "/add/memberToGroup")
     public ResponseEntity<Object> addMemberToGroup(@RequestParam(value = "token") int token,
-                                                                  @RequestBody GroupUpdate groupMemberDto) {
+                                                   @RequestBody GroupAddMember groupMemberDto) {
         if (!(userService.isAdmin(token) || userService.isAccountManager(token) || userService.isTeamLeader(token))) {
             throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "This action requires admin, account manager" +
                     " or team leader privileges.");
@@ -222,10 +222,11 @@ public class GroupController {
 
     /**
      * Endpoint deleting a group member
-     * @param token     user account rights verification
-     * @param userId    id of deleting member
-     * @param groupId   id of group with given user
-     * @return          response entity containing deleted group member
+     *
+     * @param token   user account rights verification
+     * @param userId  id of deleting member
+     * @param groupId id of group with given user
+     * @return response entity containing deleted group member
      */
     @DeleteMapping(value = "/del/member/{userId}/in/{groupId}")
     public ResponseEntity<Object> deleteGroupMemberById(@RequestParam(value = "token") int token,

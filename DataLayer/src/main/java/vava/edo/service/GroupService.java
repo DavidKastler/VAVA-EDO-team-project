@@ -5,7 +5,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.server.ResponseStatusException;
-
 import vava.edo.model.Group;
 import vava.edo.model.User;
 import vava.edo.model.exeption.GroupNotFoundException;
@@ -13,9 +12,11 @@ import vava.edo.repository.GroupRepository;
 import vava.edo.schema.GroupCreate;
 import vava.edo.schema.GroupEdit;
 
-
 import java.util.List;
 
+/**
+ * Service that operates over 'group' database table
+ */
 @Service
 public class GroupService {
 
@@ -31,11 +32,12 @@ public class GroupService {
 
     /**
      * Method finds group by its name
+     *
      * @param groupName name of group you are looking for
-     * @return          found group by name
+     * @return found group by name
      */
-    public Group getGroupByName(String groupName){
-        if (groupName == null){
+    public Group getGroupByName(String groupName) {
+        if (groupName == null) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Group name is none.");
         }
         Group group = groupRepository.findByGroupName(groupName);
@@ -47,12 +49,18 @@ public class GroupService {
         return group;
     }
 
-    //TODO talk to David about this
-    public List<Group> getGroupByNameAsList(String groupName){
-        if (groupName == null){
+
+    /**
+     * Method finds all groups which name contains given string
+     *
+     * @param groupName string which will be looking for
+     * @return list of groups
+     */
+    public List<Group> findGroupsMatchingName(String groupName) {
+        if (groupName == null) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Group name is none.");
         }
-        List<Group> groups = groupRepository.findGroupByGroupName(groupName);
+        List<Group> groups = groupRepository.findAllByGroupNameLike(groupName);
 
         if (groups == null) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Group not found.");
@@ -64,7 +72,8 @@ public class GroupService {
 
     /**
      * Method returns all groups in database
-     * @return  list of all groups
+     *
+     * @return list of all groups
      */
     public List<Group> getAllGroups() {
         return groupRepository.findAll();
@@ -73,8 +82,9 @@ public class GroupService {
 
     /**
      * Method finds group by its ID, if it does not exist throws exception
-     * @param groupId   group ID you are looking for
-     * @return          found group
+     *
+     * @param groupId group ID you are looking for
+     * @return found group
      */
     public Group getGroup(int groupId) {
         return groupRepository.findById(groupId).orElseThrow(
@@ -82,10 +92,13 @@ public class GroupService {
     }
 
 
-
-
-    //TODO talk to David about non-unique group name
-    //TODO spravi editGroup a dat optional parametre s tym ze dostanes GroupUpdate triedu
+    /**
+     * Method that updates found group by ID based on given GroupEdit class parameter
+     *
+     * @param groupID  group ID you want to change
+     * @param groupDto groupDto class with updated parameter
+     * @return updated group
+     */
     @Transactional
     public Group editGroupName(int groupID, GroupEdit groupDto) {
         Group groupToEdit = getGroup(groupID);
@@ -98,8 +111,9 @@ public class GroupService {
 
     /**
      * Method converts DTO object to Group object and saves it to database
-     * @param groupDto  group Data Transfer Object you want to convert to group
-     * @return          created group
+     *
+     * @param groupDto group Data Transfer Object you want to convert to group
+     * @return created group
      */
     public Group addGroup(GroupCreate groupDto) {
         User user = userService.getUser(groupDto.getCreatorId());
@@ -110,12 +124,14 @@ public class GroupService {
         return group;
     }
 
+
     /**
      * Method for deleting group from database by ID
-     * @param groupId   group ID you want to delete
-     * @return          deleted group
+     *
+     * @param groupId group ID you want to delete
+     * @return deleted group
      */
-    public Group deleteGroup(int groupId){
+    public Group deleteGroup(int groupId) {
         Group group = getGroup(groupId);
 
         groupRepository.delete(group);

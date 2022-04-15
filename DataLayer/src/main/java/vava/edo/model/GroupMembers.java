@@ -1,14 +1,15 @@
 package vava.edo.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import vava.edo.schema.GroupUpdate;
 
 import javax.persistence.*;
 
+/**
+ * Class representing group member in group_members table
+ */
 @Getter
 @Setter
 @AllArgsConstructor
@@ -20,27 +21,18 @@ public class GroupMembers {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "gm_id", nullable = false)
     private Long gmId;
-    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "group_Id", nullable = false)
     private Group groupId;
-    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "member_id", nullable = false)
     private User memberId;
 
 
     /**
-     * @return empty GroupMembers
-     */
-    public static GroupMembers from(){
-        return new GroupMembers();
-    }
-
-
-    /**
      * Debugging method
-     * @return  string with method variables
+     *
+     * @return string with method variables
      */
     @Override
     public String toString() {

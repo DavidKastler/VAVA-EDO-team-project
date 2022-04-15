@@ -10,7 +10,7 @@ import lombok.Data;
  * Used in addMember
  */
 @Data
-public class GroupUpdate {
+public class GroupAddMember {
     @NotNull
     private int userId;
     @NotNull

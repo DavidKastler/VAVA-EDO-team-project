@@ -50,9 +50,6 @@ CREATE TABLE "groups" (
   "group_creator_id" integer
 );
 
-drop table "reports";
-drop table "chat";
-
 CREATE TABLE "group_members" (
   "gm_id" SERIAL PRIMARY KEY,
   "group_id" integer,
@@ -81,7 +78,7 @@ CREATE TABLE "reports" (
   "reporter_id" integer NOT NULL,
   "violator_id" integer NOT NULL,
   "rep_message" varchar(255),
-  "status" report_status
+  "report_status" report_status
 );
 
 CREATE TABLE "feedback" (

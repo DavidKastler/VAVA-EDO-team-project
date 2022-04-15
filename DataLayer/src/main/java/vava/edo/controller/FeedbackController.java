@@ -5,7 +5,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
-import vava.edo.model.Assignments;
 import vava.edo.model.Feedback;
 import vava.edo.service.FeedbackService;
 import vava.edo.service.UserService;
@@ -13,6 +12,9 @@ import vava.edo.service.UserService;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * Class that provides endpoints for operations with feedbacks
+ */
 @RestController
 @RequestMapping("/feedback")
 public class FeedbackController {
@@ -28,8 +30,9 @@ public class FeedbackController {
 
     /**
      * Endpoint returning a list of feedbacks
-     * @param token     user account rights verification
-     * @return          list of feedbacks
+     *
+     * @param token user account rights verification
+     * @return list of feedbacks
      */
     @GetMapping(value = "/all")
     public ResponseEntity<List<Feedback>> getAllFeedbacks(@RequestParam(value = "token") int token) {
@@ -42,19 +45,20 @@ public class FeedbackController {
 
     /**
      * Endpoint returning a feedback
-     * @param token     user account rights verification
-     * @param fbId      id of wanted feedback
-     * @return          feedback
+     *
+     * @param token user account rights verification
+     * @param fbId  id of wanted feedback
+     * @return feedback
      */
     @GetMapping(value = "/get/{fbId}")
     public ResponseEntity<Optional<Feedback>> getFeedbacksById(@RequestParam(value = "token") int token,
-                                                               @PathVariable(value = "fbId") int fbId){
+                                                               @PathVariable(value = "fbId") int fbId) {
         if (!userService.isAdmin(token)) {
             throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "This action requires admin privileges.");
         }
         return new ResponseEntity<>(feedbackService.getFeedbackById(fbId), HttpStatus.OK);
     }
 
-    //TODO create
+
 }
 

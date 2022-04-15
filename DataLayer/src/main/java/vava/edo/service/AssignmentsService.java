@@ -1,6 +1,5 @@
 package vava.edo.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import vava.edo.model.Assignments;
 import vava.edo.repository.AssignmentsRepository;
@@ -8,6 +7,9 @@ import vava.edo.repository.AssignmentsRepository;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * Service that operates over 'assignments' database table
+ */
 @Service
 public class AssignmentsService {
     private final AssignmentsRepository assignmentsRepository;
@@ -19,7 +21,8 @@ public class AssignmentsService {
 
     /**
      * Method returns all assignments in database
-     * @return  list of all assignments
+     *
+     * @return list of all assignments
      */
     public List<Assignments> getAllAssignments() {
         return assignmentsRepository.findAll();
@@ -28,8 +31,9 @@ public class AssignmentsService {
 
     /**
      * Method returns assignment with given ID
-     * @param assId     getting assignment ID
-     * @return          assignment
+     *
+     * @param assId getting assignment ID
+     * @return assignment
      */
     public Optional<Assignments> getAssignmentsById(int assId) {
         return assignmentsRepository.findById(assId);

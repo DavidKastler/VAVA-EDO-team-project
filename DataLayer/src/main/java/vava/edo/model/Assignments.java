@@ -1,6 +1,5 @@
 package vava.edo.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -9,6 +8,9 @@ import lombok.Setter;
 import javax.persistence.*;
 import java.sql.Date;
 
+/**
+ * Class representing assignment in assignments table
+ */
 @Getter
 @Setter
 @AllArgsConstructor
@@ -17,10 +19,9 @@ import java.sql.Date;
 @Table(name = "assignments")
 public class Assignments {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "ass_id", nullable = false)
     private Integer assignmentsId;
-    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id", nullable = false)
     private User userId;

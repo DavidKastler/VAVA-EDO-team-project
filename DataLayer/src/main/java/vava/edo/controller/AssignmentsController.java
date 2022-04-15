@@ -13,6 +13,9 @@ import vava.edo.service.UserService;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * Class that provides endpoints for operations with assignments
+ */
 @RestController
 @RequestMapping("/assignments")
 public class AssignmentsController {
@@ -29,8 +32,9 @@ public class AssignmentsController {
 
     /**
      * Endpoint returning a list of assignments
-     * @param token     user account rights verification
-     * @return          list of assignments
+     *
+     * @param token user account rights verification
+     * @return list of assignments
      */
     @GetMapping(value = "/all")
     public ResponseEntity<List<Assignments>> getAllAssignments(@RequestParam(value = "token") int token) {
@@ -43,13 +47,14 @@ public class AssignmentsController {
 
     /**
      * Endpoint returning an assignment
-     * @param token     user account rights verification
-     * @param assId     id of wanted assignment
-     * @return          assignment
+     *
+     * @param token user account rights verification
+     * @param assId id of wanted assignment
+     * @return assignment
      */
     @GetMapping(value = "/get/{assId}")
     public ResponseEntity<Optional<Assignments>> getAssignmentById(@RequestParam(value = "token") int token,
-                                                                   @PathVariable(value = "assId") int assId){
+                                                                   @PathVariable(value = "assId") int assId) {
         if (!userService.isAdmin(token)) {
             throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "This action requires admin privileges.");
         }
@@ -57,5 +62,4 @@ public class AssignmentsController {
     }
 
 
-    //TODO create
 }

@@ -1,53 +1,68 @@
 package vava.edo.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import vava.edo.schema.RelationshipCreate;
-import vava.edo.schema.UserRegister;
+import lombok.*;
+import vava.edo.schema.RelationshipEditStatus;
 
 import javax.persistence.*;
 import java.sql.Date;
 
+/**
+ * Class representing relationships between users in relationships table
+ */
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
 @Table(name = "relationships")
-public class Relationships {
+public class Relationship {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "r_id", nullable = false)
     private Integer rId;
-    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+    @NonNull
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "first_user_id", nullable = false)
     private User firstUserId;
-    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+    @NonNull
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "second_user_id", nullable = false)
     private User secondUserId;
-//    @Enumerated(EnumType.STRING)
+
     @Column(name = "status")
     private String status;
     @Column(name = "since")
     private Date since;
 
 
-    public static Relationships from(RelationshipCreate newRequest) {
-        Relationships request = new Relationships();
+    public Relationship(@NonNull User firstUserId, @NonNull User secondUserId, String status) {
+        this.firstUserId = firstUserId;
+        this.secondUserId = secondUserId;
+        this.status = status;
+        this.since = new java.sql.Date(System.currentTimeMillis());
+    }
+
+
+    /**
+     * Static casting method from RelationshipCreate object
+     *
+     * @param newRequest RelationshipCreate object that you want to cast
+     * @return cast Relationships object
+     */
+    public static Relationship from(RelationshipEditStatus newRequest) {
+        Relationship request = new Relationship();
         request.setFirstUserId(newRequest.getFirstUserId());
         request.setSecondUserId(newRequest.getSecondUserId());
         request.setStatus(newRequest.getStatus());
-        request.setSince(newRequest.getSince());
+        request.setSince(new java.sql.Date(System.currentTimeMillis()));
         return request;
     }
+
+
     /**
      * Debugging method
-     * @return  string with method variables
+     *
+     * @return string with method variables
      */
     @Override
     public String toString() {

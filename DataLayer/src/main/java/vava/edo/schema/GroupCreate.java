@@ -2,7 +2,6 @@ package vava.edo.schema;
 
 import com.sun.istack.NotNull;
 import lombok.Data;
-import vava.edo.model.User;
 
 /**
  * Data transfer object for Group class
