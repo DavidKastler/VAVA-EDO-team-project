@@ -1,26 +1,17 @@
 package vava.edo.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.jpa.convert.threeten.Jsr310JpaConverters;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 import vava.edo.model.Chat;
 import vava.edo.model.Group;
-import vava.edo.model.Task;
+import vava.edo.model.GroupMembers;
 import vava.edo.model.exeption.UserNotInGroupException;
 import vava.edo.schema.MessageCreate;
-import vava.edo.service.ChatService;
-import vava.edo.service.GroupService;
-import vava.edo.service.TaskService;
-import vava.edo.service.UserService;
+import vava.edo.service.*;
 
-import javax.persistence.criteria.CriteriaBuilder;
-import java.sql.Date;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.ZoneOffset;
 import java.util.List;
 
 /**
@@ -33,12 +24,14 @@ public class ChatController {
     private final ChatService chatService;
     private final UserService userService;
     private final GroupService groupService;
+    private final GroupMembersService groupMembersService;
 
     @Autowired
-    public ChatController(ChatService chatService, UserService userService, GroupService groupService) {
+    public ChatController(ChatService chatService, UserService userService, GroupService groupService, GroupMembersService groupMembersService) {
         this.chatService = chatService;
         this.userService = userService;
         this.groupService = groupService;
+        this.groupMembersService = groupMembersService;
     }
 
     /**
@@ -48,7 +41,7 @@ public class ChatController {
      */
     @GetMapping("/all")
     public ResponseEntity<List<Group>> getAllChatsForUserId(@RequestParam(value = "token") int token) {
-        return new ResponseEntity<>(groupService.getAllUsersGroups(token), HttpStatus.OK);
+        return new ResponseEntity<>(groupMembersService.getMyGroups(token), HttpStatus.OK);
     }
 
     /**
@@ -66,7 +59,7 @@ public class ChatController {
                                                       @RequestParam(value = "from", required = false) Integer fromIndex,
                                                       @RequestParam(value = "to", required = false) Integer toIndex) {
 
-        if (groupService.checkUserGroup(token, groupId)) {
+        if (groupMembersService.checkUserGroup(token, groupId)) {
             if (fromIndex == null) fromIndex = 0;
             if (toIndex == null) toIndex = 20;
             return new ResponseEntity<>(chatService.getLastMessages(groupId, fromIndex, toIndex), HttpStatus.OK);
@@ -83,7 +76,7 @@ public class ChatController {
      */
     @PostMapping("/send")
     public ResponseEntity<Chat> sendMessage(@RequestParam(value = "token") int token, @RequestBody MessageCreate messageDto) {
-        if (chatService.verifyIfUserOwnsAccount(messageDto, token) && groupService.checkUserGroup(token, messageDto.getGroupId()))
+        if (chatService.verifyIfUserOwnsAccount(messageDto, token) && groupMembersService.checkUserGroup(token, messageDto.getGroupId()))
             return new ResponseEntity<>(chatService.sendMessage(messageDto), HttpStatus.OK);
         else throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "User needs to be the owner of the selected account and part of the group.");
     }

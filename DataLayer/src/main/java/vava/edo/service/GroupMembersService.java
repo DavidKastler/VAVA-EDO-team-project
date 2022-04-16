@@ -119,4 +119,17 @@ public class GroupMembersService {
     }
 
 
+    /**
+     * Method used to check whether user is part of given group
+     *
+     * @param userId    id of user who you want to check
+     * @param  groupId  id of group to check egains
+     * @return  boolean true/false
+     */
+    public boolean checkUserGroup(int userId, int groupId) {
+        Group group = groupService.getGroup(groupId);
+        User user = userService.getUser(userId);
+        return groupMembersRepository.existsByGmIdAndAndMemberId(group, user);
+    }
+
 }
