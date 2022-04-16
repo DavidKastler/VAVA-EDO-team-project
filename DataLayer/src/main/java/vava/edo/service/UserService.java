@@ -40,6 +40,36 @@ public class UserService {
 
 
     /**
+     * Method that checks if user has at least pleb privileges
+     * @param userId    user ID you want to check
+     * @return          true / false
+     */
+    public boolean isPleb(int userId) {
+        return getUser(userId).getUserRole().isTodoAccessRights() || getUser(userId).getUserRole().isTeamLeaderRights();
+    }
+
+
+    /**
+     * Method that checks if user has account manager privileges
+     * @param userId    user ID you want to check
+     * @return          true / false
+     */
+    public boolean isAccountManager(int userId) {
+        return getUser(userId).getUserRole().isTeamLeaderRights() && !getUser(userId).getUserRole().isTodoAccessRights();
+    }
+
+
+    /**
+     * Method that checks if user has team leader privileges
+     * @param userId    user ID you want to check
+     * @return          true / false
+     */
+    public boolean isTeamLeader(int userId) {
+        return getUser(userId).getUserRole().isTeamLeaderRights();
+    }
+
+
+    /**
      * Method to check password of user
      * @param user      user you want to check
      * @param password  password you want to validate

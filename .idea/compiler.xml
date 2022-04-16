@@ -8,7 +8,6 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="VAVA-gumkaci-projekt" />
-        <module name="VAVA-team-project" />
         <module name="DataLayer" />
       </profile>
     </annotationProcessing>
