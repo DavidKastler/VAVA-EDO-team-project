@@ -20,7 +20,7 @@ import javax.persistence.*;
 @Table(name = "users")
 public class User {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "u_id", nullable = false)
     private Integer uId;
     @Column(name = "username", nullable = false)
@@ -28,11 +28,11 @@ public class User {
     @Column(name = "password", nullable = false)
     private String password;
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "role_id", nullable = false)
     private Role userRole;
 
-
+    //TODO fix
     /**
      * Static casting method from UserRegister object
      * @param userRegister   UserRegister object that you want to casy

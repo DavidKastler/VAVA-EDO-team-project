@@ -3,6 +3,8 @@ package vava.edo.model;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import vava.edo.schema.MessageCreate;
+import vava.edo.schema.TaskCreate;
 
 import javax.persistence.*;
 import java.sql.Date;
@@ -27,6 +29,19 @@ public class Chat {
     private String message;
 
     /**
+     * Static casting method from MessageCreate object
+     * @param messageDto    MessageCreate object that you want to cast
+     * @return          cast Chat object
+     */
+    public static Chat from(MessageCreate messageDto) {
+        Chat chat = new Chat();
+        chat.setGroupId(messageDto.getGroupId());
+        chat.setSenderId(messageDto.getSenderId());
+        chat.setTimeSent(messageDto.getTimeSent());
+        chat.setMessage(messageDto.getMessage());
+        return chat;
+    }
+    /**
      * Debugging method
      * @return  string with method variables
      */
@@ -34,7 +49,7 @@ public class Chat {
     public String toString() {
         return "Chat{" +
                 "chatId=" + chatId +
-                ", groupId='" + groupId + '\'' +
+                ", groupId=" + groupId +
                 ", senderId=" + senderId +
                 ", timeSent=" + timeSent +
                 ", message=" + message +

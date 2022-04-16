@@ -3,6 +3,7 @@ package vava.edo.model;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import vava.edo.schema.ReportCreate;
 
 import javax.persistence.*;
 import java.sql.Date;
@@ -29,6 +30,21 @@ public class Report {
     private String reportStatus;
 
     /**
+     * Static casting method from ReportCreate object
+     * @param reportDto    ReportCreate object that you want to cast
+     * @return          cast Report object
+     */
+    public static Report from(ReportCreate reportDto) {
+        Report report = new Report();
+        report.setChatId(reportDto.getChatId());
+        report.setReporterId(reportDto.getReporterId());
+        report.setViolatorId(reportDto.getViolatorId());
+        report.setReportMessage(reportDto.getReportMessage());
+        report.setReportStatus(reportDto.getReportStatus());
+        return report;
+    }
+
+    /**
      * Debugging method
      * @return  string with method variables
      */
@@ -36,7 +52,7 @@ public class Report {
     public String toString() {
         return "Report{" +
                 "reportId=" + reportId +
-                ", chatId='" + chatId + '\'' +
+                ", chatId=" + chatId +
                 ", reporterId=" + reporterId +
                 ", violatorId=" + violatorId +
                 ", reportMessage=" + reportMessage +
