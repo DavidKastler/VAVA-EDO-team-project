@@ -2,7 +2,6 @@ package vava.edo.schema;
 
 import com.sun.istack.NotNull;
 import lombok.Data;
-import lombok.EqualsAndHashCode;
 
 import java.sql.Date;
 

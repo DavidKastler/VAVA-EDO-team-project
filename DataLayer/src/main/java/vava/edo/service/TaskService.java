@@ -15,10 +15,12 @@ import vava.edo.schema.TaskCreate;
 import vava.edo.schema.TaskUpdate;
 import vava.edo.schema.UserRegister;
 
+import javax.persistence.Tuple;
 import java.lang.invoke.CallSite;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.List;
+import java.sql.Time;
+import java.sql.Timestamp;
+import java.util.*;
+import java.sql.Date;
 
 /**
  * Service that operates over todos database table
@@ -36,14 +38,19 @@ public class TaskService {
 
     /**
      * Method returns all tasks in database for given user
+     * @param userId    id of user whose tasks you want to see
      * @return list of users tasks
      */
     public List<Task> getAllTasks(int userId) { return taskRepository.findAllByUserId(userId); }
 
+    /**
+     * Method returns task from taskId if task exists, otherwise throws
+     * @param taskId    id of task we want to find
+     * @return  task object
+     */
     public Task getTask(int taskId) {
         return taskRepository.findById(taskId).orElseThrow(
                 () -> new TaskNotFoundException(taskId));
-
     }
 
     /**
@@ -53,25 +60,28 @@ public class TaskService {
      * @param toIndex index of last task in list
      * @return list of task objects
      */
-    public List<Task> getCompletedTasks(int userId, int fromIndex, int toIndex)
-    {
-        List<Task> pageOfTasks = taskRepository.findAllByUserIdAndCompleted(userId, true, PageRequest.of(fromIndex, toIndex));
-
-        return pageOfTasks;
-
+    public List<Task> getCompletedTasks(int userId, int fromIndex, int toIndex) {
+        return taskRepository.findAllByUserIdAndCompletedOrderByDueTime(userId, true, PageRequest.of(fromIndex, toIndex));
     }
 
-    //NEFUNKCNE - prerobim
-    /*public List<Task> getTasksByMonth(int userId, Integer month){
+    /**
+     * Method returns all users tasks between two times
+     * @param userId    id of searched user
+     * @param fromTime  time to search from in unix format
+     * @param toTime    time to search to in unix format
+     * @return          list of found task objects
+     */
+    public List<Task> getTasksByTimeRange(int userId, long fromTime, long toTime) {
+        Timestamp fromTimestamp = new Timestamp(fromTime*1000);
+        Timestamp toTimestamp = new Timestamp(toTime*1000);
+        return taskRepository.findAllByUserIdAndDueTimeBetween(userId, fromTimestamp, toTimestamp);
+    }
 
-        return taskRepository.findAllByUserIdAndDueTime(userId, month);
-    }*/
 
-    @Transactional
     /**
      * Method converts DTO object to Task object
      * and saves it to database
-     * @param userDto   task Data Transfer Object you want to convert to task
+     * @param taskDto   task Data Transfer Object you want to convert to task
      * @return          created user
      */
     public Task createTask(TaskCreate taskDto) {
@@ -81,7 +91,6 @@ public class TaskService {
 
         return task;
     }
-
 
     /**
      * Method for deleting tasks from database by ID
@@ -95,11 +104,23 @@ public class TaskService {
     }
 
     /**
+     * Method returns userId from given task identified by taskId
+     * @param taskId    id of searched task
+     * @return  int userId
+     */
+    public int getUserIdFromTask(int taskId) {
+        Task task = getTask(taskId);
+
+        return task.getUserId();
+    }
+
+    /**
      * Method for updating tasks from database by ID
      * @param taskId    ID of task you want to update
      * @param taskDto   task Data Transfer Object for updating task
      * @return          updated task
      */
+    @Transactional
     public Task updateTask(int taskId, TaskUpdate taskDto) {
         Task taskToUpdate = getTask(taskId);
 
@@ -107,7 +128,6 @@ public class TaskService {
         taskToUpdate.setTaskDescription(taskDto.getTaskDescription());
         taskToUpdate.setCompleted(taskDto.isCompleted());
 
-        taskRepository.save(taskToUpdate);
         return taskToUpdate;
     }
 
