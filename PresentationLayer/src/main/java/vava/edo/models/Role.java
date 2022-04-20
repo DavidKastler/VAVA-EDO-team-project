@@ -1,6 +1,8 @@
 package vava.edo.models;
 
-public class Role {
+import java.io.Serializable;
+
+public class Role implements Serializable {
 
     private int rId;
     private String roleName;
