@@ -10,6 +10,10 @@ public class Group {
     private int grId;
     private String groupName;
 
+    public String getGroupName() {
+        return groupName;
+    }
+
     @Override
     public String toString() {
         return "Group{" +

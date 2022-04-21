@@ -19,6 +19,9 @@ import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 import org.jetbrains.annotations.NotNull;
 import org.json.JSONObject;
+import vava.edo.Handlers.MessageHandler;
+import vava.edo.models.Group;
+import vava.edo.models.Message;
 
 import java.io.IOException;
 import java.net.URL;
@@ -94,7 +97,7 @@ public class ChatController implements Initializable {
         return label;
     }
 
-    public void refreshChatList(List<String> usernames){
+    public void refreshChatList(List<Group> usernames){
         for (int i = 0; i < usernames.size(); i++){
             //System.out.println(id1);
             Button button = new Button();
@@ -105,7 +108,7 @@ public class ChatController implements Initializable {
             } else {
                 color = true;
             }
-            editButton(button, usernames.get(i), color);
+            editButton(button, usernames.get(i).getGroupName(), color);
 
 
             this.chat_list_pane.getChildren().add(button);
@@ -153,8 +156,9 @@ public class ChatController implements Initializable {
         String lastActivity2 = "";
         */
 
-        List<String> usernames = new ArrayList<>();
-        usernames.add("Jano");
+        List<Group> usernames = MessageHandler.getAllGroups(4);
+
+        /*usernames.add("Jano");
         usernames.add("Fero");
         usernames.add("Kubo");
         usernames.add("Lubo");
@@ -166,7 +170,7 @@ public class ChatController implements Initializable {
         usernames.add("Erzika");
         usernames.add("Gizela");
         usernames.add("Gustav");
-        usernames.add("Adolf");
+        usernames.add("Adolf");*/
 
 
         refreshChatList(usernames);
