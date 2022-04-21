@@ -9,6 +9,7 @@
         <outputRelativeToContentRoot value="true" />
         <module name="DataLayer" />
         <module name="VAVA-gumkaci-projekt" />
+        <module name="PresentationLayer" />
         <module name="VAVA-team-project" />
       </profile>
     </annotationProcessing>
