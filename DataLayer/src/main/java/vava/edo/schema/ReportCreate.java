@@ -2,6 +2,7 @@ package vava.edo.schema;
 
 import com.sun.istack.NotNull;
 import lombok.Data;
+import vava.edo.model.enums.ReportStatus;
 
 import java.sql.Date;
 
@@ -18,7 +19,7 @@ public class ReportCreate{
     private int reporterId;
     private int violatorId;
     private String reportMessage;
-    private String reportStatus;
+    private ReportStatus reportStatus;
 
     @Override
     public String toString() {
