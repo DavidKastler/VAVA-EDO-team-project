@@ -1,3 +1,6 @@
+DROP SCHEMA public CASCADE;
+CREATE SCHEMA public;
+
 CREATE TYPE "report_status" AS ENUM (
   'pending',
   'accepted',
@@ -37,8 +40,8 @@ CREATE TABLE "todos" (
                          "group_id" integer NOT NULL,
                          "task_name" varchar NOT NULL,
                          "task_description" varchar,
-                         "from_time" timestamp NOT NULL,
-                         "to_time" timestamp NOT NULL,
+                         "from_time" bigint NOT NULL,
+                         "to_time" bigint NOT NULL,
                          "completed" boolean DEFAULT false,
                          "tag" varchar DEFAULT null
 );
@@ -58,7 +61,7 @@ CREATE TABLE "chat" (
                         "ch_id" SERIAL UNIQUE PRIMARY KEY NOT NULL,
                         "group_id" integer NOT NULL,
                         "sender_id" integer NOT NULL,
-                        "time_sent" timestamp NOT NULL,
+                        "time_sent" bigint NOT NULL,
                         "message" varchar NOT NULL
 );
 
@@ -66,7 +69,7 @@ CREATE TABLE "relationships" (
                                  "first_user_id" integer NOT NULL,
                                  "second_user_id" integer NOT NULL,
                                  "status" friendship DEFAULT 'pending',
-                                 "since" timestamp NOT NULL
+                                 "since" bigint NOT NULL
 );
 
 CREATE TABLE "reports" (
