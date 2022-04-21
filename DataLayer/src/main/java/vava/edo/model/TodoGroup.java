@@ -19,7 +19,7 @@ import javax.persistence.Table;
 @NoArgsConstructor
 @Entity
 @Table(name = "todo_group")
-public class Todo_group {
+public class TodoGroup {
     @Id
     @Column(name = "td_g_id")
     private Integer todoGroupId;
