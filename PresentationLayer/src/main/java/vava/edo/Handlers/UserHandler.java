@@ -13,6 +13,7 @@ import vava.edo.Exepctions.EmptyLoginFields;
 import vava.edo.Exepctions.IncorrectCredentials;
 import vava.edo.models.User;
 
+import java.time.Instant;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
@@ -45,7 +46,7 @@ public class UserHandler {
 
                 if(user.getUsername() != null){
                     user.setLogged(true);
-                    user.setLastActivity(LocalDateTime.now());
+                    user.setLastActivity(Instant.now().getEpochSecond());
                     System.out.println("Logged in\t->\t" + user);
                     wrongCredentials.setVisible(false);
 

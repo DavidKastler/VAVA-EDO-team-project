@@ -11,7 +11,7 @@ public class User implements Serializable {
     private Role userRole = null;
     private boolean rememberMe = false;  // potrebné pre serializáciu dát (mimo db)
     private boolean isLogged = false;  // potrebné pre serializáciu dát (mimo db)
-    private LocalDateTime lastActivity = null;  // potrebné pre serializáciu dát (mimo db)
+    private long lastActivity = 0;  // potrebné pre serializáciu dát (mimo db)
     private ArrayList<Task> tasks = null;
 
     public Integer getUid() {
@@ -34,7 +34,7 @@ public class User implements Serializable {
         return isLogged;
     }
 
-    public LocalDateTime getLastActivity() {
+    public long getLastActivity() {
         return lastActivity;
     }
 
@@ -50,7 +50,7 @@ public class User implements Serializable {
         isLogged = logged;
     }
 
-    public void setLastActivity(LocalDateTime lastActivity) {
+    public void setLastActivity(long lastActivity) {
         this.lastActivity = lastActivity;
     }
 
