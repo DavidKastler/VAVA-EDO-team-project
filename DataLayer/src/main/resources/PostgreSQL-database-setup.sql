@@ -11,87 +11,85 @@ CREATE TYPE "friendship" AS ENUM (
 );
 
 CREATE TABLE "users" (
-  "u_id" SERIAL PRIMARY KEY,
-  "username" varchar,
-  "password" varchar,
-  "role_id" integer
+                         "u_id" SERIAL UNIQUE PRIMARY KEY NOT NULL,
+                         "username" varchar UNIQUE NOT NULL,
+                         "password" varchar NOT NULL,
+                         "role_id" integer NOT NULL
 );
 
 CREATE TABLE "roles" (
-  "r_id" SERIAL PRIMARY KEY,
-  "role_name" varchar,
-  "basic_rights" boolean,
-  "todo_access_rights" boolean,
-  "team_leader_rights" boolean,
-  "admin_rights" boolean
+                         "r_id" SERIAL UNIQUE PRIMARY KEY NOT NULL,
+                         "role_name" varchar UNIQUE NOT NULL,
+                         "basic_rights" boolean DEFAULT false,
+                         "todo_access_rights" boolean DEFAULT false,
+                         "team_leader_rights" boolean DEFAULT false,
+                         "admin_rights" boolean DEFAULT false
+);
+
+CREATE TABLE "todo_group" (
+                              "td_g_id" integer PRIMARY KEY NOT NULL,
+                              "u_id" integer NOT NULL,
+                              "td_group_name" varchar NOT NULL
 );
 
 CREATE TABLE "todos" (
-  "td_id" SERIAL PRIMARY KEY,
-  "user_id" integer,
-  "task_name" varchar,
-  "task_description" varchar,
-  "due_time" date,
-  "completed" boolean
-);
-
-CREATE TABLE "assignments" (
-  "ass_id" SERIAL PRIMARY KEY,
-  "user_id" integer,
-  "title" varchar,
-  "ass_start" date,
-  "ass_end" date,
-  "completed" boolean
+                         "td_id" SERIAL UNIQUE PRIMARY KEY NOT NULL,
+                         "group_id" integer NOT NULL,
+                         "task_name" varchar NOT NULL,
+                         "task_description" varchar,
+                         "from_time" timestamp NOT NULL,
+                         "to_time" timestamp NOT NULL,
+                         "completed" boolean DEFAULT false,
+                         "tag" varchar DEFAULT null
 );
 
 CREATE TABLE "groups" (
-  "gr_id" SERIAL PRIMARY KEY,
-  "group_name" varchar,
-  "group_creator_id" integer
+                          "gr_id" SERIAL UNIQUE PRIMARY KEY NOT NULL,
+                          "group_creator_id" integer NOT NULL,
+                          "group_name" varchar NOT NULL
 );
 
 CREATE TABLE "group_members" (
-  "gm_id" SERIAL PRIMARY KEY,
-  "group_id" integer,
-  "member_id" integer
+                                 "group_id" integer NOT NULL,
+                                 "member_id" integer NOT NULL
 );
 
 CREATE TABLE "chat" (
-  "ch_id" SERIAL PRIMARY KEY,
-  "group_id" integer,
-  "sender_id" integer,
-  "time_sent" date,
-  "message" varchar
+                        "ch_id" SERIAL UNIQUE PRIMARY KEY NOT NULL,
+                        "group_id" integer NOT NULL,
+                        "sender_id" integer NOT NULL,
+                        "time_sent" timestamp NOT NULL,
+                        "message" varchar NOT NULL
 );
 
 CREATE TABLE "relationships" (
-  "r_id" SERIAL PRIMARY KEY,
-  "first_user_id" integer,
-  "second_user_id" integer,
-  "status" varchar(25),
-  "since" date
+                                 "first_user_id" integer NOT NULL,
+                                 "second_user_id" integer NOT NULL,
+                                 "status" friendship DEFAULT 'pending',
+                                 "since" timestamp NOT NULL
 );
 
 CREATE TABLE "reports" (
-  "rep_id" SERIAL UNIQUE PRIMARY KEY NOT NULL,
-  "ch_id" integer NOT NULL,
-  "reporter_id" integer NOT NULL,
-  "violator_id" integer NOT NULL,
-  "rep_message" varchar(255),
-  "report_status" report_status
+                           "rep_id" SERIAL UNIQUE PRIMARY KEY NOT NULL,
+                           "reporter_id" integer NOT NULL,
+                           "violator_id" integer NOT NULL,
+                           "rep_message" varchar,
+                           "status" report_status DEFAULT 'pending'
 );
 
 CREATE TABLE "feedback" (
-  "fb_id" SERIAL UNIQUE PRIMARY KEY NOT NULL,
-  "u_id" integer NOT NULL,
-  "fb_message" varchar(255)
+                            "fb_id" SERIAL UNIQUE PRIMARY KEY NOT NULL,
+                            "u_id" integer NOT NULL,
+                            "fb_message" varchar NOT NULL
 );
+
+COMMENT ON TABLE "feedback" IS 'Tu pouzivatel vie povedat co by chcel zmenit';
 
 ALTER TABLE "users" ADD FOREIGN KEY ("role_id") REFERENCES "roles" ("r_id");
 
-ALTER TABLE "todos" ADD FOREIGN KEY ("user_id") REFERENCES "users" ("u_id");
+ALTER TABLE "todos" ADD FOREIGN KEY ("group_id") REFERENCES "todo_group" ("td_g_id");
 
-ALTER TABLE "assignments" ADD FOREIGN KEY ("user_id") REFERENCES "users" ("u_id");
+ALTER TABLE "todo_group" ADD FOREIGN KEY ("u_id") REFERENCES "users" ("u_id");
 
 ALTER TABLE "groups" ADD FOREIGN KEY ("group_creator_id") REFERENCES "users" ("u_id");
 
@@ -106,8 +104,6 @@ ALTER TABLE "chat" ADD FOREIGN KEY ("sender_id") REFERENCES "users" ("u_id");
 ALTER TABLE "relationships" ADD FOREIGN KEY ("first_user_id") REFERENCES "users" ("u_id");
 
 ALTER TABLE "relationships" ADD FOREIGN KEY ("second_user_id") REFERENCES "users" ("u_id");
-
-ALTER TABLE "reports" ADD FOREIGN KEY ("ch_id") REFERENCES "chat" ("ch_id");
 
 ALTER TABLE "reports" ADD FOREIGN KEY ("reporter_id") REFERENCES "users" ("u_id");
 
