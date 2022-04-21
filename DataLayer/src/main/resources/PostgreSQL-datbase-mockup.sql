@@ -43,6 +43,10 @@ insert into group_members (gm_id, group_id, member_id) values (12, 5, 2);
 insert into group_members (gm_id, group_id, member_id) values (13, 3, 3);
 insert into group_members (gm_id, group_id, member_id) values (14, 3, 4);
 insert into group_members (gm_id, group_id, member_id) values (15, 7, 9);
+insert into group_members (gm_id, group_id, member_id) values (16, 1, 5);
+insert into group_members (gm_id, group_id, member_id) values (17, 3, 9);
+insert into group_members (gm_id, group_id, member_id) values (18, 5, 8);
+insert into group_members (gm_id, group_id, member_id) values (19, 6, 10);
 
 --Relationships
 insert into relationships (rel_id, first_user_id, second_user_id, status, since) values (1, 3, 6,  'pending', '1637329970');
