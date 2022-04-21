@@ -5,7 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import vava.edo.schema.UserRegister;
+import vava.edo.schema.users.UserRegister;
 
 import javax.persistence.*;
 
@@ -32,7 +32,7 @@ public class User {
     @JoinColumn(name = "role_id", nullable = false)
     private Role userRole;
 
-    //TODO fix
+
     /**
      * Static casting method from UserRegister object
      * @param userRegister   UserRegister object that you want to casy

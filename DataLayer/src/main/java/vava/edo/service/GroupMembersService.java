@@ -31,7 +31,6 @@ public class GroupMembersService {
 
     /**
      * Method returns all group and their members in database
-     *
      * @return list of all group members
      */
     public List<GroupMembers> getAllGroupMembers() {
@@ -41,21 +40,19 @@ public class GroupMembersService {
 
     /**
      * Method returns members within given group
-     *
-     * @param group group which will be checked
+     * @param groupId group id which will be checked
      * @return list of all members of given group
      */
-    public List<GroupMembers> getGroupMembersById(Group group) {
-        if (group == null) {
+    public List<GroupMembers> getGroupMembersById(Integer groupId) {
+        if (groupId == null) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Group id is none.");
         }
-        return groupMembersRepository.findAllByGroupId(group);
+        return groupMembersRepository.findAllGroupMembersByGroupId(groupId);
     }
 
 
     /**
      * Method converts DTO object to GroupMembers object, finds wanted group for it if exists and saves it to it
-     *
      * @param groupMemberDto group member Data Transfer Object you want to convert to GroupMembers
      * @return added user to a group
      */
@@ -93,11 +90,11 @@ public class GroupMembersService {
      *
      * @param groupId ID of group which will be cleaned
      */
-    public void deleteAllMember(int groupId) {
-        Group group = groupService.getGroup(groupId);
-        List<GroupMembers> groupMember = groupMembersRepository.findAllByGroupId(group);
+    public List<GroupMembers> deleteAllMember(int groupId) {
+        List<GroupMembers> groupMember = groupMembersRepository.findAllGroupMembersByGroupId(groupId);
 
         groupMembersRepository.deleteAll(groupMember);
+        return groupMember;
     }
 
 
@@ -118,5 +115,18 @@ public class GroupMembersService {
         return myGroups;
     }
 
+
+    /**
+     * Method used to check whether user is part of given group
+     *
+     * @param userId    id of user who you want to check
+     * @param  groupId  id of group to check egains
+     * @return  boolean true/false
+     */
+    public boolean checkUserGroup(int userId, int groupId) {
+        Group group = groupService.getGroup(groupId);
+        User user = userService.getUser(userId);
+        return groupMembersRepository.existsByGmIdAndAndMemberId(group, user);
+    }
 
 }

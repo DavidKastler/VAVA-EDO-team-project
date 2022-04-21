@@ -6,8 +6,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 import vava.edo.model.User;
-import vava.edo.schema.UserLogin;
-import vava.edo.schema.UserRegister;
+import vava.edo.schema.users.UserEdit;
+import vava.edo.schema.users.UserLogin;
+import vava.edo.schema.users.UserRegister;
 import vava.edo.service.UserService;
 
 import java.util.List;
@@ -28,11 +29,12 @@ public class UserController {
 
 
     @PostMapping(value = "/login")
-    public ResponseEntity<User> loginUser(@RequestParam(value = "token") int token,
+    public ResponseEntity<User> loginUser(@RequestParam(value = "token") Integer token,
                                           @RequestBody UserLogin userLogin) {
+
         if (!userService.isPleb(token)) {
-            throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "This action requires \n" +
-                    "at least pleb privileges.");
+            throw new ResponseStatusException(HttpStatus.UNAUTHORIZED,
+                    "This action requires at least pleb privileges.");
         }
 
         User user = userService.getUserByUserName(userLogin.getUsername());
@@ -42,8 +44,61 @@ public class UserController {
     }
 
 
+    @PostMapping(value = "/register")
+    public ResponseEntity<Object> registerNewUser(@RequestBody UserRegister userDto) {
+        return new ResponseEntity<>(userService.addUser(userDto), HttpStatus.CREATED);
+    }
+
+
+    @PutMapping("/update/{userId}")
+    public ResponseEntity<User> updateUser(@RequestParam(value = "token") Integer token,
+                                           @PathVariable(value = "userId", required = false) Integer userId,
+                                           @RequestBody UserLogin updatedUser) {
+        int wantedUserId = token;
+        // if userId is used and is not equal to token and user is admin
+        if (userId != null && !userId.equals(token)) {
+            if (userService.isAdmin(token)) {
+                wantedUserId = userId;
+            } else {
+                throw new ResponseStatusException(HttpStatus.FORBIDDEN, "You do not have rights to do this.");
+            }
+        }
+
+        // no need to check if user exists, it is handled inside this method
+        User user = userService.editUser(wantedUserId, updatedUser);
+
+        return new ResponseEntity<>(user, HttpStatus.OK);
+    }
+
+
+    @PutMapping("/edit/{userId}")
+    public ResponseEntity<User> editUser(@RequestParam(value = "token") Integer token,
+                                             @PathVariable(value = "userId") Integer userId,
+                                             @RequestBody UserEdit editedUser) {
+        if (!userService.isAdmin(token)) {
+            throw new ResponseStatusException(HttpStatus.FORBIDDEN, "You do not have rights to do this.");
+        }
+
+        // no need to check if user exists, it is handled inside this method
+        User user = userService.editUser(userId, editedUser);
+
+        return new ResponseEntity<>(user, HttpStatus.OK);
+    }
+
+
+    @DeleteMapping(value = "/delete/{u_id}")
+    public ResponseEntity<Object> deleteUserById(@RequestParam(value = "token") Integer token,
+                                                 @PathVariable(value = "u_id") Integer userId) {
+        if (!(userService.isAccountManager(token))) {
+            throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "This action requires admin privileges.");
+        }
+
+        return new ResponseEntity<>(userService.deleteUser(userId), HttpStatus.NO_CONTENT);
+    }
+
+
     @GetMapping(value = "/all")
-    public ResponseEntity<List<User>> getAllUsers(@RequestParam(value = "token") int token) {
+    public ResponseEntity<List<User>> getAllUsers(@RequestParam(value = "token") Integer token) {
         if (!userService.isAdmin(token)) {
             throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "This action requires admin privileges.");
         }
@@ -52,11 +107,11 @@ public class UserController {
 
 
     @GetMapping(value = "/get/{userId}")
-    public ResponseEntity<User> getUserById(@RequestParam(value = "token") int token,
+    public ResponseEntity<User> getUserById(@RequestParam(value = "token") Integer token,
                                             @PathVariable(value = "userId", required = false) Integer userId){
         int wantedUserId = token;
         // if userId is used and is not equal to token and user is admin
-        if (userId != null && userId != token && userService.isAdmin(token)) {
+        if (userId != null && !userId.equals(token) && userService.isAdmin(token)) {
             wantedUserId = userId;
         }
 
@@ -64,44 +119,5 @@ public class UserController {
         return new ResponseEntity<>(user, HttpStatus.OK);
     }
 
-
-    @PutMapping("/change/{userId}")
-    public ResponseEntity<User> editUser(@RequestParam(value = "token") int token,
-                                         @PathVariable("userId") Integer userId,
-                                         @RequestBody UserLogin updatedUser) {
-        int wantedUserId = token;
-        // if userId is used and is not equal to token and user is admin
-        if (userId != null && userId != token) {
-            if (userService.isAdmin(token)) {
-                wantedUserId = userId;
-            } else {
-                throw new ResponseStatusException(HttpStatus.FORBIDDEN, "You do not have rights to do this.");
-            }
-        }
-
-        if (!userService.isPleb(token)) {
-            throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "This action requires \n" +
-                    "at least pleb privileges.");
-        }
-        // no need to chceck if user exists, it is handled inside this method
-        User user = userService.editUser(wantedUserId, updatedUser);
-
-        return new ResponseEntity<>(user, HttpStatus.OK);
-    }
-
-    @DeleteMapping(value = "/del/{id}")
-    public ResponseEntity<Object> deleteUserById(@RequestParam(value = "token") int token,
-                                                 @PathVariable(value = "id") int userId) {
-        if (!(userService.isAdmin(token) || userService.isAccountManager(token))) {
-            throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "This action requires admin privileges.");
-        }
-
-        return new ResponseEntity<>(userService.deleteUser(userId), HttpStatus.NO_CONTENT);
-    }
-
-
-    @PostMapping(value = "/register")
-    public ResponseEntity<Object> registerNewUser(@RequestBody UserRegister userDto) {
-        return new ResponseEntity<>(userService.addUser(userDto), HttpStatus.CREATED);
-    }
+    //TODO user search
 }

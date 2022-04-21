@@ -4,11 +4,13 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import vava.edo.schema.MessageCreate;
-import vava.edo.schema.TaskCreate;
 
 import javax.persistence.*;
 import java.sql.Date;
 
+/**
+ * Class representing one chat in chat table
+ */
 @Getter
 @Setter
 @NoArgsConstructor
@@ -18,15 +20,16 @@ public class Chat {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "ch_id", nullable = false)
-    private int chatId;
+    private Integer chatId;
     @Column(name = "group_id", nullable = false)
-    private int groupId;
+    private Integer groupId;
     @Column(name = "sender_id", nullable = false)
-    private int senderId;
+    private Integer senderId;
     @Column(name = "time_sent", nullable = false)
     private Date timeSent;
     @Column(name = "message", nullable = false)
     private String message;
+
 
     /**
      * Static casting method from MessageCreate object
@@ -41,6 +44,8 @@ public class Chat {
         chat.setMessage(messageDto.getMessage());
         return chat;
     }
+
+
     /**
      * Debugging method
      * @return  string with method variables

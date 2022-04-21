@@ -1,55 +1,47 @@
 package vava.edo.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import vava.edo.model.Role;
-import vava.edo.model.Task;
-import vava.edo.model.User;
+import vava.edo.model.Todo;
 import vava.edo.model.exeption.TaskNotFoundException;
-import vava.edo.model.exeption.UserNotFoundException;
-import vava.edo.repository.TaskRepository;
+import vava.edo.repository.TodoRepository;
 import vava.edo.schema.TaskCreate;
 import vava.edo.schema.TaskUpdate;
-import vava.edo.schema.UserRegister;
 
-import javax.persistence.Tuple;
-import java.lang.invoke.CallSite;
-import java.sql.Time;
 import java.sql.Timestamp;
 import java.util.*;
-import java.sql.Date;
 
 /**
  * Service that operates over todos database table
  */
 @Service
-public class TaskService {
+public class TodosService {
 
-    private final TaskRepository taskRepository;
+    private final TodoRepository todoRepository;
 
     @Autowired
-    public TaskService(TaskRepository taskRepository) {
-        this.taskRepository = taskRepository;
+    public TodosService(TodoRepository todoRepository) {
+        this.todoRepository = todoRepository;
     }
-
 
     /**
      * Method returns all tasks in database for given user
      * @param userId    id of user whose tasks you want to see
      * @return list of users tasks
      */
-    public List<Task> getAllTasks(int userId) { return taskRepository.findAllByUserId(userId); }
+    public List<Todo> getAllTasks(int userId) {
+        return todoRepository.findAllByGroupId(userId);
+    }
 
     /**
      * Method returns task from taskId if task exists, otherwise throws
      * @param taskId    id of task we want to find
      * @return  task object
      */
-    public Task getTask(int taskId) {
-        return taskRepository.findById(taskId).orElseThrow(
+    public Todo getTask(int taskId) {
+        return todoRepository.findById(taskId).orElseThrow(
                 () -> new TaskNotFoundException(taskId));
     }
 
@@ -60,8 +52,8 @@ public class TaskService {
      * @param toIndex index of last task in list
      * @return list of task objects
      */
-    public List<Task> getCompletedTasks(int userId, int fromIndex, int toIndex) {
-        return taskRepository.findAllByUserIdAndCompletedOrderByDueTime(userId, true, PageRequest.of(fromIndex, toIndex));
+    public List<Todo> getCompletedTasks(int userId, int fromIndex, int toIndex) {
+        return todoRepository.findAllByGroupIdAndCompletedOrderByFromTime(userId, true, PageRequest.of(fromIndex, toIndex));
     }
 
     /**
@@ -71,10 +63,10 @@ public class TaskService {
      * @param toTime    time to search to in unix format
      * @return          list of found task objects
      */
-    public List<Task> getTasksByTimeRange(int userId, long fromTime, long toTime) {
+    public List<Todo> getTasksByTimeRange(Integer userId, long fromTime, long toTime) {
         Timestamp fromTimestamp = new Timestamp(fromTime*1000);
         Timestamp toTimestamp = new Timestamp(toTime*1000);
-        return taskRepository.findAllByUserIdAndDueTimeBetween(userId, fromTimestamp, toTimestamp);
+        return todoRepository.findAllByGroupIdAndFromTimeBetween(userId, fromTimestamp, toTimestamp);
     }
 
 
@@ -84,12 +76,12 @@ public class TaskService {
      * @param taskDto   task Data Transfer Object you want to convert to task
      * @return          created user
      */
-    public Task createTask(TaskCreate taskDto) {
+    public Todo createTask(TaskCreate taskDto) {
 
-        Task task = Task.from(taskDto);
-        taskRepository.save(task);
+        Todo todo = Todo.from(taskDto);
+        todoRepository.save(todo);
 
-        return task;
+        return todo;
     }
 
     /**
@@ -97,10 +89,10 @@ public class TaskService {
      * @param taskId    ID of task you want to delete
      * @return          deleted task
      */
-    public Task deleteTask(int taskId) {
-        Task task = getTask(taskId);
-        taskRepository.delete(task);
-        return task;
+    public Todo deleteTask(int taskId) {
+        Todo todo = getTask(taskId);
+        todoRepository.delete(todo);
+        return todo;
     }
 
     /**
@@ -109,9 +101,10 @@ public class TaskService {
      * @return  int userId
      */
     public int getUserIdFromTask(int taskId) {
-        Task task = getTask(taskId);
+        Todo todo = getTask(taskId);
 
-        return task.getUserId();
+        //return todo.getUserId();
+        return 0;
     }
 
     /**
@@ -121,14 +114,14 @@ public class TaskService {
      * @return          updated task
      */
     @Transactional
-    public Task updateTask(int taskId, TaskUpdate taskDto) {
-        Task taskToUpdate = getTask(taskId);
+    public Todo updateTask(int taskId, TaskUpdate taskDto) {
+        Todo todoToUpdate = getTask(taskId);
 
-        taskToUpdate.setTaskName(taskDto.getTaskName());
-        taskToUpdate.setTaskDescription(taskDto.getTaskDescription());
-        taskToUpdate.setCompleted(taskDto.isCompleted());
+        todoToUpdate.setTodoName(taskDto.getTodoName());
+        todoToUpdate.setTodoDescription(taskDto.getTodoDescription());
+        todoToUpdate.setCompleted(taskDto.isCompleted());
 
-        return taskToUpdate;
+        return todoToUpdate;
     }
 
 

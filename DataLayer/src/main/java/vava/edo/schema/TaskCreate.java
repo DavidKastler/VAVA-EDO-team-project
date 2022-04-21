@@ -12,19 +12,26 @@ import java.sql.Date;
  */
 @Data
 public class TaskCreate {
-    @NotNull
-    private int userId;
-    private String taskName;
-    private String taskDescription;
-    private Date dueTime;
+
+    private Integer todoGroupId;
+
+    private String todoName;
+    private String todoDescription;
+    private Long toTime;
+    private Long fromTime;
+    private Boolean completed;
+    private String tag;
 
     @Override
     public String toString() {
         return "TaskCreate{" +
-                ", userId='" + userId + '\'' +
-                ", taskName=" + taskName +
-                ", taskDescription=" + taskDescription +
-                ", dueTime=" + dueTime +
+                "todoGroupId=" + todoGroupId +
+                ", todoName='" + todoName + '\'' +
+                ", todoDescription='" + todoDescription + '\'' +
+                ", toTime=" + toTime +
+                ", fromTime=" + fromTime +
+                ", completed=" + completed +
+                ", tag='" + tag + '\'' +
                 '}';
     }
 }

@@ -11,7 +11,6 @@ import vava.edo.model.User;
 import vava.edo.model.exeption.GroupNotFoundException;
 import vava.edo.repository.GroupRepository;
 import vava.edo.schema.GroupCreate;
-import vava.edo.schema.GroupEdit;
 
 import java.util.List;
 
@@ -101,10 +100,12 @@ public class GroupService {
      * @return updated group
      */
     @Transactional
-    public Group editGroupName(int groupID, GroupEdit groupDto) {
+    public Group editGroup(int groupID, GroupCreate groupDto) {
         Group groupToEdit = getGroup(groupID);
+        User user = userService.getUser(groupDto.getCreatorId());
 
         groupToEdit.setGroupName(groupDto.getGroupName());
+        groupToEdit.setGroupCreatorId(user);
 
         return groupToEdit;
     }
@@ -121,8 +122,7 @@ public class GroupService {
         Group group = Group.from(groupDto);
         group.setGroupCreatorId(user);
 
-        groupRepository.save(group);
-        return group;
+        return groupRepository.save(group);
     }
 
 
