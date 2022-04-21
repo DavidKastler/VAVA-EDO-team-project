@@ -23,9 +23,9 @@ CREATE TABLE "users" (
 CREATE TABLE "roles" (
                          "r_id" SERIAL UNIQUE PRIMARY KEY NOT NULL,
                          "role_name" varchar UNIQUE NOT NULL,
-                         "basic_rights" boolean DEFAULT false,
                          "todo_access_rights" boolean DEFAULT false,
                          "team_leader_rights" boolean DEFAULT false,
+                         "manager_rights" boolean DEFAULT false,
                          "admin_rights" boolean DEFAULT false
 );
 
