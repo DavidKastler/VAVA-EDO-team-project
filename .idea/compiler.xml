@@ -13,8 +13,5 @@
         <module name="VAVA-team-project" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="PresentationLayer" target="11" />
-    </bytecodeTargetLevel>
   </component>
 </project>
