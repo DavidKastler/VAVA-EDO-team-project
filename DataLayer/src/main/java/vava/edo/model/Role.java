@@ -1,5 +1,6 @@
 package vava.edo.model;
 
+
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -7,6 +8,9 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
 
+/**
+ * Class representing role in roles table
+ */
 @Getter
 @Setter
 @NoArgsConstructor
@@ -16,7 +20,7 @@ public class Role {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "r_id", nullable = false)
-    private int rId;
+    private Integer rId;
     @Column(name = "role_name", nullable = false)
     private String roleName;
     @Column(name = "basic_rights", nullable = false)

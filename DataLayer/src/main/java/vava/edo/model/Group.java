@@ -10,7 +10,7 @@ import javax.persistence.*;
 import java.io.Serializable;
 
 /**
- * Class representing user in groups table
+ * Class representing group in groups table
  */
 @Getter
 @Setter
@@ -56,5 +56,4 @@ public class Group implements Serializable {
                 ", group_creator_id=" + groupCreatorId +
                 '}';
     }
-
 }

@@ -18,12 +18,10 @@ import javax.persistence.*;
 @Table(name = "group_members")
 public class GroupMembers {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "gm_id", nullable = false)
-    private Long gmId;
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "group_Id", nullable = false)
     private Group groupId;
+    @Id
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "member_id", nullable = false)
     private User memberId;
@@ -31,7 +29,6 @@ public class GroupMembers {
 
     /**
      * Debugging method
-     *
      * @return string with method variables
      */
     @Override
