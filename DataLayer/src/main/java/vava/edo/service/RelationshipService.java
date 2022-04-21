@@ -6,9 +6,10 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.server.ResponseStatusException;
 import vava.edo.model.Relationship;
 import vava.edo.model.User;
+import vava.edo.model.enums.RelationshipStatus;
 import vava.edo.repository.RelationshipRepository;
 import vava.edo.schema.RelationshipEditStatus;
-import vava.edo.schema.UserInfo;
+import vava.edo.schema.users.UserInfo;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -55,7 +56,7 @@ public class RelationshipService {
      * @param status   status which should be added
      * @return created relationships
      */
-    public Relationship addRelation(User sender, User receiver, String status) {
+    public Relationship addRelation(User sender, User receiver, RelationshipStatus status) {
         RelationshipEditStatus createNewRequest = new RelationshipEditStatus(sender, receiver, status);
         Relationship newRequest = Relationship.from(createNewRequest);
 
@@ -75,8 +76,8 @@ public class RelationshipService {
     @Transactional
     public Relationship updateRelationshipStatus(User sender, User receiver, String status) {
         Relationship updatedRequest = relationshipRepository.findByFirstUserIdAndSecondUserId(sender, receiver);
-        updatedRequest.setStatus(status);
-        updatedRequest.setSince(new java.sql.Date(System.currentTimeMillis()));
+        updatedRequest.setStatus(RelationshipStatus.accepted);
+        updatedRequest.setSince(System.currentTimeMillis() / 1000L);
 
         return updatedRequest;
     }
@@ -165,16 +166,16 @@ public class RelationshipService {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST,
                     "There is nothing to accept.");
         }
-        request.setStatus("accepted");
-        request.setSince(new java.sql.Date(System.currentTimeMillis()));
+        request.setStatus(RelationshipStatus.accepted);
+        request.setSince(System.currentTimeMillis() / 1000L);
         Relationship receiverRequest = relationshipRepository.
                 findByFirstUserIdAndSecondUserId(receiver, sender);
         // Request exists
         if (receiverRequest != null) {
-            receiverRequest.setStatus("accepted");
-            receiverRequest.setSince(new java.sql.Date(System.currentTimeMillis()));
+            receiverRequest.setStatus(RelationshipStatus.accepted);
+            receiverRequest.setSince(System.currentTimeMillis() / 1000L);
         } else {
-            receiverRequest = new Relationship(receiver, sender, "accepted");
+            receiverRequest = new Relationship(receiver, sender, RelationshipStatus.accepted);
             relationshipRepository.save(receiverRequest);
         }
 
@@ -197,8 +198,8 @@ public class RelationshipService {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST,
                     "There is nothing to blocked.");
         }
-        request.setStatus("blocked");
-        request.setSince(new java.sql.Date(System.currentTimeMillis()));
+        request.setStatus(RelationshipStatus.blocked);
+        request.setSince(System.currentTimeMillis() / 1000L);
         endRelation(receiver, sender);
 
         return request;
