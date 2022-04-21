@@ -1,3 +1,16 @@
+-- Assignments
+insert into users (u_id, username, password, role_id) values (1, 'Laney', 'ZWNuDaQU', 5);
+insert into users (u_id, username, password, role_id) values (2, 'Clare', 'QBB5sLeIE', 4);
+insert into users (u_id, username, password, role_id) values (3, 'Pauletta', 'oFE0IChy8P', 4);
+insert into users (u_id, username, password, role_id) values (4, 'Ruggiero', 'RKnogE', 4);
+insert into users (u_id, username, password, role_id) values (5, 'Kalvin', 'VfP1MsV', 1);
+insert into users (u_id, username, password, role_id) values (6, 'Erroll', 'z6UrOP', 4);
+insert into users (u_id, username, password, role_id) values (7, 'Lorry', 'HLS26VLy', 2);
+insert into users (u_id, username, password, role_id) values (8, 'Donnell', 'NulgVFiMbcu', 2);
+insert into users (u_id, username, password, role_id) values (9, 'Russ', 'desltGlLzaN', 3);
+insert into users (u_id, username, password, role_id) values (10, 'Kikelia', 'bLtgTqV5pW8', 3);
+
+-- Chat
 insert into chat (ch_id, group_id, sender_id, time_sent, message) values (1 , 2, 5, '3/7/2021', 'Nam dui. Proin leo odio, porttitor id, consequat in, consequat ut, nulla. Sed accumsan felis. Ut at dolor quis odio consequat varius. Integer ac leo.');
 insert into chat (ch_id, group_id, sender_id, time_sent, message) values (2 , 2, 9, '19/2/2021', 'Cras pellentesque volutpat dui. Maecenas tristique, est et tempus semper, est quam pharetra magna, ac consequat metus sapien ut nunc.');
 insert into chat (ch_id, group_id, sender_id, time_sent, message) values (3 , 2, 5, '19/2/2021', 'In quis justo. Maecenas rhoncus aliquam lacus. Morbi quis tortor id nulla ultrices aliquet. Maecenas leo odio, condimentum id, luctus nec, molestie sed, justo.');
@@ -61,3 +74,103 @@ insert into chat (ch_id, group_id, sender_id, time_sent, message) values (60, 7,
 insert into chat (ch_id, group_id, sender_id, time_sent, message) values (61, 7, 9, '13/7/2021', 'Quisque id justo sit amet sapien dignissim vestibulum. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Nulla dapibus dolor vel est.');
 insert into chat (ch_id, group_id, sender_id, time_sent, message) values (62, 7, 4, '6/12/2021', 'Vestibulum ac est lacinia nisi venenatis tristique. Fusce congue, diam id ornare imperdiet, sapien urna pretium nisl, ut volutpat sapien arcu sed augue.');
 insert into chat (ch_id, group_id, sender_id, time_sent, message) values (63, 7, 4, '23/9/2021', 'Phasellus sit amet erat. Nulla tempus. Vivamus in felis eu sapien cursus vestibulum. Proin eu mi. Nulla ac enim. In tempor, turpis nec euismod scelerisque, quam turpis adipiscing lorem, vitae mattis nibh ligula nec sem.');
+
+-- Feedback
+insert into feedback (fb_id, u_id, fb_message) values (1, 2, 'Donec ut dolor. Morbi vel lectus in quam fringilla rhoncus. Mauris enim leo, rhoncus sed, vestibulum sit amet, cursus id, turpis. Integer aliquet, massa id lobortis convallis.');
+insert into feedback (fb_id, u_id, fb_message) values (2, 9, 'Praesent lectus. Vestibulum quam sapien, varius ut, blandit non, interdum in, ante. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Duis faucibus accumsan odio.');
+insert into feedback (fb_id, u_id, fb_message) values (3, 4, 'Duis at velit eu est congue elementum. In hac habitasse platea dictumst. Morbi vestibulum, velit id pretium iaculis, diam erat fermentum justo, nec condimentum neque sapien placerat ante. Nulla justo.');
+insert into feedback (fb_id, u_id, fb_message) values (4, 2, 'Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Nulla dapibus dolor vel est. Donec odio justo, sollicitudin ut, suscipit a, feugiat et, eros.');
+insert into feedback (fb_id, u_id, fb_message) values (5, 10, 'Suspendisse potenti. Nullam porttitor lacus at turpis. Donec posuere metus vitae ipsum.');
+insert into feedback (fb_id, u_id, fb_message) values (6, 3, 'Aliquam non mauris. Morbi non lectus. Aliquam sit amet diam in magna bibendum imperdiet. Nullam orci pede, venenatis non, sodales sed, tincidunt eu, felis. Fusce posuere felis sed lacus.');
+insert into feedback (fb_id, u_id, fb_message) values (7, 5, 'Praesent blandit. Nam nulla. Integer pede justo, lacinia eget, tincidunt eget, tempus vel, pede. Morbi porttitor lorem id ligula. Suspendisse ornare consequat lectus.');
+insert into feedback (fb_id, u_id, fb_message) values (8, 9, 'Donec semper sapien a libero. Nam dui. Proin leo odio, porttitor id, consequat in, consequat ut, nulla.');
+
+-- GroupMembers
+insert into group_members (group_id, member_id) values (2, 9);
+insert into group_members (group_id, member_id) values (4, 9);
+insert into group_members (group_id, member_id) values (4, 2);
+insert into group_members (group_id, member_id) values (7, 4);
+insert into group_members (group_id, member_id) values (4, 3);
+insert into group_members (group_id, member_id) values (6, 3);
+insert into group_members (group_id, member_id) values (5, 3);
+insert into group_members (group_id, member_id) values (6, 4);
+insert into group_members (group_id, member_id) values (6, 1);
+insert into group_members (group_id, member_id) values (2, 10);
+insert into group_members (group_id, member_id) values (2, 5);
+insert into group_members (group_id, member_id) values (5, 2);
+insert into group_members (group_id, member_id) values (3, 3);
+insert into group_members (group_id, member_id) values (3, 4);
+insert into group_members (group_id, member_id) values (7, 9);
+
+-- Groups
+insert into groups (gr_id, group_name, group_creator_id) values (1, 'Lotlux', 4);
+insert into groups (gr_id, group_name, group_creator_id) values (2, 'Opela', 2);
+insert into groups (gr_id, group_name, group_creator_id) values (3, 'Mat Lam Tam', 8);
+insert into groups (gr_id, group_name, group_creator_id) values (4, 'Bigtax', 8);
+insert into groups (gr_id, group_name, group_creator_id) values (5, 'Flowdesk', 8);
+insert into groups (gr_id, group_name, group_creator_id) values (6, 'Konklux', 1);
+insert into groups (gr_id, group_name, group_creator_id) values (7, 'Span', 5);
+
+-- Relationships
+insert into relationships (first_user_id, second_user_id, status, since) values (3, 1, 'pending', '19/11/2021');
+insert into relationships (first_user_id, second_user_id, status, since) values (3, 4, 'accepted', '17/1/2022');
+insert into relationships (first_user_id, second_user_id, status, since) values (7, 10, 'blocked', '2/7/2021');
+insert into relationships (first_user_id, second_user_id, status, since) values (1, 5, 'accepted', '23/5/2021');
+insert into relationships (first_user_id, second_user_id, status, since) values (8, 3, 'accepted', '20/9/2021');
+insert into relationships (first_user_id, second_user_id, status, since) values (3, 9, 'blocked', '8/6/2021');
+insert into relationships (first_user_id, second_user_id, status, since) values (5, 4, 'pending', '16/5/2021');
+insert into relationships (first_user_id, second_user_id, status, since) values (9, 2, 'accepted', '25/7/2021');
+insert into relationships (first_user_id, second_user_id, status, since) values (2, 1, 'pending', '29/9/2021');
+insert into relationships (first_user_id, second_user_id, status, since) values (8, 10, 'accepted', '22/3/2021');
+
+-- Reports
+insert into reports (rep_id, ch_id, reporter_id, violator_id, rep_message, status) values (1, 20, 4, 3, 'Cras pellentesque volutpat dui. Maecenas tristique, est et tempus semper, est quam pharetra magna, ac consequat metus sapien ut nunc', 'pending');
+insert into reports (rep_id, ch_id, reporter_id, violator_id, status) values (2, 51, 1, 4, 'rejected');
+insert into reports (rep_id, ch_id, reporter_id, violator_id, rep_message, status) values (3, 3, 5, 9, 'Morbi odio odio, elementum eu, interdum eu, tincidunt in, leo!','accepted');
+
+-- Roles
+insert into roles (r_id, role_name, basic_rights, todo_access_rights, team_leader_rights, admin_rights) values (1, 'admin', true, true, true, true);
+insert into roles (r_id, role_name, basic_rights, todo_access_rights, team_leader_rights, admin_rights) values (2, 'account_manager', true, false, true, false);
+insert into roles (r_id, role_name, basic_rights, todo_access_rights, team_leader_rights, admin_rights) values (3, 'team_leader', true, true, true, false);
+insert into roles (r_id, role_name, basic_rights, todo_access_rights, team_leader_rights, admin_rights) values (4, 'pleb', true, true, false, false);
+insert into roles (r_id, role_name, basic_rights, todo_access_rights, team_leader_rights, admin_rights) values (5, 'guest', true, false, false, false);
+
+-- TO_DO tables
+insert into todos (td_id, user_id, task_name, task_description, due_time, completed) values (1, 5, 'hw02', 'venenatis turpis enim blandit mi in porttitor', '11/11/2021', false);
+insert into todos (td_id, user_id, task_name, task_description, due_time, completed) values (2, 10, 'Pick up a trash', 'sit amet nulla quisque arcu libero rutrum', '3/9/2021', true);
+insert into todos (td_id, user_id, task_name, task_description, due_time, completed) values (3, 6, 'Doing laundry', 'dui maecenas tristique est et tempus semper est quam', '11/7/2021', true);
+insert into todos (td_id, user_id, task_name, task_description, due_time, completed) values (4, 8, 'Washing dishes', 'morbi sem mauris laoreet ut rhoncus aliquet pulvinar sed', '24/4/2021', false);
+insert into todos (td_id, user_id, task_name, task_description, due_time, completed) values (5, 5, 'Boos meeting', 'integer pede justo lacinia eget tincidunt eget tempus vel pede', '13/10/2021', true);
+insert into todos (td_id, user_id, task_name, task_description, due_time, completed) values (6, 5, 'Clean house', 'nulla suspendisse potenti cras in purus eu magna vulputate', '28/11/2021', true);
+insert into todos (td_id, user_id, task_name, task_description, due_time, completed) values (7, 5, 'Hire new guy', 'parturient montes nascetur ridiculus mus etiam vel augue vestibulum', '21/7/2021', false);
+insert into todos (td_id, user_id, task_name, task_description, due_time, completed) values (8, 7, 'job interview',  'montes nascetur ridiculus mus etiam vel augue vestibulum rutrum rutrum', '28/9/2021', true);
+insert into todos (td_id, user_id, task_name, task_description, due_time, completed) values (9, 8, 'Sweeping',       'elit ac nulla sed vel enim sit amet', '19/8/2021', false);
+insert into todos (td_id, user_id, task_name, task_description, due_time, completed) values (10, 1, 'hw03',     'quam sapien varius ut blandit non interdum', '28/1/2022', false);
+insert into todos (td_id, user_id, task_name, task_description, due_time, completed) values (11, 6, 'cokeeffea',    'at feugiat non pretium quis lectus', '22/6/2021', true);
+insert into todos (td_id, user_id, task_name, task_description, due_time, completed) values (12, 4, 'Washing dishes', 'integer aliquet massa id lobortis convallis tortor risus dapibus augue', '19/1/2022', true);
+insert into todos (td_id, user_id, task_name, task_description, due_time, completed) values (13, 6, 'job interview',    'amet cursus id turpis integer', '13/7/2021', true);
+insert into todos (td_id, user_id, task_name, task_description, due_time, completed) values (14, 4, 'Cleaning bathrooms',     'cras pellentesque volutpat dui maecenas tristique', '22/9/2021', true);
+insert into todos (td_id, user_id, task_name, task_description, due_time, completed) values (15, 7, 'midterm',   'pede malesuada in imperdiet et commodo vulputate justo in', '5/10/2021', true);
+insert into todos (td_id, user_id, task_name, task_description, due_time, completed) values (16, 6, 'Date',   'diam in magna bibendum imperdiet nullam orci', '7/4/2021', true);
+insert into todos (td_id, user_id, task_name, task_description, due_time, completed) values (17, 4, 'Cleaning bathrooms',    'tempus semper est quam pharetra magna ac consequat metus sapien', '9/8/2021', false);
+insert into todos (td_id, user_id, task_name, task_description, due_time, completed) values (18, 2, 'SLEEEEP',     'eu massa donec dapibus duis at velit eu est congue', '24/7/2021', false);
+insert into todos (td_id, user_id, task_name, task_description, due_time, completed) values (19, 9, 'vacation',    'suscipit ligula in lacus curabitur at ipsum ac tellus', '23/9/2021', false);
+insert into todos (td_id, user_id, task_name, task_description, due_time, completed) values (20, 1, 'midterm',  'leo maecenas pulvinar lobortis est phasellus', '27/12/2021', true);
+insert into todos (td_id, user_id, task_name, task_description, due_time, completed) values (21, 9, 'Finals',   'eget tincidunt eget tempus vel pede morbi porttitor lorem', '27/2/2021', false);
+insert into todos (td_id, user_id, task_name, task_description, due_time, completed) values (22, 6, 'Sweeping',     'faucibus accumsan odio curabitur convallis duis', '30/1/2022', true);
+insert into todos (td_id, user_id, task_name, task_description, due_time, completed) values (23, 5, 'Meeting with ','sed ante vivamus tortor duis mattis egestas metus', '30/3/2022', false);
+insert into todos (td_id, user_id, task_name, task_description, due_time, completed) values (24, 9, 'Doing laundry', 'quam pharetra magna ac consequat metus sapien ut nunc vestibulum', '26/10/2021', false);
+insert into todos (td_id, user_id, task_name, task_description, due_time, completed) values (25, 4, 'Washing dishes','eros viverra eget congue eget semper', '18/8/2021', true);
+
+-- Users
+insert into users (u_id, username, password, role_id) values (1, 'Laney', 'ZWNuDaQU', 5);
+insert into users (u_id, username, password, role_id) values (2, 'Clare', 'QBB5sLeIE', 4);
+insert into users (u_id, username, password, role_id) values (3, 'Pauletta', 'oFE0IChy8P', 4);
+insert into users (u_id, username, password, role_id) values (4, 'Ruggiero', 'RKnogE', 4);
+insert into users (u_id, username, password, role_id) values (5, 'Kalvin', 'VfP1MsV', 1);
+insert into users (u_id, username, password, role_id) values (6, 'Erroll', 'z6UrOP', 4);
+insert into users (u_id, username, password, role_id) values (7, 'Lorry', 'HLS26VLy', 2);
+insert into users (u_id, username, password, role_id) values (8, 'Donnell', 'NulgVFiMbcu', 2);
+insert into users (u_id, username, password, role_id) values (9, 'Russ', 'desltGlLzaN', 3);
+insert into users (u_id, username, password, role_id) values (10, 'Kikelia', 'bLtgTqV5pW8', 3);
+

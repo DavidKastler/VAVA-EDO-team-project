@@ -1,8 +1,8 @@
 package vava.edo.controllers;
 
 import vava.edo.models.User;
-
 import java.io.*;
+
 
 public class UserController {
 
@@ -35,6 +35,5 @@ public class UserController {
             i.printStackTrace();  // vypis vynimky (problemu)
         }
     }
-
 
 }

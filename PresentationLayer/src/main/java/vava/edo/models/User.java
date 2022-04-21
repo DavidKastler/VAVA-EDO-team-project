@@ -1,23 +1,17 @@
 package vava.edo.models;
 
-import java.io.*;
-import java.time.LocalDateTime;
+import java.io.Serializable;
+import java.util.ArrayList;
 
 public class User implements Serializable {
     private Integer uid = null;
     private String username = null;
     private String password = null;
     private Role userRole = null;
-    private boolean isLogged = false;
-    private LocalDateTime lastActivity = null;
-
-    public void setLogged(boolean logged) {
-        isLogged = logged;
-    }
-
-    public void setLastActivity(LocalDateTime lastActivity) {
-        this.lastActivity = lastActivity;
-    }
+    private boolean rememberMe = false;  // potrebné pre serializáciu dát (mimo db)
+    private boolean isLogged = false;  // potrebné pre serializáciu dát (mimo db)
+    private long lastActivity = 0;  // potrebné pre serializáciu dát (mimo db)
+    private ArrayList<Todo> tasks = null;
 
     public Integer getUid() {
         return uid;
@@ -39,39 +33,29 @@ public class User implements Serializable {
         return isLogged;
     }
 
-    public LocalDateTime getLastActivity() {
+    public long getLastActivity() {
         return lastActivity;
     }
 
-    public void  loadSerializeUser() {
-        User user = null;
-        try {
-            FileInputStream fileIn = new FileInputStream("/tmp/employee.ser");
-            ObjectInputStream in = new ObjectInputStream(fileIn);
-            user = (User) in.readObject();
-            in.close();
-            fileIn.close();
-        } catch (IOException i) {  // chyba pri deserializacii
-            i.printStackTrace();
-        } catch (ClassNotFoundException c) {  // chyba nenajdeneho suboru so serializaciou
-            System.out.println("User class not found");
-            c.printStackTrace();
-        }
+    public boolean isRememberMe() {
+        return rememberMe;
     }
 
-    public void serializeUser(User user) {
-        try {
-            // vytvorenie (alebo hladanie uz vytvoreneho) suboru, kde sa bude serializovat
-            FileOutputStream fileOut = new FileOutputStream("user.ser");
-            ObjectOutputStream out = new ObjectOutputStream(fileOut);
-            out.writeObject(user);  // pridavanie jednotlivych objektov
-            out.close();
-            fileOut.close();  // zatvorenie suboru
-            System.out.println("Údaje boli uložené (employee.ser)");
-        } catch (IOException i) {  // ak sa nahodou nepodari subor vytvorit alebo pre inu chybu
-            i.printStackTrace();  // vypis vynimky (problemu)
-        }
+    public void setRememberMe(boolean rememberMe) {
+        this.rememberMe = rememberMe;
     }
+
+    public void setLogged(boolean logged) {
+        isLogged = logged;
+    }
+
+    public void setLastActivity(long lastActivity) {
+        this.lastActivity = lastActivity;
+    }
+
+    public void setTasks(ArrayList<Todo> tasks){this.tasks = tasks;}
+
+    public ArrayList<Todo> getTasks(){return this.tasks;}
 
     @Override
     public String toString() {
@@ -80,6 +64,7 @@ public class User implements Serializable {
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
                 ", userRole=" + userRole +
+                ", rememberMe=" + rememberMe +
                 ", isLogged=" + isLogged +
                 ", lastActivity=" + lastActivity +
                 '}';
