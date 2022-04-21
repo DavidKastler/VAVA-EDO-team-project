@@ -9,6 +9,7 @@ module vava.edo.presentationlayer {
     //needed for JSON
     requires gson;
     requires json;
+    requires org.jetbrains.annotations;
 
     //needed for JSON
 

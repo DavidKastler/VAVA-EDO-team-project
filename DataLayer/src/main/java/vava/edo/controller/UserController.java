@@ -28,9 +28,14 @@ public class UserController {
 
 
     @PostMapping(value = "/login")
-    public ResponseEntity<User> loginUser(@RequestBody UserLogin userLogin) {
-        User user = userService.getUserByUserName(userLogin.getUsername());
+    public ResponseEntity<User> loginUser(@RequestParam(value = "token") int token,
+                                          @RequestBody UserLogin userLogin) {
+        if (!userService.isPleb(token)) {
+            throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "This action requires \n" +
+                    "at least pleb privileges.");
+        }
 
+        User user = userService.getUserByUserName(userLogin.getUsername());
         userService.checkPassword(user, userLogin.getPassword());
 
         return new ResponseEntity<>(user, HttpStatus.OK);
@@ -73,6 +78,11 @@ public class UserController {
                 throw new ResponseStatusException(HttpStatus.FORBIDDEN, "You do not have rights to do this.");
             }
         }
+
+        if (!userService.isPleb(token)) {
+            throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "This action requires \n" +
+                    "at least pleb privileges.");
+        }
         // no need to chceck if user exists, it is handled inside this method
         User user = userService.editUser(wantedUserId, updatedUser);
 
@@ -82,7 +92,7 @@ public class UserController {
     @DeleteMapping(value = "/del/{id}")
     public ResponseEntity<Object> deleteUserById(@RequestParam(value = "token") int token,
                                                  @PathVariable(value = "id") int userId) {
-        if (!userService.isAdmin(token)) {
+        if (!(userService.isAdmin(token) || userService.isAccountManager(token))) {
             throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "This action requires admin privileges.");
         }
 
