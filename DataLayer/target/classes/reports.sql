@@ -1,3 +1,0 @@
-insert into reports (rep_id, ch_id, reporter_id, violator_id, rep_message, report_status) values (1, 20, 4, 3, 'Cras pellentesque volutpat dui. Maecenas tristique, est et tempus semper, est quam pharetra magna, ac consequat metus sapien ut nunc', 'pending');
-insert into reports (rep_id, ch_id, reporter_id, violator_id, rep_message, report_status) values (2, 51, 1, 4, '','rejected');
-insert into reports (rep_id, ch_id, reporter_id, violator_id, rep_message, report_status) values (3, 3, 5, 9, 'Morbi odio odio, elementum eu, interdum eu, tincidunt in, leo!','accepted');
