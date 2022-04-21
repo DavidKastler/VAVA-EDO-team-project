@@ -1,6 +1,11 @@
 DROP SCHEMA public CASCADE;
 CREATE SCHEMA public;
 
+CREATE TYPE "read_status" AS ENUM (
+    'not_seen',
+    'seen'
+);
+
 CREATE TYPE "report_status" AS ENUM (
   'pending',
   'accepted',
@@ -38,8 +43,8 @@ CREATE TABLE "todo_group" (
 CREATE TABLE "todos" (
                          "td_id" SERIAL UNIQUE PRIMARY KEY NOT NULL,
                          "group_id" integer NOT NULL,
-                         "task_name" varchar NOT NULL,
-                         "task_description" varchar,
+                         "todo_name" varchar NOT NULL,
+                         "todo_description" varchar,
                          "from_time" bigint NOT NULL,
                          "to_time" bigint NOT NULL,
                          "completed" boolean DEFAULT false,
@@ -53,6 +58,7 @@ CREATE TABLE "groups" (
 );
 
 CREATE TABLE "group_members" (
+                                 "gm_id" SERIAL UNIQUE PRIMARY KEY NOT NULL,
                                  "group_id" integer NOT NULL,
                                  "member_id" integer NOT NULL
 );
@@ -66,6 +72,7 @@ CREATE TABLE "chat" (
 );
 
 CREATE TABLE "relationships" (
+                                 "rel_id" SERIAL UNIQUE PRIMARY KEY NOT NULL,
                                  "first_user_id" integer NOT NULL,
                                  "second_user_id" integer NOT NULL,
                                  "status" friendship DEFAULT 'pending',
@@ -83,10 +90,9 @@ CREATE TABLE "reports" (
 CREATE TABLE "feedback" (
                             "fb_id" SERIAL UNIQUE PRIMARY KEY NOT NULL,
                             "u_id" integer NOT NULL,
+                            "read" read_status DEFAULT 'not_seen',
                             "fb_message" varchar NOT NULL
 );
-
-COMMENT ON TABLE "feedback" IS 'Tu pouzivatel vie povedat co by chcel zmenit';
 
 ALTER TABLE "users" ADD FOREIGN KEY ("role_id") REFERENCES "roles" ("r_id");
 
