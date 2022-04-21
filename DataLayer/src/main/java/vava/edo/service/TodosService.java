@@ -64,9 +64,7 @@ public class TodosService {
      * @return          list of found task objects
      */
     public List<Todo> getTasksByTimeRange(Integer userId, long fromTime, long toTime) {
-        Timestamp fromTimestamp = new Timestamp(fromTime*1000);
-        Timestamp toTimestamp = new Timestamp(toTime*1000);
-        return todoRepository.findAllByGroupIdAndFromTimeBetween(userId, fromTimestamp, toTimestamp);
+        return todoRepository.findAllByGroupIdAndFromTimeBetween(userId, fromTime, toTime);
     }
 
 
