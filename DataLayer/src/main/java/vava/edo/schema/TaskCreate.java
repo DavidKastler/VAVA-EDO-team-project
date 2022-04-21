@@ -2,7 +2,6 @@ package vava.edo.schema;
 
 import com.sun.istack.NotNull;
 import lombok.Data;
-import lombok.EqualsAndHashCode;
 
 import java.sql.Date;
 
@@ -23,7 +22,7 @@ public class TaskCreate{
     @Override
     public String toString() {
         return "UserRegister{" +
-                ", userId='" + userId + '\'' +
+                ", userId=" + userId +
                 ", taskName=" + taskName +
                 ", taskDescription=" + taskDescription +
                 ", dueTime=" + dueTime +
