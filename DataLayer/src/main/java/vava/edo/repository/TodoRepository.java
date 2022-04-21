@@ -13,8 +13,6 @@ public interface TodoRepository extends JpaRepository<Todo, Integer> {
 
     List<Todo> findAllByGroupIdAndCompletedOrderByFromTime(Integer userId, boolean completed, Pageable pageable);
 
-    //getTasksByTimeRange
     List<Todo> findAllByGroupIdAndFromTimeBetween(Integer userId, Timestamp fromTime, Timestamp toTime);
-//    List<Todo> findAllByUserIdAndDueTimeBetween(Integer userId, Timestamp fromTime, Timestamp toTime);
 
 }
