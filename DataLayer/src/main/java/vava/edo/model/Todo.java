@@ -23,10 +23,10 @@ public class Todo {
     //TODO ak bude treba tak mapovanie
     @Column(name = "group_id", nullable = false)
     private Integer groupId;
-    @Column(name = "task_name", nullable = false)
-    private String taskName;
-    @Column(name = "task_description", nullable = false)
-    private String taskDescription;
+    @Column(name = "todo_name", nullable = false)
+    private String todoName;
+    @Column(name = "todo_description", nullable = false)
+    private String todoDescription;
     @Column(name = "from_time", nullable = false)
     private Long fromTime;
     @Column(name = "to_time", nullable = false)
@@ -42,14 +42,17 @@ public class Todo {
      * @param taskDto    TaskCreate object that you want to cast
      * @return          cast Task object
      */
-//    public static Todo from(TaskCreate taskDto) {
-//        Todo todo = new Todo();
-//        todo.setUserId(taskDto.getUserId());
-//        todo.setTaskName(taskDto.getTaskName());
-//        todo.setTaskDescription(taskDto.getTaskDescription());
-//        todo.setDueTime(taskDto.getDueTime());
-//        return todo;
-//    }
+    public static Todo from(TaskCreate taskDto) {
+        Todo todo = new Todo();
+        todo.setGroupId(taskDto.getTodoGroupId());
+        todo.setTodoName(taskDto.getTodoName());
+        todo.setTodoDescription(taskDto.getTodoDescription());
+        todo.setFromTime(taskDto.getFromTime());
+        todo.setToTime(taskDto.getToTime());
+        todo.setCompleted(taskDto.getCompleted());
+        todo.setTag(taskDto.getTag());
+        return todo;
+    }
 
 
     /**
@@ -61,8 +64,8 @@ public class Todo {
         return "Todo{" +
                 "todoId=" + todoId +
                 ", groupId=" + groupId +
-                ", taskName='" + taskName + '\'' +
-                ", taskDescription='" + taskDescription + '\'' +
+                ", taskName='" + todoName + '\'' +
+                ", taskDescription='" + todoDescription + '\'' +
                 ", fromTime=" + fromTime +
                 ", toTime=" + toTime +
                 ", completed=" + completed +

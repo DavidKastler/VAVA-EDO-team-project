@@ -5,7 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import vava.edo.schema.UserRegister;
+import vava.edo.schema.users.UserRegister;
 
 import javax.persistence.*;
 

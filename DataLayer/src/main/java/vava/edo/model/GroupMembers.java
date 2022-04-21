@@ -17,11 +17,15 @@ import javax.persistence.*;
 @Entity
 @Table(name = "group_members")
 public class GroupMembers {
+
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "gm_id")
+    private Integer gmId;
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "group_Id", nullable = false)
     private Group groupId;
-    @Id
+
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "member_id", nullable = false)
     private User memberId;

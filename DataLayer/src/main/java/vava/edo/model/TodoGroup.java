@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import vava.edo.schema.todoGroup.CreateTodoGroup;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -27,4 +28,17 @@ public class TodoGroup {
     private Integer uId;
     @Column(name = "td_group_name")
     private String tdGroupName;
+
+
+    /**
+     * Cast method for creating TodoGroup from CreateTodoGroup class
+     * @param createTodoGroup
+     * @return
+     */
+    public static TodoGroup from(CreateTodoGroup createTodoGroup) {
+        TodoGroup todoGroup = new TodoGroup();
+        todoGroup.setUId(createTodoGroup.getUserId());
+        todoGroup.setTdGroupName(createTodoGroup.getTodoGroupName());
+        return todoGroup;
+    }
 }

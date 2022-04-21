@@ -20,16 +20,19 @@ import javax.persistence.*;
 @Table(name = "relationships")
 public class Relationship {
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "rel_id")
+    private Integer relationshipId;
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "first_user_id", nullable = false)
     private User firstUserId;
-    @Id
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "second_user_id", nullable = false)
     private User secondUserId;
     @Enumerated(EnumType.ORDINAL)
     @Column(name = "status")
     private RelationshipStatus status;
+
     @Column(name = "since")
     private Long since;
 

@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import vava.edo.model.enums.ReadStatus;
 
 import javax.persistence.*;
 
@@ -26,6 +27,8 @@ public class Feedback {
     private User userId;
     @Column(name = "fb_message", nullable = false)
     private String feedbackMessage;
+    @Column(name = "read")
+    private ReadStatus status;
 
 
     /**
