@@ -3,7 +3,7 @@ package vava.edo.controllers;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
-import vava.edo.Handlers.TaskHandler;
+import vava.edo.Handlers.TodoHandler;
 import vava.edo.models.User;
 
 import java.net.URL;
@@ -29,7 +29,7 @@ public class TodosController implements Initializable {
      */
     public void initialize(User user)  {
         setUser(user);
-        TaskHandler.startUp(this.user);
+        TodoHandler.startUp(this.user);
         labelLeftBarAll.setText(this.user.getUsername());
     }
 }

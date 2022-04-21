@@ -4,12 +4,13 @@ import com.mashape.unirest.http.HttpResponse;
 import com.mashape.unirest.http.JsonNode;
 import com.mashape.unirest.http.Unirest;
 import com.mashape.unirest.http.exceptions.UnirestException;
+import javafx.scene.control.TextField;
 import vava.edo.models.Todo;
 import vava.edo.models.User;
 import java.util.ArrayList;
 
 
-public class TaskHandler {
+public class TodoHandler {
 
     /**
      * This method runs all of the necessary methods to prepare the user data for display
@@ -48,5 +49,25 @@ public class TaskHandler {
         }
 
         return tasks;
+    }
+
+    /**
+     * Method which post newly created to_do and gets and gets the to_do from database
+     *
+     * @return returns a newly created to_do object
+     */
+    private static Todo createTodo(){
+        return null;
+    }
+
+    /**
+     * Calls createTo_do and add the newly created to_do object to the appropriate user
+     *
+     * @param user user object which will have a new to_do assigned
+     * @return ture operation was successful / false operation wasn't successful
+     */
+    public static boolean addTodoToUser(User user){
+
+        return false;
     }
 }
