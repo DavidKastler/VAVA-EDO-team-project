@@ -5,6 +5,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import vava.edo.Handlers.MessageHandler;
+import vava.edo.models.Message;
 
 import java.io.IOException;
 
@@ -17,6 +19,7 @@ public class Main extends Application {
         stage.setTitle("Everyday organizer");
         stage.setScene(scene);
         stage.show();
+
     }
 
     public static void main(String[] args) {

@@ -4,10 +4,10 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import vava.edo.model.enums.RelationshipStatus;
 import vava.edo.schema.RelationshipEditStatus;
 
 import javax.persistence.*;
-import java.sql.Date;
 
 /**
  * Class representing relationships between users in relationships table
@@ -21,26 +21,27 @@ import java.sql.Date;
 public class Relationship {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "r_id", nullable = false)
-    private Integer rId;
+    @Column(name = "rel_id")
+    private Integer relationshipId;
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "first_user_id", nullable = false)
     private User firstUserId;
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "second_user_id", nullable = false)
     private User secondUserId;
-
+    @Enumerated(EnumType.ORDINAL)
     @Column(name = "status")
-    private String status;
+    private RelationshipStatus status;
+
     @Column(name = "since")
-    private Date since;
+    private Long since;
 
 
-    public Relationship(User firstUserId, User secondUserId, String status) {
+    public Relationship(User firstUserId, User secondUserId, RelationshipStatus status) {
         this.firstUserId = firstUserId;
         this.secondUserId = secondUserId;
         this.status = status;
-        this.since = new java.sql.Date(System.currentTimeMillis());
+        this.since = System.currentTimeMillis() / 1000L;
     }
 
 
@@ -55,7 +56,7 @@ public class Relationship {
         request.setFirstUserId(newRequest.getFirstUserId());
         request.setSecondUserId(newRequest.getSecondUserId());
         request.setStatus(newRequest.getStatus());
-        request.setSince(new java.sql.Date(System.currentTimeMillis()));
+        request.setSince(System.currentTimeMillis() / 1000L);
         return request;
     }
 
@@ -68,7 +69,6 @@ public class Relationship {
     @Override
     public String toString() {
         return "Relationships{" +
-                "rId=" + rId +
                 ", firstUserId=" + firstUserId +
                 ", secondUserId=" + secondUserId +
                 ", status=" + status +

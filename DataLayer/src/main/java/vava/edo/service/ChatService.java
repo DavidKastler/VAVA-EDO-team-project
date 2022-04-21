@@ -4,12 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import vava.edo.model.Chat;
-import vava.edo.model.Report;
-import vava.edo.model.Task;
 import vava.edo.repository.ChatRepository;
-import vava.edo.repository.TaskRepository;
 import vava.edo.schema.MessageCreate;
-import vava.edo.schema.ReportCreate;
 
 import java.sql.Date;
 import java.util.List;

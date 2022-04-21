@@ -3,11 +3,14 @@ package vava.edo.model;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import vava.edo.model.enums.ReportStatus;
 import vava.edo.schema.ReportCreate;
 
 import javax.persistence.*;
-import java.sql.Date;
 
+/**
+ * Class representing user in reports table
+ */
 @Getter
 @Setter
 @NoArgsConstructor
@@ -17,17 +20,17 @@ public class Report {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "rep_id", nullable = false)
-    private int reportId;
-    @Column(name = "ch_id", nullable = false)
-    private int chatId;
+    private Integer reportId;
     @Column(name = "reporter_id", nullable = false)
-    private int reporterId;
+    private Integer reporterId;
     @Column(name = "violator_id", nullable = false)
-    private int violatorId;
+    private Integer violatorId;
     @Column(name = "rep_message", nullable = false)
     private String reportMessage;
-    @Column(name = "report_status", nullable = false)
-    private String reportStatus;
+    @Enumerated(EnumType.ORDINAL)
+    @Column(name = "status", nullable = false)
+    private ReportStatus status;
+
 
     /**
      * Static casting method from ReportCreate object
@@ -36,13 +39,13 @@ public class Report {
      */
     public static Report from(ReportCreate reportDto) {
         Report report = new Report();
-        report.setChatId(reportDto.getChatId());
         report.setReporterId(reportDto.getReporterId());
         report.setViolatorId(reportDto.getViolatorId());
         report.setReportMessage(reportDto.getReportMessage());
-        report.setReportStatus(reportDto.getReportStatus());
+        report.setStatus(reportDto.getReportStatus());
         return report;
     }
+
 
     /**
      * Debugging method
@@ -52,11 +55,10 @@ public class Report {
     public String toString() {
         return "Report{" +
                 "reportId=" + reportId +
-                ", chatId=" + chatId +
                 ", reporterId=" + reporterId +
                 ", violatorId=" + violatorId +
                 ", reportMessage=" + reportMessage +
-                ", reportStatus=" + reportStatus +
+                ", reportStatus=" + status +
                 '}';
     }
 }

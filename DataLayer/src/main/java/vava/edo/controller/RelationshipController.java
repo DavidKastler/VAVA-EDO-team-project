@@ -7,7 +7,8 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 import vava.edo.model.Relationship;
 import vava.edo.model.User;
-import vava.edo.schema.UserInfo;
+import vava.edo.model.enums.RelationshipStatus;
+import vava.edo.schema.users.UserInfo;
 import vava.edo.service.RelationshipService;
 import vava.edo.service.UserService;
 
@@ -112,7 +113,7 @@ public class RelationshipController {
         // Create new request if there is non
         if (newRequest == null) {
             return new ResponseEntity<>
-                    (relationshipService.addRelation(sender, receiver, "pending"), HttpStatus.CREATED);
+                    (relationshipService.addRelation(sender, receiver, RelationshipStatus.pending), HttpStatus.CREATED);
         }
         // If blocked, need to send new request else is already friend or pending was sent
         if (Objects.equals(newRequest.getStatus(), "blocked")) {

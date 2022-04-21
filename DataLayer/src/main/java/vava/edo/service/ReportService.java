@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import vava.edo.model.Report;
+import vava.edo.model.enums.ReportStatus;
 import vava.edo.model.exeption.TaskNotFoundException;
 import vava.edo.repository.ChatRepository;
 import vava.edo.repository.ReportRepository;
@@ -67,7 +68,7 @@ public class ReportService {
     {
         Report report = getReport(reportId);
 
-        report.setReportStatus("accepted");
+        report.setStatus(ReportStatus.accepted);
 
         return report;
     }
@@ -82,8 +83,7 @@ public class ReportService {
     {
         Report report = getReport(reportId);
 
-        report.setReportStatus("rejected");
-
+        report.setStatus(ReportStatus.rejected);
         return report;
     }
 
