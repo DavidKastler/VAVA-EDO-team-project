@@ -12,7 +12,7 @@ import java.util.List;
 public interface GroupMembersRepository extends JpaRepository<GroupMembers, Integer> {
 
     GroupMembers findByGroupIdAndMemberId(Group groupId, User userId);
-    List<GroupMembers> findAllByGroupId(Group groupId);
+    List<GroupMembers> findAllGroupMembersByGroupId(Integer groupId);
     List<GroupMembers> findAllByMemberId(User userId);
     Boolean existsByGmIdAndAndMemberId(Group group, User user);
 }
