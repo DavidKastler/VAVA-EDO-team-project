@@ -91,9 +91,9 @@
                <children>
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="240.0">
                      <children>
-                        <Button fx:id="search_button" mnemonicParsing="false" prefHeight="50.0" prefWidth="134.0" style="-fx-background-color: #c4c4c4; -fx-background-radius: 40; -fx-font-weight: bold;" text="Search" textAlignment="CENTER">
+                        <Button fx:id="search_button" mnemonicParsing="false" prefHeight="50.0" prefWidth="134.0" style="-fx-background-color: #c4c4c4; -fx-background-radius: 40;" text="Search">
                            <font>
-                              <Font name="Arial" size="20.0" />
+                              <Font name="Arial Bold" size="24.0" />
                            </font>
                            <HBox.margin>
                               <Insets right="10.0" />
@@ -108,31 +108,7 @@
                   </HBox>
                   <ScrollPane hbarPolicy="NEVER" prefHeight="650.0" prefWidth="239.0" style="-fx-background: #323232; -fx-border-color: #323232;">
                      <content>
-                        <VBox fx:id="chat_list_pane" alignment="TOP_CENTER" prefWidth="233.0">
-                           <children>
-                              <Button contentDisplay="CENTER" mnemonicParsing="false" prefHeight="50.0" prefWidth="240.0" style="-fx-background-color: #c4c4c4; -fx-font-weight: bold;" text="Janko" textAlignment="CENTER">
-                                 <font>
-                                    <Font name="Arial" size="22.0" />
-                                 </font>
-                                 <VBox.margin>
-                                    <Insets />
-                                 </VBox.margin>
-                              </Button>
-                              <Button contentDisplay="CENTER" mnemonicParsing="false" prefHeight="50.0" prefWidth="240.0" style="-fx-background-color: #808080; -fx-font-weight: bold;" text="Ferko" textAlignment="CENTER">
-                                 <font>
-                                    <Font name="Arial" size="22.0" />
-                                 </font>
-                                 <VBox.margin>
-                                    <Insets />
-                                 </VBox.margin>
-                              </Button>
-                              <Button contentDisplay="CENTER" mnemonicParsing="false" prefHeight="50.0" prefWidth="240.0" style="-fx-background-color: #ff9797; -fx-font-weight: bold;" text="Jozko" textAlignment="CENTER">
-                                 <font>
-                                    <Font name="Arial" size="22.0" />
-                                 </font>
-                              </Button>
-                           </children>
-                        </VBox>
+                        <VBox fx:id="chat_list_pane" alignment="TOP_CENTER" prefWidth="233.0" />
                      </content></ScrollPane>
                </children>
             </VBox>
@@ -142,9 +118,9 @@
                      <children>
                         <HBox prefHeight="100.0" prefWidth="400.0">
                            <children>
-                              <Label fx:id="chat_name" contentDisplay="CENTER" prefHeight="100.0" prefWidth="400.0" style="-fx-background-color: transparent; -fx-font-weight: bold; -fx-text-fill: transparent;" text="Label">
+                              <Label fx:id="chat_name" contentDisplay="CENTER" prefHeight="100.0" prefWidth="400.0" style="-fx-text-fill: transparent;" text="Label">
                                  <font>
-                                    <Font name="Arial" size="34.0" />
+                                    <Font name="Arial Bold" size="34.0" />
                                  </font>
                                  <HBox.margin>
                                     <Insets />
@@ -158,9 +134,9 @@
                         <HBox prefHeight="100.0" prefWidth="250.0" />
                         <HBox prefHeight="100.0" prefWidth="150.0">
                            <children>
-                              <Button fx:id="block_user" mnemonicParsing="false" prefHeight="100.0" prefWidth="150.0" style="-fx-background-color: transparent; -fx-font-weight: bold;" text="!">
+                              <Button fx:id="block_user" mnemonicParsing="false" prefHeight="100.0" prefWidth="150.0" style="-fx-background-color: transparent;" text="!">
                                  <font>
-                                    <Font size="34.0" />
+                                    <Font name="Arial Bold" size="40.0" />
                                  </font>
                               </Button>
                            </children>
@@ -173,14 +149,14 @@
                            <children>
                               <VBox prefHeight="550.0" prefWidth="800.0">
                                  <children>
-                                    <HBox alignment="BOTTOM_LEFT" prefHeight="100.0" prefWidth="200.0">
+                                    <HBox alignment="BOTTOM_LEFT">
                                        <children>
-                                          <Label fx:id="chat_name11" contentDisplay="CENTER" prefHeight="100.0" prefWidth="400.0" style="-fx-background-color: #ff9797; -fx-background-radius: 20;" text="Label">
+                                          <Label contentDisplay="CENTER" maxWidth="350.0" style="-fx-background-color: #ff9797; -fx-background-radius: 20;" text="ojcnwsb dvsdbvsodbvdn vsodjnv " wrapText="true">
                                              <font>
                                                 <Font name="Arial" size="34.0" />
                                              </font>
                                              <padding>
-                                                <Insets left="30.0" />
+                                                <Insets bottom="10.0" left="30.0" right="30.0" top="10.0" />
                                              </padding>
                                              <HBox.margin>
                                                 <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
@@ -188,17 +164,17 @@
                                           </Label>
                                        </children>
                                     </HBox>
-                                    <HBox alignment="BOTTOM_RIGHT" prefHeight="100.0" prefWidth="800.0">
+                                    <HBox alignment="BOTTOM_RIGHT">
                                        <children>
-                                          <Label fx:id="chat_name1" contentDisplay="CENTER" prefHeight="85.0" prefWidth="357.0" style="-fx-background-color: #c4c4c4; -fx-background-radius: 20;" text="Label">
+                                          <Label contentDisplay="CENTER" maxWidth="350.0" style="-fx-background-color: #c4c4c4; -fx-background-radius: 20;" text="ahoj" wrapText="true">
                                              <font>
                                                 <Font name="Arial" size="34.0" />
                                              </font>
                                              <padding>
-                                                <Insets left="30.0" />
+                                                <Insets bottom="10.0" left="30.0" right="30.0" top="10.0" />
                                              </padding>
                                              <HBox.margin>
-                                                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                                <Insets bottom="5.0" left="5.0" right="10.0" top="5.0" />
                                              </HBox.margin>
                                           </Label>
                                        </children>
