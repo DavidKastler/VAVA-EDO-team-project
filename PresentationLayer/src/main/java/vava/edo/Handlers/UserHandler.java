@@ -14,7 +14,6 @@ import vava.edo.Exepctions.IncorrectCredentials;
 import vava.edo.models.User;
 
 import java.time.Instant;
-import java.time.LocalDateTime;
 import java.util.Objects;
 
 public class UserHandler {

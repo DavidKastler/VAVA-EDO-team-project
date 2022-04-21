@@ -51,17 +51,17 @@ public class LoginController implements Initializable {
 
         try {
             this.user = UserHandler.loginUser(textUsername, textPassword, wrongCredentials);
+
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/vava/edo/Todos.fxml"));
+            AnchorPane todoScreen = loader.load();
+            TodosController todoController = loader.getController();
+            todoController.initialize(user);
+
+            rootPane.getChildren().setAll(todoScreen);
         }
         catch (EmptyLoginFields | IncorrectCredentials e){
             e.printStackTrace();
         }
-
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/vava/edo/Todos.fxml"));
-        AnchorPane todoScreen = loader.load();
-        TodosController todoController = loader.getController();
-        todoController.initialize(user);
-
-        rootPane.getChildren().setAll(todoScreen);
 
     }
 

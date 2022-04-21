@@ -1,7 +1,6 @@
 package vava.edo.models;
 
 import java.io.Serializable;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 public class User implements Serializable {
@@ -12,7 +11,7 @@ public class User implements Serializable {
     private boolean rememberMe = false;  // potrebné pre serializáciu dát (mimo db)
     private boolean isLogged = false;  // potrebné pre serializáciu dát (mimo db)
     private long lastActivity = 0;  // potrebné pre serializáciu dát (mimo db)
-    private ArrayList<Task> tasks = null;
+    private ArrayList<Todo> tasks = null;
 
     public Integer getUid() {
         return uid;
@@ -54,9 +53,9 @@ public class User implements Serializable {
         this.lastActivity = lastActivity;
     }
 
-    public void setTasks(ArrayList<Task> tasks){this.tasks = tasks;}
+    public void setTasks(ArrayList<Todo> tasks){this.tasks = tasks;}
 
-    public ArrayList<Task> getTasks(){return this.tasks;}
+    public ArrayList<Todo> getTasks(){return this.tasks;}
 
     @Override
     public String toString() {

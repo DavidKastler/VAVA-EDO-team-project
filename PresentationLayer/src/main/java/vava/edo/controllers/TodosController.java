@@ -1,6 +1,5 @@
 package vava.edo.controllers;
 
-import com.mashape.unirest.http.exceptions.UnirestException;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;

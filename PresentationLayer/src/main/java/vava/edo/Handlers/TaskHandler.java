@@ -4,7 +4,7 @@ import com.mashape.unirest.http.HttpResponse;
 import com.mashape.unirest.http.JsonNode;
 import com.mashape.unirest.http.Unirest;
 import com.mashape.unirest.http.exceptions.UnirestException;
-import vava.edo.models.Task;
+import vava.edo.models.Todo;
 import vava.edo.models.User;
 import java.util.ArrayList;
 
@@ -18,33 +18,35 @@ public class TaskHandler {
      */
     public static void startUp(User user) {
 
-        user.setTasks(getAllTasks(user.getUid()));
+        user.setTasks(getAllTodos(user.getUid()));
 
     }
 
 
-
     /**
-     *
      * This method returns all the tasks which are assigned to the selected user by uid
      *
      * @param uid Id of the user for which you are retrieving the tasks
      * @return ArrayList of all tasks
      */
-    private static ArrayList<Task> getAllTasks(Integer uid) {
-
+    private static ArrayList<Todo> getAllTodos(Integer uid) {
+        
+        ArrayList<Todo> tasks = new ArrayList<>();
+        
         try {
-            HttpResponse<JsonNode> tasksJson = Unirest.get("http://localhost:8000/todos/{uid}/all")
+            HttpResponse<JsonNode> tasksJson = Unirest.get("http://localhost:8080/todos/{uid}/all/?token={token}")
                     .routeParam("uid", String.valueOf(uid))
+                    .routeParam("token", String.valueOf(uid))
                     .asJson();
-
-            //TODO parse json into the ArrayList<Task>
+            
+            for(Object task: tasksJson.getBody().getArray()){
+                tasks.add(new Gson().fromJson(task.toString(), Todo.class));
+            }
 
         }catch (UnirestException e){
             System.out.println("Connection to localhost:8080 failed ! (PLease start backend server)");
         }
 
-
-        return null;
+        return tasks;
     }
 }
