@@ -9,7 +9,6 @@ import vava.edo.model.Group;
 import vava.edo.model.GroupMembers;
 import vava.edo.schema.GroupAddMember;
 import vava.edo.schema.GroupCreate;
-import vava.edo.schema.GroupEdit;
 import vava.edo.service.GroupMembersService;
 import vava.edo.service.GroupService;
 import vava.edo.service.UserService;
@@ -35,10 +34,58 @@ public class GroupController {
         this.groupMembersService = groupMembersService;
     }
 
+    /**
+     * Endpoint creating a group
+     * @param groupDto new group
+     * @return response entity containing new group
+     */
+    @PostMapping(value = "/create")
+    public ResponseEntity<Object> createNewGroup(@RequestParam(value = "token") int token,
+                                                 @RequestBody GroupCreate groupDto) {
+        if (!userService.isTeamLeader(token)) {
+            throw new ResponseStatusException(HttpStatus.UNAUTHORIZED,
+                    "This action requires at least team leader privileges.");
+        }
+        Group newGroup = groupService.addGroup(groupDto);
+        return new ResponseEntity<>(newGroup, HttpStatus.CREATED);
+    }
+
+    /**
+     * Endpoint deleting a group with given id
+     * @param token   user account rights verification
+     * @param groupId id of deleting group
+     * @return response entity containing deleted group
+     */
+    @DeleteMapping(value = "/delete/{groupId}")
+    public ResponseEntity<Group> deleteGroupById(@RequestParam(value = "token") int token,
+                                                  @PathVariable(value = "groupId") int groupId) {
+        if (!userService.isTeamLeader(token)) {
+            throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "This action requires admin, account manager" +
+                    " or team leader privileges.");
+        }
+        groupMembersService.deleteAllMember(groupId);
+        return new ResponseEntity<>(groupService.deleteGroup(groupId), HttpStatus.NO_CONTENT);
+    }
+
+
+    @PutMapping("/update/{group_id}")
+    public ResponseEntity<Group> updateGroup(@RequestParam(value = "token") Integer token,
+                                             @PathVariable String group_id,
+                                             @RequestBody GroupCreate updatedGroup) {
+        if (updatedGroup.getCreatorId() != token) {
+            throw new ResponseStatusException(HttpStatus.FORBIDDEN, "You are not the creator");
+        }
+        return new ResponseEntity<Group>(groupService.editGroup(token, updatedGroup), HttpStatus.OK);
+    }
+
+    @GetMapping("get")
+    public List<Group> getUserOwnedGroups() {
+        return null; //TODO spravit
+    }
+
 
     /**
      * Endpoint returning a list of all groups
-     *
      * @param token user account rights verification
      * @return list of groups
      */
@@ -49,7 +96,6 @@ public class GroupController {
         }
         return new ResponseEntity<>(groupService.getAllGroups(), HttpStatus.OK);
     }
-
 
     /**
      * Endpoint returning a group with given id
@@ -65,9 +111,7 @@ public class GroupController {
             throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "This action requires admin privileges.");
         }
 
-
         Group group = groupService.getGroup(groupId);
-//        System.out.println(group.toString());
         return new ResponseEntity<>(group, HttpStatus.OK);
     }
 
@@ -92,7 +136,7 @@ public class GroupController {
     }
 
 
-    /**
+    /*
      * Endpoint returning a group with new name
      *
      * @param token    user account rights verification
@@ -100,7 +144,7 @@ public class GroupController {
      * @param groupDto groupDto class with updated parameter
      * @return group with changes parameter
      */
-    @PostMapping(value = "/changeGroupName/{groupId}")
+    /*@PostMapping(value = "/changeGroupName/{groupId}")
     public ResponseEntity<Object> changeGroupName(@RequestParam(value = "token") int token,
                                                   @PathVariable("groupId") Integer groupId,
                                                   @RequestBody GroupEdit groupDto) {
@@ -108,52 +152,15 @@ public class GroupController {
             throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "This action require you to be group owner.");
         }
         return new ResponseEntity<>(groupService.editGroupName(groupId, groupDto), HttpStatus.OK);
-    }
+    }*/
 
-
-    /**
-     * Endpoint creating a group
-     *
-     * @param groupDto new group
-     * @return response entity containing new group
-     */
-    @PostMapping(value = "/create")
-    public ResponseEntity<Object> createNewGroup(@RequestBody GroupCreate groupDto) {
-        if (!(userService.isAdmin(groupDto.getCreatorId()) ||
-                userService.isAccountManager(groupDto.getCreatorId()) ||
-                userService.isTeamLeader(groupDto.getCreatorId()))) {
-            throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "This action requires admin, account manager" +
-                    " or team leader privileges.");
-        }
-        Group newGroup = groupService.addGroup(groupDto);
-        return new ResponseEntity<>(newGroup, HttpStatus.CREATED);
-    }
 
 
     //TODO talk to Adam about deleting chats
 
-    /**
-     * Endpoint deleting a group with given id
-     *
-     * @param token   user account rights verification
-     * @param groupId id of deleting group
-     * @return response entity containing deleted group
-     */
-    @DeleteMapping(value = "/del/{groupId}")
-    public ResponseEntity<Object> deleteGroupById(@RequestParam(value = "token") int token,
-                                                  @PathVariable(value = "groupId") int groupId) {
-        if (!(userService.isAdmin(token) || userService.isAccountManager(token) || userService.isTeamLeader(token))) {
-            throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "This action requires admin, account manager" +
-                    " or team leader privileges.");
-        }
-        groupMembersService.deleteAllMember(groupId);
-        return new ResponseEntity<>(groupService.deleteGroup(groupId), HttpStatus.NO_CONTENT);
-    }
-
 
     /**
      * Endpoint getting all group members
-     *
      * @param token user account rights verification
      * @return list of all members with their groups
      */
@@ -180,8 +187,7 @@ public class GroupController {
         if (!userService.isPleb(token)) {
             throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "This action requires at least pleb privileges.");
         }
-        Group group = groupService.getGroup(groupId);
-        return new ResponseEntity<>(groupMembersService.getGroupMembersById(group), HttpStatus.OK);
+        return new ResponseEntity<>(groupMembersService.getGroupMembersById(groupId), HttpStatus.OK);
     }
 
 
