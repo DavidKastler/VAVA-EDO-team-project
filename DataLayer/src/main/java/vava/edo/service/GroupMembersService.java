@@ -126,7 +126,7 @@ public class GroupMembersService {
     public boolean checkUserGroup(int userId, int groupId) {
         Group group = groupService.getGroup(groupId);
         User user = userService.getUser(userId);
-        return groupMembersRepository.existsByGmIdAndAndMemberId(group, user);
+        return groupMembersRepository.existsByGmIdAndAndMemberId(group.getGrId(), user);
     }
 
 }
