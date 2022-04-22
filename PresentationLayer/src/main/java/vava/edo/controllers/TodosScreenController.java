@@ -48,6 +48,9 @@ public class TodosScreenController {
     @FXML
     private DatePicker datePickerTaskTo;
 
+    @FXML
+    private Button buttonAcceptTodo;
+
     // elements for to_do info
     @FXML
     private CheckBox checkBoxTodoInfo;
