@@ -40,7 +40,9 @@ public class UserHandler {
 
             try {
                 HttpResponse<JsonNode> apiResponse = Unirest.post("http://localhost:8080/users/login")
-                        .header("Content-Type", "application/json").body(jo).asJson();
+                        .header("Content-Type", "application/json")
+                        .body(jo)
+                        .asJson();
                 user = new Gson().fromJson(apiResponse.getBody().toString(), User.class);
 
                 if(user.getUsername() != null){

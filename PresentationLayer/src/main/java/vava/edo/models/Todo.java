@@ -1,14 +1,16 @@
 package vava.edo.models;
 
 import java.io.Serializable;
-// TODO zmenit typ due time je to ako string kvoli BE
+
 public class Todo implements Serializable {
     private int todoId;
     private int userId;
-    private String taskName;  // bude to todoName
-    private String taskDescription;
-    private String dueTime;
+    private String todoName;
+    private String todoDescription;
+    private long fromTime;
+    private long toTime;
     private boolean completed;
+    private String groupName;
 
 
     public int getTodoId() {
@@ -27,28 +29,44 @@ public class Todo implements Serializable {
         this.userId = userId;
     }
 
-    public String getTaskName() {
-        return taskName;
+    public String getTodoName() {
+        return todoName;
     }
 
-    public void setTaskName(String taskName) {
-        this.taskName = taskName;
+    public void setTodoName(String taskName) {
+        this.todoName = todoName;
     }
 
-    public String getTaskDescription() {
-        return taskDescription;
+    public String getTodoDescription() {
+        return todoDescription;
     }
 
-    public void setTaskDescription(String taskDescription) {
-        this.taskDescription = taskDescription;
+    public void setTodoDescription(String todoDescription) {
+        this.todoDescription = todoDescription;
     }
 
-    public String getDueTime() {
-        return dueTime;
+    public long getFromTime() {
+        return fromTime;
     }
 
-    public void setDueTime(String dueTime) {
-        this.dueTime = dueTime;
+    public void setFromTime(long fromTime) {
+        this.fromTime = fromTime;
+    }
+
+    public long getToTime() {
+        return toTime;
+    }
+
+    public void setToTime(long toTime) {
+        this.toTime = toTime;
+    }
+
+    public String getGroupName() {
+        return groupName;
+    }
+
+    public void setGroupName(String groupName) {
+        this.groupName = groupName;
     }
 
     public boolean isCompleted() {
@@ -65,10 +83,12 @@ public class Todo implements Serializable {
         return "Todo{" +
                 "todoId=" + todoId +
                 ", userId=" + userId +
-                ", todoName='" + taskName + '\'' +
-                ", taskDescription='" + taskDescription + '\'' +
-                ", dueTime=" + dueTime +
+                ", todoName='" + todoName + '\'' +
+                ", todoDescription='" + todoDescription + '\'' +
+                ", fromTime=" + fromTime +
+                ", toTime=" + toTime +
                 ", completed=" + completed +
+                ", groupName=" + groupName +
                 '}';
     }
 }

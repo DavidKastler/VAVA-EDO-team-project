@@ -27,10 +27,10 @@ public class TodoController {
     private Button buttonTodo;
 
     public void setModel(TodoHBoxModel model) {
-        checkBoxTodo.setSelected(model.getTaskCompleted());
-        labelTodoName.setText(model.getTaskName());
-        labelTodoGroup.setText(model.getTaskGroup());
-        labelTodoTime.setText(model.getDueTime());
+        checkBoxTodo.setSelected(model.getTodoCompleted());
+        labelTodoName.setText(model.getTodoName());
+        labelTodoGroup.setText(model.getTodoGroup());
+        labelTodoTime.setText(String.valueOf(model.getToTime())); // TODO zmenit unix na normalny datum
         this.model = model;
     }
 
@@ -42,10 +42,10 @@ public class TodoController {
     protected void handleTodoClicked() throws IOException {
         System.out.print("Pressed: " + model.getTodo().toString() + "\t->\t");
         model.getCheckBoxTodoInfo().setSelected(model.getTodo().isCompleted());
-        model.getLabelTodoInfoDueTIme().setText(model.getTodo().getDueTime());
-        model.getLabelTodoInfoName().setText(model.getTodo().getTaskName());
-        model.getLabelTodoInfoDescription().setText(model.getTodo().getDueTime());
-        model.getLabelTodoInfoGroup().setText("{grup nejm in da fučr}");
+        model.getLabelTodoInfoDueTIme().setText(String.valueOf(model.getTodo().getToTime())); // TODO zmenit unix na normalny datum
+        model.getLabelTodoInfoName().setText(model.getTodo().getTodoName());
+        model.getLabelTodoInfoDescription().setText(String.valueOf(model.getTodo().getToTime())); // TODO zmenit unix na normalny datum
+        model.getLabelTodoInfoGroup().setText(model.getTodo().getGroupName());
         System.out.println("Todo info was printed");
     }
 }

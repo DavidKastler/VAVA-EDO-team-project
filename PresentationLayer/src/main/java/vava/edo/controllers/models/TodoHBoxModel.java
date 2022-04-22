@@ -13,10 +13,10 @@ public class TodoHBoxModel {
     private HBox todoHBox;
 
     private Todo todo;
-    private boolean taskCompleted;
-    private String taskName;
-    private String taskGroup;
-    private String dueTime;
+    private boolean todoCompleted;
+    private String todoName;
+    private String todoGroup;
+    private long toTime;
 
     private CheckBox checkBoxTodoInfo;
     private Label labelTodoInfoDueTIme;
@@ -28,10 +28,10 @@ public class TodoHBoxModel {
                          Label labelTodoInfoName, Label labelTodoInfoDescription,
                          Label labelTodoInfoGroup) {
         // taskName.setValue(todo.getTaskName());
-        this.taskCompleted = todo.isCompleted();
-        this.taskName = todo.getTaskName();
-        this.taskGroup = "grup nejm in da fučr"; // dočasné
-        this.dueTime = todo.getDueTime();
+        this.todoCompleted = todo.isCompleted();
+        this.todoName = todo.getTodoName();
+        this.todoGroup = todo.getGroupName() == null ? "": todo.getGroupName();
+        this.toTime = todo.getToTime();
 
         this.todo = todo;
         this.checkBoxTodoInfo = checkBoxTodoInfo;
@@ -55,20 +55,20 @@ public class TodoHBoxModel {
         return todoHBox;
     }
 
-    public Boolean getTaskCompleted() {
-        return taskCompleted;
+    public Boolean getTodoCompleted() {
+        return todoCompleted;
     }
 
-    public String getTaskName() {
-        return taskName;
+    public String getTodoName() {
+        return todoName;
     }
 
-    public String getTaskGroup() {
-        return taskGroup;
+    public String getTodoGroup() {
+        return todoGroup;
     }
 
-    public String getDueTime() {
-        return dueTime;
+    public long getToTime() {
+        return toTime;
     }
 
     public Todo getTodo() {
