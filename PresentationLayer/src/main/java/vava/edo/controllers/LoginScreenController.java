@@ -10,6 +10,9 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import vava.edo.Exepctions.EmptyLoginFields;
 import vava.edo.Exepctions.IncorrectCredentials;
+import vava.edo.Exepctions.LoginScreen.EmptyLoginFields;
+import vava.edo.Exepctions.LoginScreen.IncorrectCredentials;
+import vava.edo.models.User;
 import vava.edo.Handlers.UserHandler;
 import vava.edo.models.User;
 
