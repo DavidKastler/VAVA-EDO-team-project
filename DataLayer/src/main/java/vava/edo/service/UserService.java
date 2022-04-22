@@ -6,8 +6,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.server.ResponseStatusException;
 import vava.edo.model.Role;
-import vava.edo.schema.UserLogin;
-import vava.edo.schema.UserRegister;
+import vava.edo.schema.users.UserEdit;
+import vava.edo.schema.users.UserLogin;
+import vava.edo.schema.users.UserRegister;
 import vava.edo.repository.UserRepository;
 import vava.edo.model.User;
 
@@ -36,6 +37,41 @@ public class UserService {
      */
     public boolean isAdmin(int userId) {
         return getUser(userId).getUserRole().isAdminRights();
+    }
+
+
+    /**
+     * Method that checks if user has account manager privileges
+     * @param userId    user ID you want to check
+     * @return          true / false
+     */
+    public boolean isAccountManager(int userId) {
+        Role userRole = getUser(userId).getUserRole();
+        return userRole.isAdminRights() || userRole.isManagerRights();
+    }
+
+
+    /**
+     * Method that checks if user has team leader privileges
+     * @param userId    user ID you want to check
+     * @return          true / false
+     */
+    public boolean isTeamLeader(int userId) {
+        Role userRole = getUser(userId).getUserRole();
+        return userRole.isTeamLeaderRights() || userRole.isAdminRights() || userRole.isManagerRights();
+    }
+
+
+    /**
+     * Method that checks if user has at least pleb privileges
+     * @param userId    user ID you want to check
+     * @return          true / false
+     */
+    public boolean isPleb(int userId) {
+        Role userRole = getUser(userId).getUserRole();
+
+        return userRole.isTodoAccessRights() || userRole.isTeamLeaderRights()
+                || userRole.isAdminRights() || userRole.isManagerRights();
     }
 
 
@@ -140,14 +176,33 @@ public class UserService {
 
 
     /**
+     * Method that updates found user by ID based on given UserDto class parameters
+     * @param userId            user ID you want to change
+     * @param updatedUserDto    userDto class with updated parameters
+     * @return                  updated user
+     */
+    @Transactional
+    public User editUser(int userId, UserEdit updatedUserDto) {
+        User userToEdit = getUser(userId);
+        Role userRole = roleService.getRole(updatedUserDto.getRoleId());
+
+        userToEdit.setUsername(updatedUserDto.getUsername());
+        userToEdit.setPassword(updatedUserDto.getPassword());
+        userToEdit.setUserRole(userRole);
+
+        return userToEdit;
+    }
+
+
+    /**
      * Method converts DTO object to User object, finds wanted role for user if exists
      * and saves it to database
-     * @param userDto   user Data Transfer Object you want to convert to user
+     * @param userRegister   user Data Transfer Object you want to convert to user
      * @return          created user
      */
-    public User addUser(UserRegister userDto) {
-        Role userRole = roleService.getRole(userDto.getRoleId());
-        User user = User.from(userDto);
+    public User addUser(UserRegister userRegister) {
+        Role userRole = roleService.getRole(userRegister.getRoleId());
+        User user = User.from(userRegister);
         user.setUserRole(userRole);
 
         userRepository.save(user);
@@ -162,7 +217,6 @@ public class UserService {
      */
     public User deleteUser(int userId) {
         User user = getUser(userId);
-        System.out.println(user.toString());
         userRepository.delete(user);
         return user;
     }
