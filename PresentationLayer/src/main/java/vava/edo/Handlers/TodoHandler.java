@@ -34,7 +34,7 @@ public class TodoHandler {
         ArrayList<Todo> tasks = new ArrayList<>();
 
         try {
-            HttpResponse<JsonNode> tasksJson = Unirest.get("http://localhost:8080/todos/all/?token={token}")
+            HttpResponse<JsonNode> tasksJson = Unirest.get("http://localhost:8080/todos/get/?token={token}")
                     .routeParam("token", String.valueOf(uid))
                     .asJson();
 
