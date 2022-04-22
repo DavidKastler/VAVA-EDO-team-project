@@ -57,14 +57,14 @@ public class ChatService {
     }
 
     /**
-     * Method returns last X messages between index fromIndex and toIndex
+     * Method returns last X messages between index fromIndex and size
      * @param userId id of user whose messages we want to show
      * @param fromIndex index of first message we want to show
-     * @param toIndex   index of last message we want to show
+     * @param size   index of last message we want to show
      * @return list of chat objects
      */
-    public List<Chat> getMessagesFromRange(Integer userId, int fromIndex, int toIndex){
-        return chatRepository.findAllByGroupIdOrderByTimeSentDesc(userId, PageRequest.of(fromIndex, toIndex));
+    public List<Chat> getMessagesFromRange(Integer userId, int fromIndex, int size){
+        return chatRepository.findAllByGroupIdOrderByTimeSentDesc(userId, PageRequest.of(fromIndex, size));
     }
 
     /**

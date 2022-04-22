@@ -24,11 +24,11 @@ public class GroupMembers {
     private Integer gmId;
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "group_Id", nullable = false)
-    private Group groupId;
+    private Group group;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "member_id", nullable = false)
-    private User memberId;
+    private User member;
 
 
     /**
@@ -38,8 +38,8 @@ public class GroupMembers {
     @Override
     public String toString() {
         return "GroupMembers{" +
-                "group_id=" + groupId +
-                ", member_id=" + memberId +
+                "group_id=" + group +
+                ", member_id=" + member +
                 '}';
     }
 }

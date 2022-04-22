@@ -27,7 +27,7 @@ public class Chat {
     @JoinColumn(name = "sender_id", nullable = false)
     private User sender;
     @Column(name = "time_sent", nullable = false)
-    private Date timeSent;
+    private Long timeSent;
     @Column(name = "message", nullable = false)
     private String message;
 
