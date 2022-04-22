@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Font?>
+
+<HBox fx:id="hBoxTodoAll" alignment="CENTER_LEFT" prefHeight="40.0" prefWidth="442.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="vava.edo.controllers.TodoController">
+   <children>
+      <CheckBox fx:id="checkBoxTodo" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" prefHeight="40.0" prefWidth="20.0" textAlignment="CENTER" textOverrun="CLIP">
+         <font>
+            <Font name="Arial" size="13.0" />
+         </font>
+      </CheckBox>
+      <Button fx:id="buttonTodo" alignment="CENTER" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" prefHeight="40.0" prefWidth="400.0" style="-fx-background-color: transparent;">
+         <font>
+            <Font name="Arial" size="13.0" />
+         </font>
+         <graphic>
+            <HBox fx:id="hBoxTodoInfo" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="30.0" prefWidth="445.0">
+               <children>
+                  <Label fx:id="labelTodoName" prefHeight="30.0" prefWidth="222.0" text="Vysypať smeti" textFill="WHITE">
+                     <font>
+                        <Font name="Arial" size="18.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="labelTodoGroup" alignment="CENTER" prefHeight="30.0" prefWidth="80.0" text="VAVA" textFill="#e24e4e">
+                     <font>
+                        <Font name="Arial" size="15.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="labelTodoTime" alignment="CENTER" prefHeight="30.0" prefWidth="80.0" text="Tomorrow" textFill="#3994ff">
+                     <font>
+                        <Font name="Arial" size="14.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+         </graphic>
+      </Button>
+   </children>
+   <padding>
+      <Insets left="10.0" />
+   </padding>
+</HBox>

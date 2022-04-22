@@ -7,14 +7,14 @@ import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import vava.edo.Exepctions.EmptyLoginFields;
 import vava.edo.Exepctions.IncorrectCredentials;
-import vava.edo.models.User;
 import vava.edo.Handlers.UserHandler;
+import vava.edo.models.User;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class LoginController implements Initializable {
+public class LoginScreenController implements Initializable {
     private User user;
 
     @FXML
@@ -58,7 +58,7 @@ public class LoginController implements Initializable {
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/vava/edo/Todos.fxml"));
         AnchorPane todoScreen = loader.load();
-        TodosController todoController = loader.getController();
+        TodosScreenController todoController = loader.getController();
         todoController.initialize(user);
 
         rootPane.getChildren().setAll(todoScreen);

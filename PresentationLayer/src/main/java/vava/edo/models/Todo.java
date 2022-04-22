@@ -1,16 +1,14 @@
 package vava.edo.models;
 
 import java.io.Serializable;
-import java.sql.Date;
 
-public class Task implements Serializable {
+public class Todo implements Serializable {
     private int todoId;
     private int userId;
     private String taskName;
     private String taskDescription;
-    private Date dueTime;
+    private String dueTime;
     private boolean completed;
-
 
     public int getTodoId() {
         return todoId;
@@ -44,11 +42,11 @@ public class Task implements Serializable {
         this.taskDescription = taskDescription;
     }
 
-    public Date getDueTime() {
+    public String getDueTime() {
         return dueTime;
     }
 
-    public void setDueTime(Date dueTime) {
+    public void setDueTime(String dueTime) {
         this.dueTime = dueTime;
     }
 
@@ -59,7 +57,6 @@ public class Task implements Serializable {
     public void setCompleted(boolean completed) {
         this.completed = completed;
     }
-
 
     @Override
     public String toString() {

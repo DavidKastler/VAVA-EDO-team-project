@@ -1,11 +1,8 @@
 package vava.edo.Handlers;
-import com.google.gson.Gson;
-import com.mashape.unirest.http.HttpResponse;
-import com.mashape.unirest.http.JsonNode;
-import com.mashape.unirest.http.Unirest;
-import com.mashape.unirest.http.exceptions.UnirestException;
-import vava.edo.models.Task;
+
+import vava.edo.models.Todo;
 import vava.edo.models.User;
+
 import java.util.ArrayList;
 
 
@@ -22,8 +19,6 @@ public class TaskHandler {
 
     }
 
-
-
     /**
      *
      * This method returns all the tasks which are assigned to the selected user by uid
@@ -31,9 +26,28 @@ public class TaskHandler {
      * @param uid Id of the user for which you are retrieving the tasks
      * @return ArrayList of all tasks
      */
-    private static ArrayList<Task> getAllTasks(Integer uid) {
+    private static ArrayList<Todo> getAllTasks(Integer uid) {
+        ArrayList<Todo> todoArrayList = new ArrayList<>();
 
-        try {
+        Todo todo1 = new Todo();
+        todo1.setTaskName("Vysypať smeti");
+        todo1.setDueTime("Today");
+        todoArrayList.add(todo1);
+
+        Todo todo2 = new Todo();
+        todo2.setTaskName("Umyť riad");
+        todoArrayList.add(todo2);
+
+        Todo todo3 = new Todo();
+        todo3.setTaskName("Robiť semestrálny projekt");
+        todoArrayList.add(todo3);
+
+        Todo todo4 = new Todo();
+        todo4.setTaskName("Spraviť dizajnový návrh");
+        todo4.setDueTime("Today");
+        todoArrayList.add(todo4);
+
+        /*try {
             HttpResponse<JsonNode> tasksJson = Unirest.get("http://localhost:8000/todos/{uid}/all")
                     .routeParam("uid", String.valueOf(uid))
                     .asJson();
@@ -42,9 +56,10 @@ public class TaskHandler {
 
         }catch (UnirestException e){
             System.out.println("Connection to localhost:8080 failed ! (PLease start backend server)");
-        }
+        }*/
 
+        return todoArrayList;
 
-        return null;
+        // return null;
     }
 }
