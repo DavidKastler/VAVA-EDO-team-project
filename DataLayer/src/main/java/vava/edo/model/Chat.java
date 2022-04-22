@@ -23,8 +23,9 @@ public class Chat {
     private Integer chatId;
     @Column(name = "group_id", nullable = false)
     private Integer groupId;
-    @Column(name = "sender_id", nullable = false)
-    private Integer senderId;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "sender_id", nullable = false)
+    private User senderId;
     @Column(name = "time_sent", nullable = false)
     private Date timeSent;
     @Column(name = "message", nullable = false)
