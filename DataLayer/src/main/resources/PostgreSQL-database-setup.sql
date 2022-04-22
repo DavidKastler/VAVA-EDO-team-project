@@ -34,21 +34,15 @@ CREATE TABLE "roles" (
                          "admin_rights" boolean DEFAULT false
 );
 
-CREATE TABLE "todo_group" (
-                              "td_g_id" integer PRIMARY KEY NOT NULL,
-                              "u_id" integer NOT NULL,
-                              "td_group_name" varchar NOT NULL
-);
-
 CREATE TABLE "todos" (
                          "td_id" SERIAL UNIQUE PRIMARY KEY NOT NULL,
-                         "group_id" integer NOT NULL,
+                         "user_id" integer,
                          "todo_name" varchar NOT NULL,
                          "todo_description" varchar,
                          "from_time" bigint NOT NULL,
                          "to_time" bigint NOT NULL,
                          "completed" boolean DEFAULT false,
-                         "tag" varchar DEFAULT null
+                         "group_name" varchar DEFAULT null
 );
 
 CREATE TABLE "groups" (
@@ -96,9 +90,7 @@ CREATE TABLE "feedback" (
 
 ALTER TABLE "users" ADD FOREIGN KEY ("role_id") REFERENCES "roles" ("r_id");
 
-ALTER TABLE "todos" ADD FOREIGN KEY ("group_id") REFERENCES "todo_group" ("td_g_id");
-
-ALTER TABLE "todo_group" ADD FOREIGN KEY ("u_id") REFERENCES "users" ("u_id");
+ALTER TABLE "todos" ADD FOREIGN KEY ("user_id") REFERENCES "users" ("u_id");
 
 ALTER TABLE "groups" ADD FOREIGN KEY ("group_creator_id") REFERENCES "users" ("u_id");
 
