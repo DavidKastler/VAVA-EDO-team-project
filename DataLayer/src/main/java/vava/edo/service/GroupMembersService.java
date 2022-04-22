@@ -103,8 +103,7 @@ public class GroupMembersService {
      * @return list of groups where the given user is
      */
     public List<Group> getMyGroups(int userId) {
-        User user = userService.getUser(userId);
-        List<GroupMembers> groupsWithMembers = groupMembersRepository.findAllByMemberId(user);
+        List<GroupMembers> groupsWithMembers = groupMembersRepository.findAllByMemberId(userId);
         List<Group> myGroups = new ArrayList<>();
         for (GroupMembers gm : groupsWithMembers) {
             myGroups.add(gm.getGroup());
@@ -123,7 +122,4 @@ public class GroupMembersService {
     public boolean isUserInGroup(int userId, int groupId) {
         return groupMembersRepository.existsByGroupIdAndMemberId(groupId, userId);
     }
-
-
-
 }

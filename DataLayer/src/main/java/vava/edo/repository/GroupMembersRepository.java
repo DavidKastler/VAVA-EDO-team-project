@@ -15,7 +15,7 @@ public interface GroupMembersRepository extends JpaRepository<GroupMembers, Inte
     @Query("select g from GroupMembers g where g.group.grId = ?1")
     List<GroupMembers> findAllGroupMembersByGroupId(Integer groupId);
     @Query("select g from GroupMembers g where g.member.uId = ?1")
-    List<GroupMembers> findAllByMemberId(User userId);
+    List<GroupMembers> findAllByMemberId(Integer userId);
     @Query("select (count(g) > 0) from GroupMembers g where g.group.grId = ?1 and g.member.uId = ?2")
     Boolean existsByGroupIdAndMemberId(Integer groupId, Integer userId);
 }
