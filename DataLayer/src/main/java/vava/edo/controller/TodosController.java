@@ -22,12 +22,10 @@ import java.util.Objects;
 public class TodosController {
 
     private final TodosService todosService;
-    private final UserService userService;
 
     @Autowired
-    public TodosController(TodosService todosService, UserService userService) {
+    public TodosController(TodosService todosService) {
         this.todosService = todosService;
-        this.userService = userService;
     }
 
     /**
@@ -73,11 +71,9 @@ public class TodosController {
     public ResponseEntity<Todo> updateTaskById(@RequestParam(value = "token") Integer token,
                                                @PathVariable(value = "task_id") Integer taskId,
                                                @RequestBody TaskUpdate taskDto) {
-
         if (!Objects.equals(token, taskDto.getUserId())) {
             throw new ResponseStatusException(HttpStatus.FORBIDDEN, "You cant edit foreign todo");
         }
-
         return new ResponseEntity<>(todosService.updateTask(taskId, taskDto), HttpStatus.OK);
     }
 
@@ -88,10 +84,8 @@ public class TodosController {
      */
     @GetMapping("/get")
     public ResponseEntity<List<Todo>> getAllTasks(@RequestParam(value = "token")  Integer token) {
-
         return new ResponseEntity<>(todosService.getAllTasksForUser(token), HttpStatus.OK);
     }
-
 
     /*
      * Endpoint returning a list of completed tasks between two indexes
@@ -107,7 +101,6 @@ public class TodosController {
         if (toIndex == null) toIndex = 20;
         return new ResponseEntity<>(taskService.getCompletedTasks(token, fromIndex, toIndex), HttpStatus.OK);
     }*/
-
 
     /**
      * Endpoint returning a list of tasks between times in unix formats

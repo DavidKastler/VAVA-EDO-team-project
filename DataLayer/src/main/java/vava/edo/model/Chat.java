@@ -3,7 +3,7 @@ package vava.edo.model;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import vava.edo.schema.MessageCreate;
+import vava.edo.schema.chats.MessageCreate;
 
 import javax.persistence.*;
 import java.sql.Date;

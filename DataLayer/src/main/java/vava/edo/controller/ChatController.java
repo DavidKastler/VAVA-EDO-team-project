@@ -6,41 +6,49 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 import vava.edo.model.Chat;
-import vava.edo.model.Group;
-import vava.edo.model.exeption.UserNotInGroupException;
-import vava.edo.schema.MessageCreate;
+import vava.edo.schema.chats.MessageCreate;
 import vava.edo.service.*;
 
 import java.util.List;
+import java.util.Objects;
 
 /**
  * Class that provides endpoints for operations with chat
  */
 @RestController
-@RequestMapping("/chat")
+@RequestMapping("/chats")
 public class ChatController {
 
     private final ChatService chatService;
-    private final UserService userService;
-    private final GroupService groupService;
     private final GroupMembersService groupMembersService;
 
     @Autowired
-    public ChatController(ChatService chatService, UserService userService, GroupService groupService, GroupMembersService groupMembersService) {
+    public ChatController(ChatService chatService, GroupMembersService groupMembersService) {
         this.chatService = chatService;
-        this.userService = userService;
-        this.groupService = groupService;
         this.groupMembersService = groupMembersService;
     }
 
     /**
-     * Endpoint returning a list of all users groups
-     * @param token     user id of account
-     * @return          list of group objects
+     * Endpoint used to create a new message
+     * @param token     user account id
+     * @param messageDto    message body containing all necessary information
+     * @return      chat object
      */
-    @GetMapping("/all")
-    public ResponseEntity<List<Group>> getAllChatsForUserId(@RequestParam(value = "token") int token) {
-        return new ResponseEntity<>(groupMembersService.getMyGroups(token), HttpStatus.OK);
+    @PostMapping("/send")
+    public ResponseEntity<Chat> sendMessage(@RequestParam(value = "token") Integer token,
+                                            @RequestBody MessageCreate messageDto) {
+
+        if (!Objects.equals(token, messageDto.getSenderId()) ||
+                !groupMembersService.isUserInGroup(token, messageDto.getGroupId())) {
+            throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "User needs to be the owner of the selected account and part of the group.");
+        }
+        return new ResponseEntity<>(chatService.saveMessageToDatabase(messageDto), HttpStatus.OK);
+    }
+
+    @DeleteMapping("/delete")
+    public ResponseEntity<Chat> deleteMessage(@RequestParam(value = "token") Integer token,
+                                                     @RequestParam(value = "chatId") Integer chatId) {
+        return new ResponseEntity<>(chatService.deleteMessage(token, chatId), HttpStatus.NO_CONTENT);
     }
 
     /**
@@ -51,33 +59,18 @@ public class ChatController {
      * @param toIndex   optional parameter used to select specific message index range
      * @return          list of chat objects
      */
-
-    @GetMapping("/open")
+    @GetMapping("/get/{chatId}")
     public ResponseEntity<List<Chat>> getLastMessages(@RequestParam(value = "token") int token,
-                                                      @RequestParam(value = "chat_id") int groupId,
                                                       @RequestParam(value = "from", required = false) Integer fromIndex,
-                                                      @RequestParam(value = "to", required = false) Integer toIndex) {
-
-        if (groupMembersService.isUserInGroup(token, groupId)) {
-            if (fromIndex == null) fromIndex = 0;
-            if (toIndex == null) toIndex = 20;
-            return new ResponseEntity<>(chatService.getLastMessages(groupId, fromIndex, toIndex), HttpStatus.OK);
+                                                      @RequestParam(value = "to", required = false) Integer toIndex,
+                                                      @PathVariable(value = "chatId") int groupId) {
+        if (!groupMembersService.isUserInGroup(token, groupId)) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Combination of userId and groupId not found.");
         }
-        else throw new UserNotInGroupException();
 
+        if (fromIndex == null) fromIndex = 0;
+        if (toIndex == null) toIndex = 20;
+
+        return new ResponseEntity<>(chatService.getMessagesFromRange(groupId, fromIndex, toIndex), HttpStatus.OK);
     }
-
-    /**
-     * Endpoint used to create a new message
-     * @param token     user account id
-     * @param messageDto    message body containing all necessary information
-     * @return      chat object
-     */
-    @PostMapping("/send")
-    public ResponseEntity<Chat> sendMessage(@RequestParam(value = "token") int token, @RequestBody MessageCreate messageDto) {
-        if (chatService.verifyIfUserOwnsAccount(messageDto, token) && groupMembersService.isUserInGroup(token, messageDto.getGroupId()))
-            return new ResponseEntity<>(chatService.sendMessage(messageDto), HttpStatus.OK);
-        else throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "User needs to be the owner of the selected account and part of the group.");
-    }
-
 }
