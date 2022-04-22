@@ -30,7 +30,7 @@ public class TodoController {
         checkBoxTodo.setSelected(model.getTodoCompleted());
         labelTodoName.setText(model.getTodoName());
         labelTodoGroup.setText(model.getTodoGroup());
-        labelTodoTime.setText(String.valueOf(model.getToTime())); // TODO zmenit unix na normalny datum
+        labelTodoTime.setText(model.getToTime());
         this.model = model;
     }
 
@@ -42,9 +42,9 @@ public class TodoController {
     protected void handleTodoClicked() throws IOException {
         System.out.print("Pressed: " + model.getTodo().toString() + "\t->\t");
         model.getCheckBoxTodoInfo().setSelected(model.getTodo().isCompleted());
-        model.getLabelTodoInfoDueTIme().setText(String.valueOf(model.getTodo().getToTime())); // TODO zmenit unix na normalny datum
+        model.getLabelTodoInfoDueTIme().setText(model.getTodo().getToTime());
         model.getLabelTodoInfoName().setText(model.getTodo().getTodoName());
-        model.getLabelTodoInfoDescription().setText(String.valueOf(model.getTodo().getToTime())); // TODO zmenit unix na normalny datum
+        model.getLabelTodoInfoDescription().setText(model.getTodo().getToTime());
         model.getLabelTodoInfoGroup().setText(model.getTodo().getGroupName());
         System.out.println("Todo info was printed");
     }
