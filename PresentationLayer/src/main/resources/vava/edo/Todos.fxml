@@ -183,7 +183,7 @@
                         </Label>
                         <HBox alignment="CENTER" prefHeight="75.0" prefWidth="350.0" spacing="20.0">
                            <children>
-                              <Button fx:id="buttonEditTodo" mnemonicParsing="false" onMouseClicked="#handleEditTodo" prefHeight="65.0" prefWidth="150.0" style="-fx-background-color: #b8b8b8;" text="EDIT">
+                              <Button fx:id="buttonEditTodoInfo" mnemonicParsing="false" onMouseClicked="#handleEditTodoInfo" prefHeight="65.0" prefWidth="150.0" style="-fx-background-color: #b8b8b8;" text="EDIT">
                                  <font>
                                     <Font name="Arial Bold" size="18.0" />
                                  </font>
@@ -282,11 +282,20 @@
                               <Font name="Arial Bold" size="20.0" />
                            </font>
                         </Button>
-                        <Button fx:id="buttonAcceptTodo" mnemonicParsing="false" onMouseClicked="#handleAcceptTodo" prefHeight="50.0" prefWidth="130.0" style="-fx-background-color: #009933;" text="Add" textFill="WHITE">
-                           <font>
-                              <Font name="Arial Bold" size="20.0" />
-                           </font>
-                        </Button>
+                        <AnchorPane prefHeight="0.0" prefWidth="130.0">
+                           <children>
+                              <Button fx:id="buttonAcceptTodo" layoutY="5.0" mnemonicParsing="false" onMouseClicked="#handleAcceptTodo" prefHeight="50.0" prefWidth="130.0" style="-fx-background-color: #009933;" text="Add" textFill="WHITE">
+                                 <font>
+                                    <Font name="Arial Bold" size="20.0" />
+                                 </font>
+                              </Button>
+                              <Button fx:id="buttonEditTodo" layoutY="5.0" mnemonicParsing="false" onMouseClicked="#handleEditTodo" prefHeight="50.0" prefWidth="130.0" style="-fx-background-color: #009933;" text="Edit" textFill="WHITE">
+                                 <font>
+                                    <Font name="Arial Bold" size="20.0" />
+                                 </font>
+                              </Button>
+                           </children>
+                        </AnchorPane>
                      </children>
                   </HBox>
                </children>

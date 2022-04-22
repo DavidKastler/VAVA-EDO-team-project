@@ -9,7 +9,7 @@ import vava.edo.controllers.models.TodoHBoxModel;
 import java.io.IOException;
 
 public class TodoController {
-    private TodoHBoxModel model ;
+    private TodoHBoxModel model;
 
     @FXML
     private CheckBox checkBoxTodo;
@@ -43,6 +43,7 @@ public class TodoController {
         model.getLabelTodoInfoName().setText(model.getTodo().getTodoName());
         model.getLabelTodoInfoDescription().setText(model.getTodo().getTodoDescription());
         model.getLabelTodoInfoGroup().setText(model.getTodo().getGroupName());
+        model.getTsc().setSelectedTodoId(model.getTodo());
         System.out.println("Todo info was printed");
     }
 }
