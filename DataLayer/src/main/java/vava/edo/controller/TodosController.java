@@ -89,33 +89,7 @@ public class TodosController {
      */
     @GetMapping("/get")
     public ResponseEntity<List<Todo>> getAllTasks(@RequestParam(value = "token")  Integer token) {
+        // TODO handle if admin checks todos
         return new ResponseEntity<>(todosService.getAllTasksForUser(token), HttpStatus.OK);
-    }
-
-    /*
-     * Endpoint returning a list of completed tasks between two indexes
-     * @param token     user account id
-     * @param fromIndex index of first task
-     * @param toIndex   index of last task
-     * @return  response entity contaning a list of completed tasks and http status 200 / 401 / 404
-     */
-    /*
-    @GetMapping("/getMoreCompletedTasks")
-    public ResponseEntity<List<Task>> getCompletedTasks(@RequestParam(value = "token") int token, @RequestParam(value = "from", required = false) Integer fromIndex, @RequestParam(value = "to", required = false) Integer toIndex) {
-        if (fromIndex == null) fromIndex = 0;
-        if (toIndex == null) toIndex = 20;
-        return new ResponseEntity<>(taskService.getCompletedTasks(token, fromIndex, toIndex), HttpStatus.OK);
-    }*/
-
-    /**
-     * Endpoint returning a list of tasks between times in unix formats
-     * @param token     user account id
-     * @param from      unix format of time we want to search from
-     * @param to        unix format of time we want to search to
-     * @return          list of found task objects
-     */
-    @GetMapping("/load")
-    public ResponseEntity<List<Todo>> getTasksByTimeRange(@RequestParam(value = "token") Integer token, @RequestParam(value = "from", required = false) long from, @RequestParam(value = "to", required = false) long to) {
-        return new ResponseEntity<>(todosService.getTasksByTimeRange(token, from, to), HttpStatus.OK);
     }
 }
