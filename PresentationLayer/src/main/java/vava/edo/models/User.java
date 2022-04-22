@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 public class User implements Serializable {
-    private Integer uid = null;
+    private Integer userId = null;
     private String username = null;
     private String password = null;
     private Role userRole = null;
@@ -13,8 +13,8 @@ public class User implements Serializable {
     private long lastActivity = 0;  // potrebné pre serializáciu dát (mimo db)
     private ArrayList<Todo> tasks = null;
 
-    public Integer getUid() {
-        return uid;
+    public Integer getUserId() {
+        return userId;
     }
 
     public String getUsername() {
@@ -60,7 +60,7 @@ public class User implements Serializable {
     @Override
     public String toString() {
         return "User{" +
-                "uid=" + uid +
+                "userId=" + userId +
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
                 ", userRole=" + userRole +

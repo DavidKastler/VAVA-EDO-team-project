@@ -6,6 +6,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import vava.edo.Handlers.MessageHandler;
+import vava.edo.Handlers.RelationshipHandler;
 import vava.edo.models.Message;
 import vava.edo.schema.MessageDto;
 
@@ -21,9 +22,7 @@ public class Main extends Application {
         stage.setScene(scene);
         stage.show();
 
-        MessageHandler.getAllGroups(9);
-        MessageHandler.getAllMessagesInGroup(9,4);
-        MessageHandler.sendMessage(9, 4, "abc");
+        RelationshipHandler.getAllFriends(8);
     }
 
     public static void main(String[] args) {

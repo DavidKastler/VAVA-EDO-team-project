@@ -36,7 +36,7 @@ public class RelationshipController {
      * @param token  user account rights verification
      * @return friend request
      */
-    @PostMapping(value = "/create")
+    /*@PostMapping(value = "/create")
     public ResponseEntity<Object> createNewFriendRequest(@RequestParam(value = "token") Integer token,
                                                          @RequestBody RelationshipCreate relationshipDto) {
         if (Objects.equals(relationshipDto.getSenderId(), relationshipDto.getReceiverId())) {
