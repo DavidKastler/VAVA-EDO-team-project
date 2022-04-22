@@ -2,7 +2,6 @@ package vava.edo.controllers;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import vava.edo.Exepctions.TodoScreen.FailedToCreateTodo;
 import vava.edo.Handlers.TodoHandler;
@@ -94,25 +93,6 @@ public class TodosScreenController {
         this.model = model;
     }
 
-
-    /**
-     * Overloaded initialize method which serves as constructor in LoginController to pass the logged user
-     *
-     /* @param user Object of user which has logged in to the system
-     */
-    /*public void initialize(User user)  {
-        setUser(user);
-        TodoHandler.startUp(this.user);
-        labelLeftBarAll.setText(this.user.getUsername());
-
-        for(Todo todo : user.getTasks()) {
-            vBoxTodos.getChildren().add(new TodoHBoxModel(todo, checkBoxTodoInfo,
-                    labelTodoInfoDueTIme, labelTodoInfoName, labelTodoInfoDescription,
-                    labelTodoInfoGroup).getTodoHBOx());
-            System.out.println("Loaded: " + todo.toString());
-        }
-    }*/
-
     @FXML
     protected void handleAddNewTodo() throws IOException {
         System.out.println("Clicked add new task button");
@@ -139,7 +119,7 @@ public class TodosScreenController {
     @FXML
     protected void handleAcceptTodo() throws IOException {
         try{
-            TodoHandler.addTodoToUser(this.user, textFieldTaskName, textAreaTaskDescription,
+            TodoHandler.addTodoToUser(model.getUser(), textFieldTaskName, textAreaTaskDescription,
                     datePickerTaskFrom, datePickerTaskTo, textFieldTaskGroup);
         }
         catch (FailedToCreateTodo e) {
