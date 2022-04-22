@@ -13,7 +13,7 @@ import vava.edo.models.Todo;
 
 public class TodosScreenController {
 
-    private TodoScreenModel model ;
+    private TodoScreenModel model;
 
     @FXML
     private Label labelLeftBarAll;
