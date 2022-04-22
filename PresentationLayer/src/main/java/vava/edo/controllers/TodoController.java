@@ -41,6 +41,7 @@ public class TodoController {
     @FXML
     protected void handleTodoClicked() throws IOException {
         System.out.print("Pressed: " + model.getTodo().toString() + "\t->\t");
+        // model.getTodoHBOx().setStyle("-fx-background-color: #565656; -fx-background-radius: 10;");  // TODO urobit hovering na tasku po stlaceni (Vlastny handler na to)
         model.getCheckBoxTodoInfo().setSelected(model.getTodo().isCompleted());
         model.getLabelTodoInfoDueTIme().setText(String.valueOf(model.getTodo().getToTime())); // TODO zmenit unix na normalny datum
         model.getLabelTodoInfoName().setText(model.getTodo().getTodoName());

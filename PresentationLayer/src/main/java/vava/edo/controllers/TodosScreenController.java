@@ -3,6 +3,7 @@ package vava.edo.controllers;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import vava.edo.Handlers.TodoHandler;
 import vava.edo.controllers.models.TodoHBoxModel;
@@ -107,5 +108,11 @@ public class TodosScreenController implements Initializable {
     @FXML
     protected void handleAcceptTodo() throws IOException {
 
+    }
+
+    public void handleEditTodo(MouseEvent mouseEvent) {
+    }
+
+    public void handleDeleteTodo(MouseEvent mouseEvent) {
     }
 }
