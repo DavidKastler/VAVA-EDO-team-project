@@ -25,7 +25,7 @@ public class TodoScreenModel {
         }
     }
 
-    public AnchorPane getTodoScreenHBox() {
+    public AnchorPane getTodoScreen() {
         return todoScreen;
     }
 
