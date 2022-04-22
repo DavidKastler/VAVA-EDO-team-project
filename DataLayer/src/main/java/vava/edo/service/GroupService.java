@@ -9,6 +9,7 @@ import org.springframework.web.server.ResponseStatusException;
 import vava.edo.model.Group;
 import vava.edo.model.User;
 import vava.edo.model.exeption.GroupNotFoundException;
+import vava.edo.repository.GroupMembersRepository;
 import vava.edo.repository.GroupRepository;
 import vava.edo.schema.GroupCreate;
 
@@ -22,11 +23,13 @@ public class GroupService {
 
     private final GroupRepository groupRepository;
     private final UserService userService;
+    private final GroupMembersRepository groupMembersRepository;
 
     @Autowired
-    public GroupService(GroupRepository groupRepository, UserService userService) {
+    public GroupService(GroupRepository groupRepository, UserService userService, GroupMembersRepository groupMembersRepository) {
         this.groupRepository = groupRepository;
         this.userService = userService;
+        this.groupMembersRepository = groupMembersRepository;
     }
 
 
@@ -136,8 +139,24 @@ public class GroupService {
         return groupRepository.existsByGroupCreatorUId(userId);
     }
 
-    public Group isUserCreatorsMember(Integer creatorId, Integer userId) {
-        return null;
+    /**
+     * Method that chcecks if user is group creator and other user is his member
+     * @param creatorId id of a creator
+     * @param userId    if of a member
+     * @return          true/ false
+     */
+    public boolean isUserCreatorsGroupMember(Integer creatorId, Integer userId) {
+        List<Group> creatorsGroups = groupRepository.findAllByGroupCreatorUId(creatorId);
+        if (creatorsGroups.isEmpty()) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Given user does not own any group.");
+        }
+        for (Group group : creatorsGroups) {
+            // due to cyclic import has to be repo
+            if (groupMembersRepository.existsByGroupIdAndMemberId(group.getGrId(), userId)) {
+                return true;
+            }
+        }
+        return false;
     }
 
 }
