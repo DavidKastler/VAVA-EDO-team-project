@@ -11,7 +11,7 @@ public class User implements Serializable {
     private boolean rememberMe = false;  // potrebné pre serializáciu dát (mimo db)
     private boolean isLogged = false;  // potrebné pre serializáciu dát (mimo db)
     private long lastActivity = 0;  // potrebné pre serializáciu dát (mimo db)
-    private ArrayList<Todo> tasks = null;
+    private ArrayList<Todo> todos = null;
 
     public Integer getUid() {
         return uid;
@@ -53,9 +53,11 @@ public class User implements Serializable {
         this.lastActivity = lastActivity;
     }
 
-    public void setTasks(ArrayList<Todo> tasks){this.tasks = tasks;}
+    public void setTodos(ArrayList<Todo> todos){this.todos = todos;}
 
-    public ArrayList<Todo> getTasks(){return this.tasks;}
+    public ArrayList<Todo> getTodos(){return this.todos;}
+
+    public void addTodo(Todo todo){this.todos.add(todo);}
 
     @Override
     public String toString() {

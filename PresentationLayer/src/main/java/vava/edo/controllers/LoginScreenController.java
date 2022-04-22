@@ -1,13 +1,12 @@
 package vava.edo.controllers;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
-import vava.edo.Exepctions.EmptyLoginFields;
-import vava.edo.Exepctions.IncorrectCredentials;
+import vava.edo.Exepctions.LoginScreen.EmptyLoginFields;
+import vava.edo.Exepctions.LoginScreen.IncorrectCredentials;
 import vava.edo.models.User;
 import vava.edo.Handlers.UserHandler;
 

@@ -41,6 +41,9 @@ public class TodosScreenController implements Initializable {
     private TextField textFieldTaskName;
 
     @FXML
+    private TextField textFieldTaskGroup;
+
+    @FXML
     private TextArea textAreaTaskDescription;
 
     @FXML
@@ -87,7 +90,7 @@ public class TodosScreenController implements Initializable {
         TodoHandler.startUp(this.user);
         labelLeftBarAll.setText(this.user.getUsername());
 
-        for(Todo todo : user.getTasks()) {
+        for(Todo todo : user.getTodos()) {
             vBoxTodos.getChildren().add(new TodoHBoxModel(todo, checkBoxTodoInfo,
                     labelTodoInfoDueTIme, labelTodoInfoName, labelTodoInfoDescription,
                     labelTodoInfoGroup).getTodoHBOx());
