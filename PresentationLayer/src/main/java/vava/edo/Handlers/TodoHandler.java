@@ -9,6 +9,7 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import org.json.JSONObject;
+import vava.edo.Exepctions.TodoScreen.MandatoryFieldNotInputted;
 import vava.edo.Exepctions.TodoScreen.FailedToCreateTodo;
 import vava.edo.models.Todo;
 import vava.edo.models.User;
@@ -108,7 +109,13 @@ public class TodoHandler {
      */
     public static void addTodoToUser(User user, TextField todoName,
                                         TextArea todoDesc, DatePicker fromTime,
-                                        DatePicker toTime, TextField groupName) throws FailedToCreateTodo{
+                                        DatePicker toTime, TextField groupName)
+                                        throws FailedToCreateTodo, MandatoryFieldNotInputted{
+
+        if(toTime.getValue() == null || fromTime.getValue() == null || todoName.getText().equals("")){
+            throw new MandatoryFieldNotInputted("One/ All of the mandatory fields weren't inputted " +
+                    "(mandatory: toTime, fromTime, todoName");
+        }
 
         Todo new_todo = createTodo(user, todoName.getText(), todoDesc.getText(),
                                     fromTime.getValue().toEpochSecond(LocalTime.MIDNIGHT, ZoneOffset.UTC),
@@ -122,6 +129,16 @@ public class TodoHandler {
         else {
             throw new FailedToCreateTodo("Failed to create a new ToDo");
         }
+
+    }
+
+    /**
+     * Method which is called when deleting a to_do
+     *
+     * @param todoId to_doId of a to_do which is being deleted
+     * @param user User to which the to_do belongs
+     */
+    public static void deleteTodo(int todoId, User user){
 
     }
 }

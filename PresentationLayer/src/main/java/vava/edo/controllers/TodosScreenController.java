@@ -3,6 +3,7 @@ package vava.edo.controllers;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
+import vava.edo.Exepctions.TodoScreen.MandatoryFieldNotInputted;
 import vava.edo.Exepctions.TodoScreen.FailedToCreateTodo;
 import vava.edo.Handlers.TodoHandler;
 import vava.edo.controllers.models.TodoHBoxModel;
@@ -51,15 +52,7 @@ public class TodosScreenController {
     @FXML
     private DatePicker datePickerTaskTo;
 
-    @FXML
-    private Button buttonCancelTodo;
-
-    @FXML
-    private Button buttonAcceptTodo;
-
-
-
-    // elementy pre todo info
+    // elements for to_do info
     @FXML
     private CheckBox checkBoxTodoInfo;
 
@@ -122,7 +115,7 @@ public class TodosScreenController {
             TodoHandler.addTodoToUser(model.getUser(), textFieldTaskName, textAreaTaskDescription,
                     datePickerTaskFrom, datePickerTaskTo, textFieldTaskGroup);
         }
-        catch (FailedToCreateTodo e) {
+        catch (MandatoryFieldNotInputted | FailedToCreateTodo e) {
             e.printStackTrace();
         }
 
