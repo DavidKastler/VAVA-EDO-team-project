@@ -32,7 +32,6 @@ public class GroupService {
 
     /**
      * Method finds group by its name
-     *
      * @param groupName name of group you are looking for
      * @return found group by name
      */
@@ -52,7 +51,6 @@ public class GroupService {
 
     /**
      * Method finds all groups which name contains given string
-     *
      * @param groupName string which will be looking for
      * @return list of groups
      */
@@ -72,7 +70,6 @@ public class GroupService {
 
     /**
      * Method returns all groups in database
-     *
      * @return list of all groups
      */
     public List<Group> getAllGroups() {
@@ -82,7 +79,6 @@ public class GroupService {
 
     /**
      * Method finds group by its ID, if it does not exist throws exception
-     *
      * @param groupId group ID you are looking for
      * @return found group
      */
@@ -94,7 +90,6 @@ public class GroupService {
 
     /**
      * Method that updates found group by ID based on given GroupEdit class parameter
-     *
      * @param groupID  group ID you want to change
      * @param groupDto groupDto class with updated parameter
      * @return updated group
@@ -105,7 +100,7 @@ public class GroupService {
         User user = userService.getUser(groupDto.getCreatorId());
 
         groupToEdit.setGroupName(groupDto.getGroupName());
-        groupToEdit.setGroupCreatorId(user);
+        groupToEdit.setGroupCreator(user);
 
         return groupToEdit;
     }
@@ -113,14 +108,13 @@ public class GroupService {
 
     /**
      * Method converts DTO object to Group object and saves it to database
-     *
      * @param groupDto group Data Transfer Object you want to convert to group
      * @return created group
      */
     public Group addGroup(GroupCreate groupDto) {
         User user = userService.getUser(groupDto.getCreatorId());
         Group group = Group.from(groupDto);
-        group.setGroupCreatorId(user);
+        group.setGroupCreator(user);
 
         return groupRepository.save(group);
     }
@@ -128,7 +122,6 @@ public class GroupService {
 
     /**
      * Method for deleting group from database by ID
-     *
      * @param groupId group ID you want to delete
      * @return deleted group
      */
@@ -137,6 +130,14 @@ public class GroupService {
 
         groupRepository.delete(group);
         return group;
+    }
+
+    public boolean isUserCreator(Integer userId) {
+        return groupRepository.existsByGroupCreatorUId(userId);
+    }
+
+    public Group isUserCreatorsMember(Integer creatorId, Integer userId) {
+        return null;
     }
 
 }

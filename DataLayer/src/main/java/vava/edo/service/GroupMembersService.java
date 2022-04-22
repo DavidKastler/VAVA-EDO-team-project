@@ -60,8 +60,8 @@ public class GroupMembersService {
         User user = userService.getUser(groupMemberDto.getUserId());
         Group group = groupService.getGroup(groupMemberDto.getGroupId());
         GroupMembers groupMembers = new GroupMembers();
-        groupMembers.setMemberId(user);
-        groupMembers.setGroupId(group);
+        groupMembers.setMember(user);
+        groupMembers.setGroup(group);
 
         groupMembersRepository.save(groupMembers);
         return groupMembers;
@@ -107,7 +107,7 @@ public class GroupMembersService {
         List<GroupMembers> groupsWithMembers = groupMembersRepository.findAllByMemberId(user);
         List<Group> myGroups = new ArrayList<>();
         for (GroupMembers gm : groupsWithMembers) {
-            myGroups.add(gm.getGroupId());
+            myGroups.add(gm.getGroup());
         }
 
         return myGroups;
