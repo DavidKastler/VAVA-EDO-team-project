@@ -18,6 +18,11 @@ public class Main extends Application {
         stage.setScene(scene);
         stage.setResizable(false);
         stage.show();
+
+        // Serialization of the user object instance is invoked here and only when the remember me is checked
+        stage.setOnCloseRequest(windowEvent -> {
+            System.out.println("window is closing"); // TODO serialization will be implemented here
+        });
     }
 
     public static void main(String[] args) {
