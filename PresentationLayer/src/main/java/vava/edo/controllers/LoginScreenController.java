@@ -7,8 +7,8 @@ import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import vava.edo.Exepctions.EmptyLoginFields;
 import vava.edo.Exepctions.IncorrectCredentials;
-import vava.edo.Handlers.UserHandler;
 import vava.edo.models.User;
+import vava.edo.Handlers.UserHandler;
 
 import java.io.IOException;
 import java.net.URL;
@@ -51,17 +51,17 @@ public class LoginScreenController implements Initializable {
 
         try {
             this.user = UserHandler.loginUser(textUsername, textPassword, wrongCredentials);
+
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/vava/edo/Todos.fxml"));
+            AnchorPane todoScreen = loader.load();
+            TodosController todoController = loader.getController();
+            todoController.initialize(user);
+
+            rootPane.getChildren().setAll(todoScreen);
         }
         catch (EmptyLoginFields | IncorrectCredentials e){
             e.printStackTrace();
         }
-
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/vava/edo/Todos.fxml"));
-        AnchorPane todoScreen = loader.load();
-        TodosScreenController todoController = loader.getController();
-        todoController.initialize(user);
-
-        rootPane.getChildren().setAll(todoScreen);
 
     }
 

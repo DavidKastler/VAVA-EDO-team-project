@@ -4,7 +4,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
-import vava.edo.Handlers.TaskHandler;
+import vava.edo.Handlers.TodoHandler;
 import vava.edo.controllers.models.TodoHBoxModel;
 import vava.edo.models.Todo;
 import vava.edo.models.User;
@@ -36,18 +36,8 @@ public class TodosScreenController implements Initializable {
      */
     public void initialize(User user)  {
         setUser(user);
-        TaskHandler.startUp(this.user);
+        TodoHandler.startUp(this.user);
         labelLeftBarAll.setText(this.user.getUsername());
-
-        /*for(int i = 0; i < 5; i++) {
-            Todo newTodo = new Todo();
-            newTodo.setTaskName("Ahoj: " + i);
-            vBoxTodos.getChildren().add(new TodoHBoxModel(newTodo).getTodoHBOx());
-        }*/
-
-        for(Todo todo : user.getTasks()) {
-            System.out.println("Adding: " + todo.toString());
-            vBoxTodos.getChildren().add(new TodoHBoxModel(todo).getTodoHBOx());
-        }
+        //vBoxTodos.getChildren().add(new TodoHBoxModel(todo).getTodoHBOx());
     }
 }
