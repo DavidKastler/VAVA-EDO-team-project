@@ -14,8 +14,9 @@ import java.sql.Date;
 @Data
 public class MessageCreate{
     @NotNull
-    private int groupId;
-    private int senderId;
+    private Integer groupId;
+
+    private Integer senderId;
     private Date timeSent;
     private String message;
 

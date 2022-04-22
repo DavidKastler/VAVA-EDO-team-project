@@ -25,7 +25,7 @@ public class Chat {
     private Integer groupId;
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "sender_id", nullable = false)
-    private User senderId;
+    private User sender;
     @Column(name = "time_sent", nullable = false)
     private Date timeSent;
     @Column(name = "message", nullable = false)
@@ -40,7 +40,7 @@ public class Chat {
     public static Chat from(MessageCreate messageDto) {
         Chat chat = new Chat();
         chat.setGroupId(messageDto.getGroupId());
-        chat.setSenderId(messageDto.getSenderId());
+        //chat.setSenderId(messageDto.getSenderId());
         chat.setTimeSent(messageDto.getTimeSent());
         chat.setMessage(messageDto.getMessage());
         return chat;
@@ -56,7 +56,7 @@ public class Chat {
         return "Chat{" +
                 "chatId=" + chatId +
                 ", groupId=" + groupId +
-                ", senderId=" + senderId +
+                ", senderId=" + sender +
                 ", timeSent=" + timeSent +
                 ", message=" + message +
                 '}';

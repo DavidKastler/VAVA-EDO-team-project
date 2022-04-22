@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import vava.edo.model.Chat;
+import vava.edo.model.User;
 import vava.edo.repository.ChatRepository;
 import vava.edo.schema.MessageCreate;
 
@@ -18,10 +19,12 @@ import java.util.Objects;
 public class ChatService {
 
     private final ChatRepository chatRepository;
+    private final UserService userService;
 
     @Autowired
-    public ChatService(ChatRepository chatRepository) {
+    public ChatService(ChatRepository chatRepository, UserService userService) {
         this.chatRepository = chatRepository;
+        this.userService = userService;
     }
 
     /**
@@ -48,15 +51,16 @@ public class ChatService {
     }
 
     /**
-     * Method used to create a message using data transfer object
-     * @return created chat object
+     * Method that saves newly sent message do database
+     * @param messageDto    dto of message object we want to save
+     * @return              saved object from db
      */
     public Chat sendMessage(MessageCreate messageDto) {
-
         Chat chat = Chat.from(messageDto);
-        chatRepository.save(chat);
+        User sender = userService.getUser(messageDto.getSenderId());
+        chat.setSender(sender);
 
-        return chat;
+        return chatRepository.save(chat);
     }
 
     /**
@@ -69,7 +73,7 @@ public class ChatService {
 
         Chat chat = new Chat();
         chat.setMessage(message);
-        chat.setSenderId(senderId);
+        //chat.setSender(senderId);
         chat.setGroupId(groupId);
         chat.setTimeSent(timeSent);
 
