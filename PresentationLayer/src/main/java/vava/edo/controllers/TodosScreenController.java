@@ -15,7 +15,7 @@ import vava.edo.models.Todo;
 public class TodosScreenController {
 
     private TodoScreenModel model;
-    private Todo selectedTodoId;
+    private Todo selectedTodo;
 
     @FXML
     private Label labelLeftBarAll;
@@ -125,6 +125,7 @@ public class TodosScreenController {
     }
 
     public void handleEditTodoInfo() {
+        // TODO zmenit nazov new task na edit todo
         textFieldTaskName.setText(labelTodoInfoName.getText());
         textAreaTaskDescription.setText(labelTodoInfoDescription.getText());
         textFieldTaskGroup.setText(labelTodoInfoGroup.getText());
@@ -137,20 +138,35 @@ public class TodosScreenController {
         buttonAcceptTodo.setVisible(false);
     }
 
+
+    /**
+     * Handles the delete button, calls a method deleteTodo which deletes the selected to_do
+     */
     public void handleDeleteTodo() {
 
-        System.out.println("Selected todo: " + selectedTodoId.toString());
+        if(TodoHandler.deleteTodo(this.selectedTodo.getTodoId(), model.getUser())){
+            System.out.println("Todo was deleted successfully");
+        }
+        else {
+            System.out.println("Error in to_do deletion");
+        }
     }
 
-    public void handleEditTodo(MouseEvent mouseEvent) {
+
+    /**
+     * Handles the edit button, calls a method which creates a PUT request for
+     * editing the selected to_do
+     */
+    public void handleEditTodo() {
 
     }
+
 
     /**
      * Setter for Selected to-do
-     * @param selectedTodoId clicked to-do
+     * @param selectedTodo clicked to-do
      */
-    public void setSelectedTodoId(Todo selectedTodoId) {
-        this.selectedTodoId = selectedTodoId;
+    public void setSelectedTodoId(Todo selectedTodo) {
+        this.selectedTodo = selectedTodo;
     }
 }

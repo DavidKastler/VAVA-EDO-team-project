@@ -137,8 +137,24 @@ public class TodoHandler {
      *
      * @param todoId to_doId of a to_do which is being deleted
      * @param user User to which the to_do belongs
+     * @return true if to_do was deleted successfully / false if the to_do wasn't deleted
      */
-    public static void deleteTodo(int todoId, User user){
+    public static boolean deleteTodo(int todoId, User user){
 
+        try {
+
+            HttpResponse<JsonNode> apiResponse = Unirest.delete("http://localhost:8080/" +
+                                                                "todos/delete/{task_id}/?token={token}")
+                    .routeParam("task_id", String.valueOf(todoId))
+                    .routeParam("token", String.valueOf(user.getUid()))
+                    .asJson();
+
+            return true;
+
+        }catch (UnirestException e){
+            System.out.println("Connection to localhost:8080 failed ! (PLease start backend server)");
+        }
+
+        return false;
     }
 }
