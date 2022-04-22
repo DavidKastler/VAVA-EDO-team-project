@@ -1,6 +1,9 @@
 package vava.edo.models;
 
 import java.io.Serializable;
+import java.time.Instant;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 public class User implements Serializable {
@@ -33,8 +36,10 @@ public class User implements Serializable {
         return isLogged;
     }
 
-    public long getLastActivity() {
-        return lastActivity;
+    public String getLastActivity() {
+        return Instant.ofEpochSecond(this.lastActivity)
+                .atZone(ZoneId.of("GMT"))
+                .format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
     }
 
     public boolean isRememberMe() {

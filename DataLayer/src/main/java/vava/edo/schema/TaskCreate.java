@@ -17,7 +17,7 @@ public class TaskCreate {
     private Long toTime;
     private Long fromTime;
     private Boolean completed;
-    private String tag;
+    private String groupName;
 
     @Override
     public String toString() {
@@ -28,7 +28,7 @@ public class TaskCreate {
                 ", toTime=" + toTime +
                 ", fromTime=" + fromTime +
                 ", completed=" + completed +
-                ", tag='" + tag + '\'' +
+                ", tag='" + groupName + '\'' +
                 '}';
     }
 }

@@ -54,8 +54,8 @@ public class Todo implements Serializable {
      * @return returns a date in a String date
      */
     public String getFromTime() {
-        return Instant.ofEpochSecond(this.fromTime / 1000)
-                .atZone(ZoneId.of("GMT+2"))
+        return Instant.ofEpochSecond(this.fromTime)
+                .atZone(ZoneId.of("GMT"))
                 .format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
     }
 
@@ -69,8 +69,8 @@ public class Todo implements Serializable {
      * @return returns a date in a String date
      */
     public String getToTime() {
-        return Instant.ofEpochSecond(this.toTime / 1000)
-                .atZone(ZoneId.of("GMT+2"))
+        return Instant.ofEpochSecond(this.toTime)
+                .atZone(ZoneId.of("GMT"))
                 .format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
     }
 

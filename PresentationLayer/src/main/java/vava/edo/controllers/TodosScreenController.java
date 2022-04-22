@@ -5,6 +5,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
+import vava.edo.Exepctions.TodoScreen.FailedToCreateTodo;
 import vava.edo.Handlers.TodoHandler;
 import vava.edo.controllers.models.TodoHBoxModel;
 import vava.edo.models.Todo;
@@ -117,7 +118,7 @@ public class TodosScreenController implements Initializable {
         vBoxNewTaskScreen.setVisible(true);
         vBoxNewTaskScreen.setDisable(false);
 
-        // TODO spracovanie v handleri
+
     }
 
     @FXML
@@ -128,10 +129,19 @@ public class TodosScreenController implements Initializable {
 
     @FXML
     protected void handleAcceptTodo() throws IOException {
+        try{
+            TodoHandler.addTodoToUser(this.user, textFieldTaskName, textAreaTaskDescription,
+                    datePickerTaskFrom, datePickerTaskTo, textFieldTaskGroup);
+        }
+        catch (FailedToCreateTodo e) {
+            e.printStackTrace();
+        }
 
+        vBoxNewTaskScreen.setVisible(false);
+        vBoxNewTaskScreen.setDisable(true);
     }
 
-    public void handleEditTodo(MouseEvent mouseEvent) {
+    public void handleEditTodo() {
         textFieldTaskName.setText(labelTodoInfoName.getText());
         textAreaTaskDescription.setText(labelTodoInfoDescription.getText());
         textFieldTaskGroup.setText(labelTodoInfoGroup.getText());
@@ -142,6 +152,6 @@ public class TodosScreenController implements Initializable {
         vBoxNewTaskScreen.setDisable(false);
     }
 
-    public void handleDeleteTodo(MouseEvent mouseEvent) {
+    public void handleDeleteTodo() {
     }
 }

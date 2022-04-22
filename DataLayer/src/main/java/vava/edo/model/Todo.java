@@ -49,7 +49,7 @@ public class Todo {
         todo.setFromTime(taskDto.getFromTime());
         todo.setToTime(taskDto.getToTime());
         todo.setCompleted(taskDto.getCompleted());
-        todo.setGroupName(taskDto.getTag());
+        todo.setGroupName(taskDto.getGroupName());
         return todo;
     }
 

@@ -6,6 +6,7 @@ import com.mashape.unirest.http.JsonNode;
 import com.mashape.unirest.http.Unirest;
 import com.mashape.unirest.http.exceptions.UnirestException;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import org.json.JSONObject;
 import vava.edo.Exepctions.TodoScreen.FailedToCreateTodo;
@@ -14,7 +15,6 @@ import vava.edo.models.User;
 
 import java.time.LocalTime;
 import java.time.ZoneOffset;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 
@@ -71,11 +71,13 @@ public class TodoHandler {
                                    long fromTime, long toTime, String groupName){
 
         JSONObject reqTodo = new JSONObject();
-        reqTodo.put("todo_name", todoName);
-        reqTodo.put("todo_description", todoDesc);
-        reqTodo.put("from_time", fromTime);
-        reqTodo.put("to_time", toTime);
-        reqTodo.put("group_name", groupName);
+        reqTodo.put("userId", user.getUid());
+        reqTodo.put("todoName", todoName);
+        reqTodo.put("todoDescription", todoDesc);
+        reqTodo.put("toTime", toTime);
+        reqTodo.put("fromTime", fromTime);
+        reqTodo.put("completed", false);
+        reqTodo.put("groupName", groupName);
         System.out.println(reqTodo);
 
         try{
@@ -90,6 +92,7 @@ public class TodoHandler {
         catch (UnirestException e){
             System.out.println("Connection to localhost:8080 failed ! (PLease start backend server)");
         }
+
         return null;
     }
 
@@ -102,24 +105,23 @@ public class TodoHandler {
      * @param fromTime starting time of to_do
      * @param toTime ending time of to_do
      * @param groupName name of the to_do group
-     * @return ture operation was successful / false operation wasn't successful
      */
-    public static boolean addTodoToUser(User user, TextField todoName,
-                                        TextField todoDesc, DatePicker fromTime,
+    public static void addTodoToUser(User user, TextField todoName,
+                                        TextArea todoDesc, DatePicker fromTime,
                                         DatePicker toTime, TextField groupName) throws FailedToCreateTodo{
 
         Todo new_todo = createTodo(user, todoName.getText(), todoDesc.getText(),
-                                    fromTime.getValue().toEpochSecond(LocalTime.now(), ZoneOffset.of("+02:00")),
-                                    toTime.getValue().toEpochSecond(LocalTime.now(), ZoneOffset.of("+02:00")),
+                                    fromTime.getValue().toEpochSecond(LocalTime.MIDNIGHT, ZoneOffset.UTC),
+                                    toTime.getValue().toEpochSecond(LocalTime.MIDNIGHT, ZoneOffset.UTC),
                                     groupName.getText());
 
         if (new_todo != null){
+            System.out.println(new_todo);
             user.addTodo(new_todo);
         }
         else {
             throw new FailedToCreateTodo("Failed to create a new ToDo");
         }
 
-        return true;
     }
 }
