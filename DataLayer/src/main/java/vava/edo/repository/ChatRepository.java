@@ -8,5 +8,5 @@ import java.util.List;
 
 public interface ChatRepository extends JpaRepository<Chat, Integer> {
 
-    List<Chat> findAllByGroupIdOrderByTimeSent(Integer groupId, Pageable pageable);
+    List<Chat> findAllByGroupIdOrderByTimeSentDesc(Integer groupId, Pageable pageable);
 }

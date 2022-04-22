@@ -29,17 +29,9 @@ public class UserController {
 
 
     @PostMapping(value = "/login")
-    public ResponseEntity<User> loginUser(@RequestParam(value = "token") Integer token,
-                                          @RequestBody UserLogin userLogin) {
-
-        if (!userService.isPleb(token)) {
-            throw new ResponseStatusException(HttpStatus.UNAUTHORIZED,
-                    "This action requires at least pleb privileges.");
-        }
-
+    public ResponseEntity<User> loginUser(@RequestBody UserLogin userLogin) {
         User user = userService.getUserByUserName(userLogin.getUsername());
         userService.checkPassword(user, userLogin.getPassword());
-
         return new ResponseEntity<>(user, HttpStatus.OK);
     }
 

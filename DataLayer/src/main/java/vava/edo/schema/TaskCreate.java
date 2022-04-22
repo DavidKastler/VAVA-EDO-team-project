@@ -1,9 +1,6 @@
 package vava.edo.schema;
 
-import com.sun.istack.NotNull;
 import lombok.Data;
-
-import java.sql.Date;
 
 
 /**
@@ -13,7 +10,7 @@ import java.sql.Date;
 @Data
 public class TaskCreate {
 
-    private Integer todoGroupId;
+    private Integer userId;
 
     private String todoName;
     private String todoDescription;
@@ -25,7 +22,7 @@ public class TaskCreate {
     @Override
     public String toString() {
         return "TaskCreate{" +
-                "todoGroupId=" + todoGroupId +
+                "todoGroupId=" + userId +
                 ", todoName='" + todoName + '\'' +
                 ", todoDescription='" + todoDescription + '\'' +
                 ", toTime=" + toTime +

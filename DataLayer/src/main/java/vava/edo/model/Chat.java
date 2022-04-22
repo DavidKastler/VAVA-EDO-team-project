@@ -3,7 +3,7 @@ package vava.edo.model;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import vava.edo.schema.MessageCreate;
+import vava.edo.schema.chats.MessageCreate;
 
 import javax.persistence.*;
 import java.sql.Date;
@@ -23,8 +23,9 @@ public class Chat {
     private Integer chatId;
     @Column(name = "group_id", nullable = false)
     private Integer groupId;
-    @Column(name = "sender_id", nullable = false)
-    private Integer senderId;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "sender_id", nullable = false)
+    private User sender;
     @Column(name = "time_sent", nullable = false)
     private Date timeSent;
     @Column(name = "message", nullable = false)
@@ -39,8 +40,6 @@ public class Chat {
     public static Chat from(MessageCreate messageDto) {
         Chat chat = new Chat();
         chat.setGroupId(messageDto.getGroupId());
-        chat.setSenderId(messageDto.getSenderId());
-        chat.setTimeSent(messageDto.getTimeSent());
         chat.setMessage(messageDto.getMessage());
         return chat;
     }
@@ -55,7 +54,7 @@ public class Chat {
         return "Chat{" +
                 "chatId=" + chatId +
                 ", groupId=" + groupId +
-                ", senderId=" + senderId +
+                ", senderId=" + sender +
                 ", timeSent=" + timeSent +
                 ", message=" + message +
                 '}';

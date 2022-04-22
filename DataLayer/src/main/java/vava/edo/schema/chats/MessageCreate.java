@@ -1,4 +1,4 @@
-package vava.edo.schema;
+package vava.edo.schema.chats;
 
 import com.sun.istack.NotNull;
 import lombok.Data;
@@ -14,9 +14,9 @@ import java.sql.Date;
 @Data
 public class MessageCreate{
     @NotNull
-    private int groupId;
-    private int senderId;
-    private Date timeSent;
+    private Integer groupId;
+
+    private Integer senderId;
     private String message;
 
     @Override
@@ -24,7 +24,6 @@ public class MessageCreate{
         return "Message{" +
                 ", groupId=" + groupId +
                 ", senderId" + senderId +
-                ", timeSent=" + timeSent +
                 ", message=" + message +
                 '}';
     }
