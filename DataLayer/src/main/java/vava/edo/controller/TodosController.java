@@ -8,8 +8,8 @@ import org.springframework.web.server.ResponseStatusException;
 import vava.edo.model.Todo;
 import vava.edo.schema.TaskCreate;
 import vava.edo.schema.TaskUpdate;
+import vava.edo.service.GroupService;
 import vava.edo.service.TodosService;
-import vava.edo.service.UserService;
 
 import java.util.List;
 import java.util.Objects;
@@ -22,10 +22,12 @@ import java.util.Objects;
 public class TodosController {
 
     private final TodosService todosService;
+    private final GroupService groupService;
 
     @Autowired
-    public TodosController(TodosService todosService) {
+    public TodosController(TodosService todosService, GroupService groupService) {
         this.todosService = todosService;
+        this.groupService = groupService;
     }
 
     /**
@@ -37,7 +39,10 @@ public class TodosController {
     @PostMapping("/create")
     public ResponseEntity<Todo> createTask(@RequestParam(value = "token") Integer token,
                                            @RequestBody TaskCreate taskDto) {
-        // TODO: 22/04/2022 ak sa nerovna token a u_id tak zistit ci je TL
+        if (!token.equals(taskDto.getUserId()) &&
+                !groupService.isUserCreatorsGroupMember(token, taskDto.getUserId())) {
+            throw new ResponseStatusException(HttpStatus.FORBIDDEN, "You cant access foreign todos.");
+        }
 
         return new ResponseEntity<>(todosService.createTask(taskDto), HttpStatus.CREATED);
     }

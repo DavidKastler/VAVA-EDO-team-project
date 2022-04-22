@@ -15,5 +15,5 @@ public interface GroupRepository extends JpaRepository<Group, Integer> {
     Boolean existsByGroupCreatorUId(Integer creatorId);
 
     @Query("select g from Group g where g.groupCreator.uId = ?1")
-    Boolean findByGroupCreatorUId(Integer creatorId);
+    List<Group> findAllByGroupCreatorUId(Integer creatorId);
 }
