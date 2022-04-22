@@ -104,7 +104,7 @@ public class GroupMembersService {
      */
     public List<Group> getMyGroups(int userId) {
         User user = userService.getUser(userId);
-        List<GroupMembers> groupsWithMembers = groupMembersRepository.findAllByMemberId(user);
+        List<GroupMembers> groupsWithMembers = groupMembersRepository.findAllByMemberId(user.getUId());
         List<Group> myGroups = new ArrayList<>();
         for (GroupMembers gm : groupsWithMembers) {
             myGroups.add(gm.getGroup());

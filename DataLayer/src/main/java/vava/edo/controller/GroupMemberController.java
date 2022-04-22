@@ -20,7 +20,7 @@ public class GroupMemberController {
         this.groupMembersService = groupMembersService;
     }
 
-    @GetMapping("groups")
+    @GetMapping("/groups")
     public ResponseEntity<List<Group>> getGroupsForUser(@RequestParam(value = "token") Integer token) {
         return new ResponseEntity<>(groupMembersService.getMyGroups(token), HttpStatus.OK);
     }

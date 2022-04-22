@@ -18,7 +18,7 @@ public class MessageHandler {
         ArrayList<Group> groups = new ArrayList<>();
 
         try {
-            HttpResponse<JsonNode> tasksJson = Unirest.get("http://localhost:8080/chat/all?token={token}")
+            HttpResponse<JsonNode> tasksJson = Unirest.get("http://localhost:8080/groupMembers/groups?token={token}")
                     .routeParam("token", String.valueOf(userId))
                     .asJson();
             for(Object group: tasksJson.getBody().getArray()){
@@ -37,8 +37,9 @@ public class MessageHandler {
         ArrayList<Message> messages = new ArrayList<>();
 
         try {
-            HttpResponse<JsonNode> tasksJson = Unirest.get("http://localhost:8080/chat/all?token={token}")
+            HttpResponse<JsonNode> tasksJson = Unirest.get("http://localhost:8080/chats/get/{group_id}?token={token}")
                     .routeParam("token", String.valueOf(userId))
+                    .routeParam("group_id", String.valueOf(groupId))
                     .asJson();
             for(Object message: tasksJson.getBody().getArray()){
                 messages.add(new Gson().fromJson(message.toString(), Message.class));

@@ -20,6 +20,7 @@ public class Main extends Application {
         stage.setScene(scene);
         stage.show();
 
+        MessageHandler.getAllMessagesInGroup(9,4);
     }
 
     public static void main(String[] args) {

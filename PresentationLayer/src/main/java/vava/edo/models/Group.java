@@ -18,7 +18,7 @@ public class Group {
     public String toString() {
         return "Group{" +
                 "groupId=" + grId +
-                ", groupName=" + groupName +
+                ", groupName=" + groupName + '\'' +
                 '}';
     }
 }
