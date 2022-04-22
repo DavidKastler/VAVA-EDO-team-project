@@ -57,6 +57,7 @@ public class TodoHandler {
         return tasks;
     }
 
+
     /**
      * Method which post newly created to_do and gets and gets the to_do from database
      *
@@ -97,6 +98,7 @@ public class TodoHandler {
         return null;
     }
 
+
     /**
      * Calls createTo_do and add the newly created to_do object to the appropriate user
      *
@@ -131,6 +133,53 @@ public class TodoHandler {
         }
 
     }
+
+
+    /**
+     * Method creates a PUT request for the BE
+     *
+     * @param todoId to_do object which will be edited
+     * @param user user which owns the to_do
+     * @param todoName name of the to_do
+     * @param todoDesc description text of to_do
+     * @param fromTime starting time of to_do
+     * @param toTime ending time of to_do
+     * @param groupName name of the to_do group
+     * @return returns a update to_do object
+     */
+    private static Todo editTodoPut(int todoId, User user,
+                                    String todoName,
+                                    String todoDesc, long fromTime,
+                                    long toTime, String groupName){
+        return null;
+    }
+
+
+    /**
+     * Method calls editTodoPut which is responsible for the database update
+     *
+     * @param todoId to_do object which will be edited
+     * @param user user which owns the to_do
+     * @param todoName name of the to_do
+     * @param todoDesc description text of to_do
+     * @param fromTime starting time of to_do
+     * @param toTime ending time of to_do
+     * @param groupName name of the to_do group
+     */
+    public static void editTodo(int todoId, User user,
+                                TextField todoName,
+                                TextArea todoDesc, DatePicker fromTime,
+                                DatePicker toTime, TextField groupName) throws MandatoryFieldNotInputted{
+
+        if(toTime.getValue() == null || fromTime.getValue() == null || todoName.getText().equals("")){
+            throw new MandatoryFieldNotInputted("One/ All of the mandatory fields weren't inputted " +
+                    "(mandatory: toTime, fromTime, todoName");
+        }
+
+
+
+    }
+
 
     /**
      * Method which is called when deleting a to_do
