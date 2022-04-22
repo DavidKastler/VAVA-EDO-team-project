@@ -9,7 +9,7 @@ import java.io.IOException;
 
 public class TodoScreenModel {
     private AnchorPane todoScreen;
-    private User user;
+    private final User user;
 
     public TodoScreenModel(User user) {
         this.user = user;

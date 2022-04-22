@@ -10,11 +10,8 @@ import vava.edo.controllers.models.TodoHBoxModel;
 import vava.edo.controllers.models.TodoScreenModel;
 import vava.edo.models.Todo;
 
-import java.io.IOException;
 
 public class TodosScreenController {
-    // private User user;
-    // public void setUser(User user){this.user = user;}
 
     private TodoScreenModel model ;
 
@@ -22,15 +19,12 @@ public class TodosScreenController {
     private Label labelLeftBarAll;
 
     @FXML
-    private Button buttonAddNewTodo;
-
-    @FXML
     private VBox vBoxTodos;
 
     @FXML
     private VBox vBoxTodoInfo;
 
-    // Okno pre vytvorenie noveho tasku
+    // FXML elements for new to_do window
     @FXML
     private VBox vBoxNewTaskScreen;
 
@@ -81,16 +75,16 @@ public class TodosScreenController {
             vBoxTodos.getChildren().add(new TodoHBoxModel(todo, checkBoxTodoInfo,
                     labelTodoInfoDueTIme, labelTodoInfoName, labelTodoInfoDescription,
                     labelTodoInfoGroup).getTodoHBOx());
-            System.out.println("Loaded: " + todo.toString());
+            System.out.println("Loaded: " + todo);
         }
         this.model = model;
     }
 
     @FXML
-    protected void handleAddNewTodo() throws IOException {
+    protected void handleAddNewTodo() {
         System.out.println("Clicked add new task button");
 
-        // musi byt premazane, lebo ostane to co bolo posledne
+        // Have to be emptied before use
         textFieldTaskName.setText("");
         textAreaTaskDescription.setText("");
         textFieldTaskGroup.setText("");
@@ -104,13 +98,13 @@ public class TodosScreenController {
     }
 
     @FXML
-    protected void handleCancelTodo() throws IOException {
+    protected void handleCancelTodo() {
         vBoxNewTaskScreen.setVisible(false);
         vBoxNewTaskScreen.setDisable(true);
     }
 
     @FXML
-    protected void handleAcceptTodo() throws IOException {
+    protected void handleAcceptTodo() {
         try{
             TodoHandler.addTodoToUser(model.getUser(), textFieldTaskName, textAreaTaskDescription,
                     datePickerTaskFrom, datePickerTaskTo, textFieldTaskGroup);
@@ -135,5 +129,6 @@ public class TodosScreenController {
     }
 
     public void handleDeleteTodo() {
+
     }
 }
