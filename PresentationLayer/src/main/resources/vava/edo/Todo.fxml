@@ -14,7 +14,7 @@
             <Font name="Arial" size="13.0" />
          </font>
       </CheckBox>
-      <Button fx:id="buttonTodo" alignment="CENTER" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" prefHeight="40.0" prefWidth="400.0" style="-fx-background-color: transparent;">
+      <Button fx:id="buttonTodo" alignment="CENTER" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onMouseClicked="#handleTodoClicked" prefHeight="40.0" prefWidth="400.0" style="-fx-background-color: transparent;">
          <font>
             <Font name="Arial" size="13.0" />
          </font>

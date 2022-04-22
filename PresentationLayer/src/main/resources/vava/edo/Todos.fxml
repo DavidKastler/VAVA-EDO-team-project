@@ -228,12 +228,12 @@
                      <children>
                         <Label fx:id="labelTodoInfoName" prefHeight="63.0" prefWidth="330.0" text="Názov tasku" textFill="WHITE" wrapText="true">
                            <font>
-                              <Font name="Arial Bold" size="25.0" />
+                              <Font name="Arial Bold" size="20.0" />
                            </font>
                         </Label>
                         <Label fx:id="labelTodoInfoDescription" alignment="TOP_LEFT" prefHeight="531.0" prefWidth="330.0" text="Description" textFill="#909090" wrapText="true">
                            <font>
-                              <Font name="Arial" size="20.0" />
+                              <Font name="Arial" size="16.0" />
                            </font>
                         </Label>
                      </children>
@@ -255,7 +255,7 @@
       </HBox>
       <VBox fx:id="vBoxNewTaskScreen" alignment="CENTER" disable="true" prefHeight="750.0" prefWidth="1100.0" style="-fx-background-color: transparent;" visible="false">
          <children>
-            <VBox fx:id="vBoxNewTaskWindow" alignment="CENTER" maxWidth="-Infinity" prefHeight="404.0" prefWidth="548.0" spacing="10.0" style="-fx-background-color: black;">
+            <VBox fx:id="vBoxNewTaskWindow" alignment="CENTER" maxWidth="-Infinity" prefHeight="441.0" prefWidth="548.0" spacing="10.0" style="-fx-background-color: black;">
                <children>
                   <Label alignment="TOP_CENTER" prefHeight="41.0" prefWidth="508.0" style="-fx-border-color: #888888; -fx-border-width: 0 0 1 0;" text="New Todo" textFill="WHITE">
                      <font>
@@ -269,7 +269,7 @@
                               <Font name="Arial Bold" size="20.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="textFieldTaskName" promptText="Enter task name">
+                        <TextField fx:id="textFieldTaskName" prefHeight="26.0" prefWidth="240.0" promptText="Enter task name">
                            <font>
                               <Font name="Arial" size="13.0" />
                            </font>
@@ -288,6 +288,20 @@
                               <Font name="Arial" size="13.0" />
                            </font>
                         </TextArea>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER_LEFT" maxWidth="-Infinity" prefHeight="39.0" prefWidth="408.0" spacing="20.0">
+                     <children>
+                        <Label text="Task group: " textFill="WHITE">
+                           <font>
+                              <Font name="Arial Bold" size="20.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="textFieldTaskName1" prefHeight="26.0" prefWidth="240.0" promptText="Enter task group">
+                           <font>
+                              <Font name="Arial" size="13.0" />
+                           </font>
+                        </TextField>
                      </children>
                   </HBox>
                   <HBox alignment="CENTER" maxWidth="-Infinity" prefHeight="34.0" prefWidth="305.0">

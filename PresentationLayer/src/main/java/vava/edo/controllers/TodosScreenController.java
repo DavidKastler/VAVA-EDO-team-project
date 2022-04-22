@@ -8,7 +8,6 @@ import vava.edo.Handlers.TodoHandler;
 import vava.edo.controllers.models.TodoHBoxModel;
 import vava.edo.models.Todo;
 import vava.edo.models.User;
-
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -29,7 +28,6 @@ public class TodosScreenController implements Initializable {
 
     @FXML
     private VBox vBoxTodoInfo;
-
 
     // Okno pre vytvorenie noveho tasku
     @FXML
@@ -57,6 +55,24 @@ public class TodosScreenController implements Initializable {
     private Button buttonAcceptTodo;
 
 
+
+    // elementy pre todo info
+    @FXML
+    private CheckBox checkBoxTodoInfo;
+
+    @FXML
+    private Label labelTodoInfoDueTIme;
+
+    @FXML
+    private Label labelTodoInfoName;
+
+    @FXML
+    private Label labelTodoInfoDescription;
+
+    @FXML
+    private Label labelTodoInfoGroup;
+
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {}
 
@@ -71,8 +87,10 @@ public class TodosScreenController implements Initializable {
         labelLeftBarAll.setText(this.user.getUsername());
 
         for(Todo todo : user.getTasks()) {
-            vBoxTodos.getChildren().add(new TodoHBoxModel(todo).getTodoHBOx());
-            System.out.println("Adding: " + todo.toString());
+            vBoxTodos.getChildren().add(new TodoHBoxModel(todo, checkBoxTodoInfo,
+                    labelTodoInfoDueTIme, labelTodoInfoName, labelTodoInfoDescription,
+                    labelTodoInfoGroup).getTodoHBOx());
+            System.out.println("Loaded: " + todo.toString());
         }
     }
 

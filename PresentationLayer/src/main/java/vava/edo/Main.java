@@ -16,6 +16,7 @@ public class Main extends Application {
         Scene scene = new Scene(root, 1100, 750);
         stage.setTitle("Everyday organizer");
         stage.setScene(scene);
+        stage.setResizable(false);
         stage.show();
     }
 
