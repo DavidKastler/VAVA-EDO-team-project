@@ -65,7 +65,7 @@
                   <Insets top="20.0" />
                </VBox.margin>
             </HBox>
-            <CheckBox fx:id="checkBoxRememberMe" mnemonicParsing="false" text="Remember me" textFill="WHITE">
+            <CheckBox fx:id="checkBoxRememberMe" onAction="#rememberMe" mnemonicParsing="false" text="Remember me" textFill="WHITE">
                <font>
                   <Font name="Arial Bold" size="20.0" />
                </font>

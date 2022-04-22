@@ -1,5 +1,6 @@
 package vava.edo.controllers;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -16,6 +17,7 @@ import java.util.ResourceBundle;
 
 public class LoginScreenController implements Initializable {
     private User user;
+    private boolean rememberMeState = false;
 
     @FXML
     private AnchorPane rootPane;
@@ -25,9 +27,6 @@ public class LoginScreenController implements Initializable {
 
     @FXML
     private PasswordField textPassword;
-
-    @FXML
-    private CheckBox checkBoxRememberMe;
 
     @FXML
     private Label wrongCredentials;
@@ -52,6 +51,8 @@ public class LoginScreenController implements Initializable {
         try {
             this.user = UserHandler.loginUser(textUsername, textPassword, wrongCredentials);
 
+            this.user.setRememberMe(this.rememberMeState);
+
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/vava/edo/Todos.fxml"));
             AnchorPane todoScreen = loader.load();
             TodosScreenController todoController = loader.getController();
@@ -65,4 +66,11 @@ public class LoginScreenController implements Initializable {
 
     }
 
+    /**
+     * Method that on click of the remember me box changes the state
+     */
+    @FXML
+    public void rememberMe() {
+        this.rememberMeState = !this.rememberMeState;
+    }
 }

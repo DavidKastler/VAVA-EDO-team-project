@@ -30,7 +30,7 @@ public class TodoController {
         checkBoxTodo.setSelected(model.getTodoCompleted());
         labelTodoName.setText(model.getTodoName());
         labelTodoGroup.setText(model.getTodoGroup());
-        labelTodoTime.setText(String.valueOf(model.getToTime())); // TODO zmenit unix na normalny datum
+        labelTodoTime.setText(model.getToTime());
         this.model = model;
     }
 
@@ -43,9 +43,9 @@ public class TodoController {
         System.out.print("Pressed: " + model.getTodo().toString() + "\t->\t");
         // model.getTodoHBOx().setStyle("-fx-background-color: #565656; -fx-background-radius: 10;");  // TODO urobit hovering na tasku po stlaceni (Vlastny handler na to)
         model.getCheckBoxTodoInfo().setSelected(model.getTodo().isCompleted());
-        model.getLabelTodoInfoDueTIme().setText(String.valueOf(model.getTodo().getToTime())); // TODO zmenit unix na normalny datum
+        model.getLabelTodoInfoDueTIme().setText(model.getTodo().getToTime());
         model.getLabelTodoInfoName().setText(model.getTodo().getTodoName());
-        model.getLabelTodoInfoDescription().setText(String.valueOf(model.getTodo().getToTime())); // TODO zmenit unix na normalny datum
+        model.getLabelTodoInfoDescription().setText(model.getTodo().getToTime());
         model.getLabelTodoInfoGroup().setText(model.getTodo().getGroupName());
         System.out.println("Todo info was printed");
     }

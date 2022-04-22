@@ -16,7 +16,7 @@ public class TodoHBoxModel {
     private boolean todoCompleted;
     private String todoName;
     private String todoGroup;
-    private long toTime;
+    private String toTime;
 
     private CheckBox checkBoxTodoInfo;
     private Label labelTodoInfoDueTIme;
@@ -67,7 +67,7 @@ public class TodoHBoxModel {
         return todoGroup;
     }
 
-    public long getToTime() {
+    public String getToTime() {
         return toTime;
     }
 
