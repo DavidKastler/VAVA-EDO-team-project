@@ -115,7 +115,7 @@ public class TodoHandler {
                                     toTime.getValue().toEpochSecond(LocalTime.MIDNIGHT, ZoneOffset.UTC),
                                     groupName.getText());
 
-        if (new_todo != null){
+        if (new_todo.getTodoName() != null){
             System.out.println(new_todo);
             user.addTodo(new_todo);
         }
