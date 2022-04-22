@@ -45,7 +45,7 @@ public class TodoController {
         model.getCheckBoxTodoInfo().setSelected(model.getTodo().isCompleted());
         model.getLabelTodoInfoDueTIme().setText(model.getTodo().getToTime());
         model.getLabelTodoInfoName().setText(model.getTodo().getTodoName());
-        model.getLabelTodoInfoDescription().setText(model.getTodo().getToTime());
+        model.getLabelTodoInfoDescription().setText(model.getTodo().getTodoDescription());
         model.getLabelTodoInfoGroup().setText(model.getTodo().getGroupName());
         System.out.println("Todo info was printed");
     }

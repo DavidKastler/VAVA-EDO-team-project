@@ -328,7 +328,7 @@
                               <Font name="Arial Bold" size="20.0" />
                            </font>
                         </Label>
-                        <DatePicker fx:id="datePickerTaskFrom" promptText="Enter from date" />
+                        <DatePicker fx:id="datePickerTaskFrom" promptText="Enter from date" style="-fx-font-family: 'Arial'" />
                      </children>
                   </HBox>
                   <HBox alignment="CENTER" maxWidth="-Infinity" prefHeight="34.0" prefWidth="305.0">
@@ -338,7 +338,7 @@
                               <Font name="Arial Bold" size="20.0" />
                            </font>
                         </Label>
-                        <DatePicker fx:id="datePickerTaskTo" promptText="Enter to date" />
+                        <DatePicker fx:id="datePickerTaskTo" promptText="Enter to date" style="-fx-font-family: 'Arial'"/>
                      </children>
                   </HBox>
                   <HBox alignment="CENTER" maxWidth="-Infinity" prefHeight="59.0" prefWidth="315.0" spacing="50.0">

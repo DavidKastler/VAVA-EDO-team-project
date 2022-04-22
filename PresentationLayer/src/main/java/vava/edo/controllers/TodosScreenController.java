@@ -76,6 +76,11 @@ public class TodosScreenController implements Initializable {
     @FXML
     private Label labelTodoInfoGroup;
 
+    @FXML
+    private Button buttonEditTodo;
+
+    @FXML
+    private Button buttonDeleteTodo;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {}
@@ -100,12 +105,25 @@ public class TodosScreenController implements Initializable {
 
     @FXML
     protected void handleAddNewTodo() throws IOException {
+        System.out.println("Clicked add new task button");
 
+        // musi byt premazane, lebo ostane to co bolo posledne
+        textFieldTaskName.setText("");
+        textAreaTaskDescription.setText("");
+        textFieldTaskGroup.setText("");
+        datePickerTaskFrom.setValue(null);
+        datePickerTaskTo.setValue(null);
+
+        vBoxNewTaskScreen.setVisible(true);
+        vBoxNewTaskScreen.setDisable(false);
+
+        // TODO spracovanie v handleri
     }
 
     @FXML
     protected void handleCancelTodo() throws IOException {
-
+        vBoxNewTaskScreen.setVisible(false);
+        vBoxNewTaskScreen.setDisable(true);
     }
 
     @FXML
@@ -114,6 +132,14 @@ public class TodosScreenController implements Initializable {
     }
 
     public void handleEditTodo(MouseEvent mouseEvent) {
+        textFieldTaskName.setText(labelTodoInfoName.getText());
+        textAreaTaskDescription.setText(labelTodoInfoDescription.getText());
+        textFieldTaskGroup.setText(labelTodoInfoGroup.getText());
+        // datePickerTaskFrom.
+        // datePickerTaskFrom.
+
+        vBoxNewTaskScreen.setVisible(true);
+        vBoxNewTaskScreen.setDisable(false);
     }
 
     public void handleDeleteTodo(MouseEvent mouseEvent) {
