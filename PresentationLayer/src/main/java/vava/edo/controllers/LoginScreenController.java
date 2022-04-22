@@ -1,15 +1,17 @@
 package vava.edo.controllers;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import vava.edo.Exepctions.EmptyLoginFields;
 import vava.edo.Exepctions.IncorrectCredentials;
-import vava.edo.models.User;
 import vava.edo.Handlers.UserHandler;
+import vava.edo.models.User;
 
 import java.io.IOException;
 import java.net.URL;
@@ -53,10 +55,15 @@ public class LoginScreenController implements Initializable {
 
             this.user.setRememberMe(this.rememberMeState);
 
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/vava/edo/Todos.fxml"));
+            // FXMLLoader loader = new FXMLLoader(getClass().getResource("/vava/edo/Todos.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/vava/edo/Menu.fxml"));
             AnchorPane todoScreen = loader.load();
-            TodosScreenController todoController = loader.getController();
-            todoController.initialize(user);
+            // TodosScreenController todoController = loader.getController();
+            // todoController.initialize(user);
+
+            MenuScreenController menuScreen = loader.getController();
+            menuScreen.initialize(user);
+
 
             rootPane.getChildren().setAll(todoScreen);
         }

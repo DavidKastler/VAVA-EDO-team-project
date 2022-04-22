@@ -34,10 +34,6 @@ public class TodoController {
         this.model = model;
     }
 
-    public TodoHBoxModel getModel() {
-        return model;
-    }
-
     @FXML
     protected void handleTodoClicked() throws IOException {
         System.out.print("Pressed: " + model.getTodo().toString() + "\t->\t");
