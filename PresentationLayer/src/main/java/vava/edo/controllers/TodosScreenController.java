@@ -2,6 +2,7 @@ package vava.edo.controllers;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import vava.edo.Exepctions.TodoScreen.MandatoryFieldNotInputted;
 import vava.edo.Exepctions.TodoScreen.FailedToCreateTodo;
@@ -14,6 +15,7 @@ import vava.edo.models.Todo;
 public class TodosScreenController {
 
     private TodoScreenModel model;
+    private Todo selectedTodoId;
 
     @FXML
     private Label labelLeftBarAll;
@@ -72,7 +74,7 @@ public class TodosScreenController {
         labelLeftBarAll.setText(model.getUser().getUsername());
 
         for(Todo todo : model.getUser().getTodos()) {
-            vBoxTodos.getChildren().add(new TodoHBoxModel(todo, checkBoxTodoInfo,
+            vBoxTodos.getChildren().add(new TodoHBoxModel(todo, this, checkBoxTodoInfo,
                     labelTodoInfoDueTIme, labelTodoInfoName, labelTodoInfoDescription,
                     labelTodoInfoGroup).getTodoHBOx());
             System.out.println("Loaded: " + todo);
@@ -95,6 +97,8 @@ public class TodosScreenController {
         vBoxNewTaskScreen.setDisable(false);
 
 
+        buttonEditTodo.setVisible(false);
+        buttonAcceptTodo.setVisible(true);
     }
 
     @FXML
@@ -117,7 +121,7 @@ public class TodosScreenController {
         vBoxNewTaskScreen.setDisable(true);
     }
 
-    public void handleEditTodo() {
+    public void handleEditTodoInfo() {
         textFieldTaskName.setText(labelTodoInfoName.getText());
         textAreaTaskDescription.setText(labelTodoInfoDescription.getText());
         textFieldTaskGroup.setText(labelTodoInfoGroup.getText());
@@ -126,9 +130,24 @@ public class TodosScreenController {
 
         vBoxNewTaskScreen.setVisible(true);
         vBoxNewTaskScreen.setDisable(false);
+        buttonEditTodo.setVisible(true);
+        buttonAcceptTodo.setVisible(false);
     }
 
     public void handleDeleteTodo() {
 
+        System.out.println("Selected todo: " + selectedTodoId.toString());
+    }
+
+    public void handleEditTodo(MouseEvent mouseEvent) {
+
+    }
+
+    /**
+     * Setter for Selected to-do
+     * @param selectedTodoId clicked to-do
+     */
+    public void setSelectedTodoId(Todo selectedTodoId) {
+        this.selectedTodoId = selectedTodoId;
     }
 }

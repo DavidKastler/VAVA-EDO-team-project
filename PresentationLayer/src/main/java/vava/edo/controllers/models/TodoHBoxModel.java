@@ -5,6 +5,7 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import vava.edo.controllers.TodoController;
+import vava.edo.controllers.TodosScreenController;
 import vava.edo.models.Todo;
 
 import java.io.IOException;
@@ -17,6 +18,7 @@ public class TodoHBoxModel {
     private String todoName;
     private String todoGroup;
     private String toTime;
+    private TodosScreenController tsc;
 
     private CheckBox checkBoxTodoInfo;
     private Label labelTodoInfoDueTIme;
@@ -24,7 +26,7 @@ public class TodoHBoxModel {
     private Label labelTodoInfoDescription;
     private Label labelTodoInfoGroup;
 
-    public TodoHBoxModel(Todo todo, CheckBox checkBoxTodoInfo, Label labelTodoInfoDueTIme,
+    public TodoHBoxModel(Todo todo, TodosScreenController tsc, CheckBox checkBoxTodoInfo, Label labelTodoInfoDueTIme,
                          Label labelTodoInfoName, Label labelTodoInfoDescription,
                          Label labelTodoInfoGroup) {
         // taskName.setValue(todo.getTaskName());
@@ -34,6 +36,7 @@ public class TodoHBoxModel {
         this.toTime = todo.getToTime();
 
         this.todo = todo;
+        this.tsc = tsc;
         this.checkBoxTodoInfo = checkBoxTodoInfo;
         this.labelTodoInfoDueTIme = labelTodoInfoDueTIme;
         this.labelTodoInfoName = labelTodoInfoName;
@@ -73,6 +76,10 @@ public class TodoHBoxModel {
 
     public Todo getTodo() {
         return todo;
+    }
+
+    public TodosScreenController getTsc() {
+        return tsc;
     }
 
     public CheckBox getCheckBoxTodoInfo() {
