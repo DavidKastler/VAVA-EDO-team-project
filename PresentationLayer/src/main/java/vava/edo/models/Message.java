@@ -6,7 +6,7 @@ import com.mashape.unirest.http.JsonNode;
 import java.sql.Date;
 
 public class Message {
-    private long timeSent;
+    private Long timeSent;
     private String message;
     private User sender;
 

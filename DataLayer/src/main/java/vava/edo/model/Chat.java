@@ -31,7 +31,6 @@ public class Chat {
     @Column(name = "message", nullable = false)
     private String message;
 
-
     /**
      * Static casting method from MessageCreate object
      * @param messageDto    MessageCreate object that you want to cast
@@ -40,6 +39,7 @@ public class Chat {
     public static Chat from(MessageCreate messageDto) {
         Chat chat = new Chat();
         chat.setGroupId(messageDto.getGroupId());
+        chat.setTimeSent(messageDto.getTimeSent());
         chat.setMessage(messageDto.getMessage());
         return chat;
     }
