@@ -1,13 +1,12 @@
 package vava.edo.models;
 
 import java.io.Serializable;
-import java.sql.Date;
 // TODO zmenit typ due time je to ako string kvoli BE
 public class Todo implements Serializable {
     private int todoId;
     private int userId;
-    private String todoName;
-    private String todoDescription;
+    private String taskName;  // bude to todoName
+    private String taskDescription;
     private String dueTime;
     private boolean completed;
 
@@ -28,20 +27,20 @@ public class Todo implements Serializable {
         this.userId = userId;
     }
 
-    public String getTodoName() {
-        return todoName;
+    public String getTaskName() {
+        return taskName;
     }
 
-    public void setTodoName(String todoName) {
-        this.todoName = todoName;
+    public void setTaskName(String taskName) {
+        this.taskName = taskName;
     }
 
-    public String getTodoDescription() {
-        return todoDescription;
+    public String getTaskDescription() {
+        return taskDescription;
     }
 
-    public void setTodoDescription(String todoDescription) {
-        this.todoDescription = todoDescription;
+    public void setTaskDescription(String taskDescription) {
+        this.taskDescription = taskDescription;
     }
 
     public String getDueTime() {
@@ -66,8 +65,8 @@ public class Todo implements Serializable {
         return "Todo{" +
                 "todoId=" + todoId +
                 ", userId=" + userId +
-                ", todoName='" + todoName + '\'' +
-                ", taskDescription='" + todoDescription + '\'' +
+                ", todoName='" + taskName + '\'' +
+                ", taskDescription='" + taskDescription + '\'' +
                 ", dueTime=" + dueTime +
                 ", completed=" + completed +
                 '}';

@@ -1,12 +1,13 @@
 package vava.edo.Handlers;
+
 import com.google.gson.Gson;
 import com.mashape.unirest.http.HttpResponse;
 import com.mashape.unirest.http.JsonNode;
 import com.mashape.unirest.http.Unirest;
 import com.mashape.unirest.http.exceptions.UnirestException;
-import javafx.scene.control.TextField;
 import vava.edo.models.Todo;
 import vava.edo.models.User;
+
 import java.util.ArrayList;
 
 
@@ -18,9 +19,7 @@ public class TodoHandler {
      * @param user Object of user which is going to be initialized
      */
     public static void startUp(User user) {
-
         user.setTasks(getAllTodos(user.getUid()));
-
     }
 
 

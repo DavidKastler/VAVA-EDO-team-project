@@ -2,7 +2,7 @@ package vava.edo.controllers;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Label;
+import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
 import vava.edo.Handlers.TodoHandler;
 import vava.edo.controllers.models.TodoHBoxModel;
@@ -21,10 +21,40 @@ public class TodosScreenController implements Initializable {
     private Label labelLeftBarAll;
 
     @FXML
+    private Button buttonAddNewTask;
+
+    @FXML
     private VBox vBoxTodos;
 
     @FXML
     private VBox vBoxTodoInfo;
+
+
+    // Okno pre vytvorenie noveho tasku
+    @FXML
+    private VBox vBoxNewTaskScreen;
+
+    @FXML
+    private VBox vBoxNewTaskWindow;
+
+    @FXML
+    private TextField textFieldTaskName;
+
+    @FXML
+    private TextArea textAreaTaskDescription;
+
+    @FXML
+    private DatePicker datePickerTaskFrom;
+
+    @FXML
+    private DatePicker datePickerTaskTo;
+
+    @FXML
+    private Button buttonCancelTodo;
+
+    @FXML
+    private Button buttonAddTodo;
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {}
@@ -38,6 +68,10 @@ public class TodosScreenController implements Initializable {
         setUser(user);
         TodoHandler.startUp(this.user);
         labelLeftBarAll.setText(this.user.getUsername());
-        //vBoxTodos.getChildren().add(new TodoHBoxModel(todo).getTodoHBOx());
+
+        for(Todo todo : user.getTasks()) {
+            vBoxTodos.getChildren().add(new TodoHBoxModel(todo).getTodoHBOx());
+            System.out.println("Adding: " + todo.toString());
+        }
     }
 }
