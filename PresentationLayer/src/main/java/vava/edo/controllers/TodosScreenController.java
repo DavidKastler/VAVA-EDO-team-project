@@ -9,6 +9,7 @@ import vava.edo.controllers.models.TodoHBoxModel;
 import vava.edo.models.Todo;
 import vava.edo.models.User;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -21,7 +22,7 @@ public class TodosScreenController implements Initializable {
     private Label labelLeftBarAll;
 
     @FXML
-    private Button buttonAddNewTask;
+    private Button buttonAddNewTodo;
 
     @FXML
     private VBox vBoxTodos;
@@ -53,7 +54,7 @@ public class TodosScreenController implements Initializable {
     private Button buttonCancelTodo;
 
     @FXML
-    private Button buttonAddTodo;
+    private Button buttonAcceptTodo;
 
 
     @Override
@@ -73,5 +74,20 @@ public class TodosScreenController implements Initializable {
             vBoxTodos.getChildren().add(new TodoHBoxModel(todo).getTodoHBOx());
             System.out.println("Adding: " + todo.toString());
         }
+    }
+
+    @FXML
+    protected void handleAddNewTodo() throws IOException {
+
+    }
+
+    @FXML
+    protected void handleCancelTodo() throws IOException {
+
+    }
+
+    @FXML
+    protected void handleAcceptTodo() throws IOException {
+
     }
 }

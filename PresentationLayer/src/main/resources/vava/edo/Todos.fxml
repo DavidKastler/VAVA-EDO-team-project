@@ -194,7 +194,7 @@
                         <Insets left="30.0" />
                      </padding>
                   </Label>
-                  <Button fx:id="buttonAddNewTask" mnemonicParsing="false" prefHeight="40.0" prefWidth="430.0" style="-fx-background-color: #464646; -fx-background-radius: 10;" text="+ Add new task" textFill="#a4a4a4">
+                  <Button fx:id="buttonAddNewTodo" mnemonicParsing="false" onMouseClicked="#handleAddNewTodo" prefHeight="40.0" prefWidth="430.0" style="-fx-background-color: #464646; -fx-background-radius: 10;" text="+ Add new task" textFill="#a4a4a4">
                      <font>
                         <Font name="Arial Bold" size="19.0" />
                      </font>
@@ -253,7 +253,7 @@
             </VBox>
          </children>
       </HBox>
-      <VBox fx:id="vBoxNewTaskScreen" alignment="CENTER" prefHeight="750.0" prefWidth="1100.0" style="-fx-background-color: transparent;">
+      <VBox fx:id="vBoxNewTaskScreen" alignment="CENTER" disable="true" prefHeight="750.0" prefWidth="1100.0" style="-fx-background-color: transparent;" visible="false">
          <children>
             <VBox fx:id="vBoxNewTaskWindow" alignment="CENTER" maxWidth="-Infinity" prefHeight="404.0" prefWidth="548.0" spacing="10.0" style="-fx-background-color: black;">
                <children>
@@ -269,7 +269,11 @@
                               <Font name="Arial Bold" size="20.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="textFieldTaskName" promptText="Enter task name" />
+                        <TextField fx:id="textFieldTaskName" promptText="Enter task name">
+                           <font>
+                              <Font name="Arial" size="13.0" />
+                           </font>
+                        </TextField>
                      </children>
                   </HBox>
                   <HBox maxWidth="-Infinity" prefHeight="86.0" prefWidth="508.0" spacing="20.0">
@@ -279,7 +283,11 @@
                               <Font name="Arial Bold" size="20.0" />
                            </font>
                         </Label>
-                        <TextArea fx:id="textAreaTaskDescription" prefHeight="116.0" prefWidth="288.0" promptText="Enter task description" />
+                        <TextArea fx:id="textAreaTaskDescription" prefHeight="116.0" prefWidth="288.0" promptText="Enter task description">
+                           <font>
+                              <Font name="Arial" size="13.0" />
+                           </font>
+                        </TextArea>
                      </children>
                   </HBox>
                   <HBox alignment="CENTER" maxWidth="-Infinity" prefHeight="34.0" prefWidth="305.0">
@@ -289,7 +297,7 @@
                               <Font name="Arial Bold" size="20.0" />
                            </font>
                         </Label>
-                        <DatePicker fx:id="datePickerTaskFrom" />
+                        <DatePicker fx:id="datePickerTaskFrom" promptText="Enter from date" />
                      </children>
                   </HBox>
                   <HBox alignment="CENTER" maxWidth="-Infinity" prefHeight="34.0" prefWidth="305.0">
@@ -299,17 +307,17 @@
                               <Font name="Arial Bold" size="20.0" />
                            </font>
                         </Label>
-                        <DatePicker fx:id="datePickerTaskTo" />
+                        <DatePicker fx:id="datePickerTaskTo" promptText="Enter to date" />
                      </children>
                   </HBox>
                   <HBox alignment="CENTER" maxWidth="-Infinity" prefHeight="59.0" prefWidth="315.0" spacing="50.0">
                      <children>
-                        <Button fx:id="buttonCancelTodo" mnemonicParsing="false" prefHeight="50.0" prefWidth="130.0" style="-fx-background-color: #ff0021;" text="Cancel" textFill="WHITE">
+                        <Button fx:id="buttonCancelTodo" mnemonicParsing="false" onMouseClicked="#handleCancelTodo" prefHeight="50.0" prefWidth="130.0" style="-fx-background-color: #ff0021;" text="Cancel" textFill="WHITE">
                            <font>
                               <Font name="Arial Bold" size="20.0" />
                            </font>
                         </Button>
-                        <Button fx:id="buttonAddTodo" mnemonicParsing="false" prefHeight="50.0" prefWidth="130.0" style="-fx-background-color: #009933;" text="Add" textFill="WHITE">
+                        <Button fx:id="buttonAcceptTodo" mnemonicParsing="false" onMouseClicked="#handleAcceptTodo" prefHeight="50.0" prefWidth="130.0" style="-fx-background-color: #009933;" text="Add" textFill="WHITE">
                            <font>
                               <Font name="Arial Bold" size="20.0" />
                            </font>
