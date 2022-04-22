@@ -12,6 +12,7 @@ import vava.edo.service.TodosService;
 import vava.edo.service.UserService;
 
 import java.util.List;
+import java.util.Objects;
 
 /**
  * Class that provides endpoints for operation with tasks
@@ -38,43 +39,15 @@ public class TodosController {
     @PostMapping("/create")
     public ResponseEntity<Todo> createTask(@RequestParam(value = "token") Integer token,
                                            @RequestBody TaskCreate taskDto) {
-//        if (!taskDto.getUserId().equals(token) && !userService.isTeamLeader(token)) {
-//            throw new ResponseStatusException(HttpStatus.UNAUTHORIZED,
-//                    "User needs to be the owner of the account or team-leader at least.");
-//        }
-        // TODO zisit ci task patri userovi
+        // TODO: 22/04/2022 ak sa nerovna token a u_id tak zistit ci je TL
+
         return new ResponseEntity<>(todosService.createTask(taskDto), HttpStatus.CREATED);
     }
 
-    /**
-     * Endpoint used to complete a specific task
-     * @param token     user account id
-     * @param taskId    id of task we want to update
-     * @param taskDto   data transfer object for Task class
-     * @return response entity containing task and http status 200 / 400 / 404
-     */
     @PutMapping("/complete/{task_id}")
-    public ResponseEntity<Todo> updateTaskById(@RequestParam(value = "token") Integer token,
-                                               @PathVariable(value = "task_id") Integer taskId,
-                                               @RequestBody TaskUpdate taskDto) {
-//        if (!taskDto.getUserId().equals(token)) {
-//            throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "User needs to be the owner of the account.");
-//        }
-        // TODO zisit ci task patri userovi
-
-        return new ResponseEntity<>(todosService.updateTask(taskId, taskDto), HttpStatus.OK);
-    }
-
-    /**
-     * Endpoint returning a list of all users tasks
-     * @param token   user account id whose messages we want to show
-     * @return list of users tasks and http status 200 / 404
-     */
-    @GetMapping("/get/{task_id}")
-    public ResponseEntity<List<Todo>> getAllTasks(@RequestParam(value = "token")  Integer token,
-                                                  @PathVariable(value = "task_id") Integer todoGroupId) {
-
-        return new ResponseEntity<>(todosService.getAllTasks(token), HttpStatus.OK);
+    public ResponseEntity<Todo> completeTaskById(@RequestParam(value = "token") Integer token,
+                                                 @PathVariable(value = "task_id") Integer taskId) {
+        return new ResponseEntity<>(todosService.invertCompleted(token, taskId), HttpStatus.OK);
     }
 
     /**
@@ -87,6 +60,36 @@ public class TodosController {
     public ResponseEntity<Object> deleteTaskById(@RequestParam(value = "token") Integer token, @PathVariable(value = "task_id") Integer taskId) {
         if (todosService.getUserIdFromTask(taskId) != token) throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "User needs to be the owner of the account.");
         return new ResponseEntity<>(todosService.deleteTask(taskId), HttpStatus.NO_CONTENT);
+    }
+
+    /**
+     * Endpoint used to edit a specific task
+     * @param token     user account id
+     * @param taskId    id of task we want to update
+     * @param taskDto   data transfer object for Task class
+     * @return response entity containing task and http status 200 / 400 / 404
+     */
+    @PutMapping("/edit/{task_id}")
+    public ResponseEntity<Todo> updateTaskById(@RequestParam(value = "token") Integer token,
+                                               @PathVariable(value = "task_id") Integer taskId,
+                                               @RequestBody TaskUpdate taskDto) {
+
+        if (!Objects.equals(token, taskDto.getUserId())) {
+            throw new ResponseStatusException(HttpStatus.FORBIDDEN, "You cant edit foreign todo");
+        }
+
+        return new ResponseEntity<>(todosService.updateTask(taskId, taskDto), HttpStatus.OK);
+    }
+
+    /**
+     * Endpoint returning a list of all users tasks
+     * @param token   user account id whose messages we want to show
+     * @return list of users tasks and http status 200 / 404
+     */
+    @GetMapping("/get")
+    public ResponseEntity<List<Todo>> getAllTasks(@RequestParam(value = "token")  Integer token) {
+
+        return new ResponseEntity<>(todosService.getAllTasksForUser(token), HttpStatus.OK);
     }
 
 

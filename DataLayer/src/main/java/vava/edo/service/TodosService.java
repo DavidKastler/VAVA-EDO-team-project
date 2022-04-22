@@ -2,15 +2,16 @@ package vava.edo.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.server.ResponseStatusException;
 import vava.edo.model.Todo;
 import vava.edo.model.exeption.TaskNotFoundException;
 import vava.edo.repository.TodoRepository;
 import vava.edo.schema.TaskCreate;
 import vava.edo.schema.TaskUpdate;
 
-import java.sql.Timestamp;
 import java.util.*;
 
 /**
@@ -27,12 +28,12 @@ public class TodosService {
     }
 
     /**
-     * Method returns all tasks in database for given user
+     * Method returns all tasks in database for given user id
      * @param userId    id of user whose tasks you want to see
      * @return list of users tasks
      */
-    public List<Todo> getAllTasks(int userId) {
-        return todoRepository.findAllByGroupId(userId);
+    public List<Todo> getAllTasksForUser(int userId) {
+        return todoRepository.findAllByUserId(userId);
     }
 
     /**
@@ -42,7 +43,7 @@ public class TodosService {
      */
     public Todo getTask(int taskId) {
         return todoRepository.findById(taskId).orElseThrow(
-                () -> new TaskNotFoundException(taskId));
+                () -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Task with this id does not exist."));
     }
 
     /**
@@ -52,8 +53,9 @@ public class TodosService {
      * @param toIndex index of last task in list
      * @return list of task objects
      */
-    public List<Todo> getCompletedTasks(int userId, int fromIndex, int toIndex) {
-        return todoRepository.findAllByGroupIdAndCompletedOrderByFromTime(userId, true, PageRequest.of(fromIndex, toIndex));
+    public List<Todo> getCompletedTodos(int userId, int fromIndex, int toIndex) {
+//        return todoRepository.findAllByGroupIdAndCompletedOrderByFromTime(userId, true, PageRequest.of(fromIndex, toIndex));
+        return null;
     }
 
     /**
@@ -64,11 +66,9 @@ public class TodosService {
      * @return          list of found task objects
      */
     public List<Todo> getTasksByTimeRange(Integer userId, long fromTime, long toTime) {
-        Timestamp fromTimestamp = new Timestamp(fromTime*1000);
-        Timestamp toTimestamp = new Timestamp(toTime*1000);
-        return todoRepository.findAllByGroupIdAndFromTimeBetween(userId, fromTimestamp, toTimestamp);
+//        return todoRepository.findAllByTodoGroupUIdAndFromTimeBetween(userId, fromTime, toTime);
+        return null;
     }
-
 
     /**
      * Method converts DTO object to Task object
@@ -124,5 +124,20 @@ public class TodosService {
         return todoToUpdate;
     }
 
+    /**
+     * Method to invert completed variable
+     * @param userId    user id
+     * @param taskId    task id
+     * @return          updated to-do
+     */
+    @Transactional
+    public Todo invertCompleted(Integer userId, Integer taskId) {
+        Todo todoToInvertComplete = todoRepository.findByUserIdAndTodoId(userId, taskId);
+        if (todoToInvertComplete == null) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Task with this id does not exist.");
+        }
+        todoToInvertComplete.setCompleted(!todoToInvertComplete.isCompleted());
 
+        return todoToInvertComplete;
+    }
 }

@@ -155,10 +155,6 @@ public class GroupController {
     }*/
 
 
-
-    //TODO talk to Adam about deleting chats
-
-
     /**
      * Endpoint getting all group members
      * @param token user account rights verification

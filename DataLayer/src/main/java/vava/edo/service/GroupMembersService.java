@@ -76,9 +76,7 @@ public class GroupMembersService {
      * @return removed group member
      */
     public GroupMembers deleteMember(int groupId, int userId) {
-        Group group = groupService.getGroup(groupId);
-        User member = userService.getUser(userId);
-        GroupMembers groupMember = groupMembersRepository.findByGroupIdAndMemberId(group, member);
+        GroupMembers groupMember = groupMembersRepository.findByGroupIdAndMemberId(groupId, userId);
 
         groupMembersRepository.delete(groupMember);
         return groupMember;
@@ -118,15 +116,12 @@ public class GroupMembersService {
 
     /**
      * Method used to check whether user is part of given group
-     *
      * @param userId    id of user who you want to check
      * @param  groupId  id of group to check egains
      * @return  boolean true/false
      */
-    public boolean checkUserGroup(int userId, int groupId) {
-        Group group = groupService.getGroup(groupId);
-        User user = userService.getUser(userId);
-        return groupMembersRepository.existsByGmIdAndAndMemberId(group, user);
+    public boolean isUserInGroup(int userId, int groupId) {
+        return groupMembersRepository.existsByGroupIdAndMemberId(groupId, userId);
     }
 
 }

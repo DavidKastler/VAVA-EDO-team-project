@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 import vava.edo.model.Chat;
 import vava.edo.model.Group;
-import vava.edo.model.GroupMembers;
 import vava.edo.model.exeption.UserNotInGroupException;
 import vava.edo.schema.MessageCreate;
 import vava.edo.service.*;
@@ -59,7 +58,7 @@ public class ChatController {
                                                       @RequestParam(value = "from", required = false) Integer fromIndex,
                                                       @RequestParam(value = "to", required = false) Integer toIndex) {
 
-        if (groupMembersService.checkUserGroup(token, groupId)) {
+        if (groupMembersService.isUserInGroup(token, groupId)) {
             if (fromIndex == null) fromIndex = 0;
             if (toIndex == null) toIndex = 20;
             return new ResponseEntity<>(chatService.getLastMessages(groupId, fromIndex, toIndex), HttpStatus.OK);
@@ -76,7 +75,7 @@ public class ChatController {
      */
     @PostMapping("/send")
     public ResponseEntity<Chat> sendMessage(@RequestParam(value = "token") int token, @RequestBody MessageCreate messageDto) {
-        if (chatService.verifyIfUserOwnsAccount(messageDto, token) && groupMembersService.checkUserGroup(token, messageDto.getGroupId()))
+        if (chatService.verifyIfUserOwnsAccount(messageDto, token) && groupMembersService.isUserInGroup(token, messageDto.getGroupId()))
             return new ResponseEntity<>(chatService.sendMessage(messageDto), HttpStatus.OK);
         else throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "User needs to be the owner of the selected account and part of the group.");
     }

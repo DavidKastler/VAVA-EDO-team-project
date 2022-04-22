@@ -20,9 +20,8 @@ public class Todo {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "td_id", nullable = false)
     private Integer todoId;
-    //TODO ak bude treba tak mapovanie
-    @Column(name = "group_id", nullable = false)
-    private Integer groupId;
+    @Column(name = "user_id", nullable = false)
+    private Integer userId;
     @Column(name = "todo_name", nullable = false)
     private String todoName;
     @Column(name = "todo_description", nullable = false)
@@ -33,8 +32,8 @@ public class Todo {
     private Long toTime;
     @Column(name = "completed", nullable = false)
     private boolean completed;
-    @Column(name = "tag", nullable = false)
-    private String tag;
+    @Column(name = "group_name", nullable = false)
+    private String groupName;
 
     //TODO prispojobit taskDto po jeho uprave
     /**
@@ -44,13 +43,13 @@ public class Todo {
      */
     public static Todo from(TaskCreate taskDto) {
         Todo todo = new Todo();
-        todo.setGroupId(taskDto.getTodoGroupId());
+        todo.setUserId(taskDto.getUserId());
         todo.setTodoName(taskDto.getTodoName());
         todo.setTodoDescription(taskDto.getTodoDescription());
         todo.setFromTime(taskDto.getFromTime());
         todo.setToTime(taskDto.getToTime());
         todo.setCompleted(taskDto.getCompleted());
-        todo.setTag(taskDto.getTag());
+        todo.setGroupName(taskDto.getTag());
         return todo;
     }
 
@@ -63,13 +62,13 @@ public class Todo {
     public String toString() {
         return "Todo{" +
                 "todoId=" + todoId +
-                ", groupId=" + groupId +
-                ", taskName='" + todoName + '\'' +
-                ", taskDescription='" + todoDescription + '\'' +
+                ", userId=" + userId +
+                ", todoName='" + todoName + '\'' +
+                ", todoDescription='" + todoDescription + '\'' +
                 ", fromTime=" + fromTime +
                 ", toTime=" + toTime +
                 ", completed=" + completed +
-                ", tag='" + tag + '\'' +
+                ", groupName='" + groupName + '\'' +
                 '}';
     }
 }
