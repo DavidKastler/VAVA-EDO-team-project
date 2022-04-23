@@ -60,7 +60,7 @@ public class TodosController {
      * Endpoint used to delete a specific task
      * @param token     user account id
      * @param taskId    id of task we want to delete
-     * @return response entity containing deleted task and http status 204 / 401 / 404
+     * @return response entity containing deleted task and http status 200 / 401 / 404
      */
     @DeleteMapping("/delete/{task_id}")
     public ResponseEntity<Todo> deleteTaskById(@RequestParam(value = "token") Integer token, @PathVariable(value = "task_id") Integer taskId) {
