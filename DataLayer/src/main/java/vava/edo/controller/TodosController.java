@@ -8,6 +8,7 @@ import org.springframework.web.server.ResponseStatusException;
 import vava.edo.model.Todo;
 import vava.edo.schema.TaskCreate;
 import vava.edo.schema.TaskUpdate;
+import vava.edo.service.GroupService;
 import vava.edo.service.TodosService;
 import vava.edo.service.UserService;
 
@@ -22,10 +23,14 @@ import java.util.Objects;
 public class TodosController {
 
     private final TodosService todosService;
+    private final GroupService groupService;
+    private final UserService userService;
 
     @Autowired
-    public TodosController(TodosService todosService) {
+    public TodosController(TodosService todosService, GroupService groupService, UserService userService) {
         this.todosService = todosService;
+        this.groupService = groupService;
+        this.userService =userService;
     }
 
     /**
@@ -37,14 +42,17 @@ public class TodosController {
     @PostMapping("/create")
     public ResponseEntity<Todo> createTask(@RequestParam(value = "token") Integer token,
                                            @RequestBody TaskCreate taskDto) {
-        // TODO: 22/04/2022 ak sa nerovna token a u_id tak zistit ci je TL
+        if (!token.equals(taskDto.getUserId()) &&
+                !groupService.isUserCreatorsGroupMember(token, taskDto.getUserId())) {
+            throw new ResponseStatusException(HttpStatus.FORBIDDEN, "You cant access foreign todos.");
+        }
 
         return new ResponseEntity<>(todosService.createTask(taskDto), HttpStatus.CREATED);
     }
 
-    @PutMapping("/complete/{task_id}")
+    @PutMapping("/complete/{todoId}")
     public ResponseEntity<Todo> completeTaskById(@RequestParam(value = "token") Integer token,
-                                                 @PathVariable(value = "task_id") Integer taskId) {
+                                                 @PathVariable(value = "todoId") Integer taskId) {
         return new ResponseEntity<>(todosService.invertCompleted(token, taskId), HttpStatus.OK);
     }
 
@@ -52,12 +60,14 @@ public class TodosController {
      * Endpoint used to delete a specific task
      * @param token     user account id
      * @param taskId    id of task we want to delete
-     * @return response entity containing deleted task and http status 204 / 401 / 404
+     * @return response entity containing deleted task and http status 200 / 401 / 404
      */
-    @DeleteMapping("/delete/{task_id}")
-    public ResponseEntity<Object> deleteTaskById(@RequestParam(value = "token") Integer token, @PathVariable(value = "task_id") Integer taskId) {
-        if (todosService.getUserIdFromTask(taskId) != token) throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "User needs to be the owner of the account.");
-        return new ResponseEntity<>(todosService.deleteTask(taskId), HttpStatus.NO_CONTENT);
+    @DeleteMapping("/delete/{todoId}")
+    public ResponseEntity<Todo> deleteTaskById(@RequestParam(value = "token") Integer token, @PathVariable(value = "todoId") Integer taskId) {
+        if (!Objects.equals(todosService.getTask(taskId).getUserId(), token) && userService.isAdmin(token)) {
+            throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "User needs to be the owner of the account.");
+        }
+        return new ResponseEntity<>(todosService.deleteTask(taskId), HttpStatus.OK);
     }
 
     /**
@@ -67,9 +77,9 @@ public class TodosController {
      * @param taskDto   data transfer object for Task class
      * @return response entity containing task and http status 200 / 400 / 404
      */
-    @PutMapping("/edit/{task_id}")
+    @PutMapping("/edit/{todoId}")
     public ResponseEntity<Todo> updateTaskById(@RequestParam(value = "token") Integer token,
-                                               @PathVariable(value = "task_id") Integer taskId,
+                                               @PathVariable(value = "todoId") Integer taskId,
                                                @RequestBody TaskUpdate taskDto) {
         if (!Objects.equals(token, taskDto.getUserId())) {
             throw new ResponseStatusException(HttpStatus.FORBIDDEN, "You cant edit foreign todo");
@@ -84,33 +94,7 @@ public class TodosController {
      */
     @GetMapping("/get")
     public ResponseEntity<List<Todo>> getAllTasks(@RequestParam(value = "token")  Integer token) {
+        // TODO handle if admin checks todos
         return new ResponseEntity<>(todosService.getAllTasksForUser(token), HttpStatus.OK);
-    }
-
-    /*
-     * Endpoint returning a list of completed tasks between two indexes
-     * @param token     user account id
-     * @param fromIndex index of first task
-     * @param toIndex   index of last task
-     * @return  response entity contaning a list of completed tasks and http status 200 / 401 / 404
-     */
-    /*
-    @GetMapping("/getMoreCompletedTasks")
-    public ResponseEntity<List<Task>> getCompletedTasks(@RequestParam(value = "token") int token, @RequestParam(value = "from", required = false) Integer fromIndex, @RequestParam(value = "to", required = false) Integer toIndex) {
-        if (fromIndex == null) fromIndex = 0;
-        if (toIndex == null) toIndex = 20;
-        return new ResponseEntity<>(taskService.getCompletedTasks(token, fromIndex, toIndex), HttpStatus.OK);
-    }*/
-
-    /**
-     * Endpoint returning a list of tasks between times in unix formats
-     * @param token     user account id
-     * @param from      unix format of time we want to search from
-     * @param to        unix format of time we want to search to
-     * @return          list of found task objects
-     */
-    @GetMapping("/load")
-    public ResponseEntity<List<Todo>> getTasksByTimeRange(@RequestParam(value = "token") Integer token, @RequestParam(value = "from", required = false) long from, @RequestParam(value = "to", required = false) long to) {
-        return new ResponseEntity<>(todosService.getTasksByTimeRange(token, from, to), HttpStatus.OK);
     }
 }

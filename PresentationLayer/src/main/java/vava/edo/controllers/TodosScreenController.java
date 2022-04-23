@@ -2,28 +2,22 @@ package vava.edo.controllers;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
-import vava.edo.Exepctions.TodoScreen.FailedToCreateTodo;
+import vava.edo.Exepctions.TodoScreen.MandatoryFieldNotInputted;
+import vava.edo.Exepctions.TodoScreen.TodoDatabaseFail;
 import vava.edo.Handlers.TodoHandler;
 import vava.edo.controllers.models.TodoHBoxModel;
 import vava.edo.controllers.models.TodoScreenModel;
 import vava.edo.models.Todo;
 
-import java.io.IOException;
 
 public class TodosScreenController {
-    // private User user;
-    // public void setUser(User user){this.user = user;}
 
     private TodoScreenModel model;
-    private Todo selectedTodoId;
+    private Todo selectedTodo;
 
     @FXML
     private Label labelLeftBarAll;
-
-    @FXML
-    private Button buttonAddNewTodo;
 
     @FXML
     private VBox vBoxTodos;
@@ -31,7 +25,7 @@ public class TodosScreenController {
     @FXML
     private VBox vBoxTodoInfo;
 
-    // Okno pre vytvorenie noveho tasku
+    // FXML elements for new to_do window
     @FXML
     private VBox vBoxNewTaskScreen;
 
@@ -54,14 +48,9 @@ public class TodosScreenController {
     private DatePicker datePickerTaskTo;
 
     @FXML
-    private Button buttonCancelTodo;
-
-    @FXML
     private Button buttonAcceptTodo;
 
-
-
-    // elementy pre todo info
+    // elements for to_do info
     @FXML
     private CheckBox checkBoxTodoInfo;
 
@@ -90,16 +79,16 @@ public class TodosScreenController {
             vBoxTodos.getChildren().add(new TodoHBoxModel(todo, this, checkBoxTodoInfo,
                     labelTodoInfoDueTIme, labelTodoInfoName, labelTodoInfoDescription,
                     labelTodoInfoGroup).getTodoHBOx());
-            System.out.println("Loaded: " + todo.toString());
+            System.out.println("Loaded: " + todo);
         }
         this.model = model;
     }
 
     @FXML
-    protected void handleAddNewTodo() throws IOException {
+    protected void handleAddNewTodo() {
         System.out.println("Clicked add new task button");
 
-        // musi byt premazane, lebo ostane to co bolo posledne
+        // Have to be emptied before use
         textFieldTaskName.setText("");
         textAreaTaskDescription.setText("");
         textFieldTaskGroup.setText("");
@@ -115,18 +104,18 @@ public class TodosScreenController {
     }
 
     @FXML
-    protected void handleCancelTodo() throws IOException {
+    protected void handleCancelTodo() {
         vBoxNewTaskScreen.setVisible(false);
         vBoxNewTaskScreen.setDisable(true);
     }
 
     @FXML
-    protected void handleAcceptTodo() throws IOException {
+    protected void handleAcceptTodo() {
         try{
             TodoHandler.addTodoToUser(model.getUser(), textFieldTaskName, textAreaTaskDescription,
                     datePickerTaskFrom, datePickerTaskTo, textFieldTaskGroup);
         }
-        catch (FailedToCreateTodo e) {
+        catch (MandatoryFieldNotInputted | TodoDatabaseFail e) {
             e.printStackTrace();
         }
 
@@ -135,31 +124,57 @@ public class TodosScreenController {
     }
 
     public void handleEditTodoInfo() {
+        // TODO zmenit nazov new task na edit todo
         textFieldTaskName.setText(labelTodoInfoName.getText());
         textAreaTaskDescription.setText(labelTodoInfoDescription.getText());
         textFieldTaskGroup.setText(labelTodoInfoGroup.getText());
         // datePickerTaskFrom.
         // datePickerTaskFrom.
-
+        // TODO datum to datepickrvo sa naplna cez konstruktor tak sa na to pozri potom Mario
         vBoxNewTaskScreen.setVisible(true);
         vBoxNewTaskScreen.setDisable(false);
         buttonEditTodo.setVisible(true);
         buttonAcceptTodo.setVisible(false);
     }
 
+
+    /**
+     * Handles the delete button, calls a method deleteTodo which deletes the selected to_do
+     */
     public void handleDeleteTodo() {
-        System.out.println("Selected todo: " + selectedTodoId.toString());
+
+       try {
+           TodoHandler.deleteTodo(this.selectedTodo.getTodoId(), model.getUser());
+       }
+       catch (TodoDatabaseFail e){
+           e.printStackTrace();
+       }
     }
 
-    public void handleEditTodo(MouseEvent mouseEvent) {
 
+    /**
+     * Handles the edit button, calls a method which creates a PUT request for
+     * editing the selected to_do
+     */
+    public void handleEditTodo() {
+
+        try {
+            TodoHandler.editTodo(selectedTodo.getTodoId(), model.getUser(), textFieldTaskName, textAreaTaskDescription,
+                    datePickerTaskFrom, datePickerTaskTo, textFieldTaskGroup);
+        }catch (MandatoryFieldNotInputted | TodoDatabaseFail e){
+            e.printStackTrace();
+        }
+
+        vBoxNewTaskScreen.setVisible(false);
+        vBoxNewTaskScreen.setDisable(true);
     }
+
 
     /**
      * Setter for Selected to-do
-     * @param selectedTodoId clicked to-do
+     * @param selectedTodo clicked to-do
      */
-    public void setSelectedTodoId(Todo selectedTodoId) {
-        this.selectedTodoId = selectedTodoId;
+    public void setSelectedTodo(Todo selectedTodo) {
+        this.selectedTodo = selectedTodo;
     }
 }

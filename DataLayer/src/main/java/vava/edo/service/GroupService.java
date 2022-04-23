@@ -9,6 +9,7 @@ import org.springframework.web.server.ResponseStatusException;
 import vava.edo.model.Group;
 import vava.edo.model.User;
 import vava.edo.model.exeption.GroupNotFoundException;
+import vava.edo.repository.GroupMembersRepository;
 import vava.edo.repository.GroupRepository;
 import vava.edo.schema.GroupCreate;
 
@@ -22,17 +23,18 @@ public class GroupService {
 
     private final GroupRepository groupRepository;
     private final UserService userService;
+    private final GroupMembersRepository groupMembersRepository;
 
     @Autowired
-    public GroupService(GroupRepository groupRepository, UserService userService) {
+    public GroupService(GroupRepository groupRepository, UserService userService, GroupMembersRepository groupMembersRepository) {
         this.groupRepository = groupRepository;
         this.userService = userService;
+        this.groupMembersRepository = groupMembersRepository;
     }
 
 
     /**
      * Method finds group by its name
-     *
      * @param groupName name of group you are looking for
      * @return found group by name
      */
@@ -52,7 +54,6 @@ public class GroupService {
 
     /**
      * Method finds all groups which name contains given string
-     *
      * @param groupName string which will be looking for
      * @return list of groups
      */
@@ -72,7 +73,6 @@ public class GroupService {
 
     /**
      * Method returns all groups in database
-     *
      * @return list of all groups
      */
     public List<Group> getAllGroups() {
@@ -82,7 +82,6 @@ public class GroupService {
 
     /**
      * Method finds group by its ID, if it does not exist throws exception
-     *
      * @param groupId group ID you are looking for
      * @return found group
      */
@@ -94,7 +93,6 @@ public class GroupService {
 
     /**
      * Method that updates found group by ID based on given GroupEdit class parameter
-     *
      * @param groupID  group ID you want to change
      * @param groupDto groupDto class with updated parameter
      * @return updated group
@@ -105,7 +103,7 @@ public class GroupService {
         User user = userService.getUser(groupDto.getCreatorId());
 
         groupToEdit.setGroupName(groupDto.getGroupName());
-        groupToEdit.setGroupCreatorId(user);
+        groupToEdit.setGroupCreator(user);
 
         return groupToEdit;
     }
@@ -113,14 +111,13 @@ public class GroupService {
 
     /**
      * Method converts DTO object to Group object and saves it to database
-     *
      * @param groupDto group Data Transfer Object you want to convert to group
      * @return created group
      */
     public Group addGroup(GroupCreate groupDto) {
         User user = userService.getUser(groupDto.getCreatorId());
         Group group = Group.from(groupDto);
-        group.setGroupCreatorId(user);
+        group.setGroupCreator(user);
 
         return groupRepository.save(group);
     }
@@ -128,7 +125,6 @@ public class GroupService {
 
     /**
      * Method for deleting group from database by ID
-     *
      * @param groupId group ID you want to delete
      * @return deleted group
      */
@@ -137,6 +133,30 @@ public class GroupService {
 
         groupRepository.delete(group);
         return group;
+    }
+
+    public boolean isUserCreator(Integer userId) {
+        return groupRepository.existsByGroupCreatorUId(userId);
+    }
+
+    /**
+     * Method that chcecks if user is group creator and other user is his member
+     * @param creatorId id of a creator
+     * @param userId    if of a member
+     * @return          true/ false
+     */
+    public boolean isUserCreatorsGroupMember(Integer creatorId, Integer userId) {
+        List<Group> creatorsGroups = groupRepository.findAllByGroupCreatorUId(creatorId);
+        if (creatorsGroups.isEmpty()) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Given user does not own any group.");
+        }
+        for (Group group : creatorsGroups) {
+            // due to cyclic import has to be repo
+            if (groupMembersRepository.existsByGroupIdAndMemberId(group.getGrId(), userId)) {
+                return true;
+            }
+        }
+        return false;
     }
 
 }

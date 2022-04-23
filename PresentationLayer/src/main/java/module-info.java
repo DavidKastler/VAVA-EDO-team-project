@@ -10,7 +10,8 @@ module vava.edo.presentationlayer {
     requires gson;
     requires json;
 
-    //needed for JSON
+    // needed for the DateUtils to compare dates
+    requires commons.lang3;
 
     opens vava.edo to javafx.fxml;
     exports vava.edo;

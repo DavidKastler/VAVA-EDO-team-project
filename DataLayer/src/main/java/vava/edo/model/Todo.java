@@ -32,10 +32,9 @@ public class Todo {
     private Long toTime;
     @Column(name = "completed", nullable = false)
     private boolean completed;
-    @Column(name = "group_name", nullable = false)
+    @Column(name = "group_name")
     private String groupName;
 
-    //TODO prispojobit taskDto po jeho uprave
     /**
      * Static casting method from TaskCreate object
      * @param taskDto    TaskCreate object that you want to cast
@@ -52,7 +51,6 @@ public class Todo {
         todo.setGroupName(taskDto.getGroupName());
         return todo;
     }
-
 
     /**
      * Debugging method

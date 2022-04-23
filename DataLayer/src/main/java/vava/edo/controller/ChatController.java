@@ -56,21 +56,25 @@ public class ChatController {
      * @param token     user account id
      * @param groupId   chat room / group id
      * @param fromIndex optional parameter used to select specific message index range
-     * @param toIndex   optional parameter used to select specific message index range
+     * @param size   optional parameter used to select specific message index range
      * @return          list of chat objects
      */
-    @GetMapping("/get/{chatId}")
+    @GetMapping("/get/{groupId}")
     public ResponseEntity<List<Chat>> getLastMessages(@RequestParam(value = "token") int token,
                                                       @RequestParam(value = "from", required = false) Integer fromIndex,
-                                                      @RequestParam(value = "to", required = false) Integer toIndex,
-                                                      @PathVariable(value = "chatId") int groupId) {
+                                                      @RequestParam(value = "size", required = false) Integer size,
+                                                      @PathVariable(value = "groupId") int groupId) {
         if (!groupMembersService.isUserInGroup(token, groupId)) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Combination of userId and groupId not found.");
         }
 
-        if (fromIndex == null) fromIndex = 0;
-        if (toIndex == null) toIndex = 20;
+        if (fromIndex == null) {
+            fromIndex = 0;
+        }
+        if (size == null) {
+            size = 20;
+        }
 
-        return new ResponseEntity<>(chatService.getMessagesFromRange(groupId, fromIndex, toIndex), HttpStatus.OK);
+        return new ResponseEntity<>(chatService.getMessagesFromRange(groupId, fromIndex, size), HttpStatus.OK);
     }
 }

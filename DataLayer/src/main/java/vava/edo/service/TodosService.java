@@ -47,30 +47,6 @@ public class TodosService {
     }
 
     /**
-     * Method returns users completed tasks from first to second index
-     * @param userId id of user whose tasks we wish to return
-     * @param fromIndex index of first task in list
-     * @param toIndex index of last task in list
-     * @return list of task objects
-     */
-    public List<Todo> getCompletedTodos(int userId, int fromIndex, int toIndex) {
-//        return todoRepository.findAllByGroupIdAndCompletedOrderByFromTime(userId, true, PageRequest.of(fromIndex, toIndex));
-        return null;
-    }
-
-    /**
-     * Method returns all users tasks between two times
-     * @param userId    id of searched user
-     * @param fromTime  time to search from in unix format
-     * @param toTime    time to search to in unix format
-     * @return          list of found task objects
-     */
-    public List<Todo> getTasksByTimeRange(Integer userId, long fromTime, long toTime) {
-//        return todoRepository.findAllByTodoGroupUIdAndFromTimeBetween(userId, fromTime, toTime);
-        return null;
-    }
-
-    /**
      * Method converts DTO object to Task object
      * and saves it to database
      * @param taskDto   task Data Transfer Object you want to convert to task
@@ -96,18 +72,6 @@ public class TodosService {
     }
 
     /**
-     * Method returns userId from given task identified by taskId
-     * @param taskId    id of searched task
-     * @return  int userId
-     */
-    public int getUserIdFromTask(int taskId) {
-        Todo todo = getTask(taskId);
-
-        //return todo.getUserId();
-        return 0;
-    }
-
-    /**
      * Method for updating tasks from database by ID
      * @param taskId    ID of task you want to update
      * @param taskDto   task Data Transfer Object for updating task
@@ -119,7 +83,10 @@ public class TodosService {
 
         todoToUpdate.setTodoName(taskDto.getTodoName());
         todoToUpdate.setTodoDescription(taskDto.getTodoDescription());
+        todoToUpdate.setToTime(taskDto.getToTime());
+        todoToUpdate.setFromTime(taskDto.getFromTime());
         todoToUpdate.setCompleted(taskDto.isCompleted());
+        todoToUpdate.setGroupName(taskDto.getGroupName());
 
         return todoToUpdate;
     }

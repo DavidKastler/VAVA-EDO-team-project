@@ -43,7 +43,7 @@ public class TodoController {
         model.getLabelTodoInfoName().setText(model.getTodo().getTodoName());
         model.getLabelTodoInfoDescription().setText(model.getTodo().getTodoDescription());
         model.getLabelTodoInfoGroup().setText(model.getTodo().getGroupName());
-        model.getTsc().setSelectedTodoId(model.getTodo());
+        model.getTsc().setSelectedTodo(model.getTodo());
         System.out.println("Todo info was printed");
     }
 }

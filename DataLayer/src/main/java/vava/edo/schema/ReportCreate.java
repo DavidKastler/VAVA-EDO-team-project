@@ -15,9 +15,9 @@ import java.sql.Date;
 @Data
 public class ReportCreate{
     @NotNull
-    private int chatId;
-    private int reporterId;
-    private int violatorId;
+    private Integer chatId;
+    private Integer reporterId;
+    private Integer violatorId;
     private String reportMessage;
     private ReportStatus reportStatus;
 

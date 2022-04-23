@@ -27,7 +27,6 @@ public class UserController {
         this.userService = userService;
     }
 
-
     @PostMapping(value = "/login")
     public ResponseEntity<User> loginUser(@RequestBody UserLogin userLogin) {
         User user = userService.getUserByUserName(userLogin.getUsername());
@@ -35,12 +34,10 @@ public class UserController {
         return new ResponseEntity<>(user, HttpStatus.OK);
     }
 
-
     @PostMapping(value = "/register")
     public ResponseEntity<Object> registerNewUser(@RequestBody UserRegister userDto) {
         return new ResponseEntity<>(userService.addUser(userDto), HttpStatus.CREATED);
     }
-
 
     @PutMapping("/update/{userId}")
     public ResponseEntity<User> updateUser(@RequestParam(value = "token") Integer token,
@@ -62,7 +59,6 @@ public class UserController {
         return new ResponseEntity<>(user, HttpStatus.OK);
     }
 
-
     @PutMapping("/edit/{userId}")
     public ResponseEntity<User> editUser(@RequestParam(value = "token") Integer token,
                                              @PathVariable(value = "userId") Integer userId,
@@ -77,7 +73,6 @@ public class UserController {
         return new ResponseEntity<>(user, HttpStatus.OK);
     }
 
-
     @DeleteMapping(value = "/delete/{u_id}")
     public ResponseEntity<Object> deleteUserById(@RequestParam(value = "token") Integer token,
                                                  @PathVariable(value = "u_id") Integer userId) {
@@ -88,7 +83,6 @@ public class UserController {
         return new ResponseEntity<>(userService.deleteUser(userId), HttpStatus.NO_CONTENT);
     }
 
-
     @GetMapping(value = "/all")
     public ResponseEntity<List<User>> getAllUsers(@RequestParam(value = "token") Integer token) {
         if (!userService.isAdmin(token)) {
@@ -96,7 +90,6 @@ public class UserController {
         }
         return new ResponseEntity<>(userService.getAllUsers(), HttpStatus.OK);
     }
-
 
     @GetMapping(value = "/get/{userId}")
     public ResponseEntity<User> getUserById(@RequestParam(value = "token") Integer token,
