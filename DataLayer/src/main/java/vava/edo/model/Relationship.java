@@ -32,7 +32,6 @@ public class Relationship {
     @Enumerated(EnumType.ORDINAL)
     @Column(name = "status")
     private RelationshipStatus status;
-
     @Column(name = "since")
     private Long since;
 

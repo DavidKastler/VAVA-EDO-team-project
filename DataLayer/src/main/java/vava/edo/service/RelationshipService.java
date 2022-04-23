@@ -99,7 +99,7 @@ public class RelationshipService {
     public Relationship acceptRelationshipRequest(Integer relationshipId) {
         Relationship relationship = getRelationship(relationshipId);
 
-        relationship.setStatus(RelationshipStatus.ACCEPTED);
+        relationship.setStatus(RelationshipStatus.accepted);
         return relationship;
     }
 
@@ -107,7 +107,7 @@ public class RelationshipService {
     public Relationship blockRelationshipRequest(Integer relationshipId) {
         Relationship relationship = getRelationship(relationshipId);
 
-        relationship.setStatus(RelationshipStatus.BLOCKED);
+        relationship.setStatus(RelationshipStatus.blocked);
         return relationship;
     }
 
