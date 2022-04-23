@@ -1,5 +1,6 @@
 package vava.edo.controller;
 
+import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,6 +15,7 @@ import java.util.List;
 /**
  * Class that provides endpoints for operations with feedback
  */
+@Log4j2
 @RestController
 @RequestMapping("/feedback")
 public class FeedbackController {
@@ -35,6 +37,7 @@ public class FeedbackController {
     @PostMapping("/create")
     public ResponseEntity<Feedback> createFeedback(@RequestParam(value = "token") Integer token,
                                                    @RequestBody String feedbackMessage) {
+        log.info("Creating new feedback.");
         return new ResponseEntity<>(feedbackService.createFeedback(token, feedbackMessage), HttpStatus.CREATED);
     }
 
@@ -47,9 +50,12 @@ public class FeedbackController {
     @PutMapping("seen/{fbId}")
     public ResponseEntity<Feedback> setFeedbackSeen(@RequestParam(value = "token") Integer token,
                                                     @PathVariable(value = "fbId") Integer fbId) {
+        log.info("Processing a feedback.");
         if (!userService.isAdmin(token)) {
+            log.warn("Permission denied, insufficient rights to process feedback.");
             throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "This action requires admin privileges.");
         }
+        log.info("Feedback {} has been seen.", fbId);
         return new ResponseEntity<>(feedbackService.setFeedbackSeen(fbId), HttpStatus.OK);
     }
 
@@ -62,9 +68,12 @@ public class FeedbackController {
     @DeleteMapping("delete/{fbId}")
     public ResponseEntity<Feedback> deleteFeedback(@RequestParam(value = "token") Integer token,
                                                    @PathVariable(value = "fbId") Integer fbId) {
+        log.info("Deleting a feedback.");
         if (!userService.isAdmin(token)) {
+            log.warn("Permission denied, insufficient rights to delete feedback.");
             throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "This action requires admin privileges.");
         }
+        log.info("Feedback {} has been deleted.", fbId);
         return new ResponseEntity<>(feedbackService.deleteFeedback(fbId), HttpStatus.NO_CONTENT);
     }
 
@@ -75,9 +84,12 @@ public class FeedbackController {
      */
     @GetMapping(value = "/new")
     public ResponseEntity<List<Feedback>> getAllUnseenFeedback(@RequestParam(value = "token") Integer token) {
+        log.info("Get all unprocessed feedbacks.");
         if (!userService.isAdmin(token)) {
+            log.warn("Permission denied, insufficient rights to get list of all unprocessed feedbacks.");
             throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "This action requires admin privileges.");
         }
+        log.info("List of all unprocessed feedback.");
         return new ResponseEntity<>(feedbackService.getAllUnseenFeedback(), HttpStatus.OK);
     }
 
@@ -88,9 +100,12 @@ public class FeedbackController {
      */
     @GetMapping(value = "/all")
     public ResponseEntity<List<Feedback>> getAllFeedback(@RequestParam(value = "token") Integer token) {
+        log.info("Get all feedbacks.");
         if (!userService.isAdmin(token)) {
+            log.warn("Permission denied, insufficient rights to get list of all feedbacks.");
             throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "This action requires admin privileges.");
         }
+        log.info("List of all feedback.");
         return new ResponseEntity<>(feedbackService.getAllFeedback(), HttpStatus.OK);
     }
 
@@ -103,9 +118,12 @@ public class FeedbackController {
     @GetMapping(value = "/get/{fbId}")
     public ResponseEntity<Feedback> getFeedbacksById(@RequestParam(value = "token") int token,
                                                      @PathVariable(value = "fbId") int fbId) {
+        log.info("Getting specific feedback.");
         if (!userService.isAdmin(token)) {
+            log.warn("Permission denied, insufficient rights to get specific feedback.");
             throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "This action requires admin privileges.");
         }
+        log.info("Feedback with id:{} .", fbId);
         return new ResponseEntity<>(feedbackService.getFeedback(fbId), HttpStatus.OK);
     }
 

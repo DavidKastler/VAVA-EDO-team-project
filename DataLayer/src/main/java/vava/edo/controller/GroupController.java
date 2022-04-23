@@ -1,5 +1,6 @@
 package vava.edo.controller;
 
+import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,6 +17,7 @@ import java.util.List;
 /**
  * Class that provides endpoints for groups operations
  */
+@Log4j2
 @RestController
 @RequestMapping("/groups")
 public class GroupController {
@@ -38,11 +40,14 @@ public class GroupController {
     @PostMapping(value = "/create")
     public ResponseEntity<Object> createNewGroup(@RequestParam(value = "token") int token,
                                                  @RequestBody GroupCreate groupDto) {
+        log.info("Creating new group.");
         if (!userService.isTeamLeader(token)) {
+            log.warn("Cannot create new group due to a low access rights.");
             throw new ResponseStatusException(HttpStatus.UNAUTHORIZED,
                     "This action requires at least team leader privileges.");
         }
         Group newGroup = groupService.addGroup(groupDto);
+        log.info("New group with name:{} created.", newGroup.getGroupName());
         return new ResponseEntity<>(newGroup, HttpStatus.CREATED);
     }
 
@@ -55,11 +60,14 @@ public class GroupController {
     @DeleteMapping(value = "/delete/{groupId}")
     public ResponseEntity<Group> deleteGroupById(@RequestParam(value = "token") int token,
                                                   @PathVariable(value = "groupId") int groupId) {
+        log.info("Deleting group from database.");
         if (!userService.isTeamLeader(token)) {
+            log.warn("Permission denied, to delete a group need to be team leader.");
             throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "This action requires admin, account manager" +
                     " or team leader privileges.");
         }
         groupMembersService.deleteAllMember(groupId);
+        log.info("Group with {} was successfully deleted", groupId);
         return new ResponseEntity<>(groupService.deleteGroup(groupId), HttpStatus.NO_CONTENT);
     }
 
@@ -67,9 +75,12 @@ public class GroupController {
     public ResponseEntity<Group> updateGroup(@RequestParam(value = "token") Integer token,
                                              @PathVariable String group_id,
                                              @RequestBody GroupCreate updatedGroup) {
+        log.info("Updating group.");
         if (updatedGroup.getCreatorId() != token) {
+            log.warn("Request failed, only group owner can update group.");
             throw new ResponseStatusException(HttpStatus.FORBIDDEN, "You are not the creator");
         }
+        log.info("Group successfully updated.");
         return new ResponseEntity<Group>(groupService.editGroup(token, updatedGroup), HttpStatus.OK);
     }
 
@@ -85,9 +96,12 @@ public class GroupController {
      */
     @GetMapping(value = "/all")
     public ResponseEntity<List<Group>> getAllGroups(@RequestParam(value = "token") int token) {
+        log.info("Looking for all groups.");
         if (!userService.isAdmin(token)) {
+            log.warn("Permission denied, not enough rights to search other groups.");
             throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "This action requires admin privileges.");
         }
+        log.info("Found all groups.");
         return new ResponseEntity<>(groupService.getAllGroups(), HttpStatus.OK);
     }
 }

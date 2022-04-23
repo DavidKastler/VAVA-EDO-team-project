@@ -55,7 +55,7 @@ public class UserController {
             if (userService.isAdmin(token)) {
                 wantedUserId = userId;
             } else {
-                log.warn("Update rejected, insufficient rights.");
+                log.warn("Update rejected, insufficient rights to update user profile.");
                 throw new ResponseStatusException(HttpStatus.FORBIDDEN, "You do not have rights to do this.");
             }
         }
@@ -72,7 +72,7 @@ public class UserController {
                                              @RequestBody UserEdit editedUser) {
         log.info("Editing user profile.");
         if (!userService.isAdmin(token)) {
-            log.warn("Edit rejected, insufficient rights.");
+            log.warn("Edit rejected, insufficient rights to edit user profile.");
             throw new ResponseStatusException(HttpStatus.FORBIDDEN, "You do not have rights to do this.");
         }
 
@@ -87,7 +87,7 @@ public class UserController {
                                                  @PathVariable(value = "u_id") Integer userId) {
         log.info("Deleting user.");
         if (!(userService.isAccountManager(token))) {
-            log.warn("Deleted request rejected, insufficient rights.");
+            log.warn("Deleted request rejected, insufficient rights to delete user.");
             throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "This action requires admin privileges.");
         }
         return new ResponseEntity<>(userService.deleteUser(userId), HttpStatus.NO_CONTENT);
@@ -97,7 +97,7 @@ public class UserController {
     public ResponseEntity<List<User>> getAllUsers(@RequestParam(value = "token") Integer token) {
         log.info("Getting all users from database.");
         if (!userService.isAdmin(token)) {
-            log.warn("Request rejected, insufficient rights.");
+            log.warn("Request rejected, insufficient rights to get all users.");
             throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "This action requires admin privileges.");
         }
         log.info("Found all users.");

@@ -1,5 +1,6 @@
 package vava.edo.controller;
 
+import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,6 +16,7 @@ import java.util.Objects;
 /**
  * Class that provides endpoints for operations with chat
  */
+@Log4j2
 @RestController
 @RequestMapping("/chats")
 public class ChatController {
@@ -37,11 +39,14 @@ public class ChatController {
     @PostMapping("/send")
     public ResponseEntity<Chat> sendMessage(@RequestParam(value = "token") Integer token,
                                             @RequestBody MessageCreate messageDto) {
-
+        log.info("Sending a message.");
         if (!Objects.equals(token, messageDto.getSenderId()) ||
                 !groupMembersService.isUserInGroup(token, messageDto.getGroupId())) {
+            log.warn("Message must be sent by sending user and it must be sent to different user within same group.");
             throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "User needs to be the owner of the selected account and part of the group.");
         }
+        log.info("User with id:{} send message in group with id:{}",
+                messageDto.getSenderId(), messageDto.getGroupId());
         return new ResponseEntity<>(chatService.saveMessageToDatabase(messageDto), HttpStatus.CREATED);
     }
 
@@ -54,6 +59,7 @@ public class ChatController {
     @DeleteMapping("/delete")
     public ResponseEntity<Chat> deleteMessage(@RequestParam(value = "token") Integer token,
                                                      @RequestParam(value = "chatId") Integer chatId) {
+        log.info("Deleting a message with id:{}.", chatId);
         return new ResponseEntity<>(chatService.deleteMessage(token, chatId), HttpStatus.NO_CONTENT);
     }
 
@@ -70,7 +76,9 @@ public class ChatController {
                                                       @RequestParam(value = "from", required = false) Integer fromIndex,
                                                       @RequestParam(value = "size", required = false) Integer size,
                                                       @PathVariable(value = "groupId") int groupId) {
+        log.info("Getting last messages from user {} in group with id:{}", token, groupId);
         if (!groupMembersService.isUserInGroup(token, groupId)) {
+            log.warn("There is no user with id: {} in group with id:{}", token, groupId);
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Combination of userId and groupId not found.");
         }
         if (fromIndex == null) {
@@ -79,6 +87,7 @@ public class ChatController {
         if (size == null) {
             size = 20;
         }
+        log.info("Last messages from user {} in group with id:{}", token, groupId);
         return new ResponseEntity<>(chatService.getMessagesFromRange(groupId, fromIndex, size), HttpStatus.OK);
     }
 }
