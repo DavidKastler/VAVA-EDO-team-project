@@ -6,5 +6,5 @@ package vava.edo.model.enums;
 public enum ReportStatus {
     pending,
     accepted,
-    rejected
+    rejected;
 }

@@ -60,7 +60,6 @@ public class ReportService {
         Report report = Report.from(reportDto);
         report.setReporter(userService.getUser(reportDto.getReporterId()));
         report.setViolator(userService.getUser(reportDto.getViolatorId()));
-        report.setStatus(ReportStatus.pending);
         return reportRepository.save(report);
     }
 

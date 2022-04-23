@@ -29,7 +29,7 @@ public class Report {
     private User violator;
     @Column(name = "rep_message", nullable = false)
     private String reportMessage;
-    @Enumerated(EnumType.ORDINAL)
+    @Enumerated(EnumType.STRING)
     @Column(name = "status", nullable = false)
     private ReportStatus status;
 
