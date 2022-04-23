@@ -39,15 +39,16 @@ public class RelationshipController {
     @PostMapping(value = "/create")
     public ResponseEntity<Object> createNewFriendRequest(@RequestParam(value = "token") Integer token,
                                                          @RequestBody RelationshipCreate relationshipDto) {
-        if (Objects.equals(relationshipDto.getSenderId(), relationshipDto.getReceiverName())) {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "First and second user cant be same.");
-        }
-        if (!Objects.equals(token, relationshipDto.getSenderId()) && !userService.isAdmin(token)) {
-            throw new ResponseStatusException(HttpStatus.FORBIDDEN, "You dont have rights to do this.");
+        if (!Objects.equals(token, relationshipDto.getSenderId())) {
+            throw new ResponseStatusException(HttpStatus.FORBIDDEN, "You cant create relationships for someone else.");
         }
 
         Integer senderId = relationshipDto.getSenderId();
         Integer receiverId = userService.getUserByUserName(relationshipDto.getReceiverName()).getUId();
+
+        if (Objects.equals(senderId, receiverId)) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "First and second user cant be same.");
+        }
 
         Relationship existingRequest = relationshipService.getRelationshipBySenderIdAndReceiverId(senderId, receiverId);
         if (existingRequest != null) {
