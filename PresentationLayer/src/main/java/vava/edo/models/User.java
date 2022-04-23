@@ -65,11 +65,16 @@ public class User implements Serializable {
     public void addTodo(Todo todo){this.todos.add(todo);}
 
     public void removeTodo(Todo todo){
-        this.todos.remove(todo);
+        todos.removeIf(todoRem -> todoRem.getTodoId() == todo.getTodoId());
     }
 
+    /**
+     * Removes the old to_do and add the new one into the todos ArrayList
+     * @param todo object which has been edited
+     */
     public void updateTodo(Todo todo){
-        // TODO have to implement logic for updating the array list with the new todo
+        this.removeTodo(todo);
+        this.todos.add(todo);
     }
 
     @Override

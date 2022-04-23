@@ -248,4 +248,10 @@ public class TodoHandler {
         }
 
     }
+
+
+    public static ArrayList<Todo> getCompletedTodos(){
+        return null;
+    }
+
 }

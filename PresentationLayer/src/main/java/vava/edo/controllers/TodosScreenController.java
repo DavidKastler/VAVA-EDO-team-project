@@ -130,7 +130,7 @@ public class TodosScreenController {
         textFieldTaskGroup.setText(labelTodoInfoGroup.getText());
         // datePickerTaskFrom.
         // datePickerTaskFrom.
-
+        // TODO datum to datepickrvo sa naplna cez konstruktor tak sa na to pozri potom Mario
         vBoxNewTaskScreen.setVisible(true);
         vBoxNewTaskScreen.setDisable(false);
         buttonEditTodo.setVisible(true);
