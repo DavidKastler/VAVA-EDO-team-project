@@ -30,7 +30,7 @@ public class Report {
     @Column(name = "rep_message", nullable = false)
     private String reportMessage;
     @Enumerated(EnumType.ORDINAL)
-    @Column(name = "status", nullable = false)
+    @Column(name = "status")
     private ReportStatus status;
 
 
