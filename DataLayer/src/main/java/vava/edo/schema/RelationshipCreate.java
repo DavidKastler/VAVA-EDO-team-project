@@ -12,8 +12,5 @@ public class RelationshipCreate {
     @NotNull
     private Integer senderId;
     @NotNull
-    private Integer receiverId;
-
-
-
+    private String receiverName;
 }
