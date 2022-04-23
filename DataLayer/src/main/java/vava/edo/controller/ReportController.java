@@ -35,7 +35,7 @@ public class ReportController {
      */
     @PostMapping("/create")
     public ResponseEntity<Report> createReport(@RequestBody ReportCreate reportDto) {
-        return new ResponseEntity<>(reportService.addReport(reportDto), HttpStatus.OK);
+        return new ResponseEntity<>(reportService.addReport(reportDto), HttpStatus.CREATED);
     }
 
     /**

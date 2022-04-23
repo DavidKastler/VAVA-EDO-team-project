@@ -30,9 +30,9 @@ public class ChatController {
 
     /**
      * Endpoint used to create a new message
-     * @param token     user account id
+     * @param token         user account id
      * @param messageDto    message body containing all necessary information
-     * @return      chat object
+     * @return              chat object
      */
     @PostMapping("/send")
     public ResponseEntity<Chat> sendMessage(@RequestParam(value = "token") Integer token,
@@ -42,9 +42,15 @@ public class ChatController {
                 !groupMembersService.isUserInGroup(token, messageDto.getGroupId())) {
             throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "User needs to be the owner of the selected account and part of the group.");
         }
-        return new ResponseEntity<>(chatService.saveMessageToDatabase(messageDto), HttpStatus.OK);
+        return new ResponseEntity<>(chatService.saveMessageToDatabase(messageDto), HttpStatus.CREATED);
     }
 
+    /**
+     * Endpoint to delete message from database
+     * @param token     user id
+     * @param chatId    chat id you want to remove
+     * @return          deleted message
+     */
     @DeleteMapping("/delete")
     public ResponseEntity<Chat> deleteMessage(@RequestParam(value = "token") Integer token,
                                                      @RequestParam(value = "chatId") Integer chatId) {
@@ -67,14 +73,12 @@ public class ChatController {
         if (!groupMembersService.isUserInGroup(token, groupId)) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Combination of userId and groupId not found.");
         }
-
         if (fromIndex == null) {
             fromIndex = 0;
         }
         if (size == null) {
             size = 20;
         }
-
         return new ResponseEntity<>(chatService.getMessagesFromRange(groupId, fromIndex, size), HttpStatus.OK);
     }
 }

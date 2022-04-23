@@ -1,6 +1,5 @@
 package vava.edo.service;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -8,7 +7,6 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.server.ResponseStatusException;
 import vava.edo.model.Group;
 import vava.edo.model.User;
-import vava.edo.model.exeption.GroupNotFoundException;
 import vava.edo.repository.GroupMembersRepository;
 import vava.edo.repository.GroupRepository;
 import vava.edo.schema.GroupCreate;
@@ -32,7 +30,6 @@ public class GroupService {
         this.groupMembersRepository = groupMembersRepository;
     }
 
-
     /**
      * Method finds group by its name
      * @param groupName name of group you are looking for
@@ -51,7 +48,6 @@ public class GroupService {
         return group;
     }
 
-
     /**
      * Method finds all groups which name contains given string
      * @param groupName string which will be looking for
@@ -69,7 +65,6 @@ public class GroupService {
 
         return groups;
     }
-
 
     /**
      * Method returns all groups in database
@@ -90,7 +85,6 @@ public class GroupService {
                 () -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Group with this id does not exist."));
     }
 
-
     /**
      * Method that updates found group by ID based on given GroupEdit class parameter
      * @param groupID  group ID you want to change
@@ -108,7 +102,6 @@ public class GroupService {
         return groupToEdit;
     }
 
-
     /**
      * Method converts DTO object to Group object and saves it to database
      * @param groupDto group Data Transfer Object you want to convert to group
@@ -122,7 +115,6 @@ public class GroupService {
         return groupRepository.save(group);
     }
 
-
     /**
      * Method for deleting group from database by ID
      * @param groupId group ID you want to delete
@@ -135,6 +127,11 @@ public class GroupService {
         return group;
     }
 
+    /**
+     * Method that checks if user is creator
+     * @param userId    id of user you want to check
+     * @return          true/ false
+     */
     public boolean isUserCreator(Integer userId) {
         return groupRepository.existsByGroupCreatorUId(userId);
     }
