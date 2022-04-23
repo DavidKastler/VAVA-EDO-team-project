@@ -11,19 +11,18 @@ public class ReportHandler {
 
     public static void createReport(Integer userId, Integer violatorId, String message) {
         JSONObject newReport = new JSONObject();
-        newReport.put("creatorId", userId);
+        newReport.put("reporterId", userId);
         newReport.put("violatorId", violatorId);
         newReport.put("reportMessage", message);
-        newReport.put("reportStatus", "'pending'");
 
         try {
-            HttpResponse<JsonNode> groupJson = Unirest.post("http://localhost:8080/reports/create?token={token}")
+            HttpResponse<JsonNode> reportJson = Unirest.post("http://localhost:8080/reports/create?token={token}")
                     .header("Content-type", "application/json")
                     .routeParam("token", String.valueOf(userId))
                     .body(newReport)
                     .asJson();
 
-            if (groupJson.getStatus() != 200) throw new UnexpectedHttpStatusException(groupJson.getStatus(), 200);
+            if (reportJson.getStatus() != 201) throw new UnexpectedHttpStatusException(reportJson.getStatus(), 201, reportJson.getStatusText());
 
         } catch (UnirestException e) {
             System.out.println(e.getMessage());

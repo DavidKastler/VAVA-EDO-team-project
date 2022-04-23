@@ -14,13 +14,6 @@ public class RelationshipCreate {
     @NotNull
     private Integer receiverId;
 
-    /**
-     * Create new relationship, status is "pending" by default
-     * @param firstUserId  user who send request
-     * @param secondUserId user who received request
-     */
-    public RelationshipCreate(Integer firstUserId, Integer secondUserId) {
-        this.senderId = firstUserId;
-        this.receiverId = secondUserId;
-    }
+
+
 }

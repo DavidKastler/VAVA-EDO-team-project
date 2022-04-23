@@ -24,7 +24,7 @@ public class GroupHandler {
                     .routeParam("token", String.valueOf(userId))
                     .asJson();
 
-            if (groupsJson.getStatus() != 200) throw new UnexpectedHttpStatusException(groupsJson.getStatus(), 200);
+            if (groupsJson.getStatus() != 200) throw new UnexpectedHttpStatusException(groupsJson.getStatus(), 200, groupsJson.getStatusText());
 
             for (Object group: groupsJson.getBody().getArray()){
                 groups.add(new Gson().fromJson(group.toString(), Group.class));
@@ -52,7 +52,7 @@ public class GroupHandler {
                     .body(newGroup)
                     .asJson();
 
-            if (groupJson.getStatus() != 201) throw new UnexpectedHttpStatusException(groupJson.getStatus(), 201);
+            if (groupJson.getStatus() != 201) throw new UnexpectedHttpStatusException(groupJson.getStatus(), 201, groupJson.getStatusText());
 
             Group createdGroup = new Gson().fromJson(groupJson.getBody().toString(), Group.class);
 
@@ -63,7 +63,7 @@ public class GroupHandler {
                     .body(Arrays.toString(memberIds))
                     .asJson();
 
-            if (membersJson.getStatus() != 201) throw new UnexpectedHttpStatusException(membersJson.getStatus(), 201);
+            if (membersJson.getStatus() != 201) throw new UnexpectedHttpStatusException(membersJson.getStatus(), 201, membersJson.getStatusText());
 
         } catch (UnirestException e) {
             System.out.println(e.getMessage());

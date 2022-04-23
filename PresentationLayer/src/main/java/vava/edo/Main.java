@@ -30,7 +30,7 @@ public class Main extends Application {
 
         Integer[] memberIds = {1,2,3,4};
 
-        RelationshipHandler.getAllFriends(9);
+        RelationshipHandler.acceptRequest(9, 132);
     }
 
     public static void main(String[] args) {

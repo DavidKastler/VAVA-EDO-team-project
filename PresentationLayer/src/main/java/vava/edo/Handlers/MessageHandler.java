@@ -27,7 +27,7 @@ public class MessageHandler {
                     .routeParam("group_id", String.valueOf(groupId))
                     .asJson();
 
-            if (messagesJson.getStatus() != 200) throw new UnexpectedHttpStatusException(messagesJson.getStatus(), 200);
+            if (messagesJson.getStatus() != 200) throw new UnexpectedHttpStatusException(messagesJson.getStatus(), 200, messagesJson.getStatusText());
 
             for (Object message: messagesJson.getBody().getArray()){
                 messages.add(new Gson().fromJson(message.toString(), Message.class));
@@ -57,7 +57,7 @@ public class MessageHandler {
                     .body(newMessage)
                     .asJson();
 
-            if (messageJson.getStatus() != 200) throw new UnexpectedHttpStatusException(messageJson.getStatus(), 200);
+            if (messageJson.getStatus() != 201) throw new UnexpectedHttpStatusException(messageJson.getStatus(), 201, messageJson.getStatusText());
 
         }catch (UnirestException e){
             System.out.println("Connection to localhost:8080 failed ! (PLease start backend server)");
