@@ -163,9 +163,12 @@ public class ChatController implements Initializable {
 
     public void writeChatMessages(List<String> userIds, List<String> messages){
         messages_list.getChildren().clear();
+        HBox box = new HBox();
+
+
         for (int i = 0; i < messages.size(); i++){
             //System.out.println(id1);
-            HBox box = new HBox();
+            //HBox box = new HBox();
             Label message = new Label();
             Boolean color;
             if (userIds.get(i).equals("13")){
@@ -295,7 +298,7 @@ public class ChatController implements Initializable {
     public void handleReportUserButton(MouseEvent mouseEvent) throws IOException {
         Parent root;
         try {
-            root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/vava/edo/ReportScreen.fxml")));
+            root = FXMLLoader. load(Objects.requireNonNull(getClass().getResource("/vava/edo/ReportScreen.fxml")));
             Stage stage = new Stage();
             stage.setTitle("Report message");
             stage.setScene(new Scene(root, 600, 400));
