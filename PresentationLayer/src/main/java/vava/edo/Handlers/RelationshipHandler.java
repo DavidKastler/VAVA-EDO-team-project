@@ -14,7 +14,7 @@ import java.util.ArrayList;
 
 public class RelationshipHandler {
 
-    //DONE
+
     public static ArrayList<User> getAllFriends(Integer userId) {
         ArrayList<User> friends = new ArrayList<>();
 
@@ -41,7 +41,7 @@ public class RelationshipHandler {
         ArrayList<User> friends = new ArrayList<>();
 
         try {
-            HttpResponse<JsonNode> friendsJson = Unirest.get("http://localhost:8080/relationships/friends?token={token}")
+            HttpResponse<JsonNode> friendsJson = Unirest.get("http://localhost:8080/relationships/requests?token={token}")
                     .routeParam("token", String.valueOf(userId))
                     .asJson();
             for (Object group : friendsJson.getBody().getArray()) {

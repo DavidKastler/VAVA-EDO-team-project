@@ -39,7 +39,6 @@ public class Chat {
     public static Chat from(MessageCreate messageDto) {
         Chat chat = new Chat();
         chat.setGroupId(messageDto.getGroupId());
-        chat.setTimeSent(messageDto.getTimeSent());
         chat.setMessage(messageDto.getMessage());
         return chat;
     }
