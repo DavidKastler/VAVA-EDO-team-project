@@ -18,7 +18,7 @@ public class TaskHandler {
      */
     public static void startUp(User user) {
 
-        user.setTasks(getAllTodos(user.getUid()));
+        user.setTasks(getAllTodos(user.getUserId()));
 
     }
 

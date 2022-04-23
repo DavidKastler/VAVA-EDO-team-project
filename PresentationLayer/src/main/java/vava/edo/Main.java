@@ -5,10 +5,18 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import vava.edo.Handlers.GroupHandler;
 import vava.edo.Handlers.MessageHandler;
+import vava.edo.Handlers.RelationshipHandler;
+import vava.edo.Handlers.ReportHandler;
 import vava.edo.models.Message;
+import vava.edo.schema.MessageDto;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 
 public class Main extends Application {
     @Override
@@ -20,6 +28,9 @@ public class Main extends Application {
         stage.setScene(scene);
         stage.show();
 
+        Integer[] memberIds = {1,2,3,4};
+
+        RelationshipHandler.acceptRequest(9, 132);
     }
 
     public static void main(String[] args) {

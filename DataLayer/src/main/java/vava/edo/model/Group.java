@@ -4,7 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import vava.edo.schema.GroupCreate;
+import vava.edo.schema.groups.GroupCreate;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -27,7 +27,7 @@ public class Group implements Serializable {
     private String groupName;
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "group_creator_id", nullable = false)
-    private User groupCreatorId;
+    private User groupCreator;
 
 
     /**
@@ -53,7 +53,7 @@ public class Group implements Serializable {
         return "Group{" +
                 "grId=" + grId +
                 ", group_name='" + groupName + '\'' +
-                ", group_creator_id=" + groupCreatorId +
+                ", group_creator_id=" + groupCreator +
                 '}';
     }
 }

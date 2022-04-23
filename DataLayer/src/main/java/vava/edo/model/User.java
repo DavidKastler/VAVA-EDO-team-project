@@ -1,11 +1,10 @@
 package vava.edo.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import vava.edo.schema.users.UserRegister;
+import vava.edo.schema.users.UserEdit;
 
 import javax.persistence.*;
 
@@ -27,7 +26,6 @@ public class User {
     private String username;
     @Column(name = "password", nullable = false)
     private String password;
-    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "role_id", nullable = false)
     private Role userRole;
@@ -35,13 +33,13 @@ public class User {
 
     /**
      * Static casting method from UserRegister object
-     * @param userRegister   UserRegister object that you want to casy
+     * @param userEdit   UserRegister object that you want to casy
      * @return          cast User object
      */
-    public static User from(UserRegister userRegister) {
+    public static User from(UserEdit userEdit) {
         User user = new User();
-        user.setUsername(userRegister.getUsername());
-        user.setPassword(userRegister.getPassword());
+        user.setUsername(userEdit.getUsername());
+        user.setPassword(userEdit.getPassword());
         return user;
     }
 

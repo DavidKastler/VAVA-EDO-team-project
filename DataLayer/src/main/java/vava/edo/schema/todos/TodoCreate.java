@@ -1,9 +1,9 @@
-package vava.edo.schema;
+package vava.edo.schema.todos;
 
-import com.sun.istack.NotNull;
+import lombok.AllArgsConstructor;
 import lombok.Data;
-
-import java.sql.Date;
+import lombok.NoArgsConstructor;
+import lombok.NonNull;
 
 
 /**
@@ -11,27 +11,34 @@ import java.sql.Date;
  * It is used for creating a task
  */
 @Data
-public class TaskCreate {
+@NoArgsConstructor
+public class TodoCreate {
 
-    private Integer todoGroupId;
-
+    @NonNull
+    private Integer userId;
+    @NonNull
     private String todoName;
+    @NonNull
     private String todoDescription;
+    @NonNull
     private Long toTime;
+    @NonNull
     private Long fromTime;
+    @NonNull
     private Boolean completed;
-    private String tag;
+    @NonNull
+    private String groupName;
 
     @Override
     public String toString() {
         return "TaskCreate{" +
-                "todoGroupId=" + todoGroupId +
+                "todoGroupId=" + userId +
                 ", todoName='" + todoName + '\'' +
                 ", todoDescription='" + todoDescription + '\'' +
                 ", toTime=" + toTime +
                 ", fromTime=" + fromTime +
                 ", completed=" + completed +
-                ", tag='" + tag + '\'' +
+                ", tag='" + groupName + '\'' +
                 '}';
     }
 }

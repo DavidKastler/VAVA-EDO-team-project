@@ -3,7 +3,7 @@ package vava.edo.model;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import vava.edo.schema.TaskCreate;
+import vava.edo.schema.todos.TodoCreate;
 
 import javax.persistence.*;
 
@@ -20,9 +20,8 @@ public class Todo {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "td_id", nullable = false)
     private Integer todoId;
-    //TODO ak bude treba tak mapovanie
-    @Column(name = "group_id", nullable = false)
-    private Integer groupId;
+    @Column(name = "user_id", nullable = false)
+    private Integer userId;
     @Column(name = "todo_name", nullable = false)
     private String todoName;
     @Column(name = "todo_description", nullable = false)
@@ -33,27 +32,25 @@ public class Todo {
     private Long toTime;
     @Column(name = "completed", nullable = false)
     private boolean completed;
-    @Column(name = "tag", nullable = false)
-    private String tag;
+    @Column(name = "group_name")
+    private String groupName;
 
-    //TODO prispojobit taskDto po jeho uprave
     /**
      * Static casting method from TaskCreate object
      * @param taskDto    TaskCreate object that you want to cast
      * @return          cast Task object
      */
-    public static Todo from(TaskCreate taskDto) {
+    public static Todo from(TodoCreate taskDto) {
         Todo todo = new Todo();
-        todo.setGroupId(taskDto.getTodoGroupId());
+        todo.setUserId(taskDto.getUserId());
         todo.setTodoName(taskDto.getTodoName());
         todo.setTodoDescription(taskDto.getTodoDescription());
         todo.setFromTime(taskDto.getFromTime());
         todo.setToTime(taskDto.getToTime());
         todo.setCompleted(taskDto.getCompleted());
-        todo.setTag(taskDto.getTag());
+        todo.setGroupName(taskDto.getGroupName());
         return todo;
     }
-
 
     /**
      * Debugging method
@@ -63,13 +60,13 @@ public class Todo {
     public String toString() {
         return "Todo{" +
                 "todoId=" + todoId +
-                ", groupId=" + groupId +
-                ", taskName='" + todoName + '\'' +
-                ", taskDescription='" + todoDescription + '\'' +
+                ", userId=" + userId +
+                ", todoName='" + todoName + '\'' +
+                ", todoDescription='" + todoDescription + '\'' +
                 ", fromTime=" + fromTime +
                 ", toTime=" + toTime +
                 ", completed=" + completed +
-                ", tag='" + tag + '\'' +
+                ", groupName='" + groupName + '\'' +
                 '}';
     }
 }

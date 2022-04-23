@@ -1,4 +1,4 @@
-package vava.edo.schema;
+package vava.edo.schema.todos;
 
 import com.sun.istack.NotNull;
 import lombok.Data;
@@ -12,7 +12,7 @@ import lombok.EqualsAndHashCode;
 
 @EqualsAndHashCode(callSuper = true)
 @Data
-public class TaskUpdate extends TaskCreate{
+public class TodoUpdate extends TodoCreate {
     @NotNull
     private boolean completed;
 
