@@ -5,6 +5,7 @@ import java.time.Instant;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Comparator;
 
 public class User implements Serializable {
     private Integer uid = null;
@@ -61,12 +62,19 @@ public class User implements Serializable {
 
     public void setTodos(ArrayList<Todo> todos){this.todos = todos;}
 
-    public ArrayList<Todo> getTodos(){return this.todos;}
+    public ArrayList<Todo> getTodos(){
+        sortTodosByDate();
+        return this.todos;
+    }
 
     public void addTodo(Todo todo){this.todos.add(todo);}
 
     public void removeTodo(Todo todo){
         todos.removeIf(todoRem -> todoRem.getTodoId() == todo.getTodoId());
+    }
+
+    public void sortTodosByDate(){
+        this.todos.sort(Comparator.comparing(Todo::getToTime));
     }
 
     /**

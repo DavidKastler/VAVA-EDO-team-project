@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class Group {
 
     private String name;
-    private ArrayList<Todo> todos;
+    private ArrayList<Todo> todos = new ArrayList<>();
 
     public Group(String name) {
         this.name = name;
