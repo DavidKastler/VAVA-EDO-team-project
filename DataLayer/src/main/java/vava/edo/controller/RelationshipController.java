@@ -39,7 +39,7 @@ public class RelationshipController {
     @PostMapping(value = "/create")
     public ResponseEntity<Object> createNewFriendRequest(@RequestParam(value = "token") Integer token,
                                                          @RequestBody RelationshipCreate relationshipDto) {
-        if (Objects.equals(relationshipDto.getSenderId(), relationshipDto.getReceiverId())) {
+        if (Objects.equals(relationshipDto.getSenderId(), relationshipDto.getReceiverName())) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "First and second user cant be same.");
         }
         if (!Objects.equals(token, relationshipDto.getSenderId()) && !userService.isAdmin(token)) {
@@ -47,7 +47,7 @@ public class RelationshipController {
         }
 
         Integer senderId = relationshipDto.getSenderId();
-        Integer receiverId = relationshipDto.getReceiverId();
+        Integer receiverId = userService.getUserByUserName(relationshipDto.getReceiverName()).getUId();
 
         Relationship existingRequest = relationshipService.getRelationshipBySenderIdAndReceiverId(senderId, receiverId);
         if (existingRequest != null) {

@@ -3,8 +3,6 @@ package vava.edo.repository;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import vava.edo.model.Relationship;
-import vava.edo.model.User;
-import vava.edo.model.enums.RelationshipStatus;
 
 import java.util.List;
 
