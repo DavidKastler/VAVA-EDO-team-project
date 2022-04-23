@@ -3,6 +3,7 @@ package vava.edo.model;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.Type;
 import vava.edo.model.enums.ReportStatus;
 import vava.edo.schema.ReportCreate;
 

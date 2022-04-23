@@ -10,6 +10,7 @@ import vava.edo.Exepctions.HttpStatusExceptions.UnexpectedHttpStatusException;
 import vava.edo.models.Group;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class GroupHandler {
@@ -38,7 +39,8 @@ public class GroupHandler {
         return groups;
     }
 
-    public static void createGroup(Integer userId, List<Integer> memberIds, String groupName) {
+    //DONE
+    public static void createGroup(Integer userId, Integer[] memberIds, String groupName) {
         JSONObject newGroup = new JSONObject();
         newGroup.put("creatorId", userId);
         newGroup.put("groupName", groupName);
@@ -51,6 +53,17 @@ public class GroupHandler {
                     .asJson();
 
             if (groupJson.getStatus() != 201) throw new UnexpectedHttpStatusException(groupJson.getStatus(), 201);
+
+            Group createdGroup = new Gson().fromJson(groupJson.getBody().toString(), Group.class);
+
+            HttpResponse<JsonNode> membersJson = Unirest.post("http://localhost:8080/groupMembers/members/add/{group_id}?token={token}")
+                    .header("Content-type", "application/json")
+                    .routeParam("token", String.valueOf(userId))
+                    .routeParam("group_id", String.valueOf(createdGroup.getGrId()))
+                    .body(Arrays.toString(memberIds))
+                    .asJson();
+
+            if (membersJson.getStatus() != 201) throw new UnexpectedHttpStatusException(membersJson.getStatus(), 201);
 
         } catch (UnirestException e) {
             System.out.println(e.getMessage());
