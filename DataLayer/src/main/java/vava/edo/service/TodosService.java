@@ -83,7 +83,10 @@ public class TodosService {
 
         todoToUpdate.setTodoName(taskDto.getTodoName());
         todoToUpdate.setTodoDescription(taskDto.getTodoDescription());
-        todoToUpdate.setCompleted(taskDto.isCompleted());
+        todoToUpdate.setToTime(taskDto.getToTime());
+        todoToUpdate.setFromTime(taskDto.getFromTime());
+        todoToUpdate.setCompleted(taskDto.getCompleted());
+        todoToUpdate.setGroupName(taskDto.getGroupName());
 
         return todoToUpdate;
     }
