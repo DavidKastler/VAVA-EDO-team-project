@@ -87,7 +87,7 @@ public class GroupService {
      */
     public Group getGroup(int groupId) {
         return groupRepository.findById(groupId).orElseThrow(
-                () -> new GroupNotFoundException(groupId));
+                () -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Group with this id does not exist."));
     }
 
 

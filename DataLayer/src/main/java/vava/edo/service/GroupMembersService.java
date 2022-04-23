@@ -69,9 +69,11 @@ public class GroupMembersService {
         List<GroupMember> groupMemberList = new ArrayList<>();
         Group group = groupService.getGroup(groupId);
         userIdList.forEach(userId -> {
-            User user = userService.getUser(userId);
-            GroupMember groupMembers = new GroupMember(group, user);
-            groupMemberList.add(groupMembers);
+            if (!isUserInGroup(userId, groupId)) {
+                User user = userService.getUser(userId);
+                GroupMember groupMembers = new GroupMember(group, user);
+                groupMemberList.add(groupMembers);
+            }
         });
         return groupMembersRepository.saveAll(groupMemberList);
     }
