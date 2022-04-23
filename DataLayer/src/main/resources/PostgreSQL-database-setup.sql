@@ -2,20 +2,20 @@ DROP SCHEMA public CASCADE;
 CREATE SCHEMA public;
 
 CREATE TYPE "read_status" AS ENUM (
-    'not_seen',
-    'seen'
+    'NOT_SEEN',
+    'SEEN'
 );
 
 CREATE TYPE "report_status" AS ENUM (
-  'pending',
-  'accepted',
-  'rejected'
+  'PENDING',
+  'ACCEPTED',
+  'REJECTED'
 );
 
 CREATE TYPE "friendship" AS ENUM (
-  'pending',
-  'accepted',
-  'blocked'
+  'PENDING',
+  'ACCEPTED',
+  'BLOCKED'
 );
 
 CREATE TABLE "users" (
@@ -34,21 +34,15 @@ CREATE TABLE "roles" (
                          "admin_rights" boolean DEFAULT false
 );
 
-CREATE TABLE "todo_group" (
-                              "td_g_id" integer PRIMARY KEY NOT NULL,
-                              "u_id" integer NOT NULL,
-                              "td_group_name" varchar NOT NULL
-);
-
 CREATE TABLE "todos" (
                          "td_id" SERIAL UNIQUE PRIMARY KEY NOT NULL,
-                         "group_id" integer NOT NULL,
+                         "user_id" integer,
                          "todo_name" varchar NOT NULL,
                          "todo_description" varchar,
                          "from_time" bigint NOT NULL,
                          "to_time" bigint NOT NULL,
                          "completed" boolean DEFAULT false,
-                         "tag" varchar DEFAULT null
+                         "group_name" varchar DEFAULT null
 );
 
 CREATE TABLE "groups" (
@@ -75,7 +69,7 @@ CREATE TABLE "relationships" (
                                  "rel_id" SERIAL UNIQUE PRIMARY KEY NOT NULL,
                                  "first_user_id" integer NOT NULL,
                                  "second_user_id" integer NOT NULL,
-                                 "status" friendship DEFAULT 'pending',
+                                 "status" friendship DEFAULT 'PENDING',
                                  "since" bigint NOT NULL
 );
 
@@ -84,21 +78,19 @@ CREATE TABLE "reports" (
                            "reporter_id" integer NOT NULL,
                            "violator_id" integer NOT NULL,
                            "rep_message" varchar,
-                           "status" report_status DEFAULT 'pending'
+                           "status" report_status DEFAULT 'PENDING'
 );
 
 CREATE TABLE "feedback" (
                             "fb_id" SERIAL UNIQUE PRIMARY KEY NOT NULL,
                             "u_id" integer NOT NULL,
-                            "read" read_status DEFAULT 'not_seen',
+                            "read" read_status DEFAULT 'NOT_SEEN',
                             "fb_message" varchar NOT NULL
 );
 
 ALTER TABLE "users" ADD FOREIGN KEY ("role_id") REFERENCES "roles" ("r_id");
 
-ALTER TABLE "todos" ADD FOREIGN KEY ("group_id") REFERENCES "todo_group" ("td_g_id");
-
-ALTER TABLE "todo_group" ADD FOREIGN KEY ("u_id") REFERENCES "users" ("u_id");
+ALTER TABLE "todos" ADD FOREIGN KEY ("user_id") REFERENCES "users" ("u_id");
 
 ALTER TABLE "groups" ADD FOREIGN KEY ("group_creator_id") REFERENCES "users" ("u_id");
 

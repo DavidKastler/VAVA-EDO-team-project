@@ -4,8 +4,8 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.Type;
 import vava.edo.model.enums.RelationshipStatus;
-import vava.edo.schema.RelationshipEditStatus;
 
 import javax.persistence.*;
 
@@ -25,52 +25,46 @@ public class Relationship {
     private Integer relationshipId;
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "first_user_id", nullable = false)
-    private User firstUserId;
+    private User firstUser;
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "second_user_id", nullable = false)
-    private User secondUserId;
-    @Enumerated(EnumType.ORDINAL)
-    @Column(name = "status")
-    private RelationshipStatus status;
-
+    private User secondUser;
+    @Enumerated(EnumType.STRING)
+    @Type(type = "vava.edo.model.enums.EnumTypePostgreSql")
+    @Column(name = "status", nullable = false)
+    private RelationshipStatus status = RelationshipStatus.pending;
     @Column(name = "since")
     private Long since;
 
 
-    public Relationship(User firstUserId, User secondUserId, RelationshipStatus status) {
-        this.firstUserId = firstUserId;
-        this.secondUserId = secondUserId;
-        this.status = status;
+    public Relationship(User firstUserId, User secondUserId) {
+        this.firstUser = firstUserId;
+        this.secondUser = secondUserId;
         this.since = System.currentTimeMillis() / 1000L;
     }
 
-
-    /**
+    /*
      * Static casting method from RelationshipCreate object
-     *
      * @param newRequest RelationshipCreate object that you want to cast
      * @return cast Relationships object
      */
-    public static Relationship from(RelationshipEditStatus newRequest) {
-        Relationship request = new Relationship();
-        request.setFirstUserId(newRequest.getFirstUserId());
-        request.setSecondUserId(newRequest.getSecondUserId());
-        request.setStatus(newRequest.getStatus());
-        request.setSince(System.currentTimeMillis() / 1000L);
-        return request;
-    }
-
+//    public static Relationship from(RelationshipCreate newRequest) {
+//        Relationship request = new Relationship();
+//        request.setFirstUser(newRequest.getSenderId());
+//        request.setSecondUser(newRequest.getReceiverId());
+//        request.setSince(System.currentTimeMillis() / 1000L);
+//        return request;
+//    }
 
     /**
      * Debugging method
-     *
      * @return string with method variables
      */
     @Override
     public String toString() {
         return "Relationships{" +
-                ", firstUserId=" + firstUserId +
-                ", secondUserId=" + secondUserId +
+                ", firstUserId=" + firstUser +
+                ", secondUserId=" + secondUser +
                 ", status=" + status +
                 ", since=" + since +
                 '}';

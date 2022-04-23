@@ -1,10 +1,12 @@
 package vava.edo.schema.users;
 import com.sun.istack.NotNull;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import vava.edo.model.User;
 
 /**
- * It is used to get only user's username and ID
+ * Data transfer object for User class
+ * It is used for sending only needed user data
  */
 @Data
 public class UserInfo {
