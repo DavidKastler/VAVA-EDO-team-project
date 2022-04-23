@@ -6,10 +6,8 @@ import org.springframework.transaction.annotation.Transactional;
 import vava.edo.model.Report;
 import vava.edo.model.enums.ReportStatus;
 import vava.edo.model.exeption.TaskNotFoundException;
-import vava.edo.repository.ChatRepository;
 import vava.edo.repository.ReportRepository;
 import vava.edo.schema.ReportCreate;
-import vava.edo.schema.TaskCreate;
 
 import java.util.List;
 
@@ -68,7 +66,7 @@ public class ReportService {
     {
         Report report = getReport(reportId);
 
-        report.setStatus(ReportStatus.accepted);
+        report.setStatus(ReportStatus.ACCEPTED);
 
         return report;
     }
@@ -83,7 +81,7 @@ public class ReportService {
     {
         Report report = getReport(reportId);
 
-        report.setStatus(ReportStatus.rejected);
+        report.setStatus(ReportStatus.REJECTED);
         return report;
     }
 

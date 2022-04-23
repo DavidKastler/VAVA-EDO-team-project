@@ -35,7 +35,6 @@ public class Todo {
     @Column(name = "group_name", nullable = false)
     private String groupName;
 
-    //TODO prispojobit taskDto po jeho uprave
     /**
      * Static casting method from TaskCreate object
      * @param taskDto    TaskCreate object that you want to cast
@@ -52,7 +51,6 @@ public class Todo {
         todo.setGroupName(taskDto.getGroupName());
         return todo;
     }
-
 
     /**
      * Debugging method
