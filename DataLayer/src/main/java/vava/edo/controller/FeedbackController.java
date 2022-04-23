@@ -10,7 +10,6 @@ import vava.edo.service.FeedbackService;
 import vava.edo.service.UserService;
 
 import java.util.List;
-import java.util.Optional;
 
 /**
  * Class that provides endpoints for operations with feedback

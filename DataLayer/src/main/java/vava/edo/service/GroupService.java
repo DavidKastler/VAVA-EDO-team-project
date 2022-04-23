@@ -14,7 +14,7 @@ import vava.edo.schema.groups.GroupCreate;
 import java.util.List;
 
 /**
- * Service that operates over 'group' database table
+ * Service that operates over 'groups' database table
  */
 @Service
 public class GroupService {

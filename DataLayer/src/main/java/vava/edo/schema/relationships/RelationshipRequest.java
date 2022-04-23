@@ -3,6 +3,10 @@ package vava.edo.schema.relationships;
 import lombok.Data;
 import vava.edo.model.Relationship;
 
+/**
+ * Data transfer object for Relationship class
+ * Used for sending relationship requests
+ */
 @Data
 public class RelationshipRequest {
     private Integer relationshipId;

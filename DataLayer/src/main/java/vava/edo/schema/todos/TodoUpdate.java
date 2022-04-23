@@ -6,8 +6,8 @@ import lombok.EqualsAndHashCode;
 
 
 /**
- * Data transfer object for Task class
- * It is used for updating tasks
+ * Data transfer object for To-do class
+ * It is used for updating todos
  */
 
 @EqualsAndHashCode(callSuper = true)

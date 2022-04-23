@@ -9,7 +9,6 @@ import vava.edo.model.Relationship;
 import vava.edo.model.enums.RelationshipStatus;
 import vava.edo.schema.relationships.RelationshipCreate;
 import vava.edo.schema.relationships.RelationshipRequest;
-import vava.edo.schema.users.UserInfo;
 import vava.edo.service.RelationshipService;
 import vava.edo.service.UserService;
 

@@ -7,11 +7,10 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.server.ResponseStatusException;
 import vava.edo.model.Feedback;
 import vava.edo.model.User;
-import vava.edo.model.enums.ReadStatus;
+import vava.edo.model.enums.FeedbackReadStatus;
 import vava.edo.repository.FeedbackRepository;
 
 import java.util.List;
-import java.util.Optional;
 
 /**
  * Service that operates over 'feedback' database table
@@ -62,7 +61,7 @@ public class FeedbackService {
     @Transactional
     public Feedback setFeedbackSeen(Integer feedbackId) {
         Feedback feedback = getFeedback(feedbackId);
-        feedback.setStatus(ReadStatus.seen);
+        feedback.setStatus(FeedbackReadStatus.seen);
         return feedback;
     }
 

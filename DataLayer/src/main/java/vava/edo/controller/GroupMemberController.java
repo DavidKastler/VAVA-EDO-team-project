@@ -13,6 +13,9 @@ import vava.edo.service.UserService;
 
 import java.util.List;
 
+/**
+ * Class that provides endpoints for groupMembers operations
+ */
 @RestController
 @RequestMapping("/groupMembers")
 public class GroupMemberController {
