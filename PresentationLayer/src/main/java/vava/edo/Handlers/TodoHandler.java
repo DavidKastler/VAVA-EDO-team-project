@@ -5,14 +5,12 @@ import com.mashape.unirest.http.HttpResponse;
 import com.mashape.unirest.http.JsonNode;
 import com.mashape.unirest.http.Unirest;
 import com.mashape.unirest.http.exceptions.UnirestException;
-import com.mashape.unirest.request.HttpRequestWithBody;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import org.json.JSONObject;
-import vava.edo.Exepctions.TodoScreen.FailedToDeleteToDo;
 import vava.edo.Exepctions.TodoScreen.MandatoryFieldNotInputted;
-import vava.edo.Exepctions.TodoScreen.FailedToCreateTodo;
+import vava.edo.Exepctions.TodoScreen.TodoDatabaseFail;
 import vava.edo.models.Todo;
 import vava.edo.models.User;
 
@@ -114,7 +112,7 @@ public class TodoHandler {
     public static void addTodoToUser(User user, TextField todoName,
                                         TextArea todoDesc, DatePicker fromTime,
                                         DatePicker toTime, TextField groupName)
-                                        throws FailedToCreateTodo, MandatoryFieldNotInputted{
+                                        throws TodoDatabaseFail, MandatoryFieldNotInputted{
 
         if(toTime.getValue() == null || fromTime.getValue() == null || todoName.getText().equals("")){
             throw new MandatoryFieldNotInputted("One/ All of the mandatory fields weren't inputted " +
@@ -131,7 +129,7 @@ public class TodoHandler {
             user.addTodo(new_todo);
         }
         else {
-            throw new FailedToCreateTodo("Failed to create a new ToDo");
+            throw new TodoDatabaseFail("Failed to create a new ToDo");
         }
 
     }
@@ -153,6 +151,32 @@ public class TodoHandler {
                                     String todoName,
                                     String todoDesc, long fromTime,
                                     long toTime, String groupName){
+
+        JSONObject reqTodo = new JSONObject();
+        reqTodo.put("userId", user.getUid());
+        reqTodo.put("todoName", todoName);
+        reqTodo.put("todoDescription", todoDesc);
+        reqTodo.put("toTime", toTime);
+        reqTodo.put("fromTime", fromTime);
+        reqTodo.put("completed", false);
+        reqTodo.put("groupName", groupName);
+        System.out.println(reqTodo);
+
+        try{
+            HttpResponse<JsonNode> apiResponse = Unirest.put("http://localhost:8080/todos" +
+                    "/edit/{task_id}/?token={token}")
+                    .routeParam("token", String.valueOf(user.getUid()))
+                    .routeParam("task_id", String.valueOf(todoId))
+                    .header("Content-Type", "application/json")
+                    .body(reqTodo)
+                    .asJson();
+
+            return new Gson().fromJson(apiResponse.getBody().toString(), Todo.class);
+        }
+        catch (UnirestException e){
+            System.out.println("Connection to localhost:8080 failed ! (PLease start backend server)");
+        }
+
         return null;
     }
 
@@ -171,25 +195,35 @@ public class TodoHandler {
     public static void editTodo(int todoId, User user,
                                 TextField todoName,
                                 TextArea todoDesc, DatePicker fromTime,
-                                DatePicker toTime, TextField groupName) throws MandatoryFieldNotInputted{
+                                DatePicker toTime, TextField groupName) throws MandatoryFieldNotInputted, TodoDatabaseFail{
 
         if(toTime.getValue() == null || fromTime.getValue() == null || todoName.getText().equals("")){
             throw new MandatoryFieldNotInputted("One/ All of the mandatory fields weren't inputted " +
                     "(mandatory: toTime, fromTime, todoName");
         }
 
+        Todo updated_todo = editTodoPut(todoId, user, todoName.getText(), todoDesc.getText(),
+                fromTime.getValue().toEpochSecond(LocalTime.MIDNIGHT, ZoneOffset.UTC),
+                toTime.getValue().toEpochSecond(LocalTime.MIDNIGHT, ZoneOffset.UTC),
+                groupName.getText());
 
-
+        if(updated_todo.getTodoName() != null){
+            System.out.println(updated_todo);
+            user.updateTodo(updated_todo);
+        }
+        else {
+            throw new TodoDatabaseFail("Failed to edit the TODO");
+        }
     }
 
 
     /**
-     * Method which is called when deleting a to_do
+     * Method responsible for deleting the selected to_do from the database
      *
      * @param todoId to_doId of a to_do which is being deleted
      * @param user User to which the to_do belongsRe
      */
-    public static void deleteTodo(int todoId, User user) throws FailedToDeleteToDo{
+    public static void deleteTodo(int todoId, User user) throws TodoDatabaseFail {
 
         try {
 
@@ -202,10 +236,11 @@ public class TodoHandler {
             Todo deletedTodo = new Gson().fromJson(apiResponse.getBody().toString(), Todo.class);
 
             if (deletedTodo.getTodoName() != null){
+                System.out.println(deletedTodo);
                 user.removeTodo(deletedTodo);
             }
             else {
-                throw new FailedToDeleteToDo("Couldn't delete TODO check the DELETE request");
+                throw new TodoDatabaseFail("Couldn't delete TODO check the DELETE request");
             }
 
         }catch (UnirestException e){

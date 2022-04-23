@@ -68,6 +68,10 @@ public class User implements Serializable {
         this.todos.remove(todo);
     }
 
+    public void updateTodo(Todo todo){
+        // TODO have to implement logic for updating the array list with the new todo
+    }
+
     @Override
     public String toString() {
         return "User{" +

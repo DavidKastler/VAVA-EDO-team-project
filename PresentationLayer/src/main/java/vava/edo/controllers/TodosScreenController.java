@@ -2,11 +2,9 @@ package vava.edo.controllers;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
-import vava.edo.Exepctions.TodoScreen.FailedToDeleteToDo;
 import vava.edo.Exepctions.TodoScreen.MandatoryFieldNotInputted;
-import vava.edo.Exepctions.TodoScreen.FailedToCreateTodo;
+import vava.edo.Exepctions.TodoScreen.TodoDatabaseFail;
 import vava.edo.Handlers.TodoHandler;
 import vava.edo.controllers.models.TodoHBoxModel;
 import vava.edo.controllers.models.TodoScreenModel;
@@ -117,7 +115,7 @@ public class TodosScreenController {
             TodoHandler.addTodoToUser(model.getUser(), textFieldTaskName, textAreaTaskDescription,
                     datePickerTaskFrom, datePickerTaskTo, textFieldTaskGroup);
         }
-        catch (MandatoryFieldNotInputted | FailedToCreateTodo e) {
+        catch (MandatoryFieldNotInputted | TodoDatabaseFail e) {
             e.printStackTrace();
         }
 
@@ -148,7 +146,7 @@ public class TodosScreenController {
        try {
            TodoHandler.deleteTodo(this.selectedTodo.getTodoId(), model.getUser());
        }
-       catch (FailedToDeleteToDo e){
+       catch (TodoDatabaseFail e){
            e.printStackTrace();
        }
     }
@@ -160,6 +158,15 @@ public class TodosScreenController {
      */
     public void handleEditTodo() {
 
+        try {
+            TodoHandler.editTodo(selectedTodo.getTodoId(), model.getUser(), textFieldTaskName, textAreaTaskDescription,
+                    datePickerTaskFrom, datePickerTaskTo, textFieldTaskGroup);
+        }catch (MandatoryFieldNotInputted | TodoDatabaseFail e){
+            e.printStackTrace();
+        }
+
+        vBoxNewTaskScreen.setVisible(false);
+        vBoxNewTaskScreen.setDisable(true);
     }
 
 

@@ -1,12 +1,12 @@
 package vava.edo.Exepctions.TodoScreen;
 
-public class FailedToCreateTodo extends Exception{
+public class TodoDatabaseFail extends Exception{
     /**
      * Constructor for throwing a exception with a custom message
      *
      * @param message Error message
      */
-    public FailedToCreateTodo(String message) {
+    public TodoDatabaseFail(String message) {
         super(message);
     }
 }
