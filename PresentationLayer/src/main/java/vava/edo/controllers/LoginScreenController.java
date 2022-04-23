@@ -55,12 +55,8 @@ public class LoginScreenController implements Initializable {
 
             this.user.setRememberMe(this.rememberMeState);
 
-            // FXMLLoader loader = new FXMLLoader(getClass().getResource("/vava/edo/Todos.fxml"));
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/vava/edo/Menu.fxml"));
             AnchorPane todoScreen = loader.load();
-            // TodosScreenController todoController = loader.getController();
-            // todoController.initialize(user);
-
             MenuScreenController menuScreen = loader.getController();
             menuScreen.initialize(user);
 

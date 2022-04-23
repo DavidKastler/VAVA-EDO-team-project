@@ -14,10 +14,13 @@ import vava.edo.Exepctions.TodoScreen.TodoDatabaseFail;
 import vava.edo.models.Todo;
 import vava.edo.models.User;
 
-import java.time.LocalTime;
-import java.time.ZoneOffset;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.*;
 import java.util.ArrayList;
+import java.util.Date;
 
+import org.apache.commons.lang3.time.DateUtils;
 
 public class TodoHandler {
 
@@ -249,9 +252,77 @@ public class TodoHandler {
 
     }
 
+    /**
+     * Gathers all the todos which are completed
+     *
+     * @param user from which you want to filter out the todos
+     * @return ArrayList with completed todos only
+     */
+    public static ArrayList<Todo> getCompletedTodos(User user){
 
-    public static ArrayList<Todo> getCompletedTodos(){
-        return null;
+        ArrayList<Todo> completedTodos = new ArrayList<>();
+
+        for(Todo todo : user.getTodos()){
+            if (todo.isCompleted()){
+                completedTodos.add(todo);
+            }
+        }
+
+        return completedTodos;
     }
 
+    /**
+     * Method which returns todos only which have due time today
+     *
+     * @param user from which you want to filter out the todos
+     * @return ArrayList with todos that have dueTime today
+     */
+    public static ArrayList<Todo> getTodayTodos(User user) {
+
+        ArrayList<Todo> todaysTodos = new ArrayList<>();
+
+        Date todays_midnight = Date.from(LocalDateTime.now().toLocalDate().atStartOfDay()
+                                            .atZone(ZoneId.of("Europe/Bratislava")).toInstant());
+
+        try {
+            for(Todo todo : user.getTodos()){
+                if (DateUtils.isSameDay(todays_midnight, new SimpleDateFormat("yyyy-MM-dd").parse(todo.getToTime()))){
+                    todaysTodos.add(todo);
+                }
+            }
+        } catch (ParseException e){
+            System.out.println("Parsing of the date was unsuccessful");
+        }
+
+        return todaysTodos;
+    }
+
+
+    /**
+     * Method which returns todos only which have due time tomorrow
+     *
+     * @param user from which you want to filter out the todos
+     * @return ArrayList with todos that have dueTime tomorrow
+     */
+    public static ArrayList<Todo> getTomorrowTodos(User user){
+
+        ArrayList<Todo> tomorrowsTodos = new ArrayList<>();
+
+        Date tomorrows_midnight = DateUtils.addDays(Date.from(LocalDateTime.now().toLocalDate().atStartOfDay()
+                .atZone(ZoneId.of("Europe/Bratislava")).toInstant()), 1);
+
+
+        try {
+            for(Todo todo : user.getTodos()){
+                System.out.println(new SimpleDateFormat("yyyy-MM-dd").parse(todo.getToTime()));
+                if (DateUtils.isSameDay(tomorrows_midnight, new SimpleDateFormat("yyyy-MM-dd").parse(todo.getToTime()))){
+                    tomorrowsTodos.add(todo);
+                }
+            }
+        } catch (ParseException e){
+            System.out.println("Parsing of the date was unsuccessful");
+        }
+
+        return tomorrowsTodos;
+    }
 }
