@@ -15,6 +15,7 @@ public class User implements Serializable {
     private boolean isLogged = false;  // potrebné pre serializáciu dát (mimo db)
     private long lastActivity = 0;  // potrebné pre serializáciu dát (mimo db)
     private ArrayList<Todo> todos = null;
+    private ArrayList<Group> groups = null;
 
     public Integer getUid() {
         return uid;
@@ -75,6 +76,14 @@ public class User implements Serializable {
     public void updateTodo(Todo todo){
         this.removeTodo(todo);
         this.todos.add(todo);
+    }
+
+    public ArrayList<Group> getGroups() {
+        return groups;
+    }
+
+    public void setGroups(ArrayList<Group> groups) {
+        this.groups = groups;
     }
 
     @Override
