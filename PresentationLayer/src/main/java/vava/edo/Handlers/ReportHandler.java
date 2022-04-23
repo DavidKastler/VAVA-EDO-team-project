@@ -9,6 +9,7 @@ import vava.edo.Exepctions.HttpStatusExceptions.UnexpectedHttpStatusException;
 
 public class ReportHandler {
 
+    //DONE
     public static void createReport(Integer userId, Integer violatorId, String message) {
         JSONObject newReport = new JSONObject();
         newReport.put("reporterId", userId);
@@ -29,5 +30,21 @@ public class ReportHandler {
         } catch (UnexpectedHttpStatusException e) {
             System.out.println(e.getMessage());
         }
+    }
+
+    public static void acceptReport(Integer userId) {
+
+    }
+
+    public static void rejectReport(Integer userId) {
+
+    }
+
+    public static void getAllReports(Integer userId) {
+
+    }
+
+    public static void getPendingReports(Integer userId) {
+
     }
 }
