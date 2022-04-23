@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.Type;
 import vava.edo.model.enums.ReadStatus;
 
 import javax.persistence.*;
@@ -27,8 +28,10 @@ public class Feedback {
     private User userId;
     @Column(name = "fb_message", nullable = false)
     private String feedbackMessage;
-    @Column(name = "read")
-    private ReadStatus status;
+    @Enumerated(EnumType.STRING)
+    @Type(type = "vava.edo.model.enums.EnumTypePostgreSql")
+    @Column(name = "read", nullable = false)
+    private ReadStatus status = ReadStatus.not_seen;
 
 
     /**

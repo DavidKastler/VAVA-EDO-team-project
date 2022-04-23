@@ -21,11 +21,12 @@ public class GroupMemberController {
     private final UserService userService;
 
     @Autowired
-    public GroupMemberController(GroupMembersService groupMembersService, GroupService groupService, UserService userService) {
+    public GroupMemberController(GroupMembersService groupMembersService, GroupService groupService,
+                                 UserService userService) {
         this.groupMembersService = groupMembersService;
         this.groupService = groupService;
         this.userService = userService;
-        }
+    }
 
     @GetMapping("/groups")
     public ResponseEntity<List<Group>> getGroupsForUser(@RequestParam(value = "token") Integer token) {
@@ -35,7 +36,9 @@ public class GroupMemberController {
     @GetMapping("/members/{group_id}")
     public ResponseEntity<List<GroupMember>> getMembersOfGroup(@RequestParam(value = "token") Integer token,
                                                                @PathVariable(value = "group_id") Integer groupId) {
-        //TODO is user part of group?
+        if (!groupMembersService.isUserInGroup(token, groupId)) {
+            throw new ResponseStatusException(HttpStatus.FORBIDDEN, "Your are not part of the group");
+        }
         return new ResponseEntity<>(groupMembersService.getGroupMembersById(groupId), HttpStatus.OK);
     }
 

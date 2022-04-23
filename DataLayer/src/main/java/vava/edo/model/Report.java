@@ -20,7 +20,7 @@ import javax.persistence.*;
 public class Report {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "rep_id")
+    @Column(name = "rep_id", nullable = false)
     private Integer reportId;
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "reporter_id", nullable = false)
@@ -31,9 +31,9 @@ public class Report {
     @Column(name = "rep_message", nullable = false)
     private String reportMessage;
     @Enumerated(EnumType.STRING)
+    @Type(type = "vava.edo.model.enums.EnumTypePostgreSql")
     @Column(name = "status", nullable = false)
-    private ReportStatus status;
-
+    private ReportStatus status = ReportStatus.pending;
 
     /**
      * Static casting method from ReportCreate object
@@ -43,7 +43,6 @@ public class Report {
     public static Report from(ReportCreate reportDto) {
         Report report = new Report();
         report.setReportMessage(reportDto.getReportMessage());
-        report.setStatus(ReportStatus.pending);
         return report;
     }
 

@@ -4,8 +4,8 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.Type;
 import vava.edo.model.enums.RelationshipStatus;
-import vava.edo.schema.RelationshipCreate;
 
 import javax.persistence.*;
 
@@ -30,8 +30,9 @@ public class Relationship {
     @JoinColumn(name = "second_user_id", nullable = false)
     private User secondUser;
     @Enumerated(EnumType.STRING)
-    @Column(name = "status")
-    private RelationshipStatus status;
+    @Type(type = "vava.edo.model.enums.EnumTypePostgreSql")
+    @Column(name = "status", nullable = false)
+    private RelationshipStatus status = RelationshipStatus.pending;
     @Column(name = "since")
     private Long since;
 
