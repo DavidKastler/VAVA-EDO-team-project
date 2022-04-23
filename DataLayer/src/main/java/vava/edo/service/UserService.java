@@ -39,7 +39,6 @@ public class UserService {
         return getUser(userId).getUserRole().isAdminRights();
     }
 
-
     /**
      * Method that checks if user has account manager privileges
      * @param userId    user ID you want to check
@@ -50,7 +49,6 @@ public class UserService {
         return userRole.isAdminRights() || userRole.isManagerRights();
     }
 
-
     /**
      * Method that checks if user has team leader privileges
      * @param userId    user ID you want to check
@@ -60,7 +58,6 @@ public class UserService {
         Role userRole = getUser(userId).getUserRole();
         return userRole.isTeamLeaderRights() || userRole.isAdminRights() || userRole.isManagerRights();
     }
-
 
     /**
      * Method that checks if user has at least pleb privileges
@@ -73,7 +70,6 @@ public class UserService {
         return userRole.isTodoAccessRights() || userRole.isTeamLeaderRights()
                 || userRole.isAdminRights() || userRole.isManagerRights();
     }
-
 
     /**
      * Method to check password of user
@@ -89,7 +85,6 @@ public class UserService {
         }
     }
 
-
     /**
      * Method to check password of user
      * @param userId      user ID you want to check
@@ -98,7 +93,6 @@ public class UserService {
     public void checkPassword(int userId, String password) {
         checkPassword(getUser(userId), password);
     }
-
 
     /**
      * Method finds user by its username
@@ -118,7 +112,6 @@ public class UserService {
         return user;
     }
 
-
     /**
      * Method returns all users in database
      * @return  list of all users
@@ -126,7 +119,6 @@ public class UserService {
     public List<User> getAllUsers() {
         return userRepository.findAll();
     }
-
 
     /**
      * Method finds user by its ID, if it is not found throws exception
@@ -137,7 +129,6 @@ public class UserService {
         return userRepository.findById(userId).orElseThrow(
                 () -> new ResponseStatusException(HttpStatus.NOT_FOUND, "User not found"));
     }
-
 
     /**
      * Method that updates found user by ID based on given UserDto class parameters
@@ -157,7 +148,6 @@ public class UserService {
         return userToEdit;
     }
 
-
     /**
      * Method that updates found user by ID based on given UserDto class parameters
      * @param userId            user ID you want to change
@@ -173,7 +163,6 @@ public class UserService {
 
         return userToEdit;
     }
-
 
     /**
      * Method that updates found user by ID based on given UserDto class parameters
@@ -193,7 +182,6 @@ public class UserService {
         return userToEdit;
     }
 
-
     /**
      * Method converts DTO object to User object, finds wanted role for user if exists
      * and saves it to database
@@ -208,7 +196,6 @@ public class UserService {
         return userRepository.save(user);
     }
 
-
     /**
      * Method for deleting users from database by ID
      * @param userId    user ID you want to delete
@@ -219,5 +206,4 @@ public class UserService {
         userRepository.delete(user);
         return user;
     }
-
 }

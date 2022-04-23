@@ -1,8 +1,12 @@
 package vava.edo.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import vava.edo.model.Report;
 
-public interface ReportRepository extends JpaRepository<Report, Integer> {
+import java.util.List;
 
+public interface ReportRepository extends JpaRepository<Report, Integer> {
+    @Query("select r from Report r where r.status = 'pending'")
+    List<Report> findAllByStatusIsPending();
 }
