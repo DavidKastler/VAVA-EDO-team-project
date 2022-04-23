@@ -5,40 +5,32 @@ import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
 import vava.edo.Exepctions.TodoScreen.MandatoryFieldNotInputted;
 import vava.edo.Exepctions.TodoScreen.TodoDatabaseFail;
-import vava.edo.Handlers.Refresh;
 import vava.edo.Handlers.TodoHandler;
+import vava.edo.controllers.models.TodoHBoxModel;
 import vava.edo.controllers.models.TodoScreenModel;
+import vava.edo.models.Todo;
 
 
 public class TodosScreenController {
 
     private TodoScreenModel model;
-    private Refresh refresher;
-
-    // FXML elements for to-dos sort handeling
-    @FXML
-    private Button buttonAllTodos;
+    private Todo selectedTodo;
 
     @FXML
-    private Button buttonTodayTodos;
-
-    @FXML
-    private Button buttonTomorrowTodos;
-
-    @FXML
-    private Button buttonCompletedTodos;
-
-
-
-    @FXML
-    private Label labelTodoGroupName;
+    private Label labelLeftBarAll;
 
     @FXML
     private VBox vBoxTodos;
 
+    @FXML
+    private VBox vBoxTodoInfo;
+
     // FXML elements for new to_do window
     @FXML
     private VBox vBoxNewTaskScreen;
+
+    @FXML
+    private VBox vBoxNewTaskWindow;
 
     @FXML
     private TextField textFieldTaskName;
@@ -58,8 +50,7 @@ public class TodosScreenController {
     @FXML
     private Button buttonAcceptTodo;
 
-
-    // elements for to-do info
+    // elements for to_do info
     @FXML
     private CheckBox checkBoxTodoInfo;
 
@@ -76,44 +67,21 @@ public class TodosScreenController {
     private Label labelTodoInfoGroup;
 
     @FXML
-    private Button buttonEditTodoInfo;
+    private Button buttonEditTodo;
 
     @FXML
     private Button buttonDeleteTodo;
 
-    @FXML
-    private Button buttonEditTodo;
-
     public void setModel(TodoScreenModel model) {
+        labelLeftBarAll.setText(model.getUser().getUsername());
+
+        for(Todo todo : model.getUser().getTodos()) {
+            vBoxTodos.getChildren().add(new TodoHBoxModel(todo, this, checkBoxTodoInfo,
+                    labelTodoInfoDueTIme, labelTodoInfoName, labelTodoInfoDescription,
+                    labelTodoInfoGroup).getTodoHBOx());
+            System.out.println("Loaded: " + todo);
+        }
         this.model = model;
-        this.refresher = new Refresh(model.getUser(), vBoxTodos, checkBoxTodoInfo, labelTodoInfoDueTIme,
-                labelTodoInfoName, labelTodoInfoDescription, labelTodoInfoGroup, buttonEditTodoInfo, buttonDeleteTodo);
-
-        refresher.initLoader();
-    }
-
-    public void handleAllTodos() {
-        labelTodoGroupName.setText("All");
-        refresher.setActualGroupTodos(model.getUser().getTodos());
-        refresher.refreshTodos();
-    }
-
-    public void handleTodayTodos() {
-        labelTodoGroupName.setText("Today");
-        refresher.setActualGroupTodos(TodoHandler.getTodayTodos(model.getUser()));
-        refresher.refreshTodos();
-    }
-
-    public void handleTomorrowTodos() {
-        labelTodoGroupName.setText("Tomorrow");
-        refresher.setActualGroupTodos(TodoHandler.getTomorrowTodos(model.getUser()));
-        refresher.refreshTodos();
-    }
-
-    public void handleCompletedTodos() {
-        labelTodoGroupName.setText("Completed");
-        refresher.setActualGroupTodos(TodoHandler.getCompletedTodos(model.getUser()));
-        refresher.refreshTodos();
     }
 
     @FXML
@@ -153,8 +121,6 @@ public class TodosScreenController {
 
         vBoxNewTaskScreen.setVisible(false);
         vBoxNewTaskScreen.setDisable(true);
-
-        refresher.refreshTodos();
     }
 
     @FXML
@@ -180,14 +146,11 @@ public class TodosScreenController {
     public void handleDeleteTodo() {
 
        try {
-           TodoHandler.deleteTodo(this.refresher.getSelectedTodo().getTodoId(), model.getUser());
+           TodoHandler.deleteTodo(this.selectedTodo.getTodoId(), model.getUser());
        }
        catch (TodoDatabaseFail e){
            e.printStackTrace();
        }
-
-       refresher.refreshTodos();
-       refresher.setFirstTodoInfo();
     }
 
 
@@ -197,17 +160,16 @@ public class TodosScreenController {
      */
     @FXML
     public void handleEditTodo() {
+
         try {
-            refresher.setSelectedTodo(TodoHandler.editTodo(refresher.getSelectedTodo().getTodoId(), model.getUser(), textFieldTaskName, textAreaTaskDescription,
-                    datePickerTaskFrom, datePickerTaskTo, textFieldTaskGroup));
+            TodoHandler.editTodo(selectedTodo.getTodoId(), model.getUser(), textFieldTaskName, textAreaTaskDescription,
+                    datePickerTaskFrom, datePickerTaskTo, textFieldTaskGroup);
         }catch (MandatoryFieldNotInputted | TodoDatabaseFail e){
             e.printStackTrace();
         }
 
         vBoxNewTaskScreen.setVisible(false);
         vBoxNewTaskScreen.setDisable(true);
-
-        refresher.refreshTodos();
     }
 
     /**
@@ -216,11 +178,17 @@ public class TodosScreenController {
     @FXML
     public void handleStatusChange() {
         try {
-            TodoHandler.changeTodoStatus(refresher.getSelectedTodo(), model.getUser().getUid());
+            TodoHandler.changeTodoStatus(this.selectedTodo.getTodoId(), model.getUser().getUid());
         }catch (TodoDatabaseFail e){
             e.printStackTrace();
         }
+    }
 
-        refresher.refreshTodos();
+    /**
+     * Setter for Selected to-do
+     * @param selectedTodo clicked to-do
+     */
+    public void setSelectedTodo(Todo selectedTodo) {
+        this.selectedTodo = selectedTodo;
     }
 }
