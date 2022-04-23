@@ -21,10 +21,12 @@ public class Report {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "rep_id", nullable = false)
     private Integer reportId;
-    @Column(name = "reporter_id", nullable = false)
-    private Integer reporterId;
-    @Column(name = "violator_id", nullable = false)
-    private Integer violatorId;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "reporter_id", nullable = false)
+    private User reporter;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "violator_id", nullable = false)
+    private User violator;
     @Column(name = "rep_message", nullable = false)
     private String reportMessage;
     @Enumerated(EnumType.ORDINAL)
@@ -39,8 +41,6 @@ public class Report {
      */
     public static Report from(ReportCreate reportDto) {
         Report report = new Report();
-        report.setReporterId(reportDto.getReporterId());
-        report.setViolatorId(reportDto.getViolatorId());
         report.setReportMessage(reportDto.getReportMessage());
         report.setStatus(reportDto.getReportStatus());
         return report;
@@ -55,8 +55,8 @@ public class Report {
     public String toString() {
         return "Report{" +
                 "reportId=" + reportId +
-                ", reporterId=" + reporterId +
-                ", violatorId=" + violatorId +
+                ", reporterId=" + reporter +
+                ", violatorId=" + violator +
                 ", reportMessage=" + reportMessage +
                 ", reportStatus=" + status +
                 '}';
