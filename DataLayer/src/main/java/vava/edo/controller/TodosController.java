@@ -10,6 +10,7 @@ import vava.edo.schema.TaskCreate;
 import vava.edo.schema.TaskUpdate;
 import vava.edo.service.GroupService;
 import vava.edo.service.TodosService;
+import vava.edo.service.UserService;
 
 import java.util.List;
 import java.util.Objects;
@@ -23,11 +24,13 @@ public class TodosController {
 
     private final TodosService todosService;
     private final GroupService groupService;
+    private final UserService userService;
 
     @Autowired
-    public TodosController(TodosService todosService, GroupService groupService) {
+    public TodosController(TodosService todosService, GroupService groupService, UserService userService) {
         this.todosService = todosService;
         this.groupService = groupService;
+        this.userService =userService;
     }
 
     /**
@@ -60,8 +63,10 @@ public class TodosController {
      * @return response entity containing deleted task and http status 204 / 401 / 404
      */
     @DeleteMapping("/delete/{task_id}")
-    public ResponseEntity<Object> deleteTaskById(@RequestParam(value = "token") Integer token, @PathVariable(value = "task_id") Integer taskId) {
-        if (todosService.getUserIdFromTask(taskId) != token) throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "User needs to be the owner of the account.");
+    public ResponseEntity<Todo> deleteTaskById(@RequestParam(value = "token") Integer token, @PathVariable(value = "task_id") Integer taskId) {
+        if (!Objects.equals(todosService.getTask(taskId).getUserId(), token) && userService.isAdmin(token)) {
+            throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "User needs to be the owner of the account.");
+        }
         return new ResponseEntity<>(todosService.deleteTask(taskId), HttpStatus.NO_CONTENT);
     }
 

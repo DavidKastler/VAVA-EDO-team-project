@@ -205,8 +205,7 @@ public class UserService {
         User user = User.from(userRegister);
         user.setUserRole(userRole);
 
-        userRepository.save(user);
-        return user;
+        return userRepository.save(user);
     }
 
 
