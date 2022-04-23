@@ -50,9 +50,9 @@ public class TodosController {
         return new ResponseEntity<>(todosService.createTask(taskDto), HttpStatus.CREATED);
     }
 
-    @PutMapping("/complete/{task_id}")
+    @PutMapping("/complete/{todoId}")
     public ResponseEntity<Todo> completeTaskById(@RequestParam(value = "token") Integer token,
-                                                 @PathVariable(value = "task_id") Integer taskId) {
+                                                 @PathVariable(value = "todoId") Integer taskId) {
         return new ResponseEntity<>(todosService.invertCompleted(token, taskId), HttpStatus.OK);
     }
 
@@ -60,14 +60,14 @@ public class TodosController {
      * Endpoint used to delete a specific task
      * @param token     user account id
      * @param taskId    id of task we want to delete
-     * @return response entity containing deleted task and http status 204 / 401 / 404
+     * @return response entity containing deleted task and http status 200 / 401 / 404
      */
-    @DeleteMapping("/delete/{task_id}")
-    public ResponseEntity<Todo> deleteTaskById(@RequestParam(value = "token") Integer token, @PathVariable(value = "task_id") Integer taskId) {
+    @DeleteMapping("/delete/{todoId}")
+    public ResponseEntity<Todo> deleteTaskById(@RequestParam(value = "token") Integer token, @PathVariable(value = "todoId") Integer taskId) {
         if (!Objects.equals(todosService.getTask(taskId).getUserId(), token) && userService.isAdmin(token)) {
             throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "User needs to be the owner of the account.");
         }
-        return new ResponseEntity<>(todosService.deleteTask(taskId), HttpStatus.NO_CONTENT);
+        return new ResponseEntity<>(todosService.deleteTask(taskId), HttpStatus.OK);
     }
 
     /**
@@ -77,9 +77,9 @@ public class TodosController {
      * @param taskDto   data transfer object for Task class
      * @return response entity containing task and http status 200 / 400 / 404
      */
-    @PutMapping("/edit/{task_id}")
+    @PutMapping("/edit/{todoId}")
     public ResponseEntity<Todo> updateTaskById(@RequestParam(value = "token") Integer token,
-                                               @PathVariable(value = "task_id") Integer taskId,
+                                               @PathVariable(value = "todoId") Integer taskId,
                                                @RequestBody TaskUpdate taskDto) {
         if (!Objects.equals(token, taskDto.getUserId())) {
             throw new ResponseStatusException(HttpStatus.FORBIDDEN, "You cant edit foreign todo");
