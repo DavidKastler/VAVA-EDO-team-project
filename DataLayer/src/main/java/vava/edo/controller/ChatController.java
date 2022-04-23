@@ -6,7 +6,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 import vava.edo.model.Chat;
-import vava.edo.schema.chats.MessageCreate;
+import vava.edo.schema.chats.Message;
+import vava.edo.schema.chats.RecentChatGroup;
 import vava.edo.service.*;
 
 import java.util.List;
@@ -36,7 +37,7 @@ public class ChatController {
      */
     @PostMapping("/send")
     public ResponseEntity<Chat> sendMessage(@RequestParam(value = "token") Integer token,
-                                            @RequestBody MessageCreate messageDto) {
+                                            @RequestBody Message messageDto) {
 
         if (!Objects.equals(token, messageDto.getSenderId()) ||
                 !groupMembersService.isUserInGroup(token, messageDto.getGroupId())) {
@@ -66,10 +67,10 @@ public class ChatController {
      * @return          list of chat objects
      */
     @GetMapping("/get/{groupId}")
-    public ResponseEntity<List<Chat>> getLastMessages(@RequestParam(value = "token") int token,
+    public ResponseEntity<List<Chat>> getLastMessages(@RequestParam(value = "token") Integer token,
                                                       @RequestParam(value = "from", required = false) Integer fromIndex,
                                                       @RequestParam(value = "size", required = false) Integer size,
-                                                      @PathVariable(value = "groupId") int groupId) {
+                                                      @PathVariable(value = "groupId") Integer groupId) {
         if (!groupMembersService.isUserInGroup(token, groupId)) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Combination of userId and groupId not found.");
         }
@@ -80,5 +81,15 @@ public class ChatController {
             size = 20;
         }
         return new ResponseEntity<>(chatService.getMessagesFromRange(groupId, fromIndex, size), HttpStatus.OK);
+    }
+
+    /**
+     * Endpoint gets all recent chat groups for user
+     * @param token user id
+     * @return      list of recently chatted groups
+     */
+    @GetMapping("/get/recent")
+    public ResponseEntity<List<RecentChatGroup>> getRecentChatGroups(@RequestParam(value = "token") int token) {
+        return new ResponseEntity<>(chatService.getLastChatGroups(token), HttpStatus.OK);
     }
 }
