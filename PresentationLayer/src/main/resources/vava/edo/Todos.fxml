@@ -144,7 +144,7 @@
                      <children>
                         <HBox prefHeight="80.0" prefWidth="350.0" spacing="10.0">
                            <children>
-                              <CheckBox fx:id="checkBoxTodoInfo" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="80.0" prefWidth="19.0" textFill="WHITE">
+                              <CheckBox fx:id="checkBoxTodoInfo" onAction="#handleStatusChange" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="80.0" prefWidth="19.0" textFill="WHITE">
                                  <font>
                                     <Font name="Arial" size="13.0" />
                                  </font>

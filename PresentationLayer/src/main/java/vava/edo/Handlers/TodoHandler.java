@@ -324,4 +324,34 @@ public class TodoHandler {
 
         return tomorrowsTodos;
     }
+
+    /**
+     * Method which creates a PUT request to update the status of to_do
+     *
+     * @param todoId id of a to_do which will have changed it's status
+     * @param userId id of the user id
+     */
+    public static void changeTodoStatus(int todoId, int userId) throws TodoDatabaseFail{
+
+        try {
+            HttpResponse<JsonNode> apiResponse = Unirest.put("http://localhost:8080/" +
+                    "todos/complete/{todoId}/?token={token}")
+                    .routeParam("todoId", String.valueOf(todoId))
+                    .routeParam("token", String.valueOf(userId))
+                    .asJson();
+
+            Todo completed_todo = new Gson().fromJson(apiResponse.getBody().toString(), Todo.class);
+
+            if(completed_todo != null){
+                System.out.println(completed_todo);
+                // TODO upravit fungovanie ked bude refresh window
+            }else {
+                throw new TodoDatabaseFail("Failed to change the status of the todo");
+            }
+
+        }catch (UnirestException e){
+            System.out.println("Connection to localhost:8080 failed ! (PLease start backend server)");
+        }
+
+    }
 }
