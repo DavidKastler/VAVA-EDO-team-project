@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="vava.edo.controllers.PopUpWindowController">
+   <children>
+      <ScrollPane layoutX="-1.0" layoutY="-1.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0">
+         <content>
+            <HBox prefHeight="398.0" prefWidth="595.0">
+               <children>
+                  <VBox maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="300.0">
+                     <children>
+                        <CheckBox maxWidth="300.0" mnemonicParsing="false" text="icbhd sasidchjbdsa akcjb alksdcb ashcb akscb akshcb aschb " wrapText="true">
+                           <font>
+                              <Font name="Arial" size="24.0" />
+                           </font>
+                           <padding>
+                              <Insets right="10.0" />
+                           </padding>
+                        </CheckBox>
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+         </content>
+      </ScrollPane>
+   </children>
+</AnchorPane>

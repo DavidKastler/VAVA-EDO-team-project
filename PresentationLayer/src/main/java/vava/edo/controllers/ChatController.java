@@ -1,30 +1,27 @@
 package vava.edo.controllers;
 
 
-import com.mashape.unirest.http.HttpResponse;
-import com.mashape.unirest.http.JsonNode;
-import com.mashape.unirest.http.Unirest;
-import com.mashape.unirest.http.exceptions.UnirestException;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.*;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
-import javafx.stage.Stage;
-import org.jetbrains.annotations.NotNull;
-import org.json.JSONObject;
 
 import java.io.IOException;
 import java.net.URL;
 import java.net.URLConnection;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -35,7 +32,7 @@ public class ChatController implements Initializable {
     private AnchorPane rootPane;
 
     @FXML
-    private Button search_button;
+    private TextField search_field;
 
     @FXML
     private Button send_message_button;
@@ -54,6 +51,9 @@ public class ChatController implements Initializable {
 
     @FXML
     private ScrollPane chat_pane;
+
+    @FXML
+    private VBox messages_list;
 
 
 
@@ -89,12 +89,48 @@ public class ChatController implements Initializable {
         return button;
     }
 
-    public Label editLabel(Label label, String username){
+    public HBox editLabel(Label label, String messageText, Boolean color){
+        label.setPrefHeight(Region.USE_COMPUTED_SIZE);
+        label.setWrapText(true);
+        label.setText(messageText);
 
-        return label;
+        Font font = Font.font("Arial", 34);
+        label.setFont(font);
+        label.setMaxWidth(350);
+        HBox messageBox = new HBox();
+
+
+        label.setStyle("-fx-background-radius: 20");
+
+        HBox box = new HBox();
+        box.setPrefHeight(Region.USE_COMPUTED_SIZE);
+        label.setPrefHeight(Region.USE_COMPUTED_SIZE);
+
+        box.setPrefWidth(800);
+
+
+        if (color == true){
+            label.setStyle("-fx-background-color: #ff9797");
+            label.setAlignment(Pos.CENTER_LEFT);
+            box.setAlignment(Pos.BOTTOM_LEFT);
+            box.setMargin(label, new Insets(5, 5, 5, 5));
+        } else {
+            label.setStyle("-fx-background-color:  #c4c4c4");
+            label.setAlignment(Pos.CENTER_RIGHT);
+            box.setAlignment(Pos.BOTTOM_RIGHT);
+            box.setMargin(label, new Insets(5, 10, 5, 5));
+            System.out.println("Pridana farba");
+        }
+        label.setPadding(new Insets(10,30,10,30));
+
+
+
+        box.getChildren().add(label);
+
+        return box;
     }
 
-    public void refreshChatList(List<String> usernames){
+    public void writeChatList(List<String> usernames){
         for (int i = 0; i < usernames.size(); i++){
             //System.out.println(id1);
             Button button = new Button();
@@ -119,6 +155,26 @@ public class ChatController implements Initializable {
             } else {
                 chats.get(i).setStyle("-fx-background-color:  #808080");
             }
+        }
+    }
+
+    public void writeChatMessages(List<String> userIds, List<String> messages){
+        messages_list.getChildren().clear();
+        for (int i = 0; i < messages.size(); i++){
+            //System.out.println(id1);
+            HBox box = new HBox();
+            Label message = new Label();
+            Boolean color;
+            if (userIds.get(i).equals("13")){
+                color = false;
+            } else {
+                color = true;
+            }
+            box = editLabel(message, messages.get(i), color);
+
+
+            this.messages_list.getChildren().add(box);
+            chat_pane.setVvalue(1.0);
         }
     }
 
@@ -168,8 +224,7 @@ public class ChatController implements Initializable {
         usernames.add("Gustav");
         usernames.add("Adolf");
 
-
-        refreshChatList(usernames);
+        writeChatList(usernames);
 
 
     }
@@ -189,6 +244,35 @@ public class ChatController implements Initializable {
 
         chat_name.setStyle("-fx-text-fill: #000000");
         chat_name.setText(actualButton.getText());
+
+        List<String> userIdList = new ArrayList<>();
+        List<String> messageList = new ArrayList<>();
+
+        userIdList.add("12");
+        userIdList.add("13");
+        userIdList.add("12");
+        userIdList.add("13");
+        userIdList.add("13");
+        userIdList.add("12");
+        userIdList.add("13");
+        userIdList.add("12");
+        userIdList.add("12");
+        userIdList.add("13");
+        userIdList.add("12");
+
+        messageList.add("ivbiedv widbbs jodncsd  djnsdb b" );
+        messageList.add("Fero b");
+        messageList.add("sdlibdb i dbhb  kdjn j");
+        messageList.add("dlkhbvdk; jdkcjkdbc dbcd");
+        messageList.add("dk;jbjcks jcdbskh sbjdchkdb hdbchdbc hbdchdbcd ");
+        messageList.add("adlcbsdl ascbiasb aiusbc sbclb acslkhhbc");
+        messageList.add("lkcsbjdsahbcl sncbbak aksbcaslb bcsailcb");
+        messageList.add("acsjhbs aksjcba ajsbcc kajhsbcc");
+        messageList.add("kjbjccakl");
+        messageList.add("ljkachbsdc aihsc akshcbh aisbccc");
+        messageList.add("jkch asausbcli asbcb");
+
+        writeChatMessages(userIdList, messageList);
 
 
         }
@@ -212,10 +296,18 @@ public class ChatController implements Initializable {
     public void handleSendMessageButton(MouseEvent mouseEvent) throws IOException {
     }
 
-    //metoda na vratenie friendov
-    //metoda na vyhladavanie medzi friendami
-    //metoda na vymazanie frienda podla ID
-    //report usera
+    @FXML
+    public void searchFriend(KeyEvent keyEvent) throws IOException {
+        //tu bude zavolana metoda writeChatList(argument); a ako argument bude pouzita metoda na vratenie vyhovujucich vzoriek do ktorej pojde argument search_field.getText()
+        System.out.println(search_field.getText());
+
+    }
+
+    @FXML
+    public void sendMessage(MouseEvent mouseEvent) throws IOException {
+        System.out.println(chat_message.getText());
+        //zavolanie metody ktora dostane ako argument id usera a text spravy
+    }
 
 
 }

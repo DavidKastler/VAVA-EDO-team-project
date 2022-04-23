@@ -91,14 +91,14 @@
                <children>
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="240.0">
                      <children>
-                        <Button fx:id="search_button" mnemonicParsing="false" prefHeight="50.0" prefWidth="134.0" style="-fx-background-color: #c4c4c4; -fx-background-radius: 40;" text="Search">
+                        <TextField fx:id="search_field" alignment="CENTER" maxHeight="50.0" maxWidth="134.0" minHeight="50.0" minWidth="134.0" onKeyTyped="#searchFriend" prefHeight="50.0" prefWidth="134.0" promptText="Search" style="-fx-background-color: #c4c4c4; -fx-background-radius: 40;">
                            <font>
-                              <Font name="Arial Bold" size="24.0" />
+                              <Font name="Arial" size="24.0" />
                            </font>
                            <HBox.margin>
                               <Insets right="10.0" />
                            </HBox.margin>
-                        </Button>
+                        </TextField>
                         <Button alignment="CENTER" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: #33557e; -fx-background-radius: 100;" text="+" textFill="#95c6ff">
                            <font>
                               <Font name="Arial" size="25.0" />
@@ -143,13 +143,13 @@
                         </HBox>
                      </children>
                   </HBox>
-                  <ScrollPane fx:id="chat_pane" hbarPolicy="NEVER" prefHeight="650.0" prefWidth="800.0" style="-fx-background: #323232; -fx-border-color: #323232;">
+                  <ScrollPane fx:id="chat_pane" hbarPolicy="NEVER" prefHeight="550.0" prefWidth="800.0" style="-fx-background: #323232; -fx-border-color: #323232;">
                      <content>
-                        <VBox prefHeight="645.0" prefWidth="800.0">
+                        <VBox prefHeight="545.0" prefWidth="800.0">
                            <children>
-                              <VBox prefHeight="550.0" prefWidth="800.0">
+                              <VBox fx:id="messages_list" prefHeight="561.0" prefWidth="800.0">
                                  <children>
-                                    <HBox alignment="BOTTOM_LEFT">
+                                    <HBox alignment="BOTTOM_LEFT" prefWidth="800.0">
                                        <children>
                                           <Label contentDisplay="CENTER" maxWidth="350.0" style="-fx-background-color: #ff9797; -fx-background-radius: 20;" text="ojcnwsb dvsdbvsodbvdn vsodjnv " wrapText="true">
                                              <font>
@@ -180,30 +180,30 @@
                                        </children>
                                     </HBox>
                                  </children></VBox>
-                              <HBox prefHeight="100.0" prefWidth="800.0">
-                                 <children>
-                                    <TextField fx:id="chat_message" minHeight="-Infinity" minWidth="-Infinity" prefHeight="70.0" prefWidth="650.0" promptText="Write message..." style="-fx-background-color: #c4c4c4; -fx-background-radius: 40;">
-                                       <font>
-                                          <Font name="Arial" size="24.0" />
-                                       </font>
-                                       <HBox.margin>
-                                          <Insets left="15.0" top="15.0" />
-                                       </HBox.margin>
-                                    </TextField>
-                                    <Button fx:id="send_message_button" contentDisplay="CENTER" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="70.0" prefWidth="70.0" style="-fx-background-color: #c4c4c4; -fx-font-weight: bold; -fx-background-radius: 40;" textAlignment="CENTER">
-                                       <font>
-                                          <Font name="Arial" size="20.0" />
-                                       </font>
-                                       <HBox.margin>
-                                          <Insets left="10.0" top="15.0" />
-                                       </HBox.margin>
-                                    </Button>
-                                 </children>
-                              </HBox>
                            </children>
                         </VBox>
                      </content>
                   </ScrollPane>
+                  <HBox prefHeight="100.0" prefWidth="800.0">
+                     <children>
+                        <TextField fx:id="chat_message" minHeight="-Infinity" minWidth="-Infinity" prefHeight="70.0" prefWidth="650.0" promptText="Write message..." style="-fx-background-color: #c4c4c4; -fx-background-radius: 40;">
+                           <font>
+                              <Font name="Arial" size="24.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets left="15.0" top="15.0" />
+                           </HBox.margin>
+                        </TextField>
+                        <Button fx:id="send_message_button" contentDisplay="CENTER" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#sendMessage" prefHeight="70.0" prefWidth="70.0" style="-fx-background-color: #c4c4c4; -fx-font-weight: bold; -fx-background-radius: 40;" textAlignment="CENTER">
+                           <font>
+                              <Font name="Arial" size="20.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets left="10.0" top="15.0" />
+                           </HBox.margin>
+                        </Button>
+                     </children>
+                  </HBox>
                </children></VBox>
          </children>
       </HBox>
