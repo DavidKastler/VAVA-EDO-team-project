@@ -6,7 +6,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 import vava.edo.model.Group;
-import vava.edo.model.GroupMembers;
+import vava.edo.model.GroupMember;
 import vava.edo.schema.GroupAddMember;
 import vava.edo.schema.GroupCreate;
 import vava.edo.service.GroupMembersService;
@@ -161,7 +161,7 @@ public class GroupController {
      * @return list of all members with their groups
      */
     @GetMapping(value = "/allGroupMembers")
-    public ResponseEntity<List<GroupMembers>> getAllGroupMembers(@RequestParam(value = "token") int token) {
+    public ResponseEntity<List<GroupMember>> getAllGroupMembers(@RequestParam(value = "token") int token) {
         if (!(userService.isAdmin(token) || userService.isAccountManager(token) || userService.isTeamLeader(token))) {
             throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "This action requires admin, account manager" +
                     " or team leader privileges.");
@@ -178,8 +178,8 @@ public class GroupController {
      * @return list of group members
      */
     @GetMapping(value = "/get/groupMembers/byID/{groupId}")
-    public ResponseEntity<List<GroupMembers>> getGroupMembersById(@RequestParam(value = "token") int token,
-                                                                  @PathVariable(value = "groupId") int groupId) {
+    public ResponseEntity<List<GroupMember>> getGroupMembersById(@RequestParam(value = "token") int token,
+                                                                 @PathVariable(value = "groupId") int groupId) {
         if (!userService.isPleb(token)) {
             throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "This action requires at least pleb privileges.");
         }
@@ -217,7 +217,7 @@ public class GroupController {
             throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "This action requires admin, account manager" +
                     " or team leader privileges.");
         }
-        GroupMembers groupMember = groupMembersService.addMember(groupMemberDto);
+        GroupMember groupMember = groupMembersService.addMember(groupMemberDto);
         return new ResponseEntity<>(groupMember, HttpStatus.OK);
     }
 
@@ -238,7 +238,7 @@ public class GroupController {
             throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "This action requires admin, account manager" +
                     " or team leader privileges.");
         }
-        GroupMembers gr = groupMembersService.deleteMember(groupId, userId);
+        GroupMember gr = groupMembersService.deleteMember(groupId, userId);
         return new ResponseEntity<>(gr, HttpStatus.NO_CONTENT);
     }
 
