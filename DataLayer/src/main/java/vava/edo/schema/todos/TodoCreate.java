@@ -1,6 +1,9 @@
-package vava.edo.schema;
+package vava.edo.schema.todos;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.NonNull;
 
 
 /**
@@ -8,14 +11,22 @@ import lombok.Data;
  * It is used for creating a task
  */
 @Data
-public class TaskCreate {
+@NoArgsConstructor
+public class TodoCreate {
 
+    @NonNull
     private Integer userId;
+    @NonNull
     private String todoName;
+    @NonNull
     private String todoDescription;
+    @NonNull
     private Long toTime;
+    @NonNull
     private Long fromTime;
+    @NonNull
     private Boolean completed;
+    @NonNull
     private String groupName;
 
     @Override

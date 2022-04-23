@@ -6,7 +6,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 import vava.edo.model.Report;
-import vava.edo.schema.ReportCreate;
+import vava.edo.schema.reports.ReportCreate;
 import vava.edo.service.ReportService;
 import vava.edo.service.UserService;
 

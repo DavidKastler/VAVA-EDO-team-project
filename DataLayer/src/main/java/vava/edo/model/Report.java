@@ -5,7 +5,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.Type;
 import vava.edo.model.enums.ReportStatus;
-import vava.edo.schema.ReportCreate;
+import vava.edo.schema.reports.ReportCreate;
 
 import javax.persistence.*;
 

@@ -6,9 +6,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 import vava.edo.model.User;
-import vava.edo.schema.users.UserEdit;
 import vava.edo.schema.users.UserLogin;
-import vava.edo.schema.users.UserRegister;
+import vava.edo.schema.users.UserEdit;
 import vava.edo.service.UserService;
 
 import java.util.List;
@@ -35,7 +34,7 @@ public class UserController {
     }
 
     @PostMapping(value = "/register")
-    public ResponseEntity<Object> registerNewUser(@RequestBody UserRegister userDto) {
+    public ResponseEntity<Object> registerNewUser(@RequestBody UserEdit userDto) {
         return new ResponseEntity<>(userService.addUser(userDto), HttpStatus.CREATED);
     }
 

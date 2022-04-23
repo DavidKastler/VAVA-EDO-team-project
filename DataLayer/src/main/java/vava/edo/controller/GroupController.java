@@ -6,7 +6,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 import vava.edo.model.Group;
-import vava.edo.schema.GroupCreate;
+import vava.edo.schema.groups.GroupCreate;
 import vava.edo.service.GroupMembersService;
 import vava.edo.service.GroupService;
 import vava.edo.service.UserService;

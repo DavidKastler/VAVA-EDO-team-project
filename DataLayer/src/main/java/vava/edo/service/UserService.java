@@ -6,9 +6,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.server.ResponseStatusException;
 import vava.edo.model.Role;
-import vava.edo.schema.users.UserEdit;
 import vava.edo.schema.users.UserLogin;
-import vava.edo.schema.users.UserRegister;
+import vava.edo.schema.users.UserEdit;
 import vava.edo.repository.UserRepository;
 import vava.edo.model.User;
 
@@ -137,7 +136,7 @@ public class UserService {
      * @return                  updated user
      */
     @Transactional
-    public User editUser(int userId, UserRegister updatedUserDto) {
+    public User editUser(int userId, UserEdit updatedUserDto) {
         User userToEdit = getUser(userId);
         Role updatedRole = roleService.getRole(updatedUserDto.getRoleId());
 
@@ -165,32 +164,14 @@ public class UserService {
     }
 
     /**
-     * Method that updates found user by ID based on given UserDto class parameters
-     * @param userId            user ID you want to change
-     * @param updatedUserDto    userDto class with updated parameters
-     * @return                  updated user
-     */
-    @Transactional
-    public User editUser(int userId, UserEdit updatedUserDto) {
-        User userToEdit = getUser(userId);
-        Role userRole = roleService.getRole(updatedUserDto.getRoleId());
-
-        userToEdit.setUsername(updatedUserDto.getUsername());
-        userToEdit.setPassword(updatedUserDto.getPassword());
-        userToEdit.setUserRole(userRole);
-
-        return userToEdit;
-    }
-
-    /**
      * Method converts DTO object to User object, finds wanted role for user if exists
      * and saves it to database
-     * @param userRegister   user Data Transfer Object you want to convert to user
+     * @param userEdit   user Data Transfer Object you want to convert to user
      * @return          created user
      */
-    public User addUser(UserRegister userRegister) {
-        Role userRole = roleService.getRole(userRegister.getRoleId());
-        User user = User.from(userRegister);
+    public User addUser(UserEdit userEdit) {
+        Role userRole = roleService.getRole(userEdit.getRoleId());
+        User user = User.from(userEdit);
         user.setUserRole(userRole);
 
         return userRepository.save(user);

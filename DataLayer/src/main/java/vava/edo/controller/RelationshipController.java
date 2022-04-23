@@ -7,7 +7,8 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 import vava.edo.model.Relationship;
 import vava.edo.model.enums.RelationshipStatus;
-import vava.edo.schema.RelationshipCreate;
+import vava.edo.schema.relationships.RelationshipCreate;
+import vava.edo.schema.relationships.RelationshipRequest;
 import vava.edo.schema.users.UserInfo;
 import vava.edo.service.RelationshipService;
 import vava.edo.service.UserService;
@@ -39,15 +40,16 @@ public class RelationshipController {
     @PostMapping(value = "/create")
     public ResponseEntity<Object> createNewFriendRequest(@RequestParam(value = "token") Integer token,
                                                          @RequestBody RelationshipCreate relationshipDto) {
-        if (Objects.equals(relationshipDto.getSenderId(), relationshipDto.getReceiverName())) {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "First and second user cant be same.");
-        }
-        if (!Objects.equals(token, relationshipDto.getSenderId()) && !userService.isAdmin(token)) {
-            throw new ResponseStatusException(HttpStatus.FORBIDDEN, "You dont have rights to do this.");
+        if (!Objects.equals(token, relationshipDto.getSenderId())) {
+            throw new ResponseStatusException(HttpStatus.FORBIDDEN, "You cant create relationships for someone else.");
         }
 
         Integer senderId = relationshipDto.getSenderId();
         Integer receiverId = userService.getUserByUserName(relationshipDto.getReceiverName()).getUId();
+
+        if (Objects.equals(senderId, receiverId)) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "First and second user cant be same.");
+        }
 
         Relationship existingRequest = relationshipService.getRelationshipBySenderIdAndReceiverId(senderId, receiverId);
         if (existingRequest != null) {
@@ -129,7 +131,7 @@ public class RelationshipController {
      * @return list of friends {"username}
      */
     @GetMapping(value = "/friends")
-    public ResponseEntity<List<UserInfo>> getAllFriends(@RequestParam(value = "token") Integer token) {
+    public ResponseEntity<List<RelationshipRequest>> getAllFriends(@RequestParam(value = "token") Integer token) {
         return new ResponseEntity<>(relationshipService.getAllFriends(token), HttpStatus.OK);
     }
 
@@ -139,7 +141,7 @@ public class RelationshipController {
      * @return list of friend requests
      */
     @GetMapping(value = "/requests")
-    public ResponseEntity<List<UserInfo>> getAllFriendRequests(@RequestParam(value = "token") Integer token) {
+    public ResponseEntity<List<RelationshipRequest>> getAllFriendRequests(@RequestParam(value = "token") Integer token) {
         return new ResponseEntity<>(relationshipService.getAllPendingRequests(token), HttpStatus.OK);
     }
 }

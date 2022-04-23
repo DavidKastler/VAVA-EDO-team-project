@@ -1,4 +1,4 @@
-package vava.edo.schema;
+package vava.edo.schema.relationships;
 
 
 import com.sun.istack.NotNull;

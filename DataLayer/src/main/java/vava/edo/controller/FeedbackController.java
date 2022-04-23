@@ -28,6 +28,13 @@ public class FeedbackController {
         this.userService = userService;
     }
 
+    @PostMapping("/create")
+    public ResponseEntity<Feedback> createFeedback(@RequestParam(value = "token") int token,
+                                                   @RequestBody String feedbackMessage) {
+        return null;
+    }
+
+
     /**
      * Endpoint returning a list of feedbacks
      *

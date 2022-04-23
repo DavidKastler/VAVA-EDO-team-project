@@ -4,7 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import vava.edo.schema.GroupCreate;
+import vava.edo.schema.groups.GroupCreate;
 
 import javax.persistence.*;
 import java.io.Serializable;
