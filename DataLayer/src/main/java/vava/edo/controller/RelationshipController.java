@@ -52,13 +52,13 @@ public class RelationshipController {
         Relationship existingRequest = relationshipService.getRelationshipBySenderIdAndReceiverId(senderId, receiverId);
         if (existingRequest != null) {
             RelationshipStatus status = existingRequest.getStatus();
-            if (status == RelationshipStatus.ACCEPTED) {
+            if (status == RelationshipStatus.accepted) {
                 throw new ResponseStatusException(HttpStatus.OK, "Relationship already exists.");
             }
-            else if (status == RelationshipStatus.PENDING) {
+            else if (status == RelationshipStatus.pending) {
                 throw new ResponseStatusException(HttpStatus.CONFLICT, "Relationship is already pending.");
             }
-            else if (status == RelationshipStatus.BLOCKED) {
+            else if (status == RelationshipStatus.blocked) {
                 throw new ResponseStatusException(HttpStatus.FORBIDDEN, "User has blocked you.");
             }
         }
