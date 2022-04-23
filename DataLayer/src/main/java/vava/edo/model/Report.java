@@ -19,7 +19,7 @@ import javax.persistence.*;
 public class Report {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "rep_id", nullable = false)
+    @Column(name = "rep_id")
     private Integer reportId;
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "reporter_id", nullable = false)
@@ -29,8 +29,8 @@ public class Report {
     private User violator;
     @Column(name = "rep_message", nullable = false)
     private String reportMessage;
-    @Enumerated(EnumType.ORDINAL)
-    @Column(name = "status")
+    @Enumerated(EnumType.STRING)
+    @Column(name = "status", nullable = false)
     private ReportStatus status;
 
 
@@ -42,6 +42,7 @@ public class Report {
     public static Report from(ReportCreate reportDto) {
         Report report = new Report();
         report.setReportMessage(reportDto.getReportMessage());
+        report.setStatus(ReportStatus.pending);
         return report;
     }
 
