@@ -2,7 +2,6 @@ package vava.edo.controllers;
 
 
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -16,7 +15,6 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
@@ -27,6 +25,7 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.ResourceBundle;
 
 
@@ -178,7 +177,7 @@ public class ChatController implements Initializable {
 
 
             this.messages_list.getChildren().add(box);
-            chat_pane.setVvalue(1.0);
+
         }
     }
 
@@ -282,8 +281,9 @@ public class ChatController implements Initializable {
         }
 
     @FXML
-    public void handleSearchChatButton(MouseEvent mouseEvent) throws IOException {
-        //searching v zozname
+    public void handleSearchChatButton(KeyEvent keyEvent) throws IOException {
+        //tu bude zavolana metoda writeChatList(argument); a ako argument bude pouzita metoda na vratenie vyhovujucich vzoriek do ktorej pojde argument search_field.getText()
+        System.out.println(search_field.getText());
     }
 
     @FXML
@@ -295,7 +295,7 @@ public class ChatController implements Initializable {
     public void handleReportUserButton(MouseEvent mouseEvent) throws IOException {
         Parent root;
         try {
-            root = FXMLLoader.load(getClass().getResource("vava/edo/PopUpWindow.fxml"));
+            root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/vava/edo/ReportScreen.fxml")));
             Stage stage = new Stage();
             stage.setTitle("Report message");
             stage.setScene(new Scene(root, 600, 400));
@@ -311,20 +311,12 @@ public class ChatController implements Initializable {
 
     @FXML
     public void handleSendMessageButton(MouseEvent mouseEvent) throws IOException {
-    }
-
-    @FXML
-    public void searchFriend(KeyEvent keyEvent) throws IOException {
-        //tu bude zavolana metoda writeChatList(argument); a ako argument bude pouzita metoda na vratenie vyhovujucich vzoriek do ktorej pojde argument search_field.getText()
-        System.out.println(search_field.getText());
-
-    }
-
-    @FXML
-    public void sendMessage(MouseEvent mouseEvent) throws IOException {
         System.out.println(chat_message.getText());
         //zavolanie metody ktora dostane ako argument id usera a text spravy
     }
+
+
+
 
 
 }
