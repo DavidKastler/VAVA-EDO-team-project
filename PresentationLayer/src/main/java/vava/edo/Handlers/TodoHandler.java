@@ -5,10 +5,12 @@ import com.mashape.unirest.http.HttpResponse;
 import com.mashape.unirest.http.JsonNode;
 import com.mashape.unirest.http.Unirest;
 import com.mashape.unirest.http.exceptions.UnirestException;
+import com.mashape.unirest.request.HttpRequestWithBody;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import org.json.JSONObject;
+import vava.edo.Exepctions.TodoScreen.FailedToDeleteToDo;
 import vava.edo.Exepctions.TodoScreen.MandatoryFieldNotInputted;
 import vava.edo.Exepctions.TodoScreen.FailedToCreateTodo;
 import vava.edo.models.Todo;
@@ -185,10 +187,9 @@ public class TodoHandler {
      * Method which is called when deleting a to_do
      *
      * @param todoId to_doId of a to_do which is being deleted
-     * @param user User to which the to_do belongs
-     * @return true if to_do was deleted successfully / false if the to_do wasn't deleted
+     * @param user User to which the to_do belongsRe
      */
-    public static boolean deleteTodo(int todoId, User user){
+    public static void deleteTodo(int todoId, User user) throws FailedToDeleteToDo{
 
         try {
 
@@ -198,12 +199,18 @@ public class TodoHandler {
                     .routeParam("token", String.valueOf(user.getUid()))
                     .asJson();
 
-            return true;
+            Todo deletedTodo = new Gson().fromJson(apiResponse.getBody().toString(), Todo.class);
+
+            if (deletedTodo.getTodoName() != null){
+                user.removeTodo(deletedTodo);
+            }
+            else {
+                throw new FailedToDeleteToDo("Couldn't delete TODO check the DELETE request");
+            }
 
         }catch (UnirestException e){
             System.out.println("Connection to localhost:8080 failed ! (PLease start backend server)");
         }
 
-        return false;
     }
 }

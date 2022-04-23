@@ -4,6 +4,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
+import vava.edo.Exepctions.TodoScreen.FailedToDeleteToDo;
 import vava.edo.Exepctions.TodoScreen.MandatoryFieldNotInputted;
 import vava.edo.Exepctions.TodoScreen.FailedToCreateTodo;
 import vava.edo.Handlers.TodoHandler;
@@ -144,12 +145,12 @@ public class TodosScreenController {
      */
     public void handleDeleteTodo() {
 
-        if(TodoHandler.deleteTodo(this.selectedTodo.getTodoId(), model.getUser())){
-            System.out.println("Todo was deleted successfully");
-        }
-        else {
-            System.out.println("Error in to_do deletion");
-        }
+       try {
+           TodoHandler.deleteTodo(this.selectedTodo.getTodoId(), model.getUser());
+       }
+       catch (FailedToDeleteToDo e){
+           e.printStackTrace();
+       }
     }
 
 
@@ -166,7 +167,7 @@ public class TodosScreenController {
      * Setter for Selected to-do
      * @param selectedTodo clicked to-do
      */
-    public void setSelectedTodoId(Todo selectedTodo) {
+    public void setSelectedTodo(Todo selectedTodo) {
         this.selectedTodo = selectedTodo;
     }
 }

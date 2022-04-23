@@ -64,6 +64,10 @@ public class User implements Serializable {
 
     public void addTodo(Todo todo){this.todos.add(todo);}
 
+    public void removeTodo(Todo todo){
+        this.todos.remove(todo);
+    }
+
     @Override
     public String toString() {
         return "User{" +
