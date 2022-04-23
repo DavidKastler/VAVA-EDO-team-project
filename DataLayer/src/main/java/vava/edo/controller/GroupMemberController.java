@@ -1,11 +1,9 @@
 package vava.edo.controller;
 
-import org.aspectj.bridge.Message;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.client.RestClientResponseException;
 import org.springframework.web.server.ResponseStatusException;
 import vava.edo.model.Group;
 import vava.edo.model.GroupMember;
@@ -23,11 +21,12 @@ public class GroupMemberController {
     private final UserService userService;
 
     @Autowired
-    public GroupMemberController(GroupMembersService groupMembersService, GroupService groupService, UserService userService) {
+    public GroupMemberController(GroupMembersService groupMembersService, GroupService groupService,
+                                 UserService userService) {
         this.groupMembersService = groupMembersService;
         this.groupService = groupService;
         this.userService = userService;
-        }
+    }
 
     @GetMapping("/groups")
     public ResponseEntity<List<Group>> getGroupsForUser(@RequestParam(value = "token") Integer token) {

@@ -3,6 +3,7 @@ package vava.edo.model;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.Type;
 import vava.edo.model.enums.ReportStatus;
 import vava.edo.schema.ReportCreate;
 
@@ -29,10 +30,10 @@ public class Report {
     private User violator;
     @Column(name = "rep_message", nullable = false)
     private String reportMessage;
-    @Enumerated(EnumType.ORDINAL)
-    @Column(name = "status")
-    private ReportStatus status;
-
+    @Enumerated(EnumType.STRING)
+    @Type(type = "vava.edo.model.enums.EnumTypePostgreSql")
+    @Column(name = "status", nullable = false)
+    private ReportStatus status = ReportStatus.pending;
 
     /**
      * Static casting method from ReportCreate object
