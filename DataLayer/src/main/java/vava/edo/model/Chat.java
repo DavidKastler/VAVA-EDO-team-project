@@ -3,10 +3,9 @@ package vava.edo.model;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import vava.edo.schema.chats.MessageCreate;
+import vava.edo.schema.chats.Message;
 
 import javax.persistence.*;
-import java.sql.Date;
 
 /**
  * Class representing one chat in chat table
@@ -37,7 +36,7 @@ public class Chat {
      * @param messageDto    MessageCreate object that you want to cast
      * @return          cast Chat object
      */
-    public static Chat from(MessageCreate messageDto) {
+    public static Chat from(Message messageDto) {
         Chat chat = new Chat();
         chat.setGroupId(messageDto.getGroupId());
         chat.setMessage(messageDto.getMessage());

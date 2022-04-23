@@ -71,6 +71,13 @@ public class GroupController {
         return new ResponseEntity<>(groupService.deleteGroup(groupId), HttpStatus.NO_CONTENT);
     }
 
+    /**
+     * Endpoint updating group based on given group id
+     * @param token         user id
+     * @param group_id      group id
+     * @param updatedGroup  updated DTO object
+     * @return              updated group
+     */
     @PutMapping("/update/{group_id}")
     public ResponseEntity<Group> updateGroup(@RequestParam(value = "token") Integer token,
                                              @PathVariable String group_id,
@@ -82,11 +89,6 @@ public class GroupController {
         }
         log.info("Group successfully updated.");
         return new ResponseEntity<Group>(groupService.editGroup(token, updatedGroup), HttpStatus.OK);
-    }
-
-    @GetMapping("get")
-    public List<Group> getUserOwnedGroups() {
-        return null; //TODO spravit
     }
 
     /**

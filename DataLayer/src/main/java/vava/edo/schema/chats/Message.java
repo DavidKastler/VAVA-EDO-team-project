@@ -4,16 +4,14 @@ import com.sun.istack.NotNull;
 import lombok.Data;
 import lombok.NonNull;
 
-import java.sql.Date;
-
 
 /**
  * Data transfer object for Chat class
- * It is used for creating a message
+ * It is used for creating and receiving a message
  */
 
 @Data
-public class MessageCreate {
+public class Message {
     @NotNull
     private Integer groupId;
     @NonNull
