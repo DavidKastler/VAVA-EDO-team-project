@@ -161,7 +161,6 @@ public class TodosScreenController {
         try {
             TodoHandler.editTodo(selectedTodo.getTodoId(), model.getUser(), textFieldTaskName, textAreaTaskDescription,
                     datePickerTaskFrom, datePickerTaskTo, textFieldTaskGroup);
-            TodoHandler.getTomorrowTodos(model.getUser());
         }catch (MandatoryFieldNotInputted | TodoDatabaseFail e){
             e.printStackTrace();
         }

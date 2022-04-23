@@ -311,7 +311,6 @@ public class TodoHandler {
         Date tomorrows_midnight = DateUtils.addDays(Date.from(LocalDateTime.now().toLocalDate().atStartOfDay()
                 .atZone(ZoneId.of("Europe/Bratislava")).toInstant()), 1);
 
-
         try {
             for(Todo todo : user.getTodos()){
                 System.out.println(new SimpleDateFormat("yyyy-MM-dd").parse(todo.getToTime()));
