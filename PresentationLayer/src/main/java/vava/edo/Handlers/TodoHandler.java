@@ -33,6 +33,7 @@ public class TodoHandler {
      */
     public static void startUp(User user) {
         user.setTodos(getAllTodos(user.getUid()));
+        user.setGroups(GroupHandler.getGroupsWithTodos(user));
     }
 
 
