@@ -13,8 +13,7 @@ import java.sql.Date;
  */
 
 @Data
-public class ReportCreate{
-    @NotNull
+public class ReportCreate {
     private Integer reporterId;
     private Integer violatorId;
     private String reportMessage;
@@ -23,7 +22,7 @@ public class ReportCreate{
     public String toString() {
         return "ReportCreate{" +
                 ", reporterId=" + reporterId +
-                ", violatorId=" + violatorId +
+                ", violatorId" + violatorId +
                 ", reportMessage=" + reportMessage +
                 '}';
     }
