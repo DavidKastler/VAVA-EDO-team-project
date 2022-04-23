@@ -29,8 +29,8 @@ public class Report {
     private User violator;
     @Column(name = "rep_message", nullable = false)
     private String reportMessage;
-    @Enumerated(EnumType.STRING)
-    @Column(name = "status", nullable = false)
+    @Enumerated(EnumType.ORDINAL)
+    @Column(name = "status")
     private ReportStatus status;
 
 
