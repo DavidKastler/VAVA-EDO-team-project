@@ -67,7 +67,7 @@ public class TodosController {
         if (!Objects.equals(todosService.getTask(taskId).getUserId(), token) && userService.isAdmin(token)) {
             throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "User needs to be the owner of the account.");
         }
-        return new ResponseEntity<>(todosService.deleteTask(taskId), HttpStatus.NO_CONTENT);
+        return new ResponseEntity<>(todosService.deleteTask(taskId), HttpStatus.OK);
     }
 
     /**
