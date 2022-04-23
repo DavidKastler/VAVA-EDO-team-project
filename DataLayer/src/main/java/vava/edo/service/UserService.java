@@ -1,5 +1,6 @@
 package vava.edo.service;
 
+import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -18,6 +19,7 @@ import java.util.List;
  * Service that operates over users database table
  */
 @Service
+@Log4j2
 public class UserService {
 
     private final UserRepository userRepository;
@@ -82,9 +84,11 @@ public class UserService {
      */
     public void checkPassword(User user, String password) {
         if (password == null || password.length() == 0) {
+            log.warn("Password must not be empty.");
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Password for given user is null");
         }
         if (!password.equals(user.getPassword())) {
+            log.warn("Incorrect username or password.");
             throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Password for given user is incorrect");
         }
     }
@@ -107,11 +111,13 @@ public class UserService {
      */
     public User getUserByUserName(String username) {
         if (username == null) {
+            log.warn("User name must not be empty.");
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Username is none.");
         }
         User user = userRepository.findByUsername(username);
 
         if (user == null) {
+            log.warn("Incorrect username or password.");
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "User not found.");
         }
 
@@ -168,6 +174,7 @@ public class UserService {
     public User editUser(int userId, UserLogin updatedUserDto) {
         User userToEdit = getUser(userId);
 
+        log.info("Editing {}'s profile.", userToEdit.getUsername());
         userToEdit.setUsername(updatedUserDto.getUsername());
         userToEdit.setPassword(updatedUserDto.getPassword());
 
@@ -205,7 +212,9 @@ public class UserService {
         User user = User.from(userRegister);
         user.setUserRole(userRole);
 
+        log.info("Saving new user {} with role id {} into database.", userRegister.getUsername(), userRegister.getRoleId());
         userRepository.save(user);
+        log.info("User {} successfully registered.", user.getUsername());
         return user;
     }
 
@@ -217,7 +226,10 @@ public class UserService {
      */
     public User deleteUser(int userId) {
         User user = getUser(userId);
+
+        log.info("Deleting user {} from database.", user);
         userRepository.delete(user);
+        log.info("User {} successfully deleted.", user.getUsername());
         return user;
     }
 

@@ -29,7 +29,7 @@ public class Relationship {
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "second_user_id", nullable = false)
     private User secondUser;
-    @Enumerated(EnumType.ORDINAL)
+    @Enumerated(EnumType.STRING)
     @Column(name = "status")
     private RelationshipStatus status;
 
