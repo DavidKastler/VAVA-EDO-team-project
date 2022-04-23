@@ -1,9 +1,12 @@
 package vava.edo.controllers;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
+import vava.edo.Exepctions.TodoScreen.TodoDatabaseFail;
+import vava.edo.Handlers.TodoHandler;
 import vava.edo.controllers.models.TodoHBoxModel;
 
 import java.io.IOException;
@@ -45,5 +48,17 @@ public class TodoController {
         model.getLabelTodoInfoGroup().setText(model.getTodo().getGroupName());
         model.getTsc().setSelectedTodo(model.getTodo());
         System.out.println("Todo info was printed");
+    }
+
+    /**
+     * Method which handles the statusChange of to_do
+     */
+    @FXML
+    public void handleStatusChange() {
+        try {
+            TodoHandler.changeTodoStatus(model.getTodo().getTodoId(), model.getTodo().getUserId());
+        }catch (TodoDatabaseFail e){
+            e.printStackTrace();
+        }
     }
 }

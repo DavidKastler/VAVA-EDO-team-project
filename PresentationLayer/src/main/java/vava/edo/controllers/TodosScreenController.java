@@ -123,6 +123,7 @@ public class TodosScreenController {
         vBoxNewTaskScreen.setDisable(true);
     }
 
+    @FXML
     public void handleEditTodoInfo() {
         // TODO zmenit nazov new task na edit todo
         textFieldTaskName.setText(labelTodoInfoName.getText());
@@ -141,6 +142,7 @@ public class TodosScreenController {
     /**
      * Handles the delete button, calls a method deleteTodo which deletes the selected to_do
      */
+    @FXML
     public void handleDeleteTodo() {
 
        try {
@@ -156,6 +158,7 @@ public class TodosScreenController {
      * Handles the edit button, calls a method which creates a PUT request for
      * editing the selected to_do
      */
+    @FXML
     public void handleEditTodo() {
 
         try {
@@ -169,6 +172,17 @@ public class TodosScreenController {
         vBoxNewTaskScreen.setDisable(true);
     }
 
+    /**
+     * Method which handles the statusChange of to_do
+     */
+    @FXML
+    public void handleStatusChange() {
+        try {
+            TodoHandler.changeTodoStatus(this.selectedTodo.getTodoId(), model.getUser().getUid());
+        }catch (TodoDatabaseFail e){
+            e.printStackTrace();
+        }
+    }
 
     /**
      * Setter for Selected to-do
