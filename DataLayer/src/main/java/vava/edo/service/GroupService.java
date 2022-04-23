@@ -9,7 +9,7 @@ import vava.edo.model.Group;
 import vava.edo.model.User;
 import vava.edo.repository.GroupMembersRepository;
 import vava.edo.repository.GroupRepository;
-import vava.edo.schema.GroupCreate;
+import vava.edo.schema.groups.GroupCreate;
 
 import java.util.List;
 

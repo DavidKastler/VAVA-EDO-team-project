@@ -7,7 +7,7 @@ import vava.edo.model.Group;
 import vava.edo.model.GroupMember;
 import vava.edo.model.User;
 import vava.edo.repository.GroupMembersRepository;
-import vava.edo.schema.GroupAddMember;
+import vava.edo.schema.groupMembers.GroupMembersAddMember;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -53,7 +53,7 @@ public class GroupMembersService {
      * @param groupMemberDto group member Data Transfer Object you want to convert to GroupMembers
      * @return added user to a group
      */
-    public GroupMember addMember(GroupAddMember groupMemberDto) {
+    public GroupMember addMember(GroupMembersAddMember groupMemberDto) {
         User user = userService.getUser(groupMemberDto.getUserId());
         Group group = groupService.getGroup(groupMemberDto.getGroupId());
         GroupMember groupMembers = new GroupMember();

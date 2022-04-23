@@ -7,7 +7,7 @@ import vava.edo.model.Report;
 import vava.edo.model.enums.ReportStatus;
 import vava.edo.model.exeption.TaskNotFoundException;
 import vava.edo.repository.ReportRepository;
-import vava.edo.schema.ReportCreate;
+import vava.edo.schema.reports.ReportCreate;
 
 import java.util.List;
 

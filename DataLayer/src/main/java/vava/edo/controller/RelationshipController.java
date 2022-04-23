@@ -7,7 +7,8 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 import vava.edo.model.Relationship;
 import vava.edo.model.enums.RelationshipStatus;
-import vava.edo.schema.RelationshipCreate;
+import vava.edo.schema.relationships.RelationshipCreate;
+import vava.edo.schema.relationships.RelationshipRequest;
 import vava.edo.schema.users.UserInfo;
 import vava.edo.service.RelationshipService;
 import vava.edo.service.UserService;
@@ -130,7 +131,7 @@ public class RelationshipController {
      * @return list of friends {"username}
      */
     @GetMapping(value = "/friends")
-    public ResponseEntity<List<UserInfo>> getAllFriends(@RequestParam(value = "token") Integer token) {
+    public ResponseEntity<List<RelationshipRequest>> getAllFriends(@RequestParam(value = "token") Integer token) {
         return new ResponseEntity<>(relationshipService.getAllFriends(token), HttpStatus.OK);
     }
 
@@ -140,7 +141,7 @@ public class RelationshipController {
      * @return list of friend requests
      */
     @GetMapping(value = "/requests")
-    public ResponseEntity<List<UserInfo>> getAllFriendRequests(@RequestParam(value = "token") Integer token) {
+    public ResponseEntity<List<RelationshipRequest>> getAllFriendRequests(@RequestParam(value = "token") Integer token) {
         return new ResponseEntity<>(relationshipService.getAllPendingRequests(token), HttpStatus.OK);
     }
 }
