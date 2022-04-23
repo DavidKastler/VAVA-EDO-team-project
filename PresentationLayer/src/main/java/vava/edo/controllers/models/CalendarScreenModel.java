@@ -18,7 +18,7 @@ public class CalendarScreenModel {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/vava/edo/Calendar.fxml"));
             this.calendarScreen = loader.load();
             CalendarScreenController controller = loader.getController();
-            // controller.setModel(this);
+            controller.setModel(this);
         }
         catch (IOException e) {
             e.printStackTrace();
