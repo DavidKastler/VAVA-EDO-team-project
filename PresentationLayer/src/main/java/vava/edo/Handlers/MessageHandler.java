@@ -12,38 +12,13 @@ import vava.edo.models.Message;
 import vava.edo.schema.MessageDto;
 
 
+import java.time.Instant;
 import java.util.ArrayList;
 
 public class MessageHandler {
 
     //DONE
-    public static ArrayList<Group> getAllGroups(Integer userId)
-    {
-        ArrayList<Group> groups = new ArrayList<>();
-
-        try {
-            HttpResponse<JsonNode> groupsJson = Unirest.get("http://localhost:8080/groupMembers/groups?token={token}")
-                    .routeParam("token", String.valueOf(userId))
-                    .asJson();
-
-            if (groupsJson.getStatus() != 200) throw new UnexpectedHttpStatusException(groupsJson.getStatus());
-
-            for(Object group: groupsJson.getBody().getArray()){
-                groups.add(new Gson().fromJson(group.toString(), Group.class));
-            }
-
-        } catch (UnirestException e) {
-            System.out.println(e.getMessage());
-        } catch (UnexpectedHttpStatusException e) {
-            System.out.println(e.getMessage());
-        }
-
-        return groups;
-    }
-
-    //DONE
-    public static ArrayList<Message> getAllMessagesInGroup(Integer userId, Integer groupId)
-    {
+    public static ArrayList<Message> getAllMessagesInGroup(Integer userId, Integer groupId) {
         ArrayList<Message> messages = new ArrayList<>();
 
         try {
@@ -52,9 +27,9 @@ public class MessageHandler {
                     .routeParam("group_id", String.valueOf(groupId))
                     .asJson();
 
-            if (messagesJson.getStatus() != 200) throw new UnexpectedHttpStatusException(messagesJson.getStatus());
+            if (messagesJson.getStatus() != 200) throw new UnexpectedHttpStatusException(messagesJson.getStatus(), 200);
 
-            for(Object message: messagesJson.getBody().getArray()){
+            for (Object message: messagesJson.getBody().getArray()){
                 messages.add(new Gson().fromJson(message.toString(), Message.class));
             }
 
@@ -67,18 +42,27 @@ public class MessageHandler {
         return messages;
     }
 
-
-    public static void sendMessage(Integer userId, Integer groupId, String message)
-    {
+    //TODO DAT PREC 1000
+    public static void sendMessage(Integer userId, Integer groupId, String message) {
         JSONObject newMessage = new JSONObject();
+        newMessage.put("senderId", userId);
+        newMessage.put("groupId", groupId);
+        newMessage.put("timeSent", Instant.now().getEpochSecond()*1000);
+        newMessage.put("message", message);
 
         try {
-            HttpResponse<JsonNode> messageJson = Unirest.post("http://localhost:8080/chats/send?token={token}").header("Content-type", "application/json")
+            HttpResponse<JsonNode> messageJson = Unirest.post("http://localhost:8080/chats/send?token={token}")
+                    .header("Content-type", "application/json")
                     .routeParam("token", String.valueOf(userId))
-                    .body(newMessage.toString())
+                    .body(newMessage)
                     .asJson();
+
+            if (messageJson.getStatus() != 200) throw new UnexpectedHttpStatusException(messageJson.getStatus(), 200);
+
         }catch (UnirestException e){
             System.out.println("Connection to localhost:8080 failed ! (PLease start backend server)");
+        } catch (UnexpectedHttpStatusException e) {
+            System.out.println(e.getMessage());
         }
 
     }

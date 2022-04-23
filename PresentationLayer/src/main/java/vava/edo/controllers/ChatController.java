@@ -19,6 +19,7 @@ import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 import org.jetbrains.annotations.NotNull;
 import org.json.JSONObject;
+import vava.edo.Handlers.GroupHandler;
 import vava.edo.Handlers.MessageHandler;
 import vava.edo.models.Group;
 import vava.edo.models.Message;
@@ -156,7 +157,7 @@ public class ChatController implements Initializable {
         String lastActivity2 = "";
         */
 
-        List<Group> usernames = MessageHandler.getAllGroups(4);
+        List<Group> usernames = GroupHandler.getAllGroups(4);
 
         /*usernames.add("Jano");
         usernames.add("Fero");

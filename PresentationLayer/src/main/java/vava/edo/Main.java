@@ -7,6 +7,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import vava.edo.Handlers.MessageHandler;
 import vava.edo.Handlers.RelationshipHandler;
+import vava.edo.Handlers.ReportHandler;
 import vava.edo.models.Message;
 import vava.edo.schema.MessageDto;
 
@@ -22,7 +23,7 @@ public class Main extends Application {
         stage.setScene(scene);
         stage.show();
 
-        RelationshipHandler.getAllFriends(8);
+        ReportHandler.createReport(9, 4, "help me he rude");
     }
 
     public static void main(String[] args) {

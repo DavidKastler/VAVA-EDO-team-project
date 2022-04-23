@@ -42,7 +42,6 @@ public class Report {
     public static Report from(ReportCreate reportDto) {
         Report report = new Report();
         report.setReportMessage(reportDto.getReportMessage());
-        report.setStatus(reportDto.getReportStatus());
         return report;
     }
 
