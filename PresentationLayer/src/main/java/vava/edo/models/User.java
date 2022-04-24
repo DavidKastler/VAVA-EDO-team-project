@@ -8,6 +8,7 @@ import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.List;
 
 public class User implements Serializable {
     private Integer userId = null;
@@ -19,6 +20,7 @@ public class User implements Serializable {
     private long lastActivity = 0;  // potrebné pre serializáciu dát (mimo db)
     private ArrayList<Todo> todos = null;
     private ArrayList<TodoGroup> todoGroups = null;
+    private List<Relationship> friendRequests = null;
 
     public Integer getUserId() {
         return userId;

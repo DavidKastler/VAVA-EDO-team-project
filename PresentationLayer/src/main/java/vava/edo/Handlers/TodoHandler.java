@@ -30,7 +30,7 @@ public class TodoHandler {
      * @param user Object of user which is going to be initialized
      */
     public static void startUp(User user) {
-        user.setTodos(getAllTodos(user.getUid()));
+        user.setTodos(getAllTodos(user.getUserId()));
     }
 
 
@@ -76,7 +76,7 @@ public class TodoHandler {
                                    long fromTime, long toTime, String groupName){
 
         JSONObject reqTodo = new JSONObject();
-        reqTodo.put("userId", user.getUid());
+        reqTodo.put("userId", user.getUserId());
         reqTodo.put("todoName", todoName);
         reqTodo.put("todoDescription", todoDesc);
         reqTodo.put("toTime", toTime);
@@ -87,7 +87,7 @@ public class TodoHandler {
 
         try{
             HttpResponse<JsonNode> apiResponse = Unirest.post("http://localhost:8080/todos/create/?token={token}")
-                    .routeParam("token", String.valueOf(user.getUid()))
+                    .routeParam("token", String.valueOf(user.getUserId()))
                     .header("Content-Type", "application/json")
                     .body(reqTodo)
                     .asJson();
@@ -156,7 +156,7 @@ public class TodoHandler {
                                     long toTime, String groupName){
 
         JSONObject reqTodo = new JSONObject();
-        reqTodo.put("userId", user.getUid());
+        reqTodo.put("userId", user.getUserId());
         reqTodo.put("todoName", todoName);
         reqTodo.put("todoDescription", todoDesc);
         reqTodo.put("toTime", toTime);
@@ -168,7 +168,7 @@ public class TodoHandler {
         try{
             HttpResponse<JsonNode> apiResponse = Unirest.put("http://localhost:8080/todos" +
                     "/edit/{task_id}/?token={token}")
-                    .routeParam("token", String.valueOf(user.getUid()))
+                    .routeParam("token", String.valueOf(user.getUserId()))
                     .routeParam("task_id", String.valueOf(todoId))
                     .header("Content-Type", "application/json")
                     .body(reqTodo)
@@ -234,7 +234,7 @@ public class TodoHandler {
             HttpResponse<JsonNode> apiResponse = Unirest.delete("http://localhost:8080/" +
                                                                 "todos/delete/{task_id}/?token={token}")
                     .routeParam("task_id", String.valueOf(todoId))
-                    .routeParam("token", String.valueOf(user.getUid()))
+                    .routeParam("token", String.valueOf(user.getUserId()))
                     .asJson();
 
             Todo deletedTodo = new Gson().fromJson(apiResponse.getBody().toString(), Todo.class);
