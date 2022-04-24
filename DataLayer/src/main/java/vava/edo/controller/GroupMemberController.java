@@ -33,12 +33,23 @@ public class GroupMemberController {
         this.userService = userService;
     }
 
+    /**
+     * Endpoint that gets all groups for given user id
+     * @param token user id
+     * @return      List of users groups
+     */
     @GetMapping("/groups")
     public ResponseEntity<List<Group>> getGroupsForUser(@RequestParam(value = "token") Integer token) {
         log.info("Get all groups for user.");
         return new ResponseEntity<>(groupMembersService.getMyGroups(token), HttpStatus.OK);
     }
 
+    /**
+     * Endpoint that chcecks if user is in group and then gives him his co-members
+     * @param token     user id
+     * @param groupId   id of group you want members from
+     * @return          list of group members
+     */
     @GetMapping("/members/{group_id}")
     public ResponseEntity<List<GroupMember>> getMembersOfGroup(@RequestParam(value = "token") Integer token,
                                                                @PathVariable(value = "group_id") Integer groupId) {
@@ -51,6 +62,13 @@ public class GroupMemberController {
         return new ResponseEntity<>(groupMembersService.getGroupMembersById(groupId), HttpStatus.OK);
     }
 
+    /**
+     * Endpoint for adding members to group, you have to be group creator to do this
+     * @param token             user id
+     * @param groupId           group id you want to add member to
+     * @param groupMemberIds    list of user ids you want to add to group
+     * @return                  list of group members
+     */
     @PostMapping("/members/add/{group_id}")
     public ResponseEntity<List<GroupMember>> addMembersToGroup(@RequestParam(value = "token") Integer token,
                                                                @PathVariable(value = "group_id") Integer groupId,

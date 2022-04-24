@@ -33,7 +33,7 @@ public class Report {
     @Enumerated(EnumType.STRING)
     @Type(type = "vava.edo.model.enums.EnumTypePostgreSql")
     @Column(name = "status", nullable = false)
-    private ReportStatus status = ReportStatus.pending;
+    private ReportStatus status = ReportStatus.PENDING;
 
     /**
      * Static casting method from ReportCreate object

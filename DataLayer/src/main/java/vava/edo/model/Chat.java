@@ -1,5 +1,6 @@
 package vava.edo.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -29,6 +30,11 @@ public class Chat {
     private Long timeSent;
     @Column(name = "message", nullable = false)
     private String message;
+
+    @JsonIgnore
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinColumn(name = "group_id", nullable = false, insertable = false, updatable = false)
+    private Group group;
 
 
     /**

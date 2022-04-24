@@ -31,7 +31,7 @@ public class Feedback {
     @Enumerated(EnumType.STRING)
     @Type(type = "vava.edo.model.enums.EnumTypePostgreSql")
     @Column(name = "read", nullable = false)
-    private FeedbackReadStatus status = FeedbackReadStatus.not_seen;
+    private FeedbackReadStatus status = FeedbackReadStatus.NOT_SEEN;
 
     public Feedback(User user, String feedbackMessage) {
         this.user = user;

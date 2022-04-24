@@ -61,7 +61,7 @@ public class FeedbackService {
     @Transactional
     public Feedback setFeedbackSeen(Integer feedbackId) {
         Feedback feedback = getFeedback(feedbackId);
-        feedback.setStatus(FeedbackReadStatus.seen);
+        feedback.setStatus(FeedbackReadStatus.SEEN);
         return feedback;
     }
 

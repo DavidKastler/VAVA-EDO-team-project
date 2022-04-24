@@ -32,7 +32,7 @@ public class Relationship {
     @Enumerated(EnumType.STRING)
     @Type(type = "vava.edo.model.enums.EnumTypePostgreSql")
     @Column(name = "status", nullable = false)
-    private RelationshipStatus status = RelationshipStatus.pending;
+    private RelationshipStatus status = RelationshipStatus.PENDING;
     @Column(name = "since")
     private Long since;
 

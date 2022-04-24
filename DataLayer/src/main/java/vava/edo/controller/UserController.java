@@ -29,6 +29,11 @@ public class UserController {
         this.userService = userService;
     }
 
+    /**
+     * Endpoint to log in user based on sending login credentials
+     * @param userLogin user login credentials
+     * @return          user entity from database
+     */
     @PostMapping(value = "/login")
     public ResponseEntity<User> loginUser(@RequestBody UserLogin userLogin) {
         log.info("Logging user {}.", userLogin.getUsername());
@@ -38,12 +43,24 @@ public class UserController {
         return new ResponseEntity<>(user, HttpStatus.OK);
     }
 
+    /**
+     * Endpoint for registering new user, works same as login but here it saves to database
+     * @param userDto   register credentials
+     * @return          user entity from database
+     */
     @PostMapping(value = "/register")
     public ResponseEntity<Object> registerNewUser(@RequestBody UserEdit userDto) {
         log.info("Register new user {}.", userDto.getUsername());
         return new ResponseEntity<>(userService.addUser(userDto), HttpStatus.CREATED);
     }
 
+    /**
+     * Endpoint to update user credentials, its also for user itself
+     * @param token         user id
+     * @param userId        used id you want to check as admin required = false
+     * @param updatedUser   
+     * @return
+     */
     @PutMapping("/update/{userId}")
     public ResponseEntity<User> updateUser(@RequestParam(value = "token") Integer token,
                                            @PathVariable(value = "userId", required = false) Integer userId,

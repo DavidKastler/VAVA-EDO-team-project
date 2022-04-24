@@ -24,6 +24,7 @@ public class RecentChatGroup {
     public RecentChatGroup(String queryOutput) {
         String[] columns = queryOutput.split(SEPARATOR);
         if (columns.length != 2) {
+            // TODO log error
             return;
         }
         this.groupName = columns[0];

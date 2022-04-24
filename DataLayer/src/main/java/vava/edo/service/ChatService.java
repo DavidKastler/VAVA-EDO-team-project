@@ -87,6 +87,7 @@ public class ChatService {
      */
     public List<RecentChatGroup> getLastChatGroups(Integer userId) {
         // verification if user is in database
+        // TODO log error
         userService.getUser(userId);
         List<String> queryOutputList = chatRepository.getRecentChatGroupsForUser(userId);
         List<RecentChatGroup> recentChatGroups = new ArrayList<>();

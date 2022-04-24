@@ -180,7 +180,7 @@ public class UserService {
         Role userRole = roleService.getRole(userEdit.getRoleId());
         User user = User.from(userEdit);
         user.setUserRole(userRole);
-        log.info("Saving new user {} with role id {} into database.", userRegister.getUsername(), userRegister.getRoleId());
+        log.info("Saving new user {} with role id {} into database.", userEdit.getUsername(), userEdit.getRoleId());
         log.info("User {} successfully registered.", user.getUsername());
         return userRepository.save(user);
     }

@@ -12,6 +12,7 @@ import vava.edo.service.ReportService;
 import vava.edo.service.UserService;
 
 import java.util.List;
+import java.util.Objects;
 
 /**
  * Class that provides endpoints for operations with reports
@@ -36,7 +37,12 @@ public class ReportController {
      * @return      created report object
      */
     @PostMapping("/create")
-    public ResponseEntity<Report> createReport(@RequestBody ReportCreate reportDto) {
+    public ResponseEntity<Report> createReport(@RequestParam(name = "token") Integer token,
+                                               @RequestBody ReportCreate reportDto) {
+        if (!Objects.equals(token, reportDto.getReporterId())) {
+            log.warn("User {} tried to report as other user", token);
+            throw new ResponseStatusException(HttpStatus.FORBIDDEN, "You cant report for somebody else.");
+        }
         log.info("Sending new report.");
         return new ResponseEntity<>(reportService.addReport(reportDto), HttpStatus.CREATED);
     }

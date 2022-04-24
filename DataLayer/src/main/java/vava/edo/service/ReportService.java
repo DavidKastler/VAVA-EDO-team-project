@@ -72,7 +72,7 @@ public class ReportService {
     public Report acceptReport(Integer reportId) {
         Report report = getReport(reportId);
         userService.deleteUser(report.getViolator().getUId());
-        report.setStatus(ReportStatus.accepted);
+        report.setStatus(ReportStatus.ACCEPTED);
         return report;
     }
 
@@ -84,7 +84,7 @@ public class ReportService {
     @Transactional
     public Report rejectReport(Integer reportId) {
         Report report = getReport(reportId);
-        report.setStatus(ReportStatus.rejected);
+        report.setStatus(ReportStatus.REJECTED);
         return report;
     }
 }

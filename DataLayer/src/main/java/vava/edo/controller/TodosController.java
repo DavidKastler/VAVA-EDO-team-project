@@ -112,7 +112,7 @@ public class TodosController {
      */
     @GetMapping("/get")
     public ResponseEntity<List<Todo>> getAllTodos(@RequestParam(value = "token")  Integer token) {
-        log.info("Getll all ToDos.");
+        log.info("Get all ToDos.");
         // TODO handle if admin checks todos
         return new ResponseEntity<>(todosService.getAllTodosForUser(token), HttpStatus.OK);
     }

@@ -9,7 +9,6 @@ import vava.edo.model.User;
 import vava.edo.model.enums.RelationshipStatus;
 import vava.edo.repository.RelationshipRepository;
 import vava.edo.schema.relationships.RelationshipRequest;
-import vava.edo.schema.users.UserInfo;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -37,6 +36,11 @@ public class RelationshipService {
         return relationshipRepository.findAll();
     }
 
+    /**
+     * Method finding relationship in database by its primary key
+     * @param relationshipId    relationship id
+     * @return                  found relationship
+     */
     public Relationship getRelationship(Integer relationshipId) {
         return relationshipRepository.findById(relationshipId).orElseThrow(
                 () -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Relationship not found")
@@ -97,22 +101,37 @@ public class RelationshipService {
         return requests;
     }
 
+    /**
+     * Method to update status of relationship to accepted
+     * @param relationshipId    relationship id
+     * @return                  updated relationship
+     */
     @Transactional
     public Relationship acceptRelationshipRequest(Integer relationshipId) {
         Relationship relationship = getRelationship(relationshipId);
 
-        relationship.setStatus(RelationshipStatus.accepted);
+        relationship.setStatus(RelationshipStatus.ACCEPTED);
         return relationship;
     }
 
+    /**
+     * Method to update status of relationship to block
+     * @param relationshipId    relationship id
+     * @return                  updated relationship
+     */
     @Transactional
     public Relationship blockRelationshipRequest(Integer relationshipId) {
         Relationship relationship = getRelationship(relationshipId);
 
-        relationship.setStatus(RelationshipStatus.blocked);
+        relationship.setStatus(RelationshipStatus.BLOCKED);
         return relationship;
     }
 
+    /**
+     * Method to update status of relationship to reject/ delete
+     * @param relationshipId    relationship id
+     * @return                  deleted relationship
+     */
     public Relationship deleteRelationship(Integer relationshipId) {
         Relationship relationship = getRelationship(relationshipId);
 

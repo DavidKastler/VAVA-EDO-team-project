@@ -1,6 +1,7 @@
 package vava.edo.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -23,11 +24,15 @@ public class RoleController {
         this.roleRepository = roleRepository;
     }
 
+    /**
+     * Endpoint that gets info on role by its id
+     * @param roleId    role id
+     * @return          found role
+     */
     @GetMapping("/{id}")
     public ResponseEntity<Role> getRoleById(@PathVariable(value = "id") int roleId) {
         Role role = roleRepository.findById(roleId)
                 .orElseThrow(() -> new UserNotFoundException(roleId));
-        return ResponseEntity.ok().body(role);
+        return new ResponseEntity<>(role, HttpStatus.OK);
     }
-
 }
