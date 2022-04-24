@@ -12,7 +12,6 @@ import vava.edo.schema.chats.Message;
 import vava.edo.schema.chats.RecentChatGroup;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 
@@ -38,8 +37,9 @@ public class ChatService {
 
     /**
      * Method that saves newly sent message do database
-     * @param messageDto    dto of message object we want to save
-     * @return              saved object from db
+     *
+     * @param messageDto dto of message object we want to save
+     * @return saved object from db
      */
     public Chat saveMessageToDatabase(Message messageDto) {
         Chat chat = Chat.from(messageDto);
@@ -61,20 +61,22 @@ public class ChatService {
 
     /**
      * Method returns last X messages between index fromIndex and size
-     * @param userId id of user whose messages we want to show
+     *
+     * @param userId    id of user whose messages we want to show
      * @param fromIndex index of first message we want to show
-     * @param size   index of last message we want to show
+     * @param size      index of last message we want to show
      * @return list of chat objects
      */
-    public List<Chat> getMessagesFromRange(Integer userId, int fromIndex, int size){
+    public List<Chat> getMessagesFromRange(Integer userId, int fromIndex, int size) {
         return chatRepository.findAllByGroupIdOrderByTimeSentDesc(userId, PageRequest.of(fromIndex, size));
     }
 
     /**
      * Method returns userId from given message data transfer object
-     * @param messageDto    data transfer object of given message
-     * @param userId        id of sender account
-     * @return              true/ false
+     *
+     * @param messageDto data transfer object of given message
+     * @param userId     id of sender account
+     * @return true/ false
      */
     public boolean verifyIfUserOwnsAccount(Message messageDto, Integer userId) {
         return Objects.equals(userId, messageDto.getSenderId());
@@ -82,11 +84,13 @@ public class ChatService {
 
     /**
      * Method that finds all groups user chatted with by its id
-     * @param userId    user id
-     * @return          list of recently chatted groups
+     *
+     * @param userId user id
+     * @return list of recently chatted groups
      */
     public List<RecentChatGroup> getLastChatGroups(Integer userId) {
         // verification if user is in database
+        // TODO log error
         userService.getUser(userId);
         List<String> queryOutputList = chatRepository.getRecentChatGroupsForUser(userId);
         List<RecentChatGroup> recentChatGroups = new ArrayList<>();

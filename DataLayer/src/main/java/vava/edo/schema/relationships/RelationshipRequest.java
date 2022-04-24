@@ -15,8 +15,9 @@ public class RelationshipRequest {
 
     /**
      * Casting method that creates RelationshipRequest from Relationship
-     * @param relationship  relationship you want to cast
-     * @return              created RelationshipRequest
+     *
+     * @param relationship relationship you want to cast
+     * @return created RelationshipRequest
      */
     public static RelationshipRequest from(Relationship relationship) {
         RelationshipRequest relationshipRequest = new RelationshipRequest();

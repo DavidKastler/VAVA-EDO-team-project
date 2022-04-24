@@ -12,6 +12,7 @@ import vava.edo.service.ReportService;
 import vava.edo.service.UserService;
 
 import java.util.List;
+import java.util.Objects;
 
 /**
  * Class that provides endpoints for operations with reports
@@ -32,20 +33,27 @@ public class ReportController {
 
     /**
      * Endpoint used to create a new report
-     * @param reportDto     report body
-     * @return      created report object
+     *
+     * @param reportDto report body
+     * @return created report object
      */
     @PostMapping("/create")
-    public ResponseEntity<Report> createReport(@RequestBody ReportCreate reportDto) {
+    public ResponseEntity<Report> createReport(@RequestParam(name = "token") Integer token,
+                                               @RequestBody ReportCreate reportDto) {
+        if (!Objects.equals(token, reportDto.getReporterId())) {
+            log.warn("User {} tried to report as other user", token);
+            throw new ResponseStatusException(HttpStatus.FORBIDDEN, "You cant report for somebody else.");
+        }
         log.info("Sending new report.");
         return new ResponseEntity<>(reportService.addReport(reportDto), HttpStatus.CREATED);
     }
 
     /**
      * Endpoint used to accept a report
-     * @param token     verification of user privileges
-     * @param reportId      id of report we want to accept
-     * @return      resulting report object
+     *
+     * @param token    verification of user privileges
+     * @param reportId id of report we want to accept
+     * @return resulting report object
      */
     @PutMapping("/accept/{rep_id}")
     public ResponseEntity<Report> acceptReport(@RequestParam(name = "token") Integer token,
@@ -61,9 +69,10 @@ public class ReportController {
 
     /**
      * Endpoint used to reject a report
-     * @param token     verification of user privileges
-     * @param reportId      id of report we want to reject
-     * @return      resulting report object
+     *
+     * @param token    verification of user privileges
+     * @param reportId id of report we want to reject
+     * @return resulting report object
      */
     @PutMapping("/reject/{rep_id}")
     public ResponseEntity<Report> rejectReport(@RequestParam(name = "token") Integer token,
@@ -79,8 +88,9 @@ public class ReportController {
 
     /**
      * Endpoint returning a list of all reports
-     * @param token     user account rights verification
-     * @return          list of reports
+     *
+     * @param token user account rights verification
+     * @return list of reports
      */
     @GetMapping("/pending")
     public ResponseEntity<List<Report>> getAllPendingReports(@RequestParam(value = "token") int token) {
@@ -95,8 +105,9 @@ public class ReportController {
 
     /**
      * Endpoint returning a list of all reports
-     * @param token     user account rights verification
-     * @return          list of reports
+     *
+     * @param token user account rights verification
+     * @return list of reports
      */
     @GetMapping("/all")
     public ResponseEntity<List<Report>> getAllReports(@RequestParam(value = "token") int token) {

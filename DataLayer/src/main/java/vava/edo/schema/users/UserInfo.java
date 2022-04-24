@@ -1,7 +1,7 @@
 package vava.edo.schema.users;
+
 import com.sun.istack.NotNull;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 import vava.edo.model.User;
 
 /**

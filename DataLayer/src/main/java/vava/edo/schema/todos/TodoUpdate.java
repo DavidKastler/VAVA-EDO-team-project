@@ -20,7 +20,7 @@ public class TodoUpdate extends TodoCreate {
     public String toString() {
         return "TaskUpdate{" +
                 super.toString() +
-                "completed=" + completed+
+                "completed=" + completed +
                 "} ";
     }
 }
