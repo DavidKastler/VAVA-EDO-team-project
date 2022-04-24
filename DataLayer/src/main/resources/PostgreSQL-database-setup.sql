@@ -2,20 +2,20 @@ DROP SCHEMA public CASCADE;
 CREATE SCHEMA public;
 
 CREATE TYPE "read_status" AS ENUM (
-    'not_seen',
-    'seen'
+    'NOT_SEEN',
+    'SEEN'
 );
 
 CREATE TYPE "report_status" AS ENUM (
-  'pending',
-  'accepted',
-  'rejected'
+  'PENDING',
+  'ACCEPTED',
+  'REJECTED'
 );
 
 CREATE TYPE "friendship" AS ENUM (
-  'pending',
-  'accepted',
-  'blocked'
+  'PENDING',
+  'ACCEPTED',
+  'BLOCKED'
 );
 
 CREATE TABLE "users" (
@@ -69,7 +69,7 @@ CREATE TABLE "relationships" (
                                  "rel_id" SERIAL UNIQUE PRIMARY KEY NOT NULL,
                                  "first_user_id" integer NOT NULL,
                                  "second_user_id" integer NOT NULL,
-                                 "status" friendship DEFAULT 'pending',
+                                 "status" friendship DEFAULT 'PENDING',
                                  "since" bigint NOT NULL
 );
 
@@ -78,13 +78,13 @@ CREATE TABLE "reports" (
                            "reporter_id" integer NOT NULL,
                            "violator_id" integer NOT NULL,
                            "rep_message" varchar,
-                           "status" report_status DEFAULT 'pending'
+                           "status" report_status DEFAULT 'PENDING'
 );
 
 CREATE TABLE "feedback" (
                             "fb_id" SERIAL UNIQUE PRIMARY KEY NOT NULL,
                             "u_id" integer NOT NULL,
-                            "read" read_status DEFAULT 'not_seen',
+                            "read" read_status DEFAULT 'NOT_SEEN',
                             "fb_message" varchar NOT NULL
 );
 

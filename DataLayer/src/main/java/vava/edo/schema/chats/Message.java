@@ -2,21 +2,21 @@ package vava.edo.schema.chats;
 
 import com.sun.istack.NotNull;
 import lombok.Data;
-
-import java.sql.Date;
+import lombok.NonNull;
 
 
 /**
  * Data transfer object for Chat class
- * It is used for creating a message
+ * It is used for creating and receiving a message
  */
 
 @Data
-public class MessageCreate{
+public class Message {
     @NotNull
     private Integer groupId;
-
+    @NonNull
     private Integer senderId;
+    @NonNull
     private String message;
 
     @Override

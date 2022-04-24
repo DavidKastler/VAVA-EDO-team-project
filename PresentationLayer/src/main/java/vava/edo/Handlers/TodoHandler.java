@@ -17,10 +17,8 @@ import vava.edo.models.User;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.LocalDateTime;
-import java.time.LocalTime;
-import java.time.ZoneId;
-import java.time.ZoneOffset;
+import java.time.*;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -325,6 +323,30 @@ public class TodoHandler {
         }
 
         return tomorrowsTodos;
+    }
+
+    /**
+     * Method which selects the todos which are from specific time frame
+     *
+     * @param user object who's todos you want to filter out
+     * @param fromDate starting date of the given range
+     * @param toDate ending date of the given range
+     * @return ArrayList of all todos which are from the given range
+     */
+    public static ArrayList<Todo> getTodosByDate(User user, LocalDate fromDate, LocalDate toDate){
+        // TODO pre maria ked budes posielat tie datumy tak prosim ta za ten cas este daj ze .atStartOfDay()
+        ArrayList<Todo> selectedTodos = new ArrayList<>();
+
+
+        for (Todo todo: user.getTodos()){
+            // Checks whether the to_do time is from desired range
+            if(fromDate.compareTo(LocalDate.parse(todo.getFromTime(), DateTimeFormatter.ofPattern("yyyy-MM-dd"))) >= 0 ||
+                    toDate.compareTo(LocalDate.parse(todo.getToTime(), DateTimeFormatter.ofPattern("yyyy-MM-dd"))) <= 0){
+                selectedTodos.add(todo);
+            }
+        }
+
+        return selectedTodos;
     }
 
     /**

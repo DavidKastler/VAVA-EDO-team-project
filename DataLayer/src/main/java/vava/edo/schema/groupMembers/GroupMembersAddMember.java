@@ -1,4 +1,4 @@
-package vava.edo.schema;
+package vava.edo.schema.groupMembers;
 
 
 import com.sun.istack.NotNull;
@@ -10,7 +10,7 @@ import lombok.Data;
  * Used in addMember
  */
 @Data
-public class GroupAddMember {
+public class GroupMembersAddMember {
     @NotNull
     private int userId;
     @NotNull

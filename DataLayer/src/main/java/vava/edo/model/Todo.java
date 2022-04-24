@@ -3,7 +3,7 @@ package vava.edo.model;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import vava.edo.schema.TaskCreate;
+import vava.edo.schema.todos.TodoCreate;
 
 import javax.persistence.*;
 
@@ -40,7 +40,7 @@ public class Todo {
      * @param taskDto    TaskCreate object that you want to cast
      * @return          cast Task object
      */
-    public static Todo from(TaskCreate taskDto) {
+    public static Todo from(TodoCreate taskDto) {
         Todo todo = new Todo();
         todo.setUserId(taskDto.getUserId());
         todo.setTodoName(taskDto.getTodoName());

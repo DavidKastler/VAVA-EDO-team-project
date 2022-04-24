@@ -8,8 +8,11 @@ import org.springframework.web.server.ResponseStatusException;
 import vava.edo.model.Chat;
 import vava.edo.model.User;
 import vava.edo.repository.ChatRepository;
-import vava.edo.schema.chats.MessageCreate;
+import vava.edo.schema.chats.Message;
+import vava.edo.schema.chats.RecentChatGroup;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 
@@ -38,7 +41,7 @@ public class ChatService {
      * @param messageDto    dto of message object we want to save
      * @return              saved object from db
      */
-    public Chat saveMessageToDatabase(MessageCreate messageDto) {
+    public Chat saveMessageToDatabase(Message messageDto) {
         Chat chat = Chat.from(messageDto);
         User sender = userService.getUser(messageDto.getSenderId());
         chat.setSender(sender);
@@ -73,7 +76,24 @@ public class ChatService {
      * @param userId        id of sender account
      * @return              true/ false
      */
-    public boolean verifyIfUserOwnsAccount(MessageCreate messageDto, Integer userId) {
+    public boolean verifyIfUserOwnsAccount(Message messageDto, Integer userId) {
         return Objects.equals(userId, messageDto.getSenderId());
+    }
+
+    /**
+     * Method that finds all groups user chatted with by its id
+     * @param userId    user id
+     * @return          list of recently chatted groups
+     */
+    public List<RecentChatGroup> getLastChatGroups(Integer userId) {
+        // verification if user is in database
+        userService.getUser(userId);
+        List<String> queryOutputList = chatRepository.getRecentChatGroupsForUser(userId);
+        List<RecentChatGroup> recentChatGroups = new ArrayList<>();
+
+        for (String queryOutput : queryOutputList) {
+            recentChatGroups.add(new RecentChatGroup(queryOutput));
+        }
+        return recentChatGroups;
     }
 }

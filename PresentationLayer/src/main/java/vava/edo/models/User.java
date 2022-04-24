@@ -1,5 +1,7 @@
 package vava.edo.models;
 
+import vava.edo.Exepctions.TodoScreen.MandatoryFieldNotInputted;
+
 import java.io.Serializable;
 import java.time.Instant;
 import java.time.ZoneId;
@@ -36,6 +38,14 @@ public class User implements Serializable {
 
     public boolean isLogged() {
         return isLogged;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public String getLastActivity() {
@@ -92,6 +102,16 @@ public class User implements Serializable {
 
     public void setGroups(ArrayList<Group> groups) {
         this.groups = groups;
+    }
+
+    public void updateUserCred(String username, String password) throws MandatoryFieldNotInputted {
+
+        if(username.equals("") || password.equals("")){
+            throw new MandatoryFieldNotInputted("You have not inputted all of the mandatory fields (Username/Password)");
+        }
+
+        this.setUsername(username);
+        this.setPassword(password);
     }
 
     @Override

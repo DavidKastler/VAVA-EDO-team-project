@@ -3,8 +3,9 @@ package vava.edo.model;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.Type;
 import vava.edo.model.enums.ReportStatus;
-import vava.edo.schema.ReportCreate;
+import vava.edo.schema.reports.ReportCreate;
 
 import javax.persistence.*;
 
@@ -29,10 +30,10 @@ public class Report {
     private User violator;
     @Column(name = "rep_message", nullable = false)
     private String reportMessage;
-    @Enumerated(EnumType.ORDINAL)
+    @Enumerated(EnumType.STRING)
+    @Type(type = "vava.edo.model.enums.EnumTypePostgreSql")
     @Column(name = "status", nullable = false)
-    private ReportStatus status;
-
+    private ReportStatus status = ReportStatus.pending;
 
     /**
      * Static casting method from ReportCreate object
@@ -42,7 +43,6 @@ public class Report {
     public static Report from(ReportCreate reportDto) {
         Report report = new Report();
         report.setReportMessage(reportDto.getReportMessage());
-        report.setStatus(reportDto.getReportStatus());
         return report;
     }
 
