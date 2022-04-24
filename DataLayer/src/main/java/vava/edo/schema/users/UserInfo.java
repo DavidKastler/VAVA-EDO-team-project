@@ -5,7 +5,8 @@ import lombok.NoArgsConstructor;
 import vava.edo.model.User;
 
 /**
- * It is used to get only user's username and ID
+ * Data transfer object for User class
+ * It is used for sending only needed user data
  */
 @Data
 public class UserInfo {

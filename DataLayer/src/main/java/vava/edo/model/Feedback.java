@@ -5,7 +5,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.Type;
-import vava.edo.model.enums.ReadStatus;
+import vava.edo.model.enums.FeedbackReadStatus;
 
 import javax.persistence.*;
 
@@ -25,14 +25,18 @@ public class Feedback {
     private Integer feedbackId;
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "u_id", nullable = false)
-    private User userId;
+    private User user;
     @Column(name = "fb_message", nullable = false)
     private String feedbackMessage;
     @Enumerated(EnumType.STRING)
     @Type(type = "vava.edo.model.enums.EnumTypePostgreSql")
     @Column(name = "read", nullable = false)
-    private ReadStatus status = ReadStatus.not_seen;
+    private FeedbackReadStatus status = FeedbackReadStatus.not_seen;
 
+    public Feedback(User user, String feedbackMessage) {
+        this.user = user;
+        this.feedbackMessage = feedbackMessage;
+    }
 
     /**
      * Debugging method
@@ -43,7 +47,7 @@ public class Feedback {
     public String toString() {
         return "Feedback{" +
                 "feedbackId=" + feedbackId +
-                ", userId=" + userId +
+                ", userId=" + user +
                 ", feedbackMessage='" + feedbackMessage + '\'' +
                 '}';
     }

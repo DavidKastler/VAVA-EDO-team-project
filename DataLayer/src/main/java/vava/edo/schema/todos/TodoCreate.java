@@ -7,8 +7,8 @@ import lombok.NonNull;
 
 
 /**
- * Data transfer object for Task class
- * It is used for creating a task
+ * Data transfer object for To-do class
+ * It is used for creating a to-do
  */
 @Data
 @NoArgsConstructor

@@ -5,7 +5,8 @@ import com.sun.istack.NotNull;
 import lombok.Data;
 
 /**
- * Class used to update relations in re
+ * Data transfer object for creating relationship
+ * Used to create row in database
  */
 @Data
 public class RelationshipCreate {

@@ -49,21 +49,21 @@ insert into group_members (gm_id, group_id, member_id) values (18, 5, 8);
 insert into group_members (gm_id, group_id, member_id) values (19, 6, 10);
 
 --Relationships
-insert into relationships (rel_id, first_user_id, second_user_id, status, since) values (1, 3, 6,  'pending', '1637329970');
-insert into relationships (rel_id, first_user_id, second_user_id, status, since) values (2, 7, 10, 'blocked', '1625218370');
-insert into relationships (rel_id, first_user_id, second_user_id, status, since) values (3, 3, 9,  'blocked', '1623168110');
-insert into relationships (rel_id, first_user_id, second_user_id, status, since) values (4, 5, 4,  'pending', '1621133330');
-insert into relationships (rel_id, first_user_id, second_user_id, status, since) values (5, 2, 7,  'pending', '1625194130');
-insert into relationships (rel_id, first_user_id, second_user_id, status, since) values (6, 8, 10, 'accepted', '1616416542');
-insert into relationships (rel_id, first_user_id, second_user_id, status, since) values (7, 10, 8, 'accepted', '1616416542');
-insert into relationships (rel_id, first_user_id, second_user_id, status, since) values (8, 4, 3,  'accepted', '1642416485');
-insert into relationships (rel_id, first_user_id, second_user_id, status, since) values (9, 3, 4,  'accepted', '1642416485');
-insert into relationships (rel_id, first_user_id, second_user_id, status, since) values (10, 5, 2,  'accepted', '1621784562');
-insert into relationships (rel_id, first_user_id, second_user_id, status, since) values (11, 2, 5,  'accepted', '1621784562');
-insert into relationships (rel_id, first_user_id, second_user_id, status, since) values (12, 8, 3,  'accepted', '1632164475');
-insert into relationships (rel_id, first_user_id, second_user_id, status, since) values (13, 3, 8,  'accepted', '1632164475');
-insert into relationships (rel_id, first_user_id, second_user_id, status, since) values (14, 9, 2,  'accepted', '1627230430');
-insert into relationships (rel_id, first_user_id, second_user_id, status, since) values (15, 2, 9,  'accepted', '1627230430');
+insert into relationships (rel_id, first_user_id, second_user_id, status, since) values (1, 3, 6,  'PENDING', '1637329970');
+insert into relationships (rel_id, first_user_id, second_user_id, status, since) values (2, 7, 10, 'BLOCKED', '1625218370');
+insert into relationships (rel_id, first_user_id, second_user_id, status, since) values (3, 3, 9,  'BLOCKED', '1623168110');
+insert into relationships (rel_id, first_user_id, second_user_id, status, since) values (4, 5, 4,  'PENDING', '1621133330');
+insert into relationships (rel_id, first_user_id, second_user_id, status, since) values (5, 2, 7,  'PENDING', '1625194130');
+insert into relationships (rel_id, first_user_id, second_user_id, status, since) values (6, 8, 10, 'ACCEPTED', '1616416542');
+insert into relationships (rel_id, first_user_id, second_user_id, status, since) values (7, 10, 8, 'ACCEPTED', '1616416542');
+insert into relationships (rel_id, first_user_id, second_user_id, status, since) values (8, 4, 3,  'ACCEPTED', '1642416485');
+insert into relationships (rel_id, first_user_id, second_user_id, status, since) values (9, 3, 4,  'ACCEPTED', '1642416485');
+insert into relationships (rel_id, first_user_id, second_user_id, status, since) values (10, 5, 2,  'ACCEPTED', '1621784562');
+insert into relationships (rel_id, first_user_id, second_user_id, status, since) values (11, 2, 5,  'ACCEPTED', '1621784562');
+insert into relationships (rel_id, first_user_id, second_user_id, status, since) values (12, 8, 3,  'ACCEPTED', '1632164475');
+insert into relationships (rel_id, first_user_id, second_user_id, status, since) values (13, 3, 8,  'ACCEPTED', '1632164475');
+insert into relationships (rel_id, first_user_id, second_user_id, status, since) values (14, 9, 2,  'ACCEPTED', '1627230430');
+insert into relationships (rel_id, first_user_id, second_user_id, status, since) values (15, 2, 9,  'ACCEPTED', '1627230430');
 
 --Chat
 insert into chat (ch_id, group_id, sender_id, time_sent, message) values (1, 2, 10, '1640021779', 'Morbi non quam nec dui luctus rutrum. Nulla tellus. In sagittis dui vel nisl.');
@@ -130,19 +130,19 @@ insert into chat (ch_id, group_id, sender_id, time_sent, message) values (61, 7,
 insert into chat (ch_id, group_id, sender_id, time_sent, message) values (62, 7, 9, '1649967559', 'Etiam pretium iaculis justo. In hac habitasse platea dictumst. Etiam faucibus cursus urna.');
 
 --Feedback
-insert into feedback (fb_id, u_id, fb_message, read) values (1, 2, 'Donec ut dolor. Morbi vel lectus in quam fringilla rhoncus. Mauris enim leo, rhoncus sed, vestibulum sit amet, cursus id, turpis. Integer aliquet, massa id lobortis convallis.', 'not_seen');
-insert into feedback (fb_id, u_id, fb_message, read) values (2, 9, 'Praesent lectus. Vestibulum quam sapien, varius ut, blandit non, interdum in, ante. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Duis faucibus accumsan odio.', 'seen');
-insert into feedback (fb_id, u_id, fb_message, read) values (3, 4, 'Duis at velit eu est congue elementum. In hac habitasse platea dictumst. Morbi vestibulum, velit id pretium iaculis, diam erat fermentum justo, nec condimentum neque sapien placerat ante. Nulla justo.', 'not_seen');
-insert into feedback (fb_id, u_id, fb_message, read) values (4, 2, 'Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Nulla dapibus dolor vel est. Donec odio justo, sollicitudin ut, suscipit a, feugiat et, eros.', 'not_seen');
-insert into feedback (fb_id, u_id, fb_message, read) values (5, 10, 'Suspendisse potenti. Nullam porttitor lacus at turpis. Donec posuere metus vitae ipsum.', 'seen');
-insert into feedback (fb_id, u_id, fb_message, read) values (6, 3, 'Aliquam non mauris. Morbi non lectus. Aliquam sit amet diam in magna bibendum imperdiet. Nullam orci pede, venenatis non, sodales sed, tincidunt eu, felis. Fusce posuere felis sed lacus.', 'not_seen');
-insert into feedback (fb_id, u_id, fb_message, read) values (7, 5, 'Praesent blandit. Nam nulla. Integer pede justo, lacinia eget, tincidunt eget, tempus vel, pede. Morbi porttitor lorem id ligula. Suspendisse ornare consequat lectus.', 'seen');
-insert into feedback (fb_id, u_id, fb_message, read) values (8, 9, 'Donec semper sapien a libero. Nam dui. Proin leo odio, porttitor id, consequat in, consequat ut, nulla.', 'not_seen');
+insert into feedback (fb_id, u_id, fb_message, read) values (1, 2, 'Donec ut dolor. Morbi vel lectus in quam fringilla rhoncus. Mauris enim leo, rhoncus sed, vestibulum sit amet, cursus id, turpis. Integer aliquet, massa id lobortis convallis.', 'NOT_SEEN');
+insert into feedback (fb_id, u_id, fb_message, read) values (2, 9, 'Praesent lectus. Vestibulum quam sapien, varius ut, blandit non, interdum in, ante. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Duis faucibus accumsan odio.', 'SEEN');
+insert into feedback (fb_id, u_id, fb_message, read) values (3, 4, 'Duis at velit eu est congue elementum. In hac habitasse platea dictumst. Morbi vestibulum, velit id pretium iaculis, diam erat fermentum justo, nec condimentum neque sapien placerat ante. Nulla justo.', 'NOT_SEEN');
+insert into feedback (fb_id, u_id, fb_message, read) values (4, 2, 'Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Nulla dapibus dolor vel est. Donec odio justo, sollicitudin ut, suscipit a, feugiat et, eros.', 'NOT_SEEN');
+insert into feedback (fb_id, u_id, fb_message, read) values (5, 10, 'Suspendisse potenti. Nullam porttitor lacus at turpis. Donec posuere metus vitae ipsum.', 'SEEN');
+insert into feedback (fb_id, u_id, fb_message, read) values (6, 3, 'Aliquam non mauris. Morbi non lectus. Aliquam sit amet diam in magna bibendum imperdiet. Nullam orci pede, venenatis non, sodales sed, tincidunt eu, felis. Fusce posuere felis sed lacus.', 'NOT_SEEN');
+insert into feedback (fb_id, u_id, fb_message, read) values (7, 5, 'Praesent blandit. Nam nulla. Integer pede justo, lacinia eget, tincidunt eget, tempus vel, pede. Morbi porttitor lorem id ligula. Suspendisse ornare consequat lectus.', 'SEEN');
+insert into feedback (fb_id, u_id, fb_message, read) values (8, 9, 'Donec semper sapien a libero. Nam dui. Proin leo odio, porttitor id, consequat in, consequat ut, nulla.', 'NOT_SEEN');
 
 --Reports
-insert into reports (rep_id, reporter_id, violator_id, rep_message, status) values (1, 6, 3, 'Suspendisse potenti.', 'pending');
-insert into reports (rep_id, reporter_id, violator_id, rep_message, status) values (2, 10, 2, 'Aliquam sit amet diam in magna bibendum imperdiet. Nullam orci pede, venenatis non, sodales sed, tincidunt eu, felis.', 'pending');
-insert into reports (rep_id, reporter_id, violator_id, rep_message, status) values (3, 9, 3, 'Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Etiam vel augue. Vestibulum rutrum rutrum neque. Aenean auctor gravida sem.', 'pending');
+insert into reports (rep_id, reporter_id, violator_id, rep_message, status) values (1, 6, 3, 'Suspendisse potenti.', 'PENDING');
+insert into reports (rep_id, reporter_id, violator_id, rep_message, status) values (2, 10, 2, 'Aliquam sit amet diam in magna bibendum imperdiet. Nullam orci pede, venenatis non, sodales sed, tincidunt eu, felis.', 'PENDING');
+insert into reports (rep_id, reporter_id, violator_id, rep_message, status) values (3, 9, 3, 'Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Etiam vel augue. Vestibulum rutrum rutrum neque. Aenean auctor gravida sem.', 'PENDING');
 
 --Todos
 insert into todos (td_id, user_id, todo_name, todo_description, from_time, to_time, completed, group_name) values (1, 2, 'morbi non', 'Nulla mollis molestie lorem. Quisque ut erat. Curabitur gravida nisi at nibh.', '1642932539', '1649375492', true, 'hac');
