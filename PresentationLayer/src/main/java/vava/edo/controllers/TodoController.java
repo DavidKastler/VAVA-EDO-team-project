@@ -1,6 +1,5 @@
 package vava.edo.controllers;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
@@ -30,23 +29,17 @@ public class TodoController {
     private Button buttonTodo;
 
     public void setModel(TodoHBoxModel model) {
-        checkBoxTodo.setSelected(model.getTodoCompleted());
-        labelTodoName.setText(model.getTodoName());
-        labelTodoGroup.setText(model.getTodoGroup());
-        labelTodoTime.setText(model.getToTime());
+        checkBoxTodo.setSelected(model.getTodo().isCompleted());
+        labelTodoName.setText(model.getTodo().getTodoName());
+        labelTodoGroup.setText(model.getTodo().getGroupName());
+        labelTodoTime.setText(model.getTodo().getToTime());
         this.model = model;
     }
 
     @FXML
     protected void handleTodoClicked() throws IOException {
         System.out.print("Pressed: " + model.getTodo().toString() + "\t->\t");
-        // model.getTodoHBOx().setStyle("-fx-background-color: #565656; -fx-background-radius: 10;");  // TODO urobit hovering na tasku po stlaceni (Vlastny handler na to)
-        model.getCheckBoxTodoInfo().setSelected(model.getTodo().isCompleted());
-        model.getLabelTodoInfoDueTIme().setText(model.getTodo().getToTime());
-        model.getLabelTodoInfoName().setText(model.getTodo().getTodoName());
-        model.getLabelTodoInfoDescription().setText(model.getTodo().getTodoDescription());
-        model.getLabelTodoInfoGroup().setText(model.getTodo().getGroupName());
-        model.getTsc().setSelectedTodo(model.getTodo());
+        model.getRefresher().setInfoSelectedTodo(model.getTodo());
         System.out.println("Todo info was printed");
     }
 
@@ -56,9 +49,14 @@ public class TodoController {
     @FXML
     public void handleStatusChange() {
         try {
-            TodoHandler.changeTodoStatus(model.getTodo().getTodoId(), model.getTodo().getUserId());
+            TodoHandler.changeTodoStatus(model.getTodo(), model.getRefresher().getUser().getUid());
         }catch (TodoDatabaseFail e){
             e.printStackTrace();
+        }
+
+        checkBoxTodo.setSelected(model.getTodo().isCompleted());
+        if(model.getRefresher().isTodoSelected(model.getTodo())) {
+            model.getRefresher().setInfoSelectedTodo(model.getTodo());
         }
     }
 }

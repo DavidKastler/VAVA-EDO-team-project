@@ -24,7 +24,7 @@
                      <children>
                         <VBox prefHeight="270.0" prefWidth="240.0" spacing="10.0" style="-fx-border-width: 0 0 1 0; -fx-border-color: #888888;">
                            <children>
-                              <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="200.0" style="-fx-background-color: transparent; -fx-background-radius: 20;">
+                              <Button fx:id="buttonAllTodos" mnemonicParsing="false" onMouseClicked="#handleAllTodos" prefHeight="50.0" prefWidth="200.0" style="-fx-background-color: transparent; -fx-background-radius: 20;">
                                  <graphic>
                                     <HBox prefHeight="60.0" prefWidth="182.0">
                                        <children>
@@ -33,7 +33,7 @@
                                                 <Image url="@../../images/all-tasks.png" />
                                              </image>
                                           </ImageView>
-                                          <Label fx:id="labelLeftBarAll" prefHeight="40.0" prefWidth="142.0" text="All" textFill="WHITE">
+                                          <Label prefHeight="40.0" prefWidth="142.0" text="All" textFill="WHITE">
                                              <font>
                                                 <Font name="Arial Bold" size="25.0" />
                                              </font>
@@ -45,7 +45,7 @@
                                     </HBox>
                                  </graphic>
                               </Button>
-                              <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="200.0" style="-fx-background-color: transparent; -fx-background-radius: 20;">
+                              <Button fx:id="buttonTodayTodos" mnemonicParsing="false" onMouseClicked="#handleTodayTodos" prefHeight="50.0" prefWidth="200.0" style="-fx-background-color: transparent; -fx-background-radius: 20;">
                                  <graphic>
                                     <HBox prefHeight="60.0" prefWidth="182.0">
                                        <children>
@@ -66,7 +66,7 @@
                                     </HBox>
                                  </graphic>
                               </Button>
-                              <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="200.0" style="-fx-background-color: transparent; -fx-background-radius: 20;">
+                              <Button fx:id="buttonTomorrowTodos" mnemonicParsing="false" onMouseClicked="#handleTomorrowTodos" prefHeight="50.0" prefWidth="200.0" style="-fx-background-color: transparent; -fx-background-radius: 20;">
                                  <graphic>
                                     <HBox prefHeight="60.0" prefWidth="182.0">
                                        <children>
@@ -87,7 +87,7 @@
                                     </HBox>
                                  </graphic>
                               </Button>
-                              <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="200.0" style="-fx-background-color: transparent; -fx-background-radius: 20;">
+                              <Button fx:id="buttonCompletedTodos" mnemonicParsing="false" onMouseClicked="#handleCompletedTodos" prefHeight="50.0" prefWidth="200.0" style="-fx-background-color: transparent; -fx-background-radius: 20;">
                                  <graphic>
                                     <HBox prefHeight="60.0" prefWidth="182.0">
                                        <children>
@@ -117,7 +117,7 @@
                   </VBox>
                   <VBox alignment="TOP_CENTER" prefHeight="750.0" prefWidth="450.0" style="-fx-border-color: #888888; -fx-border-width: 0 1 0 0;">
                      <children>
-                        <Label prefHeight="64.0" prefWidth="430.0" text="All" textFill="WHITE">
+                        <Label fx:id="labelTodoGroupName" prefHeight="64.0" prefWidth="430.0" text="All" textFill="WHITE">
                            <font>
                               <Font name="Arial Bold" size="31.0" />
                            </font>
@@ -144,7 +144,7 @@
                      <children>
                         <HBox prefHeight="80.0" prefWidth="350.0" spacing="10.0">
                            <children>
-                              <CheckBox fx:id="checkBoxTodoInfo" onAction="#handleStatusChange" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="80.0" prefWidth="19.0" textFill="WHITE">
+                              <CheckBox fx:id="checkBoxTodoInfo" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#handleStatusChange" prefHeight="80.0" prefWidth="19.0" textFill="WHITE">
                                  <font>
                                     <Font name="Arial" size="13.0" />
                                  </font>
