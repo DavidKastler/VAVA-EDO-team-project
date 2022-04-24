@@ -2,7 +2,7 @@ package vava.edo.controllers.models;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.HBox;
-import vava.edo.Handlers.Refresh;
+import vava.edo.Handlers.RefreshTodoScreen;
 import vava.edo.controllers.TodoController;
 import vava.edo.models.Todo;
 
@@ -12,9 +12,9 @@ public class TodoHBoxModel {
     private HBox todoHBox;
 
     private Todo todo;
-    private Refresh refresher;
+    private RefreshTodoScreen refresher;
 
-    public TodoHBoxModel(Todo todo, Refresh refresher) {
+    public TodoHBoxModel(Todo todo, RefreshTodoScreen refresher) {
         this.todo = todo;
         this.refresher = refresher;
 
@@ -33,7 +33,7 @@ public class TodoHBoxModel {
         return todoHBox;
     }
 
-    public Refresh getRefresher() {
+    public RefreshTodoScreen getRefresher() {
         return refresher;
     }
 

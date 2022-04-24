@@ -5,14 +5,14 @@ import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
 import vava.edo.Exepctions.TodoScreen.MandatoryFieldNotInputted;
 import vava.edo.Exepctions.TodoScreen.TodoDatabaseFail;
-import vava.edo.Handlers.Refresh;
+import vava.edo.Handlers.RefreshTodoScreen;
 import vava.edo.Handlers.TodoHandler;
 import vava.edo.controllers.models.TodoScreenModel;
 
 
 public class TodosScreenController {
     private TodoScreenModel model;
-    private Refresh refresher;
+    private RefreshTodoScreen refresher;
     private int actualSelectedGroup;  // variable to handle correct refresh after changes with todos
 
     // FXML elements for to-dos sort handeling
@@ -86,7 +86,7 @@ public class TodosScreenController {
 
     public void setModel(TodoScreenModel model) {
         this.model = model;
-        this.refresher = new Refresh(model.getUser(), vBoxTodos, checkBoxTodoInfo, labelTodoInfoDueTIme,
+        this.refresher = new RefreshTodoScreen(model.getUser(), vBoxTodos, checkBoxTodoInfo, labelTodoInfoDueTIme,
                 labelTodoInfoName, labelTodoInfoDescription, labelTodoInfoGroup, buttonEditTodoInfo, buttonDeleteTodo);
 
         refresher.initLoader();

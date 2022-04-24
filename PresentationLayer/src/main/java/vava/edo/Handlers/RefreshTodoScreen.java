@@ -10,7 +10,7 @@ import vava.edo.models.User;
 
 import java.util.ArrayList;
 
-public class Refresh {
+public class RefreshTodoScreen {
     private User user;
     private VBox vBoxTodos;
     private Todo selectedTodo;
@@ -24,9 +24,9 @@ public class Refresh {
     private Button buttonEdit;
     private Button buttonDelete;
 
-    public Refresh(User user, VBox vBoxTodos, CheckBox checkBoxTodoInfo, Label labelTodoInfoDueTIme,
-                   Label labelTodoInfoName, Label labelTodoInfoDescription, Label labelTodoInfoGroup,
-                   Button buttonEdit, Button buttonDelete) {
+    public RefreshTodoScreen(User user, VBox vBoxTodos, CheckBox checkBoxTodoInfo, Label labelTodoInfoDueTIme,
+                             Label labelTodoInfoName, Label labelTodoInfoDescription, Label labelTodoInfoGroup,
+                             Button buttonEdit, Button buttonDelete) {
         this.user = user;
         this.vBoxTodos = vBoxTodos;
         this.checkBoxTodoInfo = checkBoxTodoInfo;
