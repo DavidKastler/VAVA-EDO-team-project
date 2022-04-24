@@ -1,7 +1,8 @@
-package vava.edo.schema;
+package vava.edo.schema.reports;
 
 import com.sun.istack.NotNull;
 import lombok.Data;
+import lombok.NonNull;
 import vava.edo.model.enums.ReportStatus;
 
 import java.sql.Date;
@@ -13,22 +14,20 @@ import java.sql.Date;
  */
 
 @Data
-public class ReportCreate{
-    @NotNull
-    private Integer chatId;
+public class ReportCreate {
+    @NonNull
     private Integer reporterId;
+    @NonNull
     private Integer violatorId;
+    @NonNull
     private String reportMessage;
-    private ReportStatus reportStatus;
 
     @Override
     public String toString() {
         return "ReportCreate{" +
-                ", chatId=" + chatId +
                 ", reporterId=" + reporterId +
                 ", violatorId" + violatorId +
                 ", reportMessage=" + reportMessage +
-                ", reportStatus=" + reportStatus +
                 '}';
     }
 }

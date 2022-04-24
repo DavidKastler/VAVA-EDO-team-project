@@ -1,4 +1,4 @@
-package vava.edo.schema;
+package vava.edo.schema.groups;
 
 import com.sun.istack.NotNull;
 import lombok.Data;

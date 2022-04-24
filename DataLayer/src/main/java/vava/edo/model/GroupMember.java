@@ -16,7 +16,7 @@ import javax.persistence.*;
 @NoArgsConstructor
 @Entity
 @Table(name = "group_members")
-public class GroupMembers {
+public class GroupMember {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -29,6 +29,11 @@ public class GroupMembers {
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "member_id", nullable = false)
     private User member;
+
+    public GroupMember(Group group, User user){
+        this.group = group;
+        this.member = user;
+    }
 
 
     /**

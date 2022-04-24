@@ -8,6 +8,7 @@ import vava.edo.model.Relationship;
 import vava.edo.model.User;
 import vava.edo.model.enums.RelationshipStatus;
 import vava.edo.repository.RelationshipRepository;
+import vava.edo.schema.relationships.RelationshipRequest;
 import vava.edo.schema.users.UserInfo;
 
 import java.util.ArrayList;
@@ -68,31 +69,32 @@ public class RelationshipService {
 
     /**
      * Method returns all user's friends in database
-     * @param userId given user id
-     * @return list of users friends
+     * @param userId    given user id
+     * @return          list of users friends
      */
-    public List<UserInfo> getAllFriends(Integer userId) {
+    public List<RelationshipRequest> getAllFriends(Integer userId) {
         List<Relationship> friendList = relationshipRepository.findAllByUserIdAndStatusIsAccepted(userId);
-        List<UserInfo> users = new ArrayList<>();
-        for (Relationship r : friendList) {
-            users.add(UserInfo.from(r.getSecondUser()));
+        List<RelationshipRequest> requests = new ArrayList<>();
+
+        for (Relationship relationship : friendList) {
+            requests.add(RelationshipRequest.from(relationship));
         }
-        return users;
+        return requests;
     }
 
     /**
      * Method returns all user's friend requests in database
-     * @param userId given user id
-     * @return list of user's friend requests
+     * @param   userId given user id
+     * @return  list of user's friend requests
      */
-    public List<UserInfo> getAllPendingRequests(Integer userId) {
+    public List<RelationshipRequest> getAllPendingRequests(Integer userId) {
         List<Relationship> pendingList = relationshipRepository.findAllByUserUIdAndStatusIsPending(userId);
+        List<RelationshipRequest> requests = new ArrayList<>();
 
-        List<UserInfo> pendingUsers = new ArrayList<>();
-        for (Relationship r : pendingList) {
-            pendingUsers.add(UserInfo.from(r.getSecondUser()));
+        for (Relationship relationship : pendingList) {
+            requests.add(RelationshipRequest.from(relationship));
         }
-        return pendingUsers;
+        return requests;
     }
 
     @Transactional
