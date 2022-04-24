@@ -5,32 +5,24 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import vava.edo.Handlers.GroupHandler;
-import vava.edo.Handlers.MessageHandler;
-import vava.edo.Handlers.RelationshipHandler;
-import vava.edo.Handlers.ReportHandler;
-import vava.edo.models.Message;
-import vava.edo.schema.MessageDto;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
 
 public class Main extends Application {
     @Override
     public void start(Stage stage) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("Friends.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("Login.fxml"));
 
-        Scene scene = new Scene(root, 1040, 750);
+        Scene scene = new Scene(root, 1100, 750);
         stage.setTitle("Everyday organizer");
         stage.setScene(scene);
+        stage.setResizable(false);
         stage.show();
 
-        Integer[] memberIds = {1,2,3,4};
-
-        //RelationshipHandler.acceptRequest(9, 132);
+        // Serialization of the user object instance is invoked here and only when the remember me is checked
+        stage.setOnCloseRequest(windowEvent -> {
+            System.out.println("window is closing"); // TODO serialization will be implemented here
+        });
     }
 
     public static void main(String[] args) {

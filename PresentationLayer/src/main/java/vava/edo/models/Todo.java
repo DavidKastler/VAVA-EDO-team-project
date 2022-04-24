@@ -1,15 +1,19 @@
 package vava.edo.models;
 
 import java.io.Serializable;
-import java.sql.Date;
-// TODO zmenit typ due time je to ako string kvoli BE
+import java.time.Instant;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
+
 public class Todo implements Serializable {
     private int todoId;
     private int userId;
     private String todoName;
     private String todoDescription;
-    private String dueTime;
+    private long fromTime;
+    private long toTime;
     private boolean completed;
+    private String groupName;
 
 
     public int getTodoId() {
@@ -32,7 +36,7 @@ public class Todo implements Serializable {
         return todoName;
     }
 
-    public void setTodoName(String todoName) {
+    public void setTodoName(String taskName) {
         this.todoName = todoName;
     }
 
@@ -44,12 +48,42 @@ public class Todo implements Serializable {
         this.todoDescription = todoDescription;
     }
 
-    public String getDueTime() {
-        return dueTime;
+    /**
+     * Getter method which returns date in a standard format
+     *
+     * @return returns a date in a String date
+     */
+    public String getFromTime() {
+        return Instant.ofEpochSecond(this.fromTime)
+                .atZone(ZoneId.of("GMT"))
+                .format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
     }
 
-    public void setDueTime(String dueTime) {
-        this.dueTime = dueTime;
+    public void setFromTime(long fromTime) {
+        this.fromTime = fromTime;
+    }
+
+    /**
+     * Getter method which returns date in a standard format
+     *
+     * @return returns a date in a String date
+     */
+    public String getToTime() {
+        return Instant.ofEpochSecond(this.toTime)
+                .atZone(ZoneId.of("GMT"))
+                .format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+    }
+
+    public void setToTime(long toTime) {
+        this.toTime = toTime;
+    }
+
+    public String getGroupName() {
+        return groupName;
+    }
+
+    public void setGroupName(String groupName) {
+        this.groupName = groupName;
     }
 
     public boolean isCompleted() {
@@ -67,9 +101,11 @@ public class Todo implements Serializable {
                 "todoId=" + todoId +
                 ", userId=" + userId +
                 ", todoName='" + todoName + '\'' +
-                ", taskDescription='" + todoDescription + '\'' +
-                ", dueTime=" + dueTime +
+                ", todoDescription='" + todoDescription + '\'' +
+                ", fromTime=" + fromTime +
+                ", toTime=" + toTime +
                 ", completed=" + completed +
+                ", groupName=" + groupName +
                 '}';
     }
 }

@@ -14,6 +14,9 @@ import vava.edo.Exepctions.HttpStatusExceptions.UnexpectedHttpStatusException;
 import vava.edo.Exepctions.IncorrectCredentials;
 import vava.edo.models.Group;
 import vava.edo.models.Message;
+import vava.edo.Exepctions.LoginScreen.EmptyLoginFields;
+import vava.edo.Exepctions.LoginScreen.IncorrectCredentials;
+import vava.edo.Exepctions.MenuScreen.FailedToUpdateUser;
 import vava.edo.models.User;
 
 import java.time.Instant;
@@ -44,7 +47,9 @@ public class UserHandler {
 
             try {
                 HttpResponse<JsonNode> apiResponse = Unirest.post("http://localhost:8080/users/login")
-                        .header("Content-Type", "application/json").body(jo).asJson();
+                        .header("Content-Type", "application/json")
+                        .body(jo)
+                        .asJson();
                 user = new Gson().fromJson(apiResponse.getBody().toString(), User.class);
 
                 if(user.getUsername() != null){
@@ -113,4 +118,37 @@ public class UserHandler {
         return users;
     }
 
+
+    /**
+     * Method which updates the user password and username
+     *
+     * @param user User object with the updated parameters
+     */
+    public static void editUser(User user) throws FailedToUpdateUser {
+
+        JSONObject newCred = new JSONObject();
+        newCred.put("username", user.getUsername());
+        newCred.put("password", user.getPassword());
+        System.out.println(newCred);
+
+        try {
+            HttpResponse<JsonNode> apiResponse = Unirest.put("http://localhost:8080/" +
+                            "users/update/{userId}/?token={token}")
+                    .routeParam("userId", String.valueOf(user.getUid()))
+                    .routeParam("token", String.valueOf(user.getUid()))
+                    .header("Content-Type", "application/json")
+                    .body(newCred)
+                    .asJson();
+
+            User respondedUser = new Gson().fromJson(apiResponse.getBody().toString(), User.class);
+
+            if(respondedUser.getUsername() == null){
+                throw new FailedToUpdateUser("Failed to update the user");
+            }
+
+        }catch (UnirestException e){
+            System.out.println("Connection to localhost:8080 failed ! (PLease start backend server)");
+        }
+
+    }
 }

@@ -12,7 +12,8 @@ module vava.edo.presentationlayer {
     requires org.jetbrains.annotations;
     requires lombok;
 
-    //needed for JSON
+    // needed for the DateUtils to compare dates
+    requires commons.lang3;
 
     opens vava.edo to javafx.fxml;
     exports vava.edo;
@@ -20,4 +21,6 @@ module vava.edo.presentationlayer {
     opens vava.edo.controllers to javafx.fxml;
     exports vava.edo.models;
     opens vava.edo.models to gson, javafx.fxml;
+    exports vava.edo.controllers.models;
+    opens vava.edo.controllers.models to javafx.fxml;
 }

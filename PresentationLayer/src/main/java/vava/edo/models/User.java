@@ -1,7 +1,13 @@
 package vava.edo.models;
 
+import vava.edo.Exepctions.TodoScreen.MandatoryFieldNotInputted;
+
 import java.io.Serializable;
+import java.time.Instant;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Comparator;
 
 public class User implements Serializable {
     private Integer userId = null;
@@ -11,7 +17,8 @@ public class User implements Serializable {
     private boolean rememberMe = false;  // potrebné pre serializáciu dát (mimo db)
     private boolean isLogged = false;  // potrebné pre serializáciu dát (mimo db)
     private long lastActivity = 0;  // potrebné pre serializáciu dát (mimo db)
-    private ArrayList<Todo> tasks = null;
+    private ArrayList<Todo> todos = null;
+    private ArrayList<TodoGroup> todoGroups = null;
 
     public Integer getUserId() {
         return userId;
@@ -33,8 +40,18 @@ public class User implements Serializable {
         return isLogged;
     }
 
-    public long getLastActivity() {
-        return lastActivity;
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getLastActivity() {
+        return Instant.ofEpochSecond(this.lastActivity)
+                .atZone(ZoneId.of("GMT"))
+                .format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
     }
 
     public boolean isRememberMe() {
@@ -53,9 +70,49 @@ public class User implements Serializable {
         this.lastActivity = lastActivity;
     }
 
-    public void setTasks(ArrayList<Todo> tasks){this.tasks = tasks;}
+    public void setTodos(ArrayList<Todo> todos){this.todos = todos;}
 
-    public ArrayList<Todo> getTasks(){return this.tasks;}
+    public ArrayList<Todo> getTodos(){
+        sortTodosByDate();
+        return this.todos;
+    }
+
+    public void addTodo(Todo todo){this.todos.add(todo);}
+
+    public void removeTodo(Todo todo){
+        todos.removeIf(todoRem -> todoRem.getTodoId() == todo.getTodoId());
+    }
+
+    public void sortTodosByDate(){
+        this.todos.sort(Comparator.comparing(Todo::getToTime));
+    }
+
+    /**
+     * Removes the old to_do and add the new one into the todos ArrayList
+     * @param todo object which has been edited
+     */
+    public void updateTodo(Todo todo){
+        this.removeTodo(todo);
+        this.todos.add(todo);
+    }
+
+    public ArrayList<TodoGroup> getGroups() {
+        return todoGroups;
+    }
+
+    public void setGroups(ArrayList<TodoGroup> todoGroups) {
+        this.todoGroups = todoGroups;
+    }
+
+    public void updateUserCred(String username, String password) throws MandatoryFieldNotInputted {
+
+        if(username.equals("") || password.equals("")){
+            throw new MandatoryFieldNotInputted("You have not inputted all of the mandatory fields (Username/Password)");
+        }
+
+        this.setUsername(username);
+        this.setPassword(password);
+    }
 
     @Override
     public String toString() {
