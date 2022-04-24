@@ -20,7 +20,7 @@ public class GroupHandler {
         ArrayList<Group> groups = new ArrayList<>();
 
         try {
-            HttpResponse<JsonNode> groupsJson = Unirest.get("http://localhost:8080/groupMembers/groups?token={token}")
+            HttpResponse<JsonNode> groupsJson = Unirest.get("http://localhost:8080/chats/get/recent?token={token}")
                     .routeParam("token", String.valueOf(userId))
                     .asJson();
 

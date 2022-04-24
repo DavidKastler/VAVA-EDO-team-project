@@ -29,7 +29,7 @@ public class Main extends Application {
 
         List<? extends Object> friends = RelationshipHandler.getAllFriends(9);
 
-        MessageHandler.getAllMessagesInGroup(9,4,0,2);
+        GroupHandler.getAllGroups(9);
 
     }
 
