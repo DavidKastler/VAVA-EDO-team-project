@@ -8,8 +8,11 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import vava.edo.Handlers.RelationshipHandler;
+import vava.edo.Handlers.SearchHandler;
 import vava.edo.models.FriendElementModel;
 import vava.edo.models.FriendReqElementModel;
+import vava.edo.models.Relationship;
 
 import java.io.IOException;
 import java.net.URL;
@@ -30,6 +33,8 @@ public class FriendRequestController implements Initializable {
     @FXML
     private VBox requests_vbox;
 
+    private List<Relationship> requests = null;
+
 
     public FriendRequestController() {
 
@@ -46,31 +51,33 @@ public class FriendRequestController implements Initializable {
             System.out.println("Internet is not connected");
         }
 
-        List<String> usernames = new ArrayList<>();
-        usernames.add("Jano");
-        usernames.add("Fero");
-        usernames.add("Kubo");
-        usernames.add("Lubo");
-        usernames.add("Eva");
-        usernames.add("Katka");
-        usernames.add("Hana");
-        usernames.add("Karol");
-        usernames.add("Adam");
-        usernames.add("Erzika");
-        usernames.add("Gizela");
-        usernames.add("Gustav");
-        usernames.add("Adolf");
+        this.requests = RelationshipHandler.getAllRequests(5);
 
-        for (Integer i = 0; i < usernames.size(); i++){
-            FriendReqElementModel element = new FriendReqElementModel(usernames.get(i));
-            HBox hbox = element.getFriendReqElement();
-            requests_vbox.getChildren().add(hbox);
-        }
+        reloadFriendRequests();
 
     }
 
+    public void reloadFriendRequests() {
+
+        requests_vbox.getChildren().clear();
+
+        @SuppressWarnings("unchecked")
+        List<Relationship> searchedFriends = (List<Relationship>)(List) SearchHandler.searchInList(requests, "userName", search_friends.getText());
+
+        for (Integer i = 0; i < requests.size(); i++){
+            try {
+                FriendElementModel element = new FriendElementModel(searchedFriends.get(i).getUserName());
+                HBox hbox = element.getFriendElement();
+                requests_vbox.getChildren().add(hbox);
+            } catch (Exception e) {
+
+            }
+
+        }
+    }
+
     public void handleSearchFriend(KeyEvent keyEvent) throws IOException {
-        System.out.println(search_friends.getText());
+        reloadFriendRequests();
     }
 
 

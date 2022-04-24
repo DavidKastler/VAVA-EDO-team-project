@@ -15,7 +15,10 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import vava.edo.Handlers.RelationshipHandler;
+import vava.edo.Handlers.SearchHandler;
 import vava.edo.models.FriendElementModel;
+import vava.edo.models.Relationship;
 
 import java.io.IOException;
 import java.net.URL;
@@ -39,6 +42,7 @@ public class FriendsController implements Initializable {
     @FXML
     private VBox users_vbox;
 
+    private List<Relationship> friends = null;
 
     public FriendsController() {
 
@@ -55,33 +59,31 @@ public class FriendsController implements Initializable {
             System.out.println("Internet is not connected");
         }
 
+        this.friends = RelationshipHandler.getAllFriends(9);
 
-        List<String> usernames = new ArrayList<>();
-        usernames.add("Jano");
-        usernames.add("Fero");
-        usernames.add("Kubo");
-        usernames.add("Lubo");
-        usernames.add("Eva");
-        usernames.add("Katka");
-        usernames.add("Hana");
-        usernames.add("Karol");
-        usernames.add("Adam");
-        usernames.add("Erzika");
-        usernames.add("Gizela");
-        usernames.add("Gustav");
-        usernames.add("Adolf");
-
-        for (Integer i = 0; i < usernames.size(); i++){
-            FriendElementModel element = new FriendElementModel(usernames.get(i));
-            HBox hbox = element.getFriendElement();
-            users_vbox.getChildren().add(hbox);
-        }
-
-
-
-
+        reloadFriends();
 
     }
+
+    public void reloadFriends() {
+
+        users_vbox.getChildren().clear();
+
+        @SuppressWarnings("unchecked")
+        List<Relationship> searchedFriends = (List<Relationship>)(List)SearchHandler.searchInList(friends, "userName", search_friends.getText());
+
+        for (Integer i = 0; i < friends.size(); i++){
+            try {
+                FriendElementModel element = new FriendElementModel(searchedFriends.get(i).getUserName());
+                HBox hbox = element.getFriendElement();
+                users_vbox.getChildren().add(hbox);
+            } catch (Exception e) {
+
+            }
+
+        }
+    }
+
     /*
     public HBox getOneElement(){
         VBox parent = new VBox();
@@ -202,7 +204,7 @@ public class FriendsController implements Initializable {
     }
 
     public void handleSearchFriend(KeyEvent keyEvent) throws IOException {
-        System.out.println(search_friends.getText());
+        reloadFriends();
     }
 
     public void deleteFriend(MouseEvent mouseEvent){

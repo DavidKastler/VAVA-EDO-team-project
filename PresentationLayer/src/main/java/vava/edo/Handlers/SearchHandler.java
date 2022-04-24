@@ -13,7 +13,14 @@ public class SearchHandler {
         if (searchedValue.equals("")) searchedValue = ".*";
 
         List<Object> foundValues = new ArrayList<Object>();
-        Pattern pattern = Pattern.compile(searchedValue);
+        Pattern pattern = null;
+
+        try {
+             pattern = Pattern.compile(searchedValue);
+        } catch (Exception e) {
+            return foundValues;
+        }
+
         Matcher matcher;
 
         for (Object listEntry : searchedList) {

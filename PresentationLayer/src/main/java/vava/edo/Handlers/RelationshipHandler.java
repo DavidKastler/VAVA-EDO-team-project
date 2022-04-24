@@ -48,14 +48,14 @@ public class RelationshipHandler {
      * @return  ArrayList of relationship objects containing usernames and ids of friends
      */
     public static ArrayList<Relationship> getAllRequests(Integer userId) {
-        ArrayList<Relationship> friends = new ArrayList<>();
+        ArrayList<Relationship> requests = new ArrayList<>();
 
         try {
             HttpResponse<JsonNode> friendsJson = Unirest.get("http://localhost:8080/relationships/requests?token={token}")
                     .routeParam("token", String.valueOf(userId))
                     .asJson();
             for (Object group : friendsJson.getBody().getArray()) {
-                friends.add(new Gson().fromJson(group.toString(), Relationship.class));
+                requests.add(new Gson().fromJson(group.toString(), Relationship.class));
             }
 
             if (friendsJson.getStatus() != 200) throw new UnexpectedHttpStatusException(friendsJson.getStatus(), 200, friendsJson.getStatusText());
@@ -66,7 +66,7 @@ public class RelationshipHandler {
             System.out.println(e.getMessage());
         }
 
-        return friends;
+        return requests;
     }
 
     /**
