@@ -10,10 +10,14 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import org.json.JSONObject;
 import vava.edo.Exepctions.EmptyLoginFields;
+import vava.edo.Exepctions.HttpStatusExceptions.UnexpectedHttpStatusException;
 import vava.edo.Exepctions.IncorrectCredentials;
+import vava.edo.models.Group;
+import vava.edo.models.Message;
 import vava.edo.models.User;
 
 import java.time.Instant;
+import java.util.ArrayList;
 import java.util.Objects;
 
 public class UserHandler {
@@ -66,4 +70,47 @@ public class UserHandler {
 
         return null;
     }
+
+    public static void deleteUser(Integer userId, Integer deletedUserId) {
+        try {
+            HttpResponse<JsonNode> deleteUserJson = Unirest.delete("http://localhost:8080/users/delete/{user_id}?token={token}")
+                    .header("Content-type", "application/json")
+                    .routeParam("token", String.valueOf(userId))
+                    .routeParam("user_id", String.valueOf(deletedUserId))
+                    .asJson();
+
+            if (deleteUserJson.getStatus() != 204) throw new UnexpectedHttpStatusException(deleteUserJson.getStatus(), 204, deleteUserJson.getStatusText());
+
+        } catch (UnirestException e) {
+            System.out.println(e.getMessage());
+        } catch (UnexpectedHttpStatusException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public static ArrayList<User> getAllUsers(Integer userId) {
+        ArrayList<User> users = new ArrayList<>();
+
+        try {
+            HttpResponse<JsonNode> usersJson = Unirest.get("http://localhost:8080/users/all?token={token}")
+                    .header("Content-type", "application/json")
+                    .routeParam("token", String.valueOf(userId))
+                    .asJson();
+
+            if (usersJson.getStatus() != 200)
+                throw new UnexpectedHttpStatusException(usersJson.getStatus(), 200, usersJson.getStatusText());
+
+            for (Object message: usersJson.getBody().getArray()){
+                users.add(new Gson().fromJson(message.toString(), User.class));
+            }
+
+        } catch (UnirestException e) {
+            System.out.println(e.getMessage());
+        } catch (UnexpectedHttpStatusException e) {
+            System.out.println(e.getMessage());
+        }
+
+        return users;
+    }
+
 }

@@ -18,13 +18,15 @@ import java.util.ArrayList;
 public class MessageHandler {
 
     //DONE
-    public static ArrayList<Message> getAllMessagesInGroup(Integer userId, Integer groupId) {
+    public static ArrayList<Message> getAllMessagesInGroup(Integer userId, Integer groupId, Integer fromIndex, Integer size) {
         ArrayList<Message> messages = new ArrayList<>();
 
         try {
-            HttpResponse<JsonNode> messagesJson = Unirest.get("http://localhost:8080/chats/get/{group_id}?token={token}")
+            HttpResponse<JsonNode> messagesJson = Unirest.get("http://localhost:8080/chats/get/{group_id}?token={token}&from={from}&size={size}")
                     .routeParam("token", String.valueOf(userId))
                     .routeParam("group_id", String.valueOf(groupId))
+                    .routeParam("from", String.valueOf(fromIndex))
+                    .routeParam("size", String.valueOf(size))
                     .asJson();
 
             if (messagesJson.getStatus() != 200) throw new UnexpectedHttpStatusException(messagesJson.getStatus(), 200, messagesJson.getStatusText());

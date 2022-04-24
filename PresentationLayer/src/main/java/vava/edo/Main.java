@@ -5,11 +5,10 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import vava.edo.Handlers.GroupHandler;
-import vava.edo.Handlers.MessageHandler;
-import vava.edo.Handlers.RelationshipHandler;
-import vava.edo.Handlers.ReportHandler;
+import vava.edo.Handlers.*;
+import vava.edo.controllers.UserController;
 import vava.edo.models.Message;
+import vava.edo.models.Relationship;
 import vava.edo.schema.MessageDto;
 
 import java.io.IOException;
@@ -28,9 +27,10 @@ public class Main extends Application {
         stage.setScene(scene);
         stage.show();
 
-        Integer[] memberIds = {1,2,3,4};
+        List<? extends Object> friends = RelationshipHandler.getAllFriends(9);
 
-        RelationshipHandler.acceptRequest(9, 132);
+        MessageHandler.getAllMessagesInGroup(9,4,0,2);
+
     }
 
     public static void main(String[] args) {

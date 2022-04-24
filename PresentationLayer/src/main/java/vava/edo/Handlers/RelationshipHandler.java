@@ -8,22 +8,23 @@ import com.mashape.unirest.http.exceptions.UnirestException;
 import org.json.JSONObject;
 import vava.edo.Exepctions.HttpStatusExceptions.UnexpectedHttpStatusException;
 import vava.edo.models.Group;
+import vava.edo.models.Relationship;
 import vava.edo.models.User;
 
 import java.util.ArrayList;
 
 public class RelationshipHandler {
 
-
-    public static ArrayList<User> getAllFriends(Integer userId) {
-        ArrayList<User> friends = new ArrayList<>();
+    //DONE
+    public static ArrayList<Relationship> getAllFriends(Integer userId) {
+        ArrayList<Relationship> friends = new ArrayList<>();
 
         try {
             HttpResponse<JsonNode> friendsJson = Unirest.get("http://localhost:8080/relationships/friends?token={token}")
                     .routeParam("token", String.valueOf(userId))
                     .asJson();
             for (Object group : friendsJson.getBody().getArray()) {
-                friends.add(new Gson().fromJson(group.toString(), User.class));
+                friends.add(new Gson().fromJson(group.toString(), Relationship.class));
             }
 
             if (friendsJson.getStatus() != 200) throw new UnexpectedHttpStatusException(friendsJson.getStatus(), 200, friendsJson.getStatusText());
@@ -37,15 +38,16 @@ public class RelationshipHandler {
         return friends;
     }
 
-    public static ArrayList<User> getAllRequests(Integer userId) {
-        ArrayList<User> friends = new ArrayList<>();
+    //DONE
+    public static ArrayList<Relationship> getAllRequests(Integer userId) {
+        ArrayList<Relationship> friends = new ArrayList<>();
 
         try {
             HttpResponse<JsonNode> friendsJson = Unirest.get("http://localhost:8080/relationships/requests?token={token}")
                     .routeParam("token", String.valueOf(userId))
                     .asJson();
             for (Object group : friendsJson.getBody().getArray()) {
-                friends.add(new Gson().fromJson(group.toString(), User.class));
+                friends.add(new Gson().fromJson(group.toString(), Relationship.class));
             }
 
             if (friendsJson.getStatus() != 200) throw new UnexpectedHttpStatusException(friendsJson.getStatus(), 200, friendsJson.getStatusText());
@@ -59,6 +61,7 @@ public class RelationshipHandler {
         return friends;
     }
 
+    //DONE
     public static void createFriendRequest(Integer userId, String friendUsername) {
 
         JSONObject newFriendRequest = new JSONObject();
@@ -102,10 +105,11 @@ public class RelationshipHandler {
 
     }
 
+    //DONE
     public static void rejectRequest(Integer userId, Integer requestId) {
 
         try {
-            HttpResponse<JsonNode> rejectRequestJson = Unirest.put("http://localhost:8080/relationships/delete/{request_id}?token={token}")
+            HttpResponse<JsonNode> rejectRequestJson = Unirest.delete("http://localhost:8080/relationships/delete/{request_id}?token={token}")
                     .header("Content-type", "application/json")
                     .routeParam("token", String.valueOf(userId))
                     .routeParam("request_id", String.valueOf(requestId))
@@ -121,6 +125,7 @@ public class RelationshipHandler {
 
     }
 
+    //DONE
     public static void blockUser(Integer userId, Integer requestId) {
 
         try {
@@ -138,8 +143,5 @@ public class RelationshipHandler {
             System.out.println(e.getMessage());
         }
     }
-
-
-
 
 }

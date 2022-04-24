@@ -39,8 +39,8 @@ public class Message {
     public String toString() {
         return "Message{" +
                 "timeSent=" + timeSent +
-                ", message=" + message + '\'' +
-                ", sender=" + sender + '\'' +
+                ", message=" + message +
+                ", sender=" + sender +
                 '}';
     }
 }
