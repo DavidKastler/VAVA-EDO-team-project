@@ -11,9 +11,9 @@ import vava.edo.controllers.models.TodoScreenModel;
 
 
 public class TodosScreenController {
-
     private TodoScreenModel model;
     private Refresh refresher;
+    private int actualSelectedGroup;  // variable to handle correct refresh after changes with todos
 
     // FXML elements for to-dos sort handeling
     @FXML
@@ -94,26 +94,30 @@ public class TodosScreenController {
 
     public void handleAllTodos() {
         labelTodoGroupName.setText("All");
+        actualSelectedGroup = 1;
         refresher.setActualGroupTodos(model.getUser().getTodos());
-        refresher.refreshTodos();
+        refresher.refreshTodos(actualSelectedGroup);
     }
 
     public void handleTodayTodos() {
         labelTodoGroupName.setText("Today");
+        actualSelectedGroup = 2;
         refresher.setActualGroupTodos(TodoHandler.getTodayTodos(model.getUser()));
-        refresher.refreshTodos();
+        refresher.refreshTodos(actualSelectedGroup);
     }
 
     public void handleTomorrowTodos() {
         labelTodoGroupName.setText("Tomorrow");
+        actualSelectedGroup = 3;
         refresher.setActualGroupTodos(TodoHandler.getTomorrowTodos(model.getUser()));
-        refresher.refreshTodos();
+        refresher.refreshTodos(actualSelectedGroup);
     }
 
     public void handleCompletedTodos() {
         labelTodoGroupName.setText("Completed");
+        actualSelectedGroup = 4;
         refresher.setActualGroupTodos(TodoHandler.getCompletedTodos(model.getUser()));
-        refresher.refreshTodos();
+        refresher.refreshTodos(actualSelectedGroup);
     }
 
     @FXML
@@ -154,7 +158,7 @@ public class TodosScreenController {
         vBoxNewTaskScreen.setVisible(false);
         vBoxNewTaskScreen.setDisable(true);
 
-        refresher.refreshTodos();
+        refresher.refreshTodos(actualSelectedGroup);
     }
 
     @FXML
@@ -186,7 +190,7 @@ public class TodosScreenController {
            e.printStackTrace();
        }
 
-       refresher.refreshTodos();
+       refresher.refreshTodos(actualSelectedGroup);
        refresher.setFirstTodoInfo();
     }
 
@@ -207,7 +211,7 @@ public class TodosScreenController {
         vBoxNewTaskScreen.setVisible(false);
         vBoxNewTaskScreen.setDisable(true);
 
-        refresher.refreshTodos();
+        refresher.refreshTodos(actualSelectedGroup);
     }
 
     /**
@@ -221,6 +225,6 @@ public class TodosScreenController {
             e.printStackTrace();
         }
 
-        refresher.refreshTodos();
+        refresher.refreshTodos(actualSelectedGroup);
     }
 }

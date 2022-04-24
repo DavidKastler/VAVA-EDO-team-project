@@ -54,7 +54,22 @@ public class Refresh {
             clearTodoInfo();
     }
 
-    public void refreshTodos() {
+    public void refreshTodos(int selectedGroup) {
+        switch (selectedGroup) {
+            case 1:
+                actualGroupTodos = user.getTodos();
+                break;
+            case 2:
+                actualGroupTodos = TodoHandler.getTodayTodos(user);
+                break;
+            case 3:
+                actualGroupTodos = TodoHandler.getTomorrowTodos(user);
+                break;
+            case 4:
+                actualGroupTodos = TodoHandler.getCompletedTodos(user);
+                break;
+        }
+
         vBoxTodos.getChildren().clear();
 
         for(Todo todo : actualGroupTodos) {
