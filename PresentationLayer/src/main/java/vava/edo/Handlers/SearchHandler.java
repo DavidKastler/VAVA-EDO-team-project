@@ -10,6 +10,8 @@ public class SearchHandler {
 
     public static List<Object> searchInList(List<? extends Object> searchedList, String searchedFieldName, String searchedValue) {
 
+        if (searchedValue.equals("")) searchedValue = ".*";
+
         List<Object> foundValues = new ArrayList<Object>();
         Pattern pattern = Pattern.compile(searchedValue);
         Matcher matcher;

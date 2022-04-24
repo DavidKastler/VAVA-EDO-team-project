@@ -21,7 +21,7 @@ import java.util.List;
 public class Main extends Application {
     @Override
     public void start(Stage stage) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("FriendRequests.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("SpravcaSelectedReport.fxml"));
 
         Scene scene = new Scene(root, 1100, 750);
         stage.setTitle("Everyday organizer");
