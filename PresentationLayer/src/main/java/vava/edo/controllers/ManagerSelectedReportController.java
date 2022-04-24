@@ -7,7 +7,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.AnchorPane;
-import org.w3c.dom.events.MouseEvent;
 
 import java.io.IOException;
 import java.net.URL;
@@ -15,7 +14,7 @@ import java.net.URLConnection;
 import java.util.ResourceBundle;
 
 
-public class SpravcaSelectedReportController implements Initializable {
+public class ManagerSelectedReportController implements Initializable {
 
     @FXML
     private AnchorPane rootPane;
@@ -36,7 +35,7 @@ public class SpravcaSelectedReportController implements Initializable {
     private TextArea text_area;
 
 
-    public SpravcaSelectedReportController() {
+    public ManagerSelectedReportController() {
 
     }
 

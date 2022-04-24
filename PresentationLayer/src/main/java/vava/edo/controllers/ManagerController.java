@@ -1,15 +1,17 @@
 package vava.edo.controllers;
 
 
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import vava.edo.models.AdminViewElementModel;
-import vava.edo.models.SpravcaViewElementModel;
+import vava.edo.models.ManagerViewElementModel;
 
 import java.io.IOException;
 import java.net.URL;
@@ -19,7 +21,7 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 
-public class SpravcaController implements Initializable {
+public class ManagerController implements Initializable {
 
     @FXML
     private AnchorPane rootPane;
@@ -30,8 +32,17 @@ public class SpravcaController implements Initializable {
     @FXML
     private VBox users_vbox;
 
+    @FXML
+    private RadioButton pending;
 
-    public SpravcaController() {
+    @FXML
+    private RadioButton accepted;
+
+    @FXML
+    private RadioButton rejected;
+
+
+    public ManagerController() {
 
     }
 
@@ -70,44 +81,21 @@ public class SpravcaController implements Initializable {
         type.add("pleb");
         type.add("Admin");
 
-        List<String> registration = new ArrayList<>();
-        registration.add("1");
-        registration.add("2");
-        registration.add("3");
-        registration.add("4");
-        registration.add("3");
-        registration.add("5");
-        registration.add("2");
-        registration.add("5");
-        registration.add("6");
-        registration.add("4");
-
-        List<String> reported = new ArrayList<>();
-        reported.add("123");
-        reported.add("456");
-        reported.add("456");
-        reported.add("123");
-        reported.add("789");
-        reported.add("789");
-        reported.add("456");
-        reported.add("123");
-        reported.add("456");
-        reported.add("789");
 
         List<String> status = new ArrayList<>();
-        status.add("true");
-        status.add("false");
-        status.add("true");
-        status.add("false");
-        status.add("false");
-        status.add("true");
-        status.add("false");
-        status.add("false");
-        status.add("true");
-        status.add("true");
+        status.add("pending");
+        status.add("accepted");
+        status.add("rejected");
+        status.add("rejected");
+        status.add("pending");
+        status.add("rejected");
+        status.add("accepted");
+        status.add("accepted");
+        status.add("rejected");
+        status.add("pending");
 
         for (Integer i = 0; i < usernames.size(); i++){
-            SpravcaViewElementModel element = new SpravcaViewElementModel(usernames.get(i), type.get(i), registration.get(i), reported.get(i), status.get(i));
+            ManagerViewElementModel element = new ManagerViewElementModel(usernames.get(i), type.get(i), status.get(i));
             HBox hbox = element.getElement();
             users_vbox.getChildren().add(hbox);
         }
@@ -119,4 +107,27 @@ public class SpravcaController implements Initializable {
     }
 
 
+    public void refreshReportList(Event event) {
+        if  (accepted != null){
+            if (accepted.isSelected()){
+                System.out.println("Accepted");
+            }
+        }
+
+        if  (rejected != null){
+            if (rejected.isSelected()){
+                System.out.println("Rejected");
+            }
+        }
+
+        if  (pending != null){
+            if (pending.isSelected()){
+                System.out.println("Pending");
+            }
+        }
+
+
+
+
+    }
 }

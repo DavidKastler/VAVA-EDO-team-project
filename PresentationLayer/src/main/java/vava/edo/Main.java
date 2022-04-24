@@ -23,7 +23,7 @@ public class Main extends Application {
     public void start(Stage stage) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("FriendRequests.fxml"));
 
-        Scene scene = new Scene(root, 1100, 750);
+        Scene scene = new Scene(root, 1040, 750);
         stage.setTitle("Everyday organizer");
         stage.setScene(scene);
         stage.show();

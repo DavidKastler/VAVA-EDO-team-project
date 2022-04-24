@@ -20,9 +20,6 @@ public class AdminViewElementModel {
         return type;
     }
 
-    public String getRegistration() {
-        return registration;
-    }
 
     public void setAdminViewElement(HBox adminViewElement) {
         this.adminViewElement = adminViewElement;
@@ -36,15 +33,12 @@ public class AdminViewElementModel {
         this.type = type;
     }
 
-    public void setRegistration(String registration) {
-        this.registration = registration;
-    }
 
 
     private HBox adminViewElement;
     private String username;
     private String type;
-    private String registration;
+
 
 
     public AdminViewElementModel(String username, String type, String registration){
@@ -55,7 +49,6 @@ public class AdminViewElementModel {
             AdminViewElementController controller = loader.getController();
             setUsername(username);
             setType(type);
-            setRegistration(registration);
             controller.setModel(this);
 
         } catch (IOException e) {
