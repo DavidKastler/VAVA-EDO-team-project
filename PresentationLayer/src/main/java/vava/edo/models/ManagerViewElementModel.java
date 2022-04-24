@@ -2,12 +2,11 @@ package vava.edo.models;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.HBox;
-import vava.edo.controllers.AdminViewElementController;
-import vava.edo.controllers.SpravcaViewElementController;
+import vava.edo.controllers.ManagerViewElementController;
 
 import java.io.IOException;
 
-public class SpravcaViewElementModel {
+public class ManagerViewElementModel {
 
     public HBox getElement() {
         return element;
@@ -33,22 +32,6 @@ public class SpravcaViewElementModel {
         this.type = type;
     }
 
-    public String getRegistration() {
-        return registration;
-    }
-
-    public void setRegistration(String registration) {
-        this.registration = registration;
-    }
-
-    public String getReported() {
-        return reported;
-    }
-
-    public void setReported(String reported) {
-        this.reported = reported;
-    }
-
     public String getStatus() {
         return status;
     }
@@ -60,22 +43,18 @@ public class SpravcaViewElementModel {
     private HBox element;
     private String username;
     private String type;
-    private String registration;
-    private String reported;
     private String status;
 
 
 
-    public SpravcaViewElementModel(String username, String type, String registration, String reported, String status){
+    public ManagerViewElementModel(String username, String type, String status){
 
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/vava/edo/SpravcaViewElement.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/vava/edo/ManagerViewElement.fxml"));
             this.element = loader.load();
-            SpravcaViewElementController controller = loader.getController();
+            ManagerViewElementController controller = loader.getController();
             setUsername(username);
             setType(type);
-            setRegistration(registration);
-            setReported(reported);
             setStatus(status);
             controller.setModel(this);
 

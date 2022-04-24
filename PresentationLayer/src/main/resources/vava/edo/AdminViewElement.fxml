@@ -9,35 +9,27 @@
 <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="1040.0" style="-fx-border-color: #c4c4c4;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="vava.edo.controllers.AdminViewElementController">
    <children>
       <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="270.0">
-         <children>
-            <Label fx:id="username_label" text="Pavol" textFill="WHITE">
-               <font>
-                  <Font name="Arial Bold" size="40.0" />
-               </font>
-            </Label>
-         </children>
          <HBox.margin>
             <Insets />
          </HBox.margin>
+         <children>
+            <Button fx:id="username" mnemonicParsing="false" style="-fx-background-color: transparent;" text="Milan" textFill="WHITE">
+               <font>
+                  <Font name="Arial Bold" size="36.0" />
+               </font>
+            </Button>
+         </children>
       </HBox>
       <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="270.0">
          <children>
             <Label fx:id="type_label" text="Pleb" textFill="WHITE">
                <font>
-                  <Font name="Arial Bold" size="40.0" />
+                  <Font name="Arial Bold" size="36.0" />
                </font>
             </Label>
          </children>
       </HBox>
-      <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="270.0">
-         <children>
-            <Label fx:id="date_label" text="12.6.2021" textFill="WHITE">
-               <font>
-                  <Font name="Arial Bold" size="40.0" />
-               </font>
-            </Label>
-         </children>
-      </HBox>
+      <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="270.0" />
       <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="220.0">
          <children>
             <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="230.0">
