@@ -218,4 +218,7 @@ public class FriendsController implements Initializable {
 
         System.out.println("Zavolane");
     }
+
+    public void switchRequestsScreen(MouseEvent mouseEvent) {
+    }
 }
