@@ -37,8 +37,9 @@ public class Report {
 
     /**
      * Static casting method from ReportCreate object
-     * @param reportDto    ReportCreate object that you want to cast
-     * @return          cast Report object
+     *
+     * @param reportDto ReportCreate object that you want to cast
+     * @return cast Report object
      */
     public static Report from(ReportCreate reportDto) {
         Report report = new Report();
@@ -46,10 +47,10 @@ public class Report {
         return report;
     }
 
-
     /**
      * Debugging method
-     * @return  string with method variables
+     *
+     * @return string with method variables
      */
     @Override
     public String toString() {

@@ -39,8 +39,9 @@ public class Chat {
 
     /**
      * Static casting method from MessageCreate object
-     * @param messageDto    MessageCreate object that you want to cast
-     * @return          cast Chat object
+     *
+     * @param messageDto MessageCreate object that you want to cast
+     * @return cast Chat object
      */
     public static Chat from(Message messageDto) {
         Chat chat = new Chat();
@@ -52,7 +53,8 @@ public class Chat {
 
     /**
      * Debugging method
-     * @return  string with method variables
+     *
+     * @return string with method variables
      */
     @Override
     public String toString() {

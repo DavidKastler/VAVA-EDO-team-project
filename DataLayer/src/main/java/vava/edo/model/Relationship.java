@@ -36,28 +36,15 @@ public class Relationship {
     @Column(name = "since")
     private Long since;
 
-
     public Relationship(User firstUserId, User secondUserId) {
         this.firstUser = firstUserId;
         this.secondUser = secondUserId;
         this.since = System.currentTimeMillis() / 1000L;
     }
 
-    /*
-     * Static casting method from RelationshipCreate object
-     * @param newRequest RelationshipCreate object that you want to cast
-     * @return cast Relationships object
-     */
-//    public static Relationship from(RelationshipCreate newRequest) {
-//        Relationship request = new Relationship();
-//        request.setFirstUser(newRequest.getSenderId());
-//        request.setSecondUser(newRequest.getReceiverId());
-//        request.setSince(System.currentTimeMillis() / 1000L);
-//        return request;
-//    }
-
     /**
      * Debugging method
+     *
      * @return string with method variables
      */
     @Override

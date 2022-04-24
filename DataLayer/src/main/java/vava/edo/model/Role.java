@@ -31,10 +31,10 @@ public class Role {
     @Column(name = "admin_rights", nullable = false)
     private boolean adminRights;
 
-
     /**
      * Debugging method
-     * @return  string with method variables
+     *
+     * @return string with method variables
      */
     @Override
     public String toString() {

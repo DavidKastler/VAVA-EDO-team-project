@@ -29,8 +29,9 @@ public class ReportService {
 
     /**
      * Method that returns report from reportId or throws if not found
-     * @param reportId  id of searched report
-     * @return  Report object
+     *
+     * @param reportId id of searched report
+     * @return Report object
      */
     public Report getReport(Integer reportId) {
         return reportRepository.findById(reportId).orElseThrow(
@@ -39,6 +40,7 @@ public class ReportService {
 
     /**
      * Method that returns all reports
+     *
      * @return list of report objects
      */
     public List<Report> getAllReports() {
@@ -47,6 +49,7 @@ public class ReportService {
 
     /**
      * Method that returns all reports
+     *
      * @return list of report objects
      */
     public List<Report> getAllPendingReports() {
@@ -55,8 +58,9 @@ public class ReportService {
 
     /**
      * Method used to create a new report
-     * @param reportDto     report data transfer object
-     * @return  created report object
+     *
+     * @param reportDto report data transfer object
+     * @return created report object
      */
     public Report addReport(ReportCreate reportDto) {
         Report report = Report.from(reportDto);
@@ -67,8 +71,9 @@ public class ReportService {
 
     /**
      * Method used to change report status to accepted
-     * @param reportId  id of report we want to accept
-     * @return      resulting report object
+     *
+     * @param reportId id of report we want to accept
+     * @return resulting report object
      */
     @Transactional
     public Report acceptReport(Integer reportId) {
@@ -80,8 +85,9 @@ public class ReportService {
 
     /**
      * Method used to change report status to rejected
-     * @param reportId  id of report we want to reject
-     * @return      resulting report object
+     *
+     * @param reportId id of report we want to reject
+     * @return resulting report object
      */
     @Transactional
     public Report rejectReport(Integer reportId) {

@@ -33,8 +33,9 @@ public class UserService {
 
     /**
      * Method that checks if user has admin privileges
-     * @param userId    user ID you want to check
-     * @return          true / false
+     *
+     * @param userId user ID you want to check
+     * @return true / false
      */
     public boolean isAdmin(int userId) {
         return getUser(userId).getUserRole().isAdminRights();
@@ -42,8 +43,9 @@ public class UserService {
 
     /**
      * Method that checks if user has account manager privileges
-     * @param userId    user ID you want to check
-     * @return          true / false
+     *
+     * @param userId user ID you want to check
+     * @return true / false
      */
     public boolean isAccountManager(int userId) {
         Role userRole = getUser(userId).getUserRole();
@@ -52,8 +54,9 @@ public class UserService {
 
     /**
      * Method that checks if user has team leader privileges
-     * @param userId    user ID you want to check
-     * @return          true / false
+     *
+     * @param userId user ID you want to check
+     * @return true / false
      */
     public boolean isTeamLeader(int userId) {
         Role userRole = getUser(userId).getUserRole();
@@ -62,8 +65,9 @@ public class UserService {
 
     /**
      * Method that checks if user has at least pleb privileges
-     * @param userId    user ID you want to check
-     * @return          true / false
+     *
+     * @param userId user ID you want to check
+     * @return true / false
      */
     public boolean isPleb(int userId) {
         Role userRole = getUser(userId).getUserRole();
@@ -74,8 +78,9 @@ public class UserService {
 
     /**
      * Method to check password of user
-     * @param user      user you want to check
-     * @param password  password you want to validate
+     *
+     * @param user     user you want to check
+     * @param password password you want to validate
      */
     public void checkPassword(User user, String password) {
         if (password == null || password.length() == 0) {
@@ -90,8 +95,9 @@ public class UserService {
 
     /**
      * Method to check password of user
-     * @param userId      user ID you want to check
-     * @param password  password you want to validate
+     *
+     * @param userId   user ID you want to check
+     * @param password password you want to validate
      */
     public void checkPassword(int userId, String password) {
         checkPassword(getUser(userId), password);
@@ -99,8 +105,9 @@ public class UserService {
 
     /**
      * Method finds user by its username
-     * @param username  username of user you want to find
-     * @return          found user by username
+     *
+     * @param username username of user you want to find
+     * @return found user by username
      */
     public User getUserByUserName(String username) {
         if (username == null) {
@@ -119,7 +126,8 @@ public class UserService {
 
     /**
      * Method returns all users in database
-     * @return  list of all users
+     *
+     * @return list of all users
      */
     public List<User> getAllUsers() {
         return userRepository.findAll();
@@ -127,8 +135,9 @@ public class UserService {
 
     /**
      * Method finds user by its ID, if it is not found throws exception
-     * @param userId    user ID you want to find
-     * @return          found user
+     *
+     * @param userId user ID you want to find
+     * @return found user
      */
     public User getUser(int userId) {
         return userRepository.findById(userId).orElseThrow(
@@ -137,9 +146,10 @@ public class UserService {
 
     /**
      * Method that updates found user by ID based on given UserDto class parameters
-     * @param userId            user ID you want to change
-     * @param updatedUserDto    userDto class with updated parameters
-     * @return                  updated user
+     *
+     * @param userId         user ID you want to change
+     * @param updatedUserDto userDto class with updated parameters
+     * @return updated user
      */
     @Transactional
     public User editUser(int userId, UserEdit updatedUserDto) {
@@ -155,9 +165,10 @@ public class UserService {
 
     /**
      * Method that updates found user by ID based on given UserDto class parameters
-     * @param userId            user ID you want to change
-     * @param updatedUserDto    userDto class with updated parameters
-     * @return                  updated user
+     *
+     * @param userId         user ID you want to change
+     * @param updatedUserDto userDto class with updated parameters
+     * @return updated user
      */
     @Transactional
     public User editUser(int userId, UserLogin updatedUserDto) {
@@ -173,8 +184,9 @@ public class UserService {
     /**
      * Method converts DTO object to User object, finds wanted role for user if exists
      * and saves it to database
-     * @param userEdit   user Data Transfer Object you want to convert to user
-     * @return          created user
+     *
+     * @param userEdit user Data Transfer Object you want to convert to user
+     * @return created user
      */
     public User addUser(UserEdit userEdit) {
         Role userRole = roleService.getRole(userEdit.getRoleId());
@@ -187,8 +199,9 @@ public class UserService {
 
     /**
      * Method for deleting users from database by ID
-     * @param userId    user ID you want to delete
-     * @return          deleted user
+     *
+     * @param userId user ID you want to delete
+     * @return deleted user
      */
     public User deleteUser(int userId) {
         User user = getUser(userId);

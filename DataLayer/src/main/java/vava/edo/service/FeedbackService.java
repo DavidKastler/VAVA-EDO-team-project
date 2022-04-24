@@ -27,8 +27,9 @@ public class FeedbackService {
 
     /**
      * Method returns feedback with given ID
+     *
      * @param feedbackId getting feedback ID
-     * @return      feedback
+     * @return feedback
      */
     public Feedback getFeedback(Integer feedbackId) {
         return feedbackRepository.findById(feedbackId).orElseThrow(
@@ -37,7 +38,8 @@ public class FeedbackService {
 
     /**
      * Method returns all feedbacks in database
-     * @return  list of all feedbacks
+     *
+     * @return list of all feedbacks
      */
     public List<Feedback> getAllFeedback() {
         return feedbackRepository.findAll();
@@ -55,8 +57,9 @@ public class FeedbackService {
 
     /**
      * Method that sets feedback to seen
-     * @param feedbackId    feedback id
-     * @return              updated feedback
+     *
+     * @param feedbackId feedback id
+     * @return updated feedback
      */
     @Transactional
     public Feedback setFeedbackSeen(Integer feedbackId) {
@@ -67,8 +70,9 @@ public class FeedbackService {
 
     /**
      * Method that deletes feedback from database
-     * @param feedbackId    feedback id
-     * @return              deleted feedback
+     *
+     * @param feedbackId feedback id
+     * @return deleted feedback
      */
     public Feedback deleteFeedback(Integer feedbackId) {
         Feedback feedback = getFeedback(feedbackId);

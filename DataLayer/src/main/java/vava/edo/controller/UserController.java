@@ -31,8 +31,9 @@ public class UserController {
 
     /**
      * Endpoint to log in user based on sending login credentials
+     *
      * @param userLogin user login credentials
-     * @return          user entity from database
+     * @return user entity from database
      */
     @PostMapping(value = "/login")
     public ResponseEntity<User> loginUser(@RequestBody UserLogin userLogin) {
@@ -45,8 +46,9 @@ public class UserController {
 
     /**
      * Endpoint for registering new user, works same as login but here it saves to database
-     * @param userDto   register credentials
-     * @return          user entity from database
+     *
+     * @param userDto register credentials
+     * @return user entity from database
      */
     @PostMapping(value = "/register")
     public ResponseEntity<Object> registerNewUser(@RequestBody UserEdit userDto) {
@@ -56,8 +58,9 @@ public class UserController {
 
     /**
      * Endpoint to update user credentials, its also for user itself
-     * @param token         user id
-     * @param userId        used id you want to check as admin required = false
+     *
+     * @param token       user id
+     * @param userId      used id you want to check as admin required = false
      * @param updatedUser
      * @return
      */
@@ -85,8 +88,8 @@ public class UserController {
 
     @PutMapping("/edit/{userId}")
     public ResponseEntity<User> editUser(@RequestParam(value = "token") Integer token,
-                                             @PathVariable(value = "userId") Integer userId,
-                                             @RequestBody UserEdit editedUser) {
+                                         @PathVariable(value = "userId") Integer userId,
+                                         @RequestBody UserEdit editedUser) {
         log.info("Editing user profile.");
         if (!userService.isAdmin(token)) {
             log.warn("Edit rejected, insufficient rights to edit user profile.");
@@ -123,14 +126,13 @@ public class UserController {
 
     @GetMapping(value = "/get/{userId}")
     public ResponseEntity<User> getUserById(@RequestParam(value = "token") Integer token,
-                                            @PathVariable(value = "userId", required = false) Integer userId){
+                                            @PathVariable(value = "userId", required = false) Integer userId) {
         log.info("Searching for user with id:{}.", userId);
         int wantedUserId = token;
         // if userId is used and is not equal to token and user is admin
         if (userId != null && !userId.equals(token) && userService.isAdmin(token)) {
             wantedUserId = userId;
-        }
-        else {
+        } else {
             log.warn("Permission to perform this action has been denied. Changing search id to {}.", token);
         }
 

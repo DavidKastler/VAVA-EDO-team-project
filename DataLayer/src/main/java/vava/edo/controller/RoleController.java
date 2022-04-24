@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 import vava.edo.model.Role;
 import vava.edo.repository.RoleRepository;
+
 /**
  * Class that provides endpoints for role operations
  */
@@ -26,8 +27,9 @@ public class RoleController {
 
     /**
      * Endpoint that gets info on role by its id
-     * @param roleId    role id
-     * @return          found role
+     *
+     * @param roleId role id
+     * @return found role
      */
     @GetMapping("/{id}")
     public ResponseEntity<Role> getRoleById(@PathVariable(value = "id") int roleId) {

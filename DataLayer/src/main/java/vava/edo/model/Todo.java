@@ -43,8 +43,9 @@ public class Todo {
 
     /**
      * Static casting method from TaskCreate object
-     * @param taskDto    TaskCreate object that you want to cast
-     * @return          cast Task object
+     *
+     * @param taskDto TaskCreate object that you want to cast
+     * @return cast Task object
      */
     public static Todo from(TodoCreate taskDto) {
         Todo todo = new Todo();
@@ -60,7 +61,8 @@ public class Todo {
 
     /**
      * Debugging method
-     * @return  string with method variables
+     *
+     * @return string with method variables
      */
     @Override
     public String toString() {

@@ -30,6 +30,7 @@ public class RelationshipService {
 
     /**
      * Method that returns all relationships
+     *
      * @return list of all relationships
      */
     public List<Relationship> getAllRelationships() {
@@ -38,8 +39,9 @@ public class RelationshipService {
 
     /**
      * Method finding relationship in database by its primary key
-     * @param relationshipId    relationship id
-     * @return                  found relationship
+     *
+     * @param relationshipId relationship id
+     * @return found relationship
      */
     public Relationship getRelationship(Integer relationshipId) {
         return relationshipRepository.findById(relationshipId).orElseThrow(
@@ -49,9 +51,10 @@ public class RelationshipService {
 
     /**
      * Method returns relation between users
+     *
      * @param senderId   user who send request
      * @param receiverId user who received request
-     * @return          relationship between users
+     * @return relationship between users
      */
     public Relationship getRelationshipBySenderIdAndReceiverId(Integer senderId, Integer receiverId) {
         return relationshipRepository.findByFirstUserUIdAndSecondUserUId(senderId, receiverId);
@@ -59,6 +62,7 @@ public class RelationshipService {
 
     /**
      * Method that creates new relationships and saves it to database
+     *
      * @param senderId   user id who send request
      * @param receiverId user id who received request
      * @return created relationships
@@ -73,8 +77,9 @@ public class RelationshipService {
 
     /**
      * Method returns all user's friends in database
-     * @param userId    given user id
-     * @return          list of users friends
+     *
+     * @param userId given user id
+     * @return list of users friends
      */
     public List<RelationshipRequest> getAllFriends(Integer userId) {
         List<Relationship> friendList = relationshipRepository.findAllByUserIdAndStatusIsAccepted(userId);
@@ -88,8 +93,9 @@ public class RelationshipService {
 
     /**
      * Method returns all user's friend requests in database
-     * @param   userId given user id
-     * @return  list of user's friend requests
+     *
+     * @param userId given user id
+     * @return list of user's friend requests
      */
     public List<RelationshipRequest> getAllPendingRequests(Integer userId) {
         List<Relationship> pendingList = relationshipRepository.findAllByUserUIdAndStatusIsPending(userId);
@@ -103,8 +109,9 @@ public class RelationshipService {
 
     /**
      * Method to update status of relationship to accepted
-     * @param relationshipId    relationship id
-     * @return                  updated relationship
+     *
+     * @param relationshipId relationship id
+     * @return updated relationship
      */
     @Transactional
     public Relationship acceptRelationshipRequest(Integer relationshipId) {
@@ -116,8 +123,9 @@ public class RelationshipService {
 
     /**
      * Method to update status of relationship to block
-     * @param relationshipId    relationship id
-     * @return                  updated relationship
+     *
+     * @param relationshipId relationship id
+     * @return updated relationship
      */
     @Transactional
     public Relationship blockRelationshipRequest(Integer relationshipId) {
@@ -129,8 +137,9 @@ public class RelationshipService {
 
     /**
      * Method to update status of relationship to reject/ delete
-     * @param relationshipId    relationship id
-     * @return                  deleted relationship
+     *
+     * @param relationshipId relationship id
+     * @return deleted relationship
      */
     public Relationship deleteRelationship(Integer relationshipId) {
         Relationship relationship = getRelationship(relationshipId);

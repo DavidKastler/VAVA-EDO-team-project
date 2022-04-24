@@ -60,11 +60,11 @@ public class User {
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<Todo> todos;
 
-
     /**
      * Static casting method from UserRegister object
-     * @param userEdit   UserRegister object that you want to casy
-     * @return          cast User object
+     *
+     * @param userEdit UserRegister object that you want to casy
+     * @return cast User object
      */
     public static User from(UserEdit userEdit) {
         User user = new User();
@@ -73,10 +73,10 @@ public class User {
         return user;
     }
 
-
     /**
      * Debugging method
-     * @return  string with method variables
+     *
+     * @return string with method variables
      */
     @Override
     public String toString() {

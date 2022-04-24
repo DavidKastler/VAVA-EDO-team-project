@@ -35,8 +35,9 @@ public class RelationshipController {
 
     /**
      * Endpoint returning new friend request
+     *
      * @param token user account rights verification
-     * @return      friend request
+     * @return friend request
      */
     @PostMapping(value = "/create")
     public ResponseEntity<Object> createNewFriendRequest(@RequestParam(value = "token") Integer token,
@@ -64,12 +65,10 @@ public class RelationshipController {
             if (status == RelationshipStatus.ACCEPTED) {
                 log.info("User {} and {} are already friends.", senderId, receiverId);
                 throw new ResponseStatusException(HttpStatus.OK, "Relationship already exists.");
-            }
-            else if (status == RelationshipStatus.PENDING) {
+            } else if (status == RelationshipStatus.PENDING) {
                 log.info("Request already exists, just wait for answer.");
                 throw new ResponseStatusException(HttpStatus.CONFLICT, "Relationship is already pending.");
-            }
-            else if (status == RelationshipStatus.BLOCKED) {
+            } else if (status == RelationshipStatus.BLOCKED) {
                 log.info("User {} has blocked you. Please respect others and do not bothered them.", receiverId);
                 throw new ResponseStatusException(HttpStatus.FORBIDDEN, "User has blocked you.");
             }
@@ -80,9 +79,10 @@ public class RelationshipController {
 
     /**
      * Endpoint returning new accepted friend request
-     * @param token             user account rights verification
-     * @param relationshipId    user who accepted request
-     * @return                  accepted friend request
+     *
+     * @param token          user account rights verification
+     * @param relationshipId user who accepted request
+     * @return accepted friend request
      */
     @PutMapping(value = "/accept/{rsId}")
     public ResponseEntity<Relationship> acceptRequest(@RequestParam(value = "token") Integer token,
@@ -101,15 +101,16 @@ public class RelationshipController {
             relationshipService.deleteRelationship(otherWayRelationship.getRelationshipId());
         }
         log.info("Request form {} to user {} accepted.",
-                relationship.getFirstUser().getUsername(),relationship.getSecondUser().getUsername());
+                relationship.getFirstUser().getUsername(), relationship.getSecondUser().getUsername());
         return new ResponseEntity<>(relationshipService.acceptRelationshipRequest(relationshipId), HttpStatus.OK);
     }
 
     /**
      * Endpoint returning blocking friends
-     * @param token             user account rights verification
-     * @param relationshipId    user who will be blocked
-     * @return                  blocked user
+     *
+     * @param token          user account rights verification
+     * @param relationshipId user who will be blocked
+     * @return blocked user
      */
     @PutMapping(value = "/block/{rsId}")
     public ResponseEntity<Relationship> blockUser(@RequestParam(value = "token") Integer token,
@@ -133,9 +134,10 @@ public class RelationshipController {
 
     /**
      * Endpoint for rejecting friend request, rejected requests will be removed from database
-     * @param token             user account rights verification
-     * @param relationshipId    relationshipId who reject request
-     * @return                  rejected friend request
+     *
+     * @param token          user account rights verification
+     * @param relationshipId relationshipId who reject request
+     * @return rejected friend request
      */
     @DeleteMapping(value = "/delete/{rsId}")
     public ResponseEntity<Object> rejectRequest(@RequestParam(value = "token") int token,
@@ -154,8 +156,9 @@ public class RelationshipController {
 
     /**
      * Endpoint returning a list of friends
-     * @param token     user account rights verification
-     * @return          list of friends {"username}
+     *
+     * @param token user account rights verification
+     * @return list of friends {"username}
      */
     @GetMapping(value = "/friends")
     public ResponseEntity<List<RelationshipRequest>> getAllFriends(@RequestParam(value = "token") Integer token) {
@@ -167,8 +170,9 @@ public class RelationshipController {
 
     /**
      * Endpoint returning a list of friend requests
-     * @param token     user account rights verification
-     * @return          list of friend requests
+     *
+     * @param token user account rights verification
+     * @return list of friend requests
      */
     @GetMapping(value = "/requests")
     public ResponseEntity<List<RelationshipRequest>> getAllFriendRequests(@RequestParam(value = "token") Integer token) {

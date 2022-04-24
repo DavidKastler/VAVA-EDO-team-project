@@ -39,8 +39,6 @@ public class Group implements Serializable {
     @OneToMany(mappedBy = "group", cascade = CascadeType.ALL)
     private List<Chat> chats;
 
-
-
     /**
      * Static casting method from GroupCreate object
      *
@@ -52,7 +50,6 @@ public class Group implements Serializable {
         group.setGroupName(groupCreate.getGroupName());
         return group;
     }
-
 
     /**
      * Debugging method

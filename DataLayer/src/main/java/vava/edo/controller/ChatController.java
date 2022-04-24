@@ -34,9 +34,10 @@ public class ChatController {
 
     /**
      * Endpoint used to create a new message
-     * @param token         user account id
-     * @param messageDto    message body containing all necessary information
-     * @return              chat object
+     *
+     * @param token      user account id
+     * @param messageDto message body containing all necessary information
+     * @return chat object
      */
     @PostMapping("/send")
     public ResponseEntity<Chat> sendMessage(@RequestParam(value = "token") Integer token,
@@ -54,24 +55,26 @@ public class ChatController {
 
     /**
      * Endpoint to delete message from database
-     * @param token     user id
-     * @param chatId    chat id you want to remove
-     * @return          deleted message
+     *
+     * @param token  user id
+     * @param chatId chat id you want to remove
+     * @return deleted message
      */
     @DeleteMapping("/delete")
     public ResponseEntity<Chat> deleteMessage(@RequestParam(value = "token") Integer token,
-                                                     @RequestParam(value = "chatId") Integer chatId) {
+                                              @RequestParam(value = "chatId") Integer chatId) {
         log.info("Deleting a message with id:{}.", chatId);
         return new ResponseEntity<>(chatService.deleteMessage(token, chatId), HttpStatus.NO_CONTENT);
     }
 
     /**
      * Endpoint returning a list of last X messages in a specific chat room
+     *
      * @param token     user account id
      * @param groupId   chat room / group id
      * @param fromIndex optional parameter used to select specific message index range
-     * @param size   optional parameter used to select specific message index range
-     * @return          list of chat objects
+     * @param size      optional parameter used to select specific message index range
+     * @return list of chat objects
      */
     @GetMapping("/get/{groupId}")
     public ResponseEntity<List<Chat>> getLastMessages(@RequestParam(value = "token") Integer token,
@@ -95,8 +98,9 @@ public class ChatController {
 
     /**
      * Endpoint gets all recent chat groups for user
+     *
      * @param token user id
-     * @return      list of recently chatted groups
+     * @return list of recently chatted groups
      */
     @GetMapping("/get/recent")
     public ResponseEntity<List<RecentChatGroup>> getRecentChatGroups(@RequestParam(value = "token") int token) {

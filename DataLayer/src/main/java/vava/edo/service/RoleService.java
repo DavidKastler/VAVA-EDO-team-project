@@ -23,8 +23,9 @@ public class RoleService {
 
     /**
      * Method finds role by its ID, if it is not found throws exception
-     * @param roleId    role ID you want to find
-     * @return          found role
+     *
+     * @param roleId role ID you want to find
+     * @return found role
      */
     public Role getRole(int roleId) {
         return roleRepository.findById(roleId).orElseThrow(
