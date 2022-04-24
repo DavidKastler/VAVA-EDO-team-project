@@ -1,9 +1,11 @@
 package vava.edo.controllers.models;
 
 import javafx.fxml.FXMLLoader;
+import javafx.scene.control.CheckBox;
+import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
-import vava.edo.Handlers.Refresh;
 import vava.edo.controllers.TodoController;
+import vava.edo.controllers.TodosScreenController;
 import vava.edo.models.Todo;
 
 import java.io.IOException;
@@ -12,11 +14,34 @@ public class TodoHBoxModel {
     private HBox todoHBox;
 
     private Todo todo;
-    private Refresh refresher;
+    private boolean todoCompleted;
+    private String todoName;
+    private String todoGroup;
+    private String toTime;
+    private TodosScreenController tsc;
 
-    public TodoHBoxModel(Todo todo, Refresh refresher) {
+    private CheckBox checkBoxTodoInfo;
+    private Label labelTodoInfoDueTIme;
+    private Label labelTodoInfoName;
+    private Label labelTodoInfoDescription;
+    private Label labelTodoInfoGroup;
+
+    public TodoHBoxModel(Todo todo, TodosScreenController tsc, CheckBox checkBoxTodoInfo, Label labelTodoInfoDueTIme,
+                         Label labelTodoInfoName, Label labelTodoInfoDescription,
+                         Label labelTodoInfoGroup) {
+        // taskName.setValue(todo.getTaskName());
+        this.todoCompleted = todo.isCompleted();
+        this.todoName = todo.getTodoName();
+        this.todoGroup = todo.getGroupName() == null ? "": todo.getGroupName();
+        this.toTime = todo.getToTime();
+
         this.todo = todo;
-        this.refresher = refresher;
+        this.tsc = tsc;
+        this.checkBoxTodoInfo = checkBoxTodoInfo;
+        this.labelTodoInfoDueTIme = labelTodoInfoDueTIme;
+        this.labelTodoInfoName = labelTodoInfoName;
+        this.labelTodoInfoDescription = labelTodoInfoDescription;
+        this.labelTodoInfoGroup = labelTodoInfoGroup;
 
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/vava/edo/Todo.fxml"));
@@ -33,11 +58,47 @@ public class TodoHBoxModel {
         return todoHBox;
     }
 
-    public Refresh getRefresher() {
-        return refresher;
+    public Boolean getTodoCompleted() {
+        return todoCompleted;
+    }
+
+    public String getTodoName() {
+        return todoName;
+    }
+
+    public String getTodoGroup() {
+        return todoGroup;
+    }
+
+    public String getToTime() {
+        return toTime;
     }
 
     public Todo getTodo() {
         return todo;
+    }
+
+    public TodosScreenController getTsc() {
+        return tsc;
+    }
+
+    public CheckBox getCheckBoxTodoInfo() {
+        return checkBoxTodoInfo;
+    }
+
+    public Label getLabelTodoInfoDueTIme() {
+        return labelTodoInfoDueTIme;
+    }
+
+    public Label getLabelTodoInfoName() {
+        return labelTodoInfoName;
+    }
+
+    public Label getLabelTodoInfoDescription() {
+        return labelTodoInfoDescription;
+    }
+
+    public Label getLabelTodoInfoGroup() {
+        return labelTodoInfoGroup;
     }
 }

@@ -8,7 +8,6 @@ import com.mashape.unirest.http.exceptions.UnirestException;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
-import org.apache.commons.lang3.time.DateUtils;
 import org.json.JSONObject;
 import vava.edo.Exepctions.TodoScreen.MandatoryFieldNotInputted;
 import vava.edo.Exepctions.TodoScreen.TodoDatabaseFail;
@@ -17,12 +16,11 @@ import vava.edo.models.User;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.LocalDateTime;
-import java.time.LocalTime;
-import java.time.ZoneId;
-import java.time.ZoneOffset;
+import java.time.*;
 import java.util.ArrayList;
 import java.util.Date;
+
+import org.apache.commons.lang3.time.DateUtils;
 
 public class TodoHandler {
 
@@ -33,6 +31,7 @@ public class TodoHandler {
      */
     public static void startUp(User user) {
         user.setTodos(getAllTodos(user.getUid()));
+        user.setGroups(GroupHandler.getGroupsWithTodos(user));
     }
 
 
@@ -197,7 +196,7 @@ public class TodoHandler {
      * @param toTime ending time of to_do
      * @param groupName name of the to_do group
      */
-    public static Todo editTodo(int todoId, User user,
+    public static void editTodo(int todoId, User user,
                                 TextField todoName,
                                 TextArea todoDesc, DatePicker fromTime,
                                 DatePicker toTime, TextField groupName) throws MandatoryFieldNotInputted, TodoDatabaseFail{
@@ -215,7 +214,6 @@ public class TodoHandler {
         if(updated_todo.getTodoName() != null){
             System.out.println(updated_todo);
             user.updateTodo(updated_todo);
-            return updated_todo;
         }
         else {
             throw new TodoDatabaseFail("Failed to edit the TODO");
@@ -331,21 +329,23 @@ public class TodoHandler {
     /**
      * Method which creates a PUT request to update the status of to_do
      *
-     * @param todo id of a to_do which will have changed it's status
+     * @param todoId id of a to_do which will have changed it's status
+     * @param userId id of the user id
      */
-    public static void changeTodoStatus(Todo todo, int userId) throws TodoDatabaseFail{
+    public static void changeTodoStatus(int todoId, int userId) throws TodoDatabaseFail{
 
         try {
             HttpResponse<JsonNode> apiResponse = Unirest.put("http://localhost:8080/" +
                     "todos/complete/{todoId}/?token={token}")
-                    .routeParam("todoId", String.valueOf(todo.getTodoId()))
+                    .routeParam("todoId", String.valueOf(todoId))
                     .routeParam("token", String.valueOf(userId))
                     .asJson();
 
             Todo completed_todo = new Gson().fromJson(apiResponse.getBody().toString(), Todo.class);
 
-            if(completed_todo.getTodoName() != null){
-                todo.setCompleted(completed_todo.isCompleted());
+            if(completed_todo != null){
+                System.out.println(completed_todo);
+                // TODO upravit fungovanie ked bude refresh window
             }else {
                 throw new TodoDatabaseFail("Failed to change the status of the todo");
             }
