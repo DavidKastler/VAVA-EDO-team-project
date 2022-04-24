@@ -15,7 +15,11 @@ import java.util.ArrayList;
 
 public class RelationshipHandler {
 
-    //DONE
+    /**
+     * Method used to return all users friends
+     * @param userId    id of user whose friends we want to return
+     * @return  ArrayList of Relationship objects containing usernames and ids of friends
+     */
     public static ArrayList<Relationship> getAllFriends(Integer userId) {
         ArrayList<Relationship> friends = new ArrayList<>();
 
@@ -38,16 +42,20 @@ public class RelationshipHandler {
         return friends;
     }
 
-    //DONE
+    /**
+     * Method used to return all pending friend requests for user
+     * @param userId    id of user whose friend requests we are searching for
+     * @return  ArrayList of relationship objects containing usernames and ids of friends
+     */
     public static ArrayList<Relationship> getAllRequests(Integer userId) {
-        ArrayList<Relationship> friends = new ArrayList<>();
+        ArrayList<Relationship> requests = new ArrayList<>();
 
         try {
             HttpResponse<JsonNode> friendsJson = Unirest.get("http://localhost:8080/relationships/requests?token={token}")
                     .routeParam("token", String.valueOf(userId))
                     .asJson();
             for (Object group : friendsJson.getBody().getArray()) {
-                friends.add(new Gson().fromJson(group.toString(), Relationship.class));
+                requests.add(new Gson().fromJson(group.toString(), Relationship.class));
             }
 
             if (friendsJson.getStatus() != 200) throw new UnexpectedHttpStatusException(friendsJson.getStatus(), 200, friendsJson.getStatusText());
@@ -58,10 +66,14 @@ public class RelationshipHandler {
             System.out.println(e.getMessage());
         }
 
-        return friends;
+        return requests;
     }
 
-    //DONE
+    /**
+     * Method used to create and send a new friend request
+     * @param userId    id of user who wants to add a friend
+     * @param friendUsername    username of friend who we want to add
+     */
     public static void createFriendRequest(Integer userId, String friendUsername) {
 
         JSONObject newFriendRequest = new JSONObject();

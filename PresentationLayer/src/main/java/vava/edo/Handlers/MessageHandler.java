@@ -17,7 +17,14 @@ import java.util.ArrayList;
 
 public class MessageHandler {
 
-    //DONE
+    /**
+     * Method used to fetch all messages in given group
+     * @param userId    id of user who sent this request
+     * @param groupId   id of group containing messages we wish to return
+     * @param fromIndex     index of first message we want to return, usually 0 at the beginning
+     * @param size      maximum number of messages we want to return
+     * @return      ArrayList of message objects containing time sent, message and sender name
+     */
     public static ArrayList<Message> getAllMessagesInGroup(Integer userId, Integer groupId, Integer fromIndex, Integer size) {
         ArrayList<Message> messages = new ArrayList<>();
 
@@ -45,6 +52,13 @@ public class MessageHandler {
     }
 
     //TODO DAT PREC 1000
+
+    /**
+     * Method used to create a new message in group
+     * @param userId    id of message sender
+     * @param groupId   id of group where we want to send message
+     * @param message   string containing our message
+     */
     public static void sendMessage(Integer userId, Integer groupId, String message) {
         JSONObject newMessage = new JSONObject();
         newMessage.put("senderId", userId);

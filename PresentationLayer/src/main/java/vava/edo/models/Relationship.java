@@ -1,5 +1,8 @@
 package vava.edo.models;
 
+import lombok.Getter;
+
+@Getter
 public class Relationship {
 
     private Integer relationshipId;

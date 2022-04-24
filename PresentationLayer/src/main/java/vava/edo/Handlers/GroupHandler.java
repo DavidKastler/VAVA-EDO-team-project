@@ -15,7 +15,11 @@ import java.util.Arrays;
 
 public class GroupHandler {
 
-    //DONE
+    /**
+     * Method that returns all users groups
+     * @param userId    id of user whose groups we want to return
+     * @return  ArrayList of group objects containing group names and ids
+     */
     public static ArrayList<Group> getAllGroups(Integer userId) {
         ArrayList<Group> groups = new ArrayList<>();
 
@@ -40,7 +44,12 @@ public class GroupHandler {
         return groups;
     }
 
-    //DONE
+    /**
+     * Method used to create a new group from users in Friendlist
+     * @param userId    is of group creator
+     * @param memberIds     ids o new group members, must also contain creators id
+     * @param groupName     name of newly created group
+     */
     public static void createGroup(Integer userId, Integer[] memberIds, String groupName) {
         JSONObject newGroup = new JSONObject();
         newGroup.put("creatorId", userId);
