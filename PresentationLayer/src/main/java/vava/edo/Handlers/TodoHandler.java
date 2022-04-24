@@ -316,7 +316,6 @@ public class TodoHandler {
 
         try {
             for(Todo todo : user.getTodos()){
-                System.out.println(new SimpleDateFormat("yyyy-MM-dd").parse(todo.getToTime()));
                 if (DateUtils.isSameDay(tomorrows_midnight, new SimpleDateFormat("yyyy-MM-dd").parse(todo.getToTime()))){
                     tomorrowsTodos.add(todo);
                 }
