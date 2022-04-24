@@ -1,3 +1,6 @@
 # Generated files
 /PresentationLayer/target/*
 /DataLayer/target/*
+
+# Log files
+/DataLayer/src/main/resources/log/*
