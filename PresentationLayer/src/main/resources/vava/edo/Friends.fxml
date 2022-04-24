@@ -22,7 +22,7 @@
                               <Font name="Arial Bold" size="42.0" />
                            </font>
                         </Button>
-                        <Button maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="80.0" prefWidth="520.0" style="-fx-background-color: #c4c4c4;" text="Requests" textAlignment="CENTER">
+                        <Button maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#switchRequestsScreen" prefHeight="80.0" prefWidth="520.0" style="-fx-background-color: #c4c4c4;" text="Requests" textAlignment="CENTER">
                            <font>
                               <Font name="Arial Bold" size="42.0" />
                            </font>

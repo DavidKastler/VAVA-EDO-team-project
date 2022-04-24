@@ -5,6 +5,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -74,4 +75,6 @@ public class FriendRequestController implements Initializable {
     }
 
 
+    public void switchFriendsScreen(MouseEvent mouseEvent) {
+    }
 }

@@ -16,7 +16,7 @@
                <children>
                   <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="80.0" prefWidth="1040.0">
                      <children>
-                        <Button maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="80.0" prefWidth="520.0" style="-fx-background-color: #c4c4c4;" text="Friends" textAlignment="CENTER">
+                        <Button maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#switchFriendsScreen" prefHeight="80.0" prefWidth="520.0" style="-fx-background-color: #c4c4c4;" text="Friends" textAlignment="CENTER">
                            <font>
                               <Font name="Arial Bold" size="42.0" />
                            </font>
