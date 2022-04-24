@@ -104,6 +104,7 @@ public class ChatController {
      */
     @GetMapping("/get/recent")
     public ResponseEntity<List<RecentChatGroup>> getRecentChatGroups(@RequestParam(value = "token") int token) {
+        log.info("Getting recent chat groups for user with id:{}", token);
         return new ResponseEntity<>(chatService.getLastChatGroups(token), HttpStatus.OK);
     }
 }
