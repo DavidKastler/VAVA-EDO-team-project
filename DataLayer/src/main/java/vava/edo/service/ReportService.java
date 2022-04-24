@@ -1,11 +1,12 @@
 package vava.edo.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.server.ResponseStatusException;
 import vava.edo.model.Report;
 import vava.edo.model.enums.ReportStatus;
-import vava.edo.model.exeption.TaskNotFoundException;
 import vava.edo.repository.ReportRepository;
 import vava.edo.schema.reports.ReportCreate;
 
@@ -32,7 +33,8 @@ public class ReportService {
      * @return  Report object
      */
     public Report getReport(Integer reportId) {
-        return reportRepository.findById(reportId).orElseThrow(() -> new TaskNotFoundException(reportId));
+        return reportRepository.findById(reportId).orElseThrow(
+                () -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Report id not found."));
     }
 
     /**

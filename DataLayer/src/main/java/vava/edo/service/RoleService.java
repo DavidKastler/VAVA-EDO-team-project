@@ -2,9 +2,10 @@ package vava.edo.service;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 import vava.edo.model.Role;
-import vava.edo.model.exeption.RoleNotFoundException;
 import vava.edo.repository.RoleRepository;
 
 /**
@@ -20,7 +21,6 @@ public class RoleService {
         this.roleRepository = roleRepository;
     }
 
-
     /**
      * Method finds role by its ID, if it is not found throws exception
      * @param roleId    role ID you want to find
@@ -28,7 +28,7 @@ public class RoleService {
      */
     public Role getRole(int roleId) {
         return roleRepository.findById(roleId).orElseThrow(
-                () -> new RoleNotFoundException(roleId));
+                () -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Role id not found."));
     }
 
 }

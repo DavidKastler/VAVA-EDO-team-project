@@ -7,8 +7,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.server.ResponseStatusException;
 import vava.edo.model.Role;
-import vava.edo.model.exeption.UserNotFoundException;
 import vava.edo.repository.RoleRepository;
 /**
  * Class that provides endpoints for role operations
@@ -32,7 +32,7 @@ public class RoleController {
     @GetMapping("/{id}")
     public ResponseEntity<Role> getRoleById(@PathVariable(value = "id") int roleId) {
         Role role = roleRepository.findById(roleId)
-                .orElseThrow(() -> new UserNotFoundException(roleId));
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Role id not found."));
         return new ResponseEntity<>(role, HttpStatus.OK);
     }
 }
