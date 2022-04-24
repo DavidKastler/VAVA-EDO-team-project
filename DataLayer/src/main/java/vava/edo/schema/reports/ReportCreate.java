@@ -1,11 +1,7 @@
 package vava.edo.schema.reports;
 
-import com.sun.istack.NotNull;
 import lombok.Data;
 import lombok.NonNull;
-import vava.edo.model.enums.ReportStatus;
-
-import java.sql.Date;
 
 
 /**

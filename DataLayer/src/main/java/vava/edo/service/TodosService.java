@@ -10,7 +10,7 @@ import vava.edo.repository.TodoRepository;
 import vava.edo.schema.todos.TodoCreate;
 import vava.edo.schema.todos.TodoUpdate;
 
-import java.util.*;
+import java.util.List;
 
 /**
  * Service that operates over todos database table

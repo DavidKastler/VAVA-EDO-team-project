@@ -8,8 +8,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 import vava.edo.model.User;
-import vava.edo.schema.users.UserLogin;
 import vava.edo.schema.users.UserEdit;
+import vava.edo.schema.users.UserLogin;
 import vava.edo.service.UserService;
 
 import java.util.List;
@@ -58,7 +58,7 @@ public class UserController {
      * Endpoint to update user credentials, its also for user itself
      * @param token         user id
      * @param userId        used id you want to check as admin required = false
-     * @param updatedUser   
+     * @param updatedUser
      * @return
      */
     @PutMapping("/update/{userId}")

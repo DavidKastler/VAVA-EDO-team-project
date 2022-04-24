@@ -7,10 +7,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.server.ResponseStatusException;
 import vava.edo.model.Role;
-import vava.edo.schema.users.UserLogin;
-import vava.edo.schema.users.UserEdit;
-import vava.edo.repository.UserRepository;
 import vava.edo.model.User;
+import vava.edo.repository.UserRepository;
+import vava.edo.schema.users.UserEdit;
+import vava.edo.schema.users.UserLogin;
 
 import java.util.List;
 

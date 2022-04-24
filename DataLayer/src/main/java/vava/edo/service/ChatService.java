@@ -12,7 +12,6 @@ import vava.edo.schema.chats.Message;
 import vava.edo.schema.chats.RecentChatGroup;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 

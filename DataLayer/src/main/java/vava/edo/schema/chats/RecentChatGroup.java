@@ -4,8 +4,6 @@ import com.sun.istack.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
-import java.util.Arrays;
-
 
 /**
  * Data transfer object for Chat class

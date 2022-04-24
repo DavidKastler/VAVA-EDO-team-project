@@ -3,8 +3,8 @@ package vava.edo.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import vava.edo.model.exeption.RoleNotFoundException;
 import vava.edo.model.Role;
+import vava.edo.model.exeption.RoleNotFoundException;
 import vava.edo.repository.RoleRepository;
 
 /**

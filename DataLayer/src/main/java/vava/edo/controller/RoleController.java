@@ -7,8 +7,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import vava.edo.model.exeption.UserNotFoundException;
 import vava.edo.model.Role;
+import vava.edo.model.exeption.UserNotFoundException;
 import vava.edo.repository.RoleRepository;
 /**
  * Class that provides endpoints for role operations
