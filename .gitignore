@@ -4,3 +4,6 @@
 
 # Log files
 /DataLayer/src/main/resources/log/*
+
+# Aplication properties
+/DataLayer/src/main/resources/application.properties
