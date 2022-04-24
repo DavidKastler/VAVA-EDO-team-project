@@ -1,12 +1,12 @@
 package vava.edo.Handlers;
 
-import vava.edo.models.Group;
+import vava.edo.models.TodoGroup;
 import vava.edo.models.Todo;
 import vava.edo.models.User;
 
 import java.util.ArrayList;
 
-public class GroupHandler {
+public class TodoGroupHandler {
 
 
     /**
@@ -15,24 +15,24 @@ public class GroupHandler {
      * @param user object of which todos are going to be sorted
      * @return ArrayList of groups which have their sorted todos by groupName
      */
-    public static ArrayList<Group> getGroupsWithTodos(User user){
+    public static ArrayList<TodoGroup> getGroupsWithTodos(User user){
 
-        ArrayList<Group> groups = new ArrayList<>();
+        ArrayList<TodoGroup> todoGroups = new ArrayList<>();
 
         // Creates ArrayList of groups with all of the unique group names
         for(String group_name: getGroupNames(user.getTodos())){
-            groups.add(new Group(group_name));
+            todoGroups.add(new TodoGroup(group_name));
         }
 
         for(Todo todo: user.getTodos()){
-            for(Group group: groups){
-                if(todo.getGroupName().equals(group.getName())){
-                    group.addTodo(todo);
+            for(TodoGroup todoGroup : todoGroups){
+                if(todo.getGroupName().equals(todoGroup.getName())){
+                    todoGroup.addTodo(todo);
                 }
             }
         }
 
-        return groups;
+        return todoGroups;
     }
 
 

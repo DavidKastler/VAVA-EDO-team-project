@@ -2,12 +2,12 @@ package vava.edo.models;
 
 import java.util.ArrayList;
 
-public class Group {
+public class TodoGroup {
 
     private String name;
     private ArrayList<Todo> todos = new ArrayList<>();
 
-    public Group(String name) {
+    public TodoGroup(String name) {
         this.name = name;
     }
 

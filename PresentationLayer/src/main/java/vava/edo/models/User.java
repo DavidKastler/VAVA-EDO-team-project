@@ -18,7 +18,7 @@ public class User implements Serializable {
     private boolean isLogged = false;  // potrebné pre serializáciu dát (mimo db)
     private long lastActivity = 0;  // potrebné pre serializáciu dát (mimo db)
     private ArrayList<Todo> todos = null;
-    private ArrayList<Group> groups = null;
+    private ArrayList<TodoGroup> todoGroups = null;
 
     public Integer getUid() {
         return uid;
@@ -96,12 +96,12 @@ public class User implements Serializable {
         this.todos.add(todo);
     }
 
-    public ArrayList<Group> getGroups() {
-        return groups;
+    public ArrayList<TodoGroup> getGroups() {
+        return todoGroups;
     }
 
-    public void setGroups(ArrayList<Group> groups) {
-        this.groups = groups;
+    public void setGroups(ArrayList<TodoGroup> todoGroups) {
+        this.todoGroups = todoGroups;
     }
 
     public void updateUserCred(String username, String password) throws MandatoryFieldNotInputted {
