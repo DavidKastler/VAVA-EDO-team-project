@@ -25,7 +25,7 @@ public class TodosScreenController {
     @FXML
     private VBox vBoxTodoInfo;
 
-    // FXML elements for new to_do window
+    // FXML elements for new to_do wind
     @FXML
     private VBox vBoxNewTaskScreen;
 

@@ -3,16 +3,14 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="calendarScreen" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1040.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="vava.edo.controllers.CalendarScreenController">
+<AnchorPane fx:id="calendarScreen" maxHeight="750.0" maxWidth="1040.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1040.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="vava.edo.controllers.CalendarScreenController">
    <children>
-      <VBox prefHeight="750.0" prefWidth="1040.0" style="-fx-background-color: #323232;">
+      <VBox maxHeight="750.0" maxWidth="1040.0" prefHeight="750.0" prefWidth="1040.0" style="-fx-background-color: #323232;">
          <children>
             <HBox alignment="CENTER_LEFT" prefHeight="60.0" prefWidth="1040.0" spacing="10.0">
                <children>
@@ -61,17 +59,1504 @@
                   </HBox>
                </children>
             </HBox>
-            <TableView prefHeight="690.0" style="-fx-background-color: transparen;">
-              <columns>
-                <TableColumn maxWidth="150.0" minWidth="148.0" prefWidth="148.0" style="-fx-font-family: Arial;" text="Mon" />
-                  <TableColumn maxWidth="150.0" minWidth="148.0" prefWidth="148.0" style="-fx-font-family: Arial;" text="Mon" />
-                  <TableColumn maxWidth="150.0" minWidth="148.0" prefWidth="148.0" style="-fx-font-family: Arial;" text="Mon" />
-                  <TableColumn maxWidth="150.0" minWidth="148.0" prefWidth="148.0" style="-fx-font-family: Arial;" text="Mon" />
-                  <TableColumn maxWidth="150.0" minWidth="148.0" prefWidth="148.0" style="-fx-font-family: Arial;" text="Mon" />
-                  <TableColumn maxWidth="150.0" minWidth="148.0" prefWidth="148.0" style="-fx-font-family: Arial;" text="Mon" />
-                  <TableColumn maxWidth="150.0" minWidth="150.0" prefWidth="150.0" style="-fx-font-family: Arial;" text="Mon" />
-              </columns>
-            </TableView>
+            <VBox prefHeight="690.0" prefWidth="1043.0">
+               <children>
+                  <HBox prefHeight="20.0" prefWidth="1040.0">
+                     <children>
+                        <Label alignment="CENTER" maxWidth="1.7976931348623157E308" prefHeight="20.0" prefWidth="148.1" text="Mon" textFill="WHITE">
+                           <font>
+                              <Font name="Arial Bold" size="15.0" />
+                           </font>
+                        </Label>
+                        <Label alignment="CENTER" maxWidth="1.7976931348623157E308" prefHeight="20.0" prefWidth="148.1" text="Mon" textFill="WHITE">
+                           <font>
+                              <Font name="Arial Bold" size="15.0" />
+                           </font>
+                        </Label>
+                        <Label alignment="CENTER" maxWidth="1.7976931348623157E308" prefHeight="20.0" prefWidth="148.1" text="Mon" textFill="WHITE">
+                           <font>
+                              <Font name="Arial Bold" size="15.0" />
+                           </font>
+                        </Label>
+                        <Label alignment="CENTER" maxWidth="1.7976931348623157E308" prefHeight="20.0" prefWidth="148.1" text="Mon" textFill="WHITE">
+                           <font>
+                              <Font name="Arial Bold" size="15.0" />
+                           </font>
+                        </Label>
+                        <Label alignment="CENTER" maxWidth="1.7976931348623157E308" prefHeight="20.0" prefWidth="148.1" text="Mon" textFill="WHITE">
+                           <font>
+                              <Font name="Arial Bold" size="15.0" />
+                           </font>
+                        </Label>
+                        <Label alignment="CENTER" maxWidth="1.7976931348623157E308" prefHeight="20.0" prefWidth="148.1" text="Mon" textFill="WHITE">
+                           <font>
+                              <Font name="Arial Bold" size="15.0" />
+                           </font>
+                        </Label>
+                        <Label alignment="CENTER" maxWidth="1.7976931348623157E308" prefHeight="20.0" prefWidth="148.1" text="Mon" textFill="WHITE">
+                           <font>
+                              <Font name="Arial Bold" size="15.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox prefHeight="134.0" prefWidth="1040.0">
+                     <children>
+                        <VBox prefHeight="200.0" prefWidth="148.1" style="-fx-border-color: #575757;">
+                           <children>
+                              <Label prefHeight="15.0" prefWidth="38.0" text="28." textFill="WHITE">
+                                 <font>
+                                    <Font name="Arial Bold" size="12.0" />
+                                 </font>
+                                 <VBox.margin>
+                                    <Insets bottom="5.0" left="5.0" top="5.0" />
+                                 </VBox.margin>
+                              </Label>
+                              <Button mnemonicParsing="false" prefHeight="16.0" prefWidth="147.0" style="-fx-background-color: #C1C1C1; -fx-background-radius: 0; -fx-border-color: black; -fx-border-width: 1 0 0 0;" text="Task name">
+                                 <font>
+                                    <Font name="Arial" size="10.0" />
+                                 </font>
+                              </Button>
+                              <Button mnemonicParsing="false" prefHeight="16.0" prefWidth="147.0" style="-fx-background-color: #C1C1C1; -fx-background-radius: 0; -fx-border-color: black; -fx-border-width: 1 0 0 0;" text="Task name">
+                                 <font>
+                                    <Font name="Arial" size="10.0" />
+                                 </font>
+                              </Button>
+                              <Button mnemonicParsing="false" prefHeight="16.0" prefWidth="147.0" style="-fx-background-color: #C1C1C1; -fx-background-radius: 0; -fx-border-color: black; -fx-border-width: 1 0 0 0;" text="Task name">
+                                 <font>
+                                    <Font name="Arial" size="10.0" />
+                                 </font>
+                              </Button>
+                              <Button mnemonicParsing="false" prefHeight="16.0" prefWidth="147.0" style="-fx-background-color: #C1C1C1; -fx-background-radius: 0; -fx-border-color: black; -fx-border-width: 1 0 0 0;" text="Task name">
+                                 <font>
+                                    <Font name="Arial" size="10.0" />
+                                 </font>
+                              </Button>
+                              <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                                 <children>
+                                    <Label layoutX="-1.0" layoutY="3.0" prefHeight="20.0" prefWidth="148.0" text="10 more" textFill="#a8a8a8">
+                                       <font>
+                                          <Font name="Arial Bold" size="13.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </AnchorPane>
+                           </children>
+                        </VBox>
+                        <VBox prefHeight="200.0" prefWidth="148.1" style="-fx-border-color: #575757;">
+                           <children>
+                              <Label prefHeight="15.0" prefWidth="38.0" text="28." textFill="WHITE">
+                                 <font>
+                                    <Font name="Arial Bold" size="12.0" />
+                                 </font>
+                                 <VBox.margin>
+                                    <Insets bottom="5.0" left="5.0" top="5.0" />
+                                 </VBox.margin>
+                              </Label>
+                              <Button mnemonicParsing="false" prefHeight="16.0" prefWidth="147.0" style="-fx-background-color: #C1C1C1; -fx-background-radius: 0; -fx-border-color: black; -fx-border-width: 1 0 0 0;" text="Task name">
+                                 <font>
+                                    <Font name="Arial" size="10.0" />
+                                 </font>
+                              </Button>
+                              <Button mnemonicParsing="false" prefHeight="16.0" prefWidth="147.0" style="-fx-background-color: #C1C1C1; -fx-background-radius: 0; -fx-border-color: black; -fx-border-width: 1 0 0 0;" text="Task name">
+                                 <font>
+                                    <Font name="Arial" size="10.0" />
+                                 </font>
+                              </Button>
+                              <Button mnemonicParsing="false" prefHeight="16.0" prefWidth="147.0" style="-fx-background-color: #C1C1C1; -fx-background-radius: 0; -fx-border-color: black; -fx-border-width: 1 0 0 0;" text="Task name">
+                                 <font>
+                                    <Font name="Arial" size="10.0" />
+                                 </font>
+                              </Button>
+                              <Button mnemonicParsing="false" prefHeight="16.0" prefWidth="147.0" style="-fx-background-color: #C1C1C1; -fx-background-radius: 0; -fx-border-color: black; -fx-border-width: 1 0 0 0;" text="Task name">
+                                 <font>
+                                    <Font name="Arial" size="10.0" />
+                                 </font>
+                              </Button>
+                              <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                                 <children>
+                                    <Label layoutX="-1.0" layoutY="3.0" prefHeight="20.0" prefWidth="148.0" text="10 more" textFill="#a8a8a8">
+                                       <font>
+                                          <Font name="Arial Bold" size="13.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </AnchorPane>
+                           </children>
+                        </VBox>
+                        <VBox prefHeight="200.0" prefWidth="148.1" style="-fx-border-color: #575757;">
+                           <children>
+                              <Label prefHeight="15.0" prefWidth="38.0" text="28." textFill="WHITE">
+                                 <font>
+                                    <Font name="Arial Bold" size="12.0" />
+                                 </font>
+                                 <VBox.margin>
+                                    <Insets bottom="5.0" left="5.0" top="5.0" />
+                                 </VBox.margin>
+                              </Label>
+                              <Button mnemonicParsing="false" prefHeight="16.0" prefWidth="147.0" style="-fx-background-color: #C1C1C1; -fx-background-radius: 0; -fx-border-color: black; -fx-border-width: 1 0 0 0;" text="Task name">
+                                 <font>
+                                    <Font name="Arial" size="10.0" />
+                                 </font>
+                              </Button>
+                              <Button mnemonicParsing="false" prefHeight="16.0" prefWidth="147.0" style="-fx-background-color: #C1C1C1; -fx-background-radius: 0; -fx-border-color: black; -fx-border-width: 1 0 0 0;" text="Task name">
+                                 <font>
+                                    <Font name="Arial" size="10.0" />
+                                 </font>
+                              </Button>
+                              <Button mnemonicParsing="false" prefHeight="16.0" prefWidth="147.0" style="-fx-background-color: #C1C1C1; -fx-background-radius: 0; -fx-border-color: black; -fx-border-width: 1 0 0 0;" text="Task name">
+                                 <font>
+                                    <Font name="Arial" size="10.0" />
+                                 </font>
+                              </Button>
+                              <Button mnemonicParsing="false" prefHeight="16.0" prefWidth="147.0" style="-fx-background-color: #C1C1C1; -fx-background-radius: 0; -fx-border-color: black; -fx-border-width: 1 0 0 0;" text="Task name">
+                                 <font>
+                                    <Font name="Arial" size="10.0" />
+                                 </font>
+                              </Button>
+                              <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                                 <children>
+                                    <Label layoutX="-1.0" layoutY="3.0" prefHeight="20.0" prefWidth="148.0" text="10 more" textFill="#a8a8a8">
+                                       <font>
+                                          <Font name="Arial Bold" size="13.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </AnchorPane>
+                           </children>
+                        </VBox>
+                        <VBox prefHeight="200.0" prefWidth="148.1" style="-fx-border-color: #575757;">
+                           <children>
+                              <Label prefHeight="15.0" prefWidth="38.0" text="28." textFill="WHITE">
+                                 <font>
+                                    <Font name="Arial Bold" size="12.0" />
+                                 </font>
+                                 <VBox.margin>
+                                    <Insets bottom="5.0" left="5.0" top="5.0" />
+                                 </VBox.margin>
+                              </Label>
+                              <Button mnemonicParsing="false" prefHeight="16.0" prefWidth="147.0" style="-fx-background-color: #C1C1C1; -fx-background-radius: 0; -fx-border-color: black; -fx-border-width: 1 0 0 0;" text="Task name">
+                                 <font>
+                                    <Font name="Arial" size="10.0" />
+                                 </font>
+                              </Button>
+                              <Button mnemonicParsing="false" prefHeight="16.0" prefWidth="147.0" style="-fx-background-color: #C1C1C1; -fx-background-radius: 0; -fx-border-color: black; -fx-border-width: 1 0 0 0;" text="Task name">
+                                 <font>
+                                    <Font name="Arial" size="10.0" />
+                                 </font>
+                              </Button>
+                              <Button mnemonicParsing="false" prefHeight="16.0" prefWidth="147.0" style="-fx-background-color: #C1C1C1; -fx-background-radius: 0; -fx-border-color: black; -fx-border-width: 1 0 0 0;" text="Task name">
+                                 <font>
+                                    <Font name="Arial" size="10.0" />
+                                 </font>
+                              </Button>
+                              <Button mnemonicParsing="false" prefHeight="16.0" prefWidth="147.0" style="-fx-background-color: #C1C1C1; -fx-background-radius: 0; -fx-border-color: black; -fx-border-width: 1 0 0 0;" text="Task name">
+                                 <font>
+                                    <Font name="Arial" size="10.0" />
+                                 </font>
+                              </Button>
+                              <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                                 <children>
+                                    <Label layoutX="-1.0" layoutY="3.0" prefHeight="20.0" prefWidth="148.0" text="10 more" textFill="#a8a8a8">
+                                       <font>
+                                          <Font name="Arial Bold" size="13.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </AnchorPane>
+                           </children>
+                        </VBox>
+                        <VBox prefHeight="200.0" prefWidth="148.1" style="-fx-border-color: #575757;">
+                           <children>
+                              <Label prefHeight="15.0" prefWidth="38.0" text="28." textFill="WHITE">
+                                 <font>
+                                    <Font name="Arial Bold" size="12.0" />
+                                 </font>
+                                 <VBox.margin>
+                                    <Insets bottom="5.0" left="5.0" top="5.0" />
+                                 </VBox.margin>
+                              </Label>
+                              <Button mnemonicParsing="false" prefHeight="16.0" prefWidth="147.0" style="-fx-background-color: #C1C1C1; -fx-background-radius: 0; -fx-border-color: black; -fx-border-width: 1 0 0 0;" text="Task name">
+                                 <font>
+                                    <Font name="Arial" size="10.0" />
+                                 </font>
+                              </Button>
+                              <Button mnemonicParsing="false" prefHeight="16.0" prefWidth="147.0" style="-fx-background-color: #C1C1C1; -fx-background-radius: 0; -fx-border-color: black; -fx-border-width: 1 0 0 0;" text="Task name">
+                                 <font>
+                                    <Font name="Arial" size="10.0" />
+                                 </font>
+                              </Button>
+                              <Button mnemonicParsing="false" prefHeight="16.0" prefWidth="147.0" style="-fx-background-color: #C1C1C1; -fx-background-radius: 0; -fx-border-color: black; -fx-border-width: 1 0 0 0;" text="Task name">
+                                 <font>
+                                    <Font name="Arial" size="10.0" />
+                                 </font>
+                              </Button>
+                              <Button mnemonicParsing="false" prefHeight="16.0" prefWidth="147.0" style="-fx-background-color: #C1C1C1; -fx-background-radius: 0; -fx-border-color: black; -fx-border-width: 1 0 0 0;" text="Task name">
+                                 <font>
+                                    <Font name="Arial" size="10.0" />
+                                 </font>
+                              </Button>
+                              <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                                 <children>
+                                    <Label layoutX="-1.0" layoutY="3.0" prefHeight="20.0" prefWidth="148.0" text="10 more" textFill="#a8a8a8">
+                                       <font>
+                                          <Font name="Arial Bold" size="13.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </AnchorPane>
+                           </children>
+                        </VBox>
+                        <VBox prefHeight="200.0" prefWidth="148.1" style="-fx-border-color: #575757;">
+                           <children>
+                              <Label prefHeight="15.0" prefWidth="38.0" text="28." textFill="WHITE">
+                                 <font>
+                                    <Font name="Arial Bold" size="12.0" />
+                                 </font>
+                                 <VBox.margin>
+                                    <Insets bottom="5.0" left="5.0" top="5.0" />
+                                 </VBox.margin>
+                              </Label>
+                              <Button mnemonicParsing="false" prefHeight="16.0" prefWidth="147.0" style="-fx-background-color: #C1C1C1; -fx-background-radius: 0; -fx-border-color: black; -fx-border-width: 1 0 0 0;" text="Task name">
+                                 <font>
+                                    <Font name="Arial" size="10.0" />
+                                 </font>
+                              </Button>
+                              <Button mnemonicParsing="false" prefHeight="16.0" prefWidth="147.0" style="-fx-background-color: #C1C1C1; -fx-background-radius: 0; -fx-border-color: black; -fx-border-width: 1 0 0 0;" text="Task name">
+                                 <font>
+                                    <Font name="Arial" size="10.0" />
+                                 </font>
+                              </Button>
+                              <Button mnemonicParsing="false" prefHeight="16.0" prefWidth="147.0" style="-fx-background-color: #C1C1C1; -fx-background-radius: 0; -fx-border-color: black; -fx-border-width: 1 0 0 0;" text="Task name">
+                                 <font>
+                                    <Font name="Arial" size="10.0" />
+                                 </font>
+                              </Button>
+                              <Button mnemonicParsing="false" prefHeight="16.0" prefWidth="147.0" style="-fx-background-color: #C1C1C1; -fx-background-radius: 0; -fx-border-color: black; -fx-border-width: 1 0 0 0;" text="Task name">
+                                 <font>
+                                    <Font name="Arial" size="10.0" />
+                                 </font>
+                              </Button>
+                              <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                                 <children>
+                                    <Label layoutX="-1.0" layoutY="3.0" prefHeight="20.0" prefWidth="148.0" text="10 more" textFill="#a8a8a8">
+                                       <font>
+                                          <Font name="Arial Bold" size="13.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </AnchorPane>
+                           </children>
+                        </VBox>
+                        <VBox prefHeight="200.0" prefWidth="148.1" style="-fx-border-color: #575757;">
+                           <children>
+                              <Label prefHeight="15.0" prefWidth="38.0" text="28." textFill="WHITE">
+                                 <font>
+                                    <Font name="Arial Bold" size="12.0" />
+                                 </font>
+                                 <VBox.margin>
+                                    <Insets bottom="5.0" left="5.0" top="5.0" />
+                                 </VBox.margin>
+                              </Label>
+                              <Button mnemonicParsing="false" prefHeight="16.0" prefWidth="147.0" style="-fx-background-color: #C1C1C1; -fx-background-radius: 0; -fx-border-color: black; -fx-border-width: 1 0 0 0;" text="Task name">
+                                 <font>
+                                    <Font name="Arial" size="10.0" />
+                                 </font>
+                              </Button>
+                              <Button mnemonicParsing="false" prefHeight="16.0" prefWidth="147.0" style="-fx-background-color: #C1C1C1; -fx-background-radius: 0; -fx-border-color: black; -fx-border-width: 1 0 0 0;" text="Task name">
+                                 <font>
+                                    <Font name="Arial" size="10.0" />
+                                 </font>
+                              </Button>
+                              <Button mnemonicParsing="false" prefHeight="16.0" prefWidth="147.0" style="-fx-background-color: #C1C1C1; -fx-background-radius: 0; -fx-border-color: black; -fx-border-width: 1 0 0 0;" text="Task name">
+                                 <font>
+                                    <Font name="Arial" size="10.0" />
+                                 </font>
+                              </Button>
+                              <Button mnemonicParsing="false" prefHeight="16.0" prefWidth="147.0" style="-fx-background-color: #C1C1C1; -fx-background-radius: 0; -fx-border-color: black; -fx-border-width: 1 0 0 0;" text="Task name">
+                                 <font>
+                                    <Font name="Arial" size="10.0" />
+                                 </font>
+                              </Button>
+                              <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                                 <children>
+                                    <Label layoutX="-1.0" layoutY="3.0" prefHeight="20.0" prefWidth="148.0" text="10 more" textFill="#a8a8a8">
+                                       <font>
+                                          <Font name="Arial Bold" size="13.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </AnchorPane>
+                           </children>
+                        </VBox>
+                     </children>
+                  </HBox>
+                  <HBox prefHeight="134.0" prefWidth="1040.0">
+                     <children>
+                        <VBox prefHeight="200.0" prefWidth="148.1" style="-fx-border-color: #575757;">
+                           <children>
+                              <Label prefHeight="15.0" prefWidth="38.0" text="28." textFill="WHITE">
+                                 <font>
+                                    <Font name="Arial Bold" size="12.0" />
+                                 </font>
+                                 <VBox.margin>
+                                    <Insets bottom="5.0" left="5.0" top="5.0" />
+                                 </VBox.margin>
+                              </Label>
+                              <Button mnemonicParsing="false" prefHeight="16.0" prefWidth="147.0" style="-fx-background-color: #C1C1C1; -fx-background-radius: 0; -fx-border-color: black; -fx-border-width: 1 0 0 0;" text="Task name">
+                                 <font>
+                                    <Font name="Arial" size="10.0" />
+                                 </font>
+                              </Button>
+                              <Button mnemonicParsing="false" prefHeight="16.0" prefWidth="147.0" style="-fx-background-color: #C1C1C1; -fx-background-radius: 0; -fx-border-color: black; -fx-border-width: 1 0 0 0;" text="Task name">
+                                 <font>
+                                    <Font name="Arial" size="10.0" />
+                                 </font>
+                              </Button>
+                              <Button mnemonicParsing="false" prefHeight="16.0" prefWidth="147.0" style="-fx-background-color: #C1C1C1; -fx-background-radius: 0; -fx-border-color: black; -fx-border-width: 1 0 0 0;" text="Task name">
+                                 <font>
+                                    <Font name="Arial" size="10.0" />
+                                 </font>
+                              </Button>
+                              <Button mnemonicParsing="false" prefHeight="16.0" prefWidth="147.0" style="-fx-background-color: #C1C1C1; -fx-background-radius: 0; -fx-border-color: black; -fx-border-width: 1 0 0 0;" text="Task name">
+                                 <font>
+                                    <Font name="Arial" size="10.0" />
+                                 </font>
+                              </Button>
+                              <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                                 <children>
+                                    <Label layoutX="-1.0" layoutY="3.0" prefHeight="20.0" prefWidth="148.0" text="10 more" textFill="#a8a8a8">
+                                       <font>
+                                          <Font name="Arial Bold" size="13.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </AnchorPane>
+                           </children>
+                        </VBox>
+                        <VBox prefHeight="200.0" prefWidth="148.1" style="-fx-border-color: #575757;">
+                           <children>
+                              <Label prefHeight="15.0" prefWidth="38.0" text="28." textFill="WHITE">
+                                 <font>
+                                    <Font name="Arial Bold" size="12.0" />
+                                 </font>
+                                 <VBox.margin>
+                                    <Insets bottom="5.0" left="5.0" top="5.0" />
+                                 </VBox.margin>
+                              </Label>
+                              <Button mnemonicParsing="false" prefHeight="16.0" prefWidth="147.0" style="-fx-background-color: #C1C1C1; -fx-background-radius: 0; -fx-border-color: black; -fx-border-width: 1 0 0 0;" text="Task name">
+                                 <font>
+                                    <Font name="Arial" size="10.0" />
+                                 </font>
+                              </Button>
+                              <Button mnemonicParsing="false" prefHeight="16.0" prefWidth="147.0" style="-fx-background-color: #C1C1C1; -fx-background-radius: 0; -fx-border-color: black; -fx-border-width: 1 0 0 0;" text="Task name">
+                                 <font>
+                                    <Font name="Arial" size="10.0" />
+                                 </font>
+                              </Button>
+                              <Button mnemonicParsing="false" prefHeight="16.0" prefWidth="147.0" style="-fx-background-color: #C1C1C1; -fx-background-radius: 0; -fx-border-color: black; -fx-border-width: 1 0 0 0;" text="Task name">
+                                 <font>
+                                    <Font name="Arial" size="10.0" />
+                                 </font>
+                              </Button>
+                              <Button mnemonicParsing="false" prefHeight="16.0" prefWidth="147.0" style="-fx-background-color: #C1C1C1; -fx-background-radius: 0; -fx-border-color: black; -fx-border-width: 1 0 0 0;" text="Task name">
+                                 <font>
+                                    <Font name="Arial" size="10.0" />
+                                 </font>
+                              </Button>
+                              <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                                 <children>
+                                    <Label layoutX="-1.0" layoutY="3.0" prefHeight="20.0" prefWidth="148.0" text="10 more" textFill="#a8a8a8">
+                                       <font>
+                                          <Font name="Arial Bold" size="13.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </AnchorPane>
+                           </children>
+                        </VBox>
+                        <VBox prefHeight="200.0" prefWidth="148.1" style="-fx-border-color: #575757;">
+                           <children>
+                              <Label prefHeight="15.0" prefWidth="38.0" text="28." textFill="WHITE">
+                                 <font>
+                                    <Font name="Arial Bold" size="12.0" />
+                                 </font>
+                                 <VBox.margin>
+                                    <Insets bottom="5.0" left="5.0" top="5.0" />
+                                 </VBox.margin>
+                              </Label>
+                              <Button mnemonicParsing="false" prefHeight="16.0" prefWidth="147.0" style="-fx-background-color: #C1C1C1; -fx-background-radius: 0; -fx-border-color: black; -fx-border-width: 1 0 0 0;" text="Task name">
+                                 <font>
+                                    <Font name="Arial" size="10.0" />
+                                 </font>
+                              </Button>
+                              <Button mnemonicParsing="false" prefHeight="16.0" prefWidth="147.0" style="-fx-background-color: #C1C1C1; -fx-background-radius: 0; -fx-border-color: black; -fx-border-width: 1 0 0 0;" text="Task name">
+                                 <font>
+                                    <Font name="Arial" size="10.0" />
+                                 </font>
+                              </Button>
+                              <Button mnemonicParsing="false" prefHeight="16.0" prefWidth="147.0" style="-fx-background-color: #C1C1C1; -fx-background-radius: 0; -fx-border-color: black; -fx-border-width: 1 0 0 0;" text="Task name">
+                                 <font>
+                                    <Font name="Arial" size="10.0" />
+                                 </font>
+                              </Button>
+                              <Button mnemonicParsing="false" prefHeight="16.0" prefWidth="147.0" style="-fx-background-color: #C1C1C1; -fx-background-radius: 0; -fx-border-color: black; -fx-border-width: 1 0 0 0;" text="Task name">
+                                 <font>
+                                    <Font name="Arial" size="10.0" />
+                                 </font>
+                              </Button>
+                              <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                                 <children>
+                                    <Label layoutX="-1.0" layoutY="3.0" prefHeight="20.0" prefWidth="148.0" text="10 more" textFill="#a8a8a8">
+                                       <font>
+                                          <Font name="Arial Bold" size="13.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </AnchorPane>
+                           </children>
+                        </VBox>
+                        <VBox prefHeight="200.0" prefWidth="148.1" style="-fx-border-color: #575757;">
+                           <children>
+                              <Label prefHeight="15.0" prefWidth="38.0" text="28." textFill="WHITE">
+                                 <font>
+                                    <Font name="Arial Bold" size="12.0" />
+                                 </font>
+                                 <VBox.margin>
+                                    <Insets bottom="5.0" left="5.0" top="5.0" />
+                                 </VBox.margin>
+                              </Label>
+                              <Button mnemonicParsing="false" prefHeight="16.0" prefWidth="147.0" style="-fx-background-color: #C1C1C1; -fx-background-radius: 0; -fx-border-color: black; -fx-border-width: 1 0 0 0;" text="Task name">
+                                 <font>
+                                    <Font name="Arial" size="10.0" />
+                                 </font>
+                              </Button>
+                              <Button mnemonicParsing="false" prefHeight="16.0" prefWidth="147.0" style="-fx-background-color: #C1C1C1; -fx-background-radius: 0; -fx-border-color: black; -fx-border-width: 1 0 0 0;" text="Task name">
+                                 <font>
+                                    <Font name="Arial" size="10.0" />
+                                 </font>
+                              </Button>
+                              <Button mnemonicParsing="false" prefHeight="16.0" prefWidth="147.0" style="-fx-background-color: #C1C1C1; -fx-background-radius: 0; -fx-border-color: black; -fx-border-width: 1 0 0 0;" text="Task name">
+                                 <font>
+                                    <Font name="Arial" size="10.0" />
+                                 </font>
+                              </Button>
+                              <Button mnemonicParsing="false" prefHeight="16.0" prefWidth="147.0" style="-fx-background-color: #C1C1C1; -fx-background-radius: 0; -fx-border-color: black; -fx-border-width: 1 0 0 0;" text="Task name">
+                                 <font>
+                                    <Font name="Arial" size="10.0" />
+                                 </font>
+                              </Button>
+                              <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                                 <children>
+                                    <Label layoutX="-1.0" layoutY="3.0" prefHeight="20.0" prefWidth="148.0" text="10 more" textFill="#a8a8a8">
+                                       <font>
+                                          <Font name="Arial Bold" size="13.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </AnchorPane>
+                           </children>
+                        </VBox>
+                        <VBox prefHeight="200.0" prefWidth="148.1" style="-fx-border-color: #575757;">
+                           <children>
+                              <Label prefHeight="15.0" prefWidth="38.0" text="28." textFill="WHITE">
+                                 <font>
+                                    <Font name="Arial Bold" size="12.0" />
+                                 </font>
+                                 <VBox.margin>
+                                    <Insets bottom="5.0" left="5.0" top="5.0" />
+                                 </VBox.margin>
+                              </Label>
+                              <Button mnemonicParsing="false" prefHeight="16.0" prefWidth="147.0" style="-fx-background-color: #C1C1C1; -fx-background-radius: 0; -fx-border-color: black; -fx-border-width: 1 0 0 0;" text="Task name">
+                                 <font>
+                                    <Font name="Arial" size="10.0" />
+                                 </font>
+                              </Button>
+                              <Button mnemonicParsing="false" prefHeight="16.0" prefWidth="147.0" style="-fx-background-color: #C1C1C1; -fx-background-radius: 0; -fx-border-color: black; -fx-border-width: 1 0 0 0;" text="Task name">
+                                 <font>
+                                    <Font name="Arial" size="10.0" />
+                                 </font>
+                              </Button>
+                              <Button mnemonicParsing="false" prefHeight="16.0" prefWidth="147.0" style="-fx-background-color: #C1C1C1; -fx-background-radius: 0; -fx-border-color: black; -fx-border-width: 1 0 0 0;" text="Task name">
+                                 <font>
+                                    <Font name="Arial" size="10.0" />
+                                 </font>
+                              </Button>
+                              <Button mnemonicParsing="false" prefHeight="16.0" prefWidth="147.0" style="-fx-background-color: #C1C1C1; -fx-background-radius: 0; -fx-border-color: black; -fx-border-width: 1 0 0 0;" text="Task name">
+                                 <font>
+                                    <Font name="Arial" size="10.0" />
+                                 </font>
+                              </Button>
+                              <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                                 <children>
+                                    <Label layoutX="-1.0" layoutY="3.0" prefHeight="20.0" prefWidth="148.0" text="10 more" textFill="#a8a8a8">
+                                       <font>
+                                          <Font name="Arial Bold" size="13.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </AnchorPane>
+                           </children>
+                        </VBox>
+                        <VBox prefHeight="200.0" prefWidth="148.1" style="-fx-border-color: #575757;">
+                           <children>
+                              <Label prefHeight="15.0" prefWidth="38.0" text="28." textFill="WHITE">
+                                 <font>
+                                    <Font name="Arial Bold" size="12.0" />
+                                 </font>
+                                 <VBox.margin>
+                                    <Insets bottom="5.0" left="5.0" top="5.0" />
+                                 </VBox.margin>
+                              </Label>
+                              <Button mnemonicParsing="false" prefHeight="16.0" prefWidth="147.0" style="-fx-background-color: #C1C1C1; -fx-background-radius: 0; -fx-border-color: black; -fx-border-width: 1 0 0 0;" text="Task name">
+                                 <font>
+                                    <Font name="Arial" size="10.0" />
+                                 </font>
+                              </Button>
+                              <Button mnemonicParsing="false" prefHeight="16.0" prefWidth="147.0" style="-fx-background-color: #C1C1C1; -fx-background-radius: 0; -fx-border-color: black; -fx-border-width: 1 0 0 0;" text="Task name">
+                                 <font>
+                                    <Font name="Arial" size="10.0" />
+                                 </font>
+                              </Button>
+                              <Button mnemonicParsing="false" prefHeight="16.0" prefWidth="147.0" style="-fx-background-color: #C1C1C1; -fx-background-radius: 0; -fx-border-color: black; -fx-border-width: 1 0 0 0;" text="Task name">
+                                 <font>
+                                    <Font name="Arial" size="10.0" />
+                                 </font>
+                              </Button>
+                              <Button mnemonicParsing="false" prefHeight="16.0" prefWidth="147.0" style="-fx-background-color: #C1C1C1; -fx-background-radius: 0; -fx-border-color: black; -fx-border-width: 1 0 0 0;" text="Task name">
+                                 <font>
+                                    <Font name="Arial" size="10.0" />
+                                 </font>
+                              </Button>
+                              <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                                 <children>
+                                    <Label layoutX="-1.0" layoutY="3.0" prefHeight="20.0" prefWidth="148.0" text="10 more" textFill="#a8a8a8">
+                                       <font>
+                                          <Font name="Arial Bold" size="13.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </AnchorPane>
+                           </children>
+                        </VBox>
+                        <VBox prefHeight="200.0" prefWidth="148.1" style="-fx-border-color: #575757;">
+                           <children>
+                              <Label prefHeight="15.0" prefWidth="38.0" text="28." textFill="WHITE">
+                                 <font>
+                                    <Font name="Arial Bold" size="12.0" />
+                                 </font>
+                                 <VBox.margin>
+                                    <Insets bottom="5.0" left="5.0" top="5.0" />
+                                 </VBox.margin>
+                              </Label>
+                              <Button mnemonicParsing="false" prefHeight="16.0" prefWidth="147.0" style="-fx-background-color: #C1C1C1; -fx-background-radius: 0; -fx-border-color: black; -fx-border-width: 1 0 0 0;" text="Task name">
+                                 <font>
+                                    <Font name="Arial" size="10.0" />
+                                 </font>
+                              </Button>
+                              <Button mnemonicParsing="false" prefHeight="16.0" prefWidth="147.0" style="-fx-background-color: #C1C1C1; -fx-background-radius: 0; -fx-border-color: black; -fx-border-width: 1 0 0 0;" text="Task name">
+                                 <font>
+                                    <Font name="Arial" size="10.0" />
+                                 </font>
+                              </Button>
+                              <Button mnemonicParsing="false" prefHeight="16.0" prefWidth="147.0" style="-fx-background-color: #C1C1C1; -fx-background-radius: 0; -fx-border-color: black; -fx-border-width: 1 0 0 0;" text="Task name">
+                                 <font>
+                                    <Font name="Arial" size="10.0" />
+                                 </font>
+                              </Button>
+                              <Button mnemonicParsing="false" prefHeight="16.0" prefWidth="147.0" style="-fx-background-color: #C1C1C1; -fx-background-radius: 0; -fx-border-color: black; -fx-border-width: 1 0 0 0;" text="Task name">
+                                 <font>
+                                    <Font name="Arial" size="10.0" />
+                                 </font>
+                              </Button>
+                              <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                                 <children>
+                                    <Label layoutX="-1.0" layoutY="3.0" prefHeight="20.0" prefWidth="148.0" text="10 more" textFill="#a8a8a8">
+                                       <font>
+                                          <Font name="Arial Bold" size="13.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </AnchorPane>
+                           </children>
+                        </VBox>
+                     </children>
+                  </HBox>
+                  <HBox prefHeight="134.0" prefWidth="1040.0">
+                     <children>
+                        <VBox prefHeight="200.0" prefWidth="148.1" style="-fx-border-color: #575757;">
+                           <children>
+                              <Label prefHeight="15.0" prefWidth="38.0" text="28." textFill="WHITE">
+                                 <font>
+                                    <Font name="Arial Bold" size="12.0" />
+                                 </font>
+                                 <VBox.margin>
+                                    <Insets bottom="5.0" left="5.0" top="5.0" />
+                                 </VBox.margin>
+                              </Label>
+                              <Button mnemonicParsing="false" prefHeight="16.0" prefWidth="147.0" style="-fx-background-color: #C1C1C1; -fx-background-radius: 0; -fx-border-color: black; -fx-border-width: 1 0 0 0;" text="Task name">
+                                 <font>
+                                    <Font name="Arial" size="10.0" />
+                                 </font>
+                              </Button>
+                              <Button mnemonicParsing="false" prefHeight="16.0" prefWidth="147.0" style="-fx-background-color: #C1C1C1; -fx-background-radius: 0; -fx-border-color: black; -fx-border-width: 1 0 0 0;" text="Task name">
+                                 <font>
+                                    <Font name="Arial" size="10.0" />
+                                 </font>
+                              </Button>
+                              <Button mnemonicParsing="false" prefHeight="16.0" prefWidth="147.0" style="-fx-background-color: #C1C1C1; -fx-background-radius: 0; -fx-border-color: black; -fx-border-width: 1 0 0 0;" text="Task name">
+                                 <font>
+                                    <Font name="Arial" size="10.0" />
+                                 </font>
+                              </Button>
+                              <Button mnemonicParsing="false" prefHeight="16.0" prefWidth="147.0" style="-fx-background-color: #C1C1C1; -fx-background-radius: 0; -fx-border-color: black; -fx-border-width: 1 0 0 0;" text="Task name">
+                                 <font>
+                                    <Font name="Arial" size="10.0" />
+                                 </font>
+                              </Button>
+                              <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                                 <children>
+                                    <Label layoutX="-1.0" layoutY="3.0" prefHeight="20.0" prefWidth="148.0" text="10 more" textFill="#a8a8a8">
+                                       <font>
+                                          <Font name="Arial Bold" size="13.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </AnchorPane>
+                           </children>
+                        </VBox>
+                        <VBox prefHeight="200.0" prefWidth="148.1" style="-fx-border-color: #575757;">
+                           <children>
+                              <Label prefHeight="15.0" prefWidth="38.0" text="28." textFill="WHITE">
+                                 <font>
+                                    <Font name="Arial Bold" size="12.0" />
+                                 </font>
+                                 <VBox.margin>
+                                    <Insets bottom="5.0" left="5.0" top="5.0" />
+                                 </VBox.margin>
+                              </Label>
+                              <Button mnemonicParsing="false" prefHeight="16.0" prefWidth="147.0" style="-fx-background-color: #C1C1C1; -fx-background-radius: 0; -fx-border-color: black; -fx-border-width: 1 0 0 0;" text="Task name">
+                                 <font>
+                                    <Font name="Arial" size="10.0" />
+                                 </font>
+                              </Button>
+                              <Button mnemonicParsing="false" prefHeight="16.0" prefWidth="147.0" style="-fx-background-color: #C1C1C1; -fx-background-radius: 0; -fx-border-color: black; -fx-border-width: 1 0 0 0;" text="Task name">
+                                 <font>
+                                    <Font name="Arial" size="10.0" />
+                                 </font>
+                              </Button>
+                              <Button mnemonicParsing="false" prefHeight="16.0" prefWidth="147.0" style="-fx-background-color: #C1C1C1; -fx-background-radius: 0; -fx-border-color: black; -fx-border-width: 1 0 0 0;" text="Task name">
+                                 <font>
+                                    <Font name="Arial" size="10.0" />
+                                 </font>
+                              </Button>
+                              <Button mnemonicParsing="false" prefHeight="16.0" prefWidth="147.0" style="-fx-background-color: #C1C1C1; -fx-background-radius: 0; -fx-border-color: black; -fx-border-width: 1 0 0 0;" text="Task name">
+                                 <font>
+                                    <Font name="Arial" size="10.0" />
+                                 </font>
+                              </Button>
+                              <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                                 <children>
+                                    <Label layoutX="-1.0" layoutY="3.0" prefHeight="20.0" prefWidth="148.0" text="10 more" textFill="#a8a8a8">
+                                       <font>
+                                          <Font name="Arial Bold" size="13.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </AnchorPane>
+                           </children>
+                        </VBox>
+                        <VBox prefHeight="200.0" prefWidth="148.1" style="-fx-border-color: #575757;">
+                           <children>
+                              <Label prefHeight="15.0" prefWidth="38.0" text="28." textFill="WHITE">
+                                 <font>
+                                    <Font name="Arial Bold" size="12.0" />
+                                 </font>
+                                 <VBox.margin>
+                                    <Insets bottom="5.0" left="5.0" top="5.0" />
+                                 </VBox.margin>
+                              </Label>
+                              <Button mnemonicParsing="false" prefHeight="16.0" prefWidth="147.0" style="-fx-background-color: #C1C1C1; -fx-background-radius: 0; -fx-border-color: black; -fx-border-width: 1 0 0 0;" text="Task name">
+                                 <font>
+                                    <Font name="Arial" size="10.0" />
+                                 </font>
+                              </Button>
+                              <Button mnemonicParsing="false" prefHeight="16.0" prefWidth="147.0" style="-fx-background-color: #C1C1C1; -fx-background-radius: 0; -fx-border-color: black; -fx-border-width: 1 0 0 0;" text="Task name">
+                                 <font>
+                                    <Font name="Arial" size="10.0" />
+                                 </font>
+                              </Button>
+                              <Button mnemonicParsing="false" prefHeight="16.0" prefWidth="147.0" style="-fx-background-color: #C1C1C1; -fx-background-radius: 0; -fx-border-color: black; -fx-border-width: 1 0 0 0;" text="Task name">
+                                 <font>
+                                    <Font name="Arial" size="10.0" />
+                                 </font>
+                              </Button>
+                              <Button mnemonicParsing="false" prefHeight="16.0" prefWidth="147.0" style="-fx-background-color: #C1C1C1; -fx-background-radius: 0; -fx-border-color: black; -fx-border-width: 1 0 0 0;" text="Task name">
+                                 <font>
+                                    <Font name="Arial" size="10.0" />
+                                 </font>
+                              </Button>
+                              <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                                 <children>
+                                    <Label layoutX="-1.0" layoutY="3.0" prefHeight="20.0" prefWidth="148.0" text="10 more" textFill="#a8a8a8">
+                                       <font>
+                                          <Font name="Arial Bold" size="13.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </AnchorPane>
+                           </children>
+                        </VBox>
+                        <VBox prefHeight="200.0" prefWidth="148.1" style="-fx-border-color: #575757;">
+                           <children>
+                              <Label prefHeight="15.0" prefWidth="38.0" text="28." textFill="WHITE">
+                                 <font>
+                                    <Font name="Arial Bold" size="12.0" />
+                                 </font>
+                                 <VBox.margin>
+                                    <Insets bottom="5.0" left="5.0" top="5.0" />
+                                 </VBox.margin>
+                              </Label>
+                              <Button mnemonicParsing="false" prefHeight="16.0" prefWidth="147.0" style="-fx-background-color: #C1C1C1; -fx-background-radius: 0; -fx-border-color: black; -fx-border-width: 1 0 0 0;" text="Task name">
+                                 <font>
+                                    <Font name="Arial" size="10.0" />
+                                 </font>
+                              </Button>
+                              <Button mnemonicParsing="false" prefHeight="16.0" prefWidth="147.0" style="-fx-background-color: #C1C1C1; -fx-background-radius: 0; -fx-border-color: black; -fx-border-width: 1 0 0 0;" text="Task name">
+                                 <font>
+                                    <Font name="Arial" size="10.0" />
+                                 </font>
+                              </Button>
+                              <Button mnemonicParsing="false" prefHeight="16.0" prefWidth="147.0" style="-fx-background-color: #C1C1C1; -fx-background-radius: 0; -fx-border-color: black; -fx-border-width: 1 0 0 0;" text="Task name">
+                                 <font>
+                                    <Font name="Arial" size="10.0" />
+                                 </font>
+                              </Button>
+                              <Button mnemonicParsing="false" prefHeight="16.0" prefWidth="147.0" style="-fx-background-color: #C1C1C1; -fx-background-radius: 0; -fx-border-color: black; -fx-border-width: 1 0 0 0;" text="Task name">
+                                 <font>
+                                    <Font name="Arial" size="10.0" />
+                                 </font>
+                              </Button>
+                              <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                                 <children>
+                                    <Label layoutX="-1.0" layoutY="3.0" prefHeight="20.0" prefWidth="148.0" text="10 more" textFill="#a8a8a8">
+                                       <font>
+                                          <Font name="Arial Bold" size="13.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </AnchorPane>
+                           </children>
+                        </VBox>
+                        <VBox prefHeight="200.0" prefWidth="148.1" style="-fx-border-color: #575757;">
+                           <children>
+                              <Label prefHeight="15.0" prefWidth="38.0" text="28." textFill="WHITE">
+                                 <font>
+                                    <Font name="Arial Bold" size="12.0" />
+                                 </font>
+                                 <VBox.margin>
+                                    <Insets bottom="5.0" left="5.0" top="5.0" />
+                                 </VBox.margin>
+                              </Label>
+                              <Button mnemonicParsing="false" prefHeight="16.0" prefWidth="147.0" style="-fx-background-color: #C1C1C1; -fx-background-radius: 0; -fx-border-color: black; -fx-border-width: 1 0 0 0;" text="Task name">
+                                 <font>
+                                    <Font name="Arial" size="10.0" />
+                                 </font>
+                              </Button>
+                              <Button mnemonicParsing="false" prefHeight="16.0" prefWidth="147.0" style="-fx-background-color: #C1C1C1; -fx-background-radius: 0; -fx-border-color: black; -fx-border-width: 1 0 0 0;" text="Task name">
+                                 <font>
+                                    <Font name="Arial" size="10.0" />
+                                 </font>
+                              </Button>
+                              <Button mnemonicParsing="false" prefHeight="16.0" prefWidth="147.0" style="-fx-background-color: #C1C1C1; -fx-background-radius: 0; -fx-border-color: black; -fx-border-width: 1 0 0 0;" text="Task name">
+                                 <font>
+                                    <Font name="Arial" size="10.0" />
+                                 </font>
+                              </Button>
+                              <Button mnemonicParsing="false" prefHeight="16.0" prefWidth="147.0" style="-fx-background-color: #C1C1C1; -fx-background-radius: 0; -fx-border-color: black; -fx-border-width: 1 0 0 0;" text="Task name">
+                                 <font>
+                                    <Font name="Arial" size="10.0" />
+                                 </font>
+                              </Button>
+                              <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                                 <children>
+                                    <Label layoutX="-1.0" layoutY="3.0" prefHeight="20.0" prefWidth="148.0" text="10 more" textFill="#a8a8a8">
+                                       <font>
+                                          <Font name="Arial Bold" size="13.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </AnchorPane>
+                           </children>
+                        </VBox>
+                        <VBox prefHeight="200.0" prefWidth="148.1" style="-fx-border-color: #575757;">
+                           <children>
+                              <Label prefHeight="15.0" prefWidth="38.0" text="28." textFill="WHITE">
+                                 <font>
+                                    <Font name="Arial Bold" size="12.0" />
+                                 </font>
+                                 <VBox.margin>
+                                    <Insets bottom="5.0" left="5.0" top="5.0" />
+                                 </VBox.margin>
+                              </Label>
+                              <Button mnemonicParsing="false" prefHeight="16.0" prefWidth="147.0" style="-fx-background-color: #C1C1C1; -fx-background-radius: 0; -fx-border-color: black; -fx-border-width: 1 0 0 0;" text="Task name">
+                                 <font>
+                                    <Font name="Arial" size="10.0" />
+                                 </font>
+                              </Button>
+                              <Button mnemonicParsing="false" prefHeight="16.0" prefWidth="147.0" style="-fx-background-color: #C1C1C1; -fx-background-radius: 0; -fx-border-color: black; -fx-border-width: 1 0 0 0;" text="Task name">
+                                 <font>
+                                    <Font name="Arial" size="10.0" />
+                                 </font>
+                              </Button>
+                              <Button mnemonicParsing="false" prefHeight="16.0" prefWidth="147.0" style="-fx-background-color: #C1C1C1; -fx-background-radius: 0; -fx-border-color: black; -fx-border-width: 1 0 0 0;" text="Task name">
+                                 <font>
+                                    <Font name="Arial" size="10.0" />
+                                 </font>
+                              </Button>
+                              <Button mnemonicParsing="false" prefHeight="16.0" prefWidth="147.0" style="-fx-background-color: #C1C1C1; -fx-background-radius: 0; -fx-border-color: black; -fx-border-width: 1 0 0 0;" text="Task name">
+                                 <font>
+                                    <Font name="Arial" size="10.0" />
+                                 </font>
+                              </Button>
+                              <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                                 <children>
+                                    <Label layoutX="-1.0" layoutY="3.0" prefHeight="20.0" prefWidth="148.0" text="10 more" textFill="#a8a8a8">
+                                       <font>
+                                          <Font name="Arial Bold" size="13.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </AnchorPane>
+                           </children>
+                        </VBox>
+                        <VBox prefHeight="200.0" prefWidth="148.1" style="-fx-border-color: #575757;">
+                           <children>
+                              <Label prefHeight="15.0" prefWidth="38.0" text="28." textFill="WHITE">
+                                 <font>
+                                    <Font name="Arial Bold" size="12.0" />
+                                 </font>
+                                 <VBox.margin>
+                                    <Insets bottom="5.0" left="5.0" top="5.0" />
+                                 </VBox.margin>
+                              </Label>
+                              <Button mnemonicParsing="false" prefHeight="16.0" prefWidth="147.0" style="-fx-background-color: #C1C1C1; -fx-background-radius: 0; -fx-border-color: black; -fx-border-width: 1 0 0 0;" text="Task name">
+                                 <font>
+                                    <Font name="Arial" size="10.0" />
+                                 </font>
+                              </Button>
+                              <Button mnemonicParsing="false" prefHeight="16.0" prefWidth="147.0" style="-fx-background-color: #C1C1C1; -fx-background-radius: 0; -fx-border-color: black; -fx-border-width: 1 0 0 0;" text="Task name">
+                                 <font>
+                                    <Font name="Arial" size="10.0" />
+                                 </font>
+                              </Button>
+                              <Button mnemonicParsing="false" prefHeight="16.0" prefWidth="147.0" style="-fx-background-color: #C1C1C1; -fx-background-radius: 0; -fx-border-color: black; -fx-border-width: 1 0 0 0;" text="Task name">
+                                 <font>
+                                    <Font name="Arial" size="10.0" />
+                                 </font>
+                              </Button>
+                              <Button mnemonicParsing="false" prefHeight="16.0" prefWidth="147.0" style="-fx-background-color: #C1C1C1; -fx-background-radius: 0; -fx-border-color: black; -fx-border-width: 1 0 0 0;" text="Task name">
+                                 <font>
+                                    <Font name="Arial" size="10.0" />
+                                 </font>
+                              </Button>
+                              <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                                 <children>
+                                    <Label layoutX="-1.0" layoutY="3.0" prefHeight="20.0" prefWidth="148.0" text="10 more" textFill="#a8a8a8">
+                                       <font>
+                                          <Font name="Arial Bold" size="13.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </AnchorPane>
+                           </children>
+                        </VBox>
+                     </children>
+                  </HBox>
+                  <HBox prefHeight="134.0" prefWidth="1040.0">
+                     <children>
+                        <VBox prefHeight="200.0" prefWidth="148.1" style="-fx-border-color: #575757;">
+                           <children>
+                              <Label prefHeight="15.0" prefWidth="38.0" text="28." textFill="WHITE">
+                                 <font>
+                                    <Font name="Arial Bold" size="12.0" />
+                                 </font>
+                                 <VBox.margin>
+                                    <Insets bottom="5.0" left="5.0" top="5.0" />
+                                 </VBox.margin>
+                              </Label>
+                              <Button mnemonicParsing="false" prefHeight="16.0" prefWidth="147.0" style="-fx-background-color: #C1C1C1; -fx-background-radius: 0; -fx-border-color: black; -fx-border-width: 1 0 0 0;" text="Task name">
+                                 <font>
+                                    <Font name="Arial" size="10.0" />
+                                 </font>
+                              </Button>
+                              <Button mnemonicParsing="false" prefHeight="16.0" prefWidth="147.0" style="-fx-background-color: #C1C1C1; -fx-background-radius: 0; -fx-border-color: black; -fx-border-width: 1 0 0 0;" text="Task name">
+                                 <font>
+                                    <Font name="Arial" size="10.0" />
+                                 </font>
+                              </Button>
+                              <Button mnemonicParsing="false" prefHeight="16.0" prefWidth="147.0" style="-fx-background-color: #C1C1C1; -fx-background-radius: 0; -fx-border-color: black; -fx-border-width: 1 0 0 0;" text="Task name">
+                                 <font>
+                                    <Font name="Arial" size="10.0" />
+                                 </font>
+                              </Button>
+                              <Button mnemonicParsing="false" prefHeight="16.0" prefWidth="147.0" style="-fx-background-color: #C1C1C1; -fx-background-radius: 0; -fx-border-color: black; -fx-border-width: 1 0 0 0;" text="Task name">
+                                 <font>
+                                    <Font name="Arial" size="10.0" />
+                                 </font>
+                              </Button>
+                              <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                                 <children>
+                                    <Label layoutX="-1.0" layoutY="3.0" prefHeight="20.0" prefWidth="148.0" text="10 more" textFill="#a8a8a8">
+                                       <font>
+                                          <Font name="Arial Bold" size="13.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </AnchorPane>
+                           </children>
+                        </VBox>
+                        <VBox prefHeight="200.0" prefWidth="148.1" style="-fx-border-color: #575757;">
+                           <children>
+                              <Label prefHeight="15.0" prefWidth="38.0" text="28." textFill="WHITE">
+                                 <font>
+                                    <Font name="Arial Bold" size="12.0" />
+                                 </font>
+                                 <VBox.margin>
+                                    <Insets bottom="5.0" left="5.0" top="5.0" />
+                                 </VBox.margin>
+                              </Label>
+                              <Button mnemonicParsing="false" prefHeight="16.0" prefWidth="147.0" style="-fx-background-color: #C1C1C1; -fx-background-radius: 0; -fx-border-color: black; -fx-border-width: 1 0 0 0;" text="Task name">
+                                 <font>
+                                    <Font name="Arial" size="10.0" />
+                                 </font>
+                              </Button>
+                              <Button mnemonicParsing="false" prefHeight="16.0" prefWidth="147.0" style="-fx-background-color: #C1C1C1; -fx-background-radius: 0; -fx-border-color: black; -fx-border-width: 1 0 0 0;" text="Task name">
+                                 <font>
+                                    <Font name="Arial" size="10.0" />
+                                 </font>
+                              </Button>
+                              <Button mnemonicParsing="false" prefHeight="16.0" prefWidth="147.0" style="-fx-background-color: #C1C1C1; -fx-background-radius: 0; -fx-border-color: black; -fx-border-width: 1 0 0 0;" text="Task name">
+                                 <font>
+                                    <Font name="Arial" size="10.0" />
+                                 </font>
+                              </Button>
+                              <Button mnemonicParsing="false" prefHeight="16.0" prefWidth="147.0" style="-fx-background-color: #C1C1C1; -fx-background-radius: 0; -fx-border-color: black; -fx-border-width: 1 0 0 0;" text="Task name">
+                                 <font>
+                                    <Font name="Arial" size="10.0" />
+                                 </font>
+                              </Button>
+                              <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                                 <children>
+                                    <Label layoutX="-1.0" layoutY="3.0" prefHeight="20.0" prefWidth="148.0" text="10 more" textFill="#a8a8a8">
+                                       <font>
+                                          <Font name="Arial Bold" size="13.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </AnchorPane>
+                           </children>
+                        </VBox>
+                        <VBox prefHeight="200.0" prefWidth="148.1" style="-fx-border-color: #575757;">
+                           <children>
+                              <Label prefHeight="15.0" prefWidth="38.0" text="28." textFill="WHITE">
+                                 <font>
+                                    <Font name="Arial Bold" size="12.0" />
+                                 </font>
+                                 <VBox.margin>
+                                    <Insets bottom="5.0" left="5.0" top="5.0" />
+                                 </VBox.margin>
+                              </Label>
+                              <Button mnemonicParsing="false" prefHeight="16.0" prefWidth="147.0" style="-fx-background-color: #C1C1C1; -fx-background-radius: 0; -fx-border-color: black; -fx-border-width: 1 0 0 0;" text="Task name">
+                                 <font>
+                                    <Font name="Arial" size="10.0" />
+                                 </font>
+                              </Button>
+                              <Button mnemonicParsing="false" prefHeight="16.0" prefWidth="147.0" style="-fx-background-color: #C1C1C1; -fx-background-radius: 0; -fx-border-color: black; -fx-border-width: 1 0 0 0;" text="Task name">
+                                 <font>
+                                    <Font name="Arial" size="10.0" />
+                                 </font>
+                              </Button>
+                              <Button mnemonicParsing="false" prefHeight="16.0" prefWidth="147.0" style="-fx-background-color: #C1C1C1; -fx-background-radius: 0; -fx-border-color: black; -fx-border-width: 1 0 0 0;" text="Task name">
+                                 <font>
+                                    <Font name="Arial" size="10.0" />
+                                 </font>
+                              </Button>
+                              <Button mnemonicParsing="false" prefHeight="16.0" prefWidth="147.0" style="-fx-background-color: #C1C1C1; -fx-background-radius: 0; -fx-border-color: black; -fx-border-width: 1 0 0 0;" text="Task name">
+                                 <font>
+                                    <Font name="Arial" size="10.0" />
+                                 </font>
+                              </Button>
+                              <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                                 <children>
+                                    <Label layoutX="-1.0" layoutY="3.0" prefHeight="20.0" prefWidth="148.0" text="10 more" textFill="#a8a8a8">
+                                       <font>
+                                          <Font name="Arial Bold" size="13.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </AnchorPane>
+                           </children>
+                        </VBox>
+                        <VBox prefHeight="200.0" prefWidth="148.1" style="-fx-border-color: #575757;">
+                           <children>
+                              <Label prefHeight="15.0" prefWidth="38.0" text="28." textFill="WHITE">
+                                 <font>
+                                    <Font name="Arial Bold" size="12.0" />
+                                 </font>
+                                 <VBox.margin>
+                                    <Insets bottom="5.0" left="5.0" top="5.0" />
+                                 </VBox.margin>
+                              </Label>
+                              <Button mnemonicParsing="false" prefHeight="16.0" prefWidth="147.0" style="-fx-background-color: #C1C1C1; -fx-background-radius: 0; -fx-border-color: black; -fx-border-width: 1 0 0 0;" text="Task name">
+                                 <font>
+                                    <Font name="Arial" size="10.0" />
+                                 </font>
+                              </Button>
+                              <Button mnemonicParsing="false" prefHeight="16.0" prefWidth="147.0" style="-fx-background-color: #C1C1C1; -fx-background-radius: 0; -fx-border-color: black; -fx-border-width: 1 0 0 0;" text="Task name">
+                                 <font>
+                                    <Font name="Arial" size="10.0" />
+                                 </font>
+                              </Button>
+                              <Button mnemonicParsing="false" prefHeight="16.0" prefWidth="147.0" style="-fx-background-color: #C1C1C1; -fx-background-radius: 0; -fx-border-color: black; -fx-border-width: 1 0 0 0;" text="Task name">
+                                 <font>
+                                    <Font name="Arial" size="10.0" />
+                                 </font>
+                              </Button>
+                              <Button mnemonicParsing="false" prefHeight="16.0" prefWidth="147.0" style="-fx-background-color: #C1C1C1; -fx-background-radius: 0; -fx-border-color: black; -fx-border-width: 1 0 0 0;" text="Task name">
+                                 <font>
+                                    <Font name="Arial" size="10.0" />
+                                 </font>
+                              </Button>
+                              <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                                 <children>
+                                    <Label layoutX="-1.0" layoutY="3.0" prefHeight="20.0" prefWidth="148.0" text="10 more" textFill="#a8a8a8">
+                                       <font>
+                                          <Font name="Arial Bold" size="13.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </AnchorPane>
+                           </children>
+                        </VBox>
+                        <VBox prefHeight="200.0" prefWidth="148.1" style="-fx-border-color: #575757;">
+                           <children>
+                              <Label prefHeight="15.0" prefWidth="38.0" text="28." textFill="WHITE">
+                                 <font>
+                                    <Font name="Arial Bold" size="12.0" />
+                                 </font>
+                                 <VBox.margin>
+                                    <Insets bottom="5.0" left="5.0" top="5.0" />
+                                 </VBox.margin>
+                              </Label>
+                              <Button mnemonicParsing="false" prefHeight="16.0" prefWidth="147.0" style="-fx-background-color: #C1C1C1; -fx-background-radius: 0; -fx-border-color: black; -fx-border-width: 1 0 0 0;" text="Task name">
+                                 <font>
+                                    <Font name="Arial" size="10.0" />
+                                 </font>
+                              </Button>
+                              <Button mnemonicParsing="false" prefHeight="16.0" prefWidth="147.0" style="-fx-background-color: #C1C1C1; -fx-background-radius: 0; -fx-border-color: black; -fx-border-width: 1 0 0 0;" text="Task name">
+                                 <font>
+                                    <Font name="Arial" size="10.0" />
+                                 </font>
+                              </Button>
+                              <Button mnemonicParsing="false" prefHeight="16.0" prefWidth="147.0" style="-fx-background-color: #C1C1C1; -fx-background-radius: 0; -fx-border-color: black; -fx-border-width: 1 0 0 0;" text="Task name">
+                                 <font>
+                                    <Font name="Arial" size="10.0" />
+                                 </font>
+                              </Button>
+                              <Button mnemonicParsing="false" prefHeight="16.0" prefWidth="147.0" style="-fx-background-color: #C1C1C1; -fx-background-radius: 0; -fx-border-color: black; -fx-border-width: 1 0 0 0;" text="Task name">
+                                 <font>
+                                    <Font name="Arial" size="10.0" />
+                                 </font>
+                              </Button>
+                              <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                                 <children>
+                                    <Label layoutX="-1.0" layoutY="3.0" prefHeight="20.0" prefWidth="148.0" text="10 more" textFill="#a8a8a8">
+                                       <font>
+                                          <Font name="Arial Bold" size="13.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </AnchorPane>
+                           </children>
+                        </VBox>
+                        <VBox prefHeight="200.0" prefWidth="148.1" style="-fx-border-color: #575757;">
+                           <children>
+                              <Label prefHeight="15.0" prefWidth="38.0" text="28." textFill="WHITE">
+                                 <font>
+                                    <Font name="Arial Bold" size="12.0" />
+                                 </font>
+                                 <VBox.margin>
+                                    <Insets bottom="5.0" left="5.0" top="5.0" />
+                                 </VBox.margin>
+                              </Label>
+                              <Button mnemonicParsing="false" prefHeight="16.0" prefWidth="147.0" style="-fx-background-color: #C1C1C1; -fx-background-radius: 0; -fx-border-color: black; -fx-border-width: 1 0 0 0;" text="Task name">
+                                 <font>
+                                    <Font name="Arial" size="10.0" />
+                                 </font>
+                              </Button>
+                              <Button mnemonicParsing="false" prefHeight="16.0" prefWidth="147.0" style="-fx-background-color: #C1C1C1; -fx-background-radius: 0; -fx-border-color: black; -fx-border-width: 1 0 0 0;" text="Task name">
+                                 <font>
+                                    <Font name="Arial" size="10.0" />
+                                 </font>
+                              </Button>
+                              <Button mnemonicParsing="false" prefHeight="16.0" prefWidth="147.0" style="-fx-background-color: #C1C1C1; -fx-background-radius: 0; -fx-border-color: black; -fx-border-width: 1 0 0 0;" text="Task name">
+                                 <font>
+                                    <Font name="Arial" size="10.0" />
+                                 </font>
+                              </Button>
+                              <Button mnemonicParsing="false" prefHeight="16.0" prefWidth="147.0" style="-fx-background-color: #C1C1C1; -fx-background-radius: 0; -fx-border-color: black; -fx-border-width: 1 0 0 0;" text="Task name">
+                                 <font>
+                                    <Font name="Arial" size="10.0" />
+                                 </font>
+                              </Button>
+                              <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                                 <children>
+                                    <Label layoutX="-1.0" layoutY="3.0" prefHeight="20.0" prefWidth="148.0" text="10 more" textFill="#a8a8a8">
+                                       <font>
+                                          <Font name="Arial Bold" size="13.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </AnchorPane>
+                           </children>
+                        </VBox>
+                        <VBox prefHeight="200.0" prefWidth="148.1" style="-fx-border-color: #575757;">
+                           <children>
+                              <Label prefHeight="15.0" prefWidth="38.0" text="28." textFill="WHITE">
+                                 <font>
+                                    <Font name="Arial Bold" size="12.0" />
+                                 </font>
+                                 <VBox.margin>
+                                    <Insets bottom="5.0" left="5.0" top="5.0" />
+                                 </VBox.margin>
+                              </Label>
+                              <Button mnemonicParsing="false" prefHeight="16.0" prefWidth="147.0" style="-fx-background-color: #C1C1C1; -fx-background-radius: 0; -fx-border-color: black; -fx-border-width: 1 0 0 0;" text="Task name">
+                                 <font>
+                                    <Font name="Arial" size="10.0" />
+                                 </font>
+                              </Button>
+                              <Button mnemonicParsing="false" prefHeight="16.0" prefWidth="147.0" style="-fx-background-color: #C1C1C1; -fx-background-radius: 0; -fx-border-color: black; -fx-border-width: 1 0 0 0;" text="Task name">
+                                 <font>
+                                    <Font name="Arial" size="10.0" />
+                                 </font>
+                              </Button>
+                              <Button mnemonicParsing="false" prefHeight="16.0" prefWidth="147.0" style="-fx-background-color: #C1C1C1; -fx-background-radius: 0; -fx-border-color: black; -fx-border-width: 1 0 0 0;" text="Task name">
+                                 <font>
+                                    <Font name="Arial" size="10.0" />
+                                 </font>
+                              </Button>
+                              <Button mnemonicParsing="false" prefHeight="16.0" prefWidth="147.0" style="-fx-background-color: #C1C1C1; -fx-background-radius: 0; -fx-border-color: black; -fx-border-width: 1 0 0 0;" text="Task name">
+                                 <font>
+                                    <Font name="Arial" size="10.0" />
+                                 </font>
+                              </Button>
+                              <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                                 <children>
+                                    <Label layoutX="-1.0" layoutY="3.0" prefHeight="20.0" prefWidth="148.0" text="10 more" textFill="#a8a8a8">
+                                       <font>
+                                          <Font name="Arial Bold" size="13.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </AnchorPane>
+                           </children>
+                        </VBox>
+                     </children>
+                  </HBox>
+                  <HBox prefHeight="134.0" prefWidth="1040.0">
+                     <children>
+                        <VBox prefHeight="200.0" prefWidth="148.1" style="-fx-border-color: #575757;">
+                           <children>
+                              <Label prefHeight="15.0" prefWidth="38.0" text="28." textFill="WHITE">
+                                 <font>
+                                    <Font name="Arial Bold" size="12.0" />
+                                 </font>
+                                 <VBox.margin>
+                                    <Insets bottom="5.0" left="5.0" top="5.0" />
+                                 </VBox.margin>
+                              </Label>
+                              <Button mnemonicParsing="false" prefHeight="16.0" prefWidth="147.0" style="-fx-background-color: #C1C1C1; -fx-background-radius: 0; -fx-border-color: black; -fx-border-width: 1 0 0 0;" text="Task name">
+                                 <font>
+                                    <Font name="Arial" size="10.0" />
+                                 </font>
+                              </Button>
+                              <Button mnemonicParsing="false" prefHeight="16.0" prefWidth="147.0" style="-fx-background-color: #C1C1C1; -fx-background-radius: 0; -fx-border-color: black; -fx-border-width: 1 0 0 0;" text="Task name">
+                                 <font>
+                                    <Font name="Arial" size="10.0" />
+                                 </font>
+                              </Button>
+                              <Button mnemonicParsing="false" prefHeight="16.0" prefWidth="147.0" style="-fx-background-color: #C1C1C1; -fx-background-radius: 0; -fx-border-color: black; -fx-border-width: 1 0 0 0;" text="Task name">
+                                 <font>
+                                    <Font name="Arial" size="10.0" />
+                                 </font>
+                              </Button>
+                              <Button mnemonicParsing="false" prefHeight="16.0" prefWidth="147.0" style="-fx-background-color: #C1C1C1; -fx-background-radius: 0; -fx-border-color: black; -fx-border-width: 1 0 0 0;" text="Task name">
+                                 <font>
+                                    <Font name="Arial" size="10.0" />
+                                 </font>
+                              </Button>
+                              <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                                 <children>
+                                    <Label layoutX="-1.0" layoutY="3.0" prefHeight="20.0" prefWidth="148.0" text="10 more" textFill="#a8a8a8">
+                                       <font>
+                                          <Font name="Arial Bold" size="13.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </AnchorPane>
+                           </children>
+                        </VBox>
+                        <VBox prefHeight="200.0" prefWidth="148.1" style="-fx-border-color: #575757;">
+                           <children>
+                              <Label prefHeight="15.0" prefWidth="38.0" text="28." textFill="WHITE">
+                                 <font>
+                                    <Font name="Arial Bold" size="12.0" />
+                                 </font>
+                                 <VBox.margin>
+                                    <Insets bottom="5.0" left="5.0" top="5.0" />
+                                 </VBox.margin>
+                              </Label>
+                              <Button mnemonicParsing="false" prefHeight="16.0" prefWidth="147.0" style="-fx-background-color: #C1C1C1; -fx-background-radius: 0; -fx-border-color: black; -fx-border-width: 1 0 0 0;" text="Task name">
+                                 <font>
+                                    <Font name="Arial" size="10.0" />
+                                 </font>
+                              </Button>
+                              <Button mnemonicParsing="false" prefHeight="16.0" prefWidth="147.0" style="-fx-background-color: #C1C1C1; -fx-background-radius: 0; -fx-border-color: black; -fx-border-width: 1 0 0 0;" text="Task name">
+                                 <font>
+                                    <Font name="Arial" size="10.0" />
+                                 </font>
+                              </Button>
+                              <Button mnemonicParsing="false" prefHeight="16.0" prefWidth="147.0" style="-fx-background-color: #C1C1C1; -fx-background-radius: 0; -fx-border-color: black; -fx-border-width: 1 0 0 0;" text="Task name">
+                                 <font>
+                                    <Font name="Arial" size="10.0" />
+                                 </font>
+                              </Button>
+                              <Button mnemonicParsing="false" prefHeight="16.0" prefWidth="147.0" style="-fx-background-color: #C1C1C1; -fx-background-radius: 0; -fx-border-color: black; -fx-border-width: 1 0 0 0;" text="Task name">
+                                 <font>
+                                    <Font name="Arial" size="10.0" />
+                                 </font>
+                              </Button>
+                              <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                                 <children>
+                                    <Label layoutX="-1.0" layoutY="3.0" prefHeight="20.0" prefWidth="148.0" text="10 more" textFill="#a8a8a8">
+                                       <font>
+                                          <Font name="Arial Bold" size="13.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </AnchorPane>
+                           </children>
+                        </VBox>
+                        <VBox prefHeight="200.0" prefWidth="148.1" style="-fx-border-color: #575757;">
+                           <children>
+                              <Label prefHeight="15.0" prefWidth="38.0" text="28." textFill="WHITE">
+                                 <font>
+                                    <Font name="Arial Bold" size="12.0" />
+                                 </font>
+                                 <VBox.margin>
+                                    <Insets bottom="5.0" left="5.0" top="5.0" />
+                                 </VBox.margin>
+                              </Label>
+                              <Button mnemonicParsing="false" prefHeight="16.0" prefWidth="147.0" style="-fx-background-color: #C1C1C1; -fx-background-radius: 0; -fx-border-color: black; -fx-border-width: 1 0 0 0;" text="Task name">
+                                 <font>
+                                    <Font name="Arial" size="10.0" />
+                                 </font>
+                              </Button>
+                              <Button mnemonicParsing="false" prefHeight="16.0" prefWidth="147.0" style="-fx-background-color: #C1C1C1; -fx-background-radius: 0; -fx-border-color: black; -fx-border-width: 1 0 0 0;" text="Task name">
+                                 <font>
+                                    <Font name="Arial" size="10.0" />
+                                 </font>
+                              </Button>
+                              <Button mnemonicParsing="false" prefHeight="16.0" prefWidth="147.0" style="-fx-background-color: #C1C1C1; -fx-background-radius: 0; -fx-border-color: black; -fx-border-width: 1 0 0 0;" text="Task name">
+                                 <font>
+                                    <Font name="Arial" size="10.0" />
+                                 </font>
+                              </Button>
+                              <Button mnemonicParsing="false" prefHeight="16.0" prefWidth="147.0" style="-fx-background-color: #C1C1C1; -fx-background-radius: 0; -fx-border-color: black; -fx-border-width: 1 0 0 0;" text="Task name">
+                                 <font>
+                                    <Font name="Arial" size="10.0" />
+                                 </font>
+                              </Button>
+                              <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                                 <children>
+                                    <Label layoutX="-1.0" layoutY="3.0" prefHeight="20.0" prefWidth="148.0" text="10 more" textFill="#a8a8a8">
+                                       <font>
+                                          <Font name="Arial Bold" size="13.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </AnchorPane>
+                           </children>
+                        </VBox>
+                        <VBox prefHeight="200.0" prefWidth="148.1" style="-fx-border-color: #575757;">
+                           <children>
+                              <Label prefHeight="15.0" prefWidth="38.0" text="28." textFill="WHITE">
+                                 <font>
+                                    <Font name="Arial Bold" size="12.0" />
+                                 </font>
+                                 <VBox.margin>
+                                    <Insets bottom="5.0" left="5.0" top="5.0" />
+                                 </VBox.margin>
+                              </Label>
+                              <Button mnemonicParsing="false" prefHeight="16.0" prefWidth="147.0" style="-fx-background-color: #C1C1C1; -fx-background-radius: 0; -fx-border-color: black; -fx-border-width: 1 0 0 0;" text="Task name">
+                                 <font>
+                                    <Font name="Arial" size="10.0" />
+                                 </font>
+                              </Button>
+                              <Button mnemonicParsing="false" prefHeight="16.0" prefWidth="147.0" style="-fx-background-color: #C1C1C1; -fx-background-radius: 0; -fx-border-color: black; -fx-border-width: 1 0 0 0;" text="Task name">
+                                 <font>
+                                    <Font name="Arial" size="10.0" />
+                                 </font>
+                              </Button>
+                              <Button mnemonicParsing="false" prefHeight="16.0" prefWidth="147.0" style="-fx-background-color: #C1C1C1; -fx-background-radius: 0; -fx-border-color: black; -fx-border-width: 1 0 0 0;" text="Task name">
+                                 <font>
+                                    <Font name="Arial" size="10.0" />
+                                 </font>
+                              </Button>
+                              <Button mnemonicParsing="false" prefHeight="16.0" prefWidth="147.0" style="-fx-background-color: #C1C1C1; -fx-background-radius: 0; -fx-border-color: black; -fx-border-width: 1 0 0 0;" text="Task name">
+                                 <font>
+                                    <Font name="Arial" size="10.0" />
+                                 </font>
+                              </Button>
+                              <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                                 <children>
+                                    <Label layoutX="-1.0" layoutY="3.0" prefHeight="20.0" prefWidth="148.0" text="10 more" textFill="#a8a8a8">
+                                       <font>
+                                          <Font name="Arial Bold" size="13.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </AnchorPane>
+                           </children>
+                        </VBox>
+                        <VBox prefHeight="200.0" prefWidth="148.1" style="-fx-border-color: #575757;">
+                           <children>
+                              <Label prefHeight="15.0" prefWidth="38.0" text="28." textFill="WHITE">
+                                 <font>
+                                    <Font name="Arial Bold" size="12.0" />
+                                 </font>
+                                 <VBox.margin>
+                                    <Insets bottom="5.0" left="5.0" top="5.0" />
+                                 </VBox.margin>
+                              </Label>
+                              <Button mnemonicParsing="false" prefHeight="16.0" prefWidth="147.0" style="-fx-background-color: #C1C1C1; -fx-background-radius: 0; -fx-border-color: black; -fx-border-width: 1 0 0 0;" text="Task name">
+                                 <font>
+                                    <Font name="Arial" size="10.0" />
+                                 </font>
+                              </Button>
+                              <Button mnemonicParsing="false" prefHeight="16.0" prefWidth="147.0" style="-fx-background-color: #C1C1C1; -fx-background-radius: 0; -fx-border-color: black; -fx-border-width: 1 0 0 0;" text="Task name">
+                                 <font>
+                                    <Font name="Arial" size="10.0" />
+                                 </font>
+                              </Button>
+                              <Button mnemonicParsing="false" prefHeight="16.0" prefWidth="147.0" style="-fx-background-color: #C1C1C1; -fx-background-radius: 0; -fx-border-color: black; -fx-border-width: 1 0 0 0;" text="Task name">
+                                 <font>
+                                    <Font name="Arial" size="10.0" />
+                                 </font>
+                              </Button>
+                              <Button mnemonicParsing="false" prefHeight="16.0" prefWidth="147.0" style="-fx-background-color: #C1C1C1; -fx-background-radius: 0; -fx-border-color: black; -fx-border-width: 1 0 0 0;" text="Task name">
+                                 <font>
+                                    <Font name="Arial" size="10.0" />
+                                 </font>
+                              </Button>
+                              <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                                 <children>
+                                    <Label layoutX="-1.0" layoutY="3.0" prefHeight="20.0" prefWidth="148.0" text="10 more" textFill="#a8a8a8">
+                                       <font>
+                                          <Font name="Arial Bold" size="13.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </AnchorPane>
+                           </children>
+                        </VBox>
+                        <VBox prefHeight="200.0" prefWidth="148.1" style="-fx-border-color: #575757;">
+                           <children>
+                              <Label prefHeight="15.0" prefWidth="38.0" text="28." textFill="WHITE">
+                                 <font>
+                                    <Font name="Arial Bold" size="12.0" />
+                                 </font>
+                                 <VBox.margin>
+                                    <Insets bottom="5.0" left="5.0" top="5.0" />
+                                 </VBox.margin>
+                              </Label>
+                              <Button mnemonicParsing="false" prefHeight="16.0" prefWidth="147.0" style="-fx-background-color: #C1C1C1; -fx-background-radius: 0; -fx-border-color: black; -fx-border-width: 1 0 0 0;" text="Task name">
+                                 <font>
+                                    <Font name="Arial" size="10.0" />
+                                 </font>
+                              </Button>
+                              <Button mnemonicParsing="false" prefHeight="16.0" prefWidth="147.0" style="-fx-background-color: #C1C1C1; -fx-background-radius: 0; -fx-border-color: black; -fx-border-width: 1 0 0 0;" text="Task name">
+                                 <font>
+                                    <Font name="Arial" size="10.0" />
+                                 </font>
+                              </Button>
+                              <Button mnemonicParsing="false" prefHeight="16.0" prefWidth="147.0" style="-fx-background-color: #C1C1C1; -fx-background-radius: 0; -fx-border-color: black; -fx-border-width: 1 0 0 0;" text="Task name">
+                                 <font>
+                                    <Font name="Arial" size="10.0" />
+                                 </font>
+                              </Button>
+                              <Button mnemonicParsing="false" prefHeight="16.0" prefWidth="147.0" style="-fx-background-color: #C1C1C1; -fx-background-radius: 0; -fx-border-color: black; -fx-border-width: 1 0 0 0;" text="Task name">
+                                 <font>
+                                    <Font name="Arial" size="10.0" />
+                                 </font>
+                              </Button>
+                              <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                                 <children>
+                                    <Label layoutX="-1.0" layoutY="3.0" prefHeight="20.0" prefWidth="148.0" text="10 more" textFill="#a8a8a8">
+                                       <font>
+                                          <Font name="Arial Bold" size="13.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </AnchorPane>
+                           </children>
+                        </VBox>
+                        <VBox prefHeight="200.0" prefWidth="148.1" style="-fx-border-color: #575757;">
+                           <children>
+                              <Label prefHeight="15.0" prefWidth="38.0" text="28." textFill="WHITE">
+                                 <font>
+                                    <Font name="Arial Bold" size="12.0" />
+                                 </font>
+                                 <VBox.margin>
+                                    <Insets bottom="5.0" left="5.0" top="5.0" />
+                                 </VBox.margin>
+                              </Label>
+                              <Button mnemonicParsing="false" prefHeight="16.0" prefWidth="147.0" style="-fx-background-color: #C1C1C1; -fx-background-radius: 0; -fx-border-color: black; -fx-border-width: 1 0 0 0;" text="Task name">
+                                 <font>
+                                    <Font name="Arial" size="10.0" />
+                                 </font>
+                              </Button>
+                              <Button mnemonicParsing="false" prefHeight="16.0" prefWidth="147.0" style="-fx-background-color: #C1C1C1; -fx-background-radius: 0; -fx-border-color: black; -fx-border-width: 1 0 0 0;" text="Task name">
+                                 <font>
+                                    <Font name="Arial" size="10.0" />
+                                 </font>
+                              </Button>
+                              <Button mnemonicParsing="false" prefHeight="16.0" prefWidth="147.0" style="-fx-background-color: #C1C1C1; -fx-background-radius: 0; -fx-border-color: black; -fx-border-width: 1 0 0 0;" text="Task name">
+                                 <font>
+                                    <Font name="Arial" size="10.0" />
+                                 </font>
+                              </Button>
+                              <Button mnemonicParsing="false" prefHeight="16.0" prefWidth="147.0" style="-fx-background-color: #C1C1C1; -fx-background-radius: 0; -fx-border-color: black; -fx-border-width: 1 0 0 0;" text="Task name">
+                                 <font>
+                                    <Font name="Arial" size="10.0" />
+                                 </font>
+                              </Button>
+                              <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                                 <children>
+                                    <Label layoutX="-1.0" layoutY="3.0" prefHeight="20.0" prefWidth="148.0" text="10 more" textFill="#a8a8a8">
+                                       <font>
+                                          <Font name="Arial Bold" size="13.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </AnchorPane>
+                           </children>
+                        </VBox>
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
          </children>
       </VBox>
    </children>

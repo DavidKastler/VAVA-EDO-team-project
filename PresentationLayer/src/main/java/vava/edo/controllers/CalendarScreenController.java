@@ -1,11 +1,11 @@
 package vava.edo.controllers;
 
-import vava.edo.controllers.models.TodoScreenModel;
+import vava.edo.controllers.models.CalendarScreenModel;
 
 public class CalendarScreenController {
-    private TodoScreenModel model ;
+    private CalendarScreenModel model;
 
-    public void setModel(TodoScreenModel model) {
+    public void setModel(CalendarScreenModel model) {
         this.model = model;
     }
 }
