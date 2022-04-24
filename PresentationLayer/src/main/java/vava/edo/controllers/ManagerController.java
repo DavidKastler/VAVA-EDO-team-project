@@ -4,6 +4,7 @@ package vava.edo.controllers;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
@@ -33,13 +34,13 @@ public class ManagerController implements Initializable {
     private VBox users_vbox;
 
     @FXML
-    private RadioButton pending;
+    private CheckBox pending;
 
     @FXML
-    private RadioButton accepted;
+    private CheckBox accepted;
 
     @FXML
-    private RadioButton rejected;
+    private CheckBox rejected;
 
 
     public ManagerController() {
@@ -108,25 +109,9 @@ public class ManagerController implements Initializable {
 
 
     public void refreshReportList(Event event) {
-        if  (accepted != null){
-            if (accepted.isSelected()){
-                System.out.println("Accepted");
-            }
-        }
-
-        if  (rejected != null){
-            if (rejected.isSelected()){
-                System.out.println("Rejected");
-            }
-        }
-
-        if  (pending != null){
-            if (pending.isSelected()){
-                System.out.println("Pending");
-            }
-        }
-
-
+        System.out.println(accepted.isSelected());
+        System.out.println(rejected.isSelected());
+        System.out.println(pending.isSelected());
 
 
     }
