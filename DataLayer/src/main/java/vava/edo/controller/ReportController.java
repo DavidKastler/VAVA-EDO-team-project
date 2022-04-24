@@ -69,7 +69,7 @@ public class ReportController {
     public ResponseEntity<Report> rejectReport(@RequestParam(name = "token") Integer token,
                                                @PathVariable(name = "rep_id") Integer reportId) {
         log.info("Mark report as REJECTED.");
-        if (userService.isAdmin(token)) {
+        if (userService.isAccountManager(token)) {
             log.warn("Request rejected, insufficient rights to reject report.");
             return new ResponseEntity<>(reportService.rejectReport(reportId), HttpStatus.OK);
         }
@@ -101,7 +101,7 @@ public class ReportController {
     @GetMapping("/all")
     public ResponseEntity<List<Report>> getAllReports(@RequestParam(value = "token") int token) {
         log.info("Show all reports.");
-        if (!userService.isAdmin(token)) {
+        if (!userService.isAccountManager(token)) {
             log.warn("Permission denied, insufficient rights to see all reports.");
             throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "User needs to be admin.");
         }
