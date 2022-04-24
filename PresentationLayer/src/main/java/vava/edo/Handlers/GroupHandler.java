@@ -8,10 +8,10 @@ import com.mashape.unirest.http.exceptions.UnirestException;
 import org.json.JSONObject;
 import vava.edo.Exepctions.HttpStatusExceptions.UnexpectedHttpStatusException;
 import vava.edo.models.Group;
+import vava.edo.models.ResponseMessage;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 
 public class GroupHandler {
 
@@ -24,7 +24,8 @@ public class GroupHandler {
                     .routeParam("token", String.valueOf(userId))
                     .asJson();
 
-            if (groupsJson.getStatus() != 200) throw new UnexpectedHttpStatusException(groupsJson.getStatus(), 200, groupsJson.getStatusText());
+            ResponseMessage responseMessage = new Gson().fromJson(groupsJson.getBody().getObject().toString(), ResponseMessage.class);
+            if (groupsJson.getStatus() != 200) throw new UnexpectedHttpStatusException(groupsJson.getStatus(), 200, responseMessage.getMessage());
 
             for (Object group: groupsJson.getBody().getArray()){
                 groups.add(new Gson().fromJson(group.toString(), Group.class));
