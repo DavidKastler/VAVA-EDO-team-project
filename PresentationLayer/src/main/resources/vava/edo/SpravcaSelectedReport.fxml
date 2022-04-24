@@ -131,7 +131,7 @@
                               </HBox>
                               <HBox alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="453.0">
                                  <children>
-                                    <Label text="Peto" textFill="#1a1aff" underline="true">
+                                    <Label fx:id="sender" text="Peto" textFill="#1a1aff" underline="true">
                                        <font>
                                           <Font name="Arial" size="30.0" />
                                        </font>
@@ -162,7 +162,7 @@
                               </HBox>
                               <HBox alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="453.0">
                                  <children>
-                                    <Label text="Palo" textFill="#1a1aff" underline="true">
+                                    <Label fx:id="receiver" text="Palo" textFill="#1a1aff" underline="true">
                                        <font>
                                           <Font name="Arial" size="30.0" />
                                        </font>
@@ -176,7 +176,7 @@
                         </HBox>
                         <HBox alignment="CENTER" prefHeight="410.0" prefWidth="200.0">
                            <children>
-                              <TextArea prefHeight="200.0" prefWidth="800.0" style="-fx-background-color: #323232;" text="Message...">
+                              <TextArea fx:id="text_area" prefHeight="200.0" prefWidth="800.0" promptText="Message..." style="-fx-background-color: #323232;">
                                  <HBox.margin>
                                     <Insets top="15.0" />
                                  </HBox.margin>
@@ -188,7 +188,7 @@
                         </HBox>
                         <HBox alignment="CENTER_RIGHT" prefHeight="120.0">
                            <children>
-                              <Button mnemonicParsing="false" prefHeight="60.0" prefWidth="250.0" style="-fx-background-color: C4C4C4; -fx-background-radius: 30;" text="Accept">
+                              <Button mnemonicParsing="false" onMouseClicked="#acceptReport" prefHeight="60.0" prefWidth="250.0" style="-fx-background-color: C4C4C4; -fx-background-radius: 30;" text="Accept">
                                  <font>
                                     <Font name="Arial" size="30.0" />
                                  </font>
@@ -196,7 +196,7 @@
                                     <Insets right="40.0" />
                                  </HBox.margin>
                               </Button>
-                              <Button mnemonicParsing="false" prefHeight="60.0" prefWidth="250.0" style="-fx-background-color: C4C4C4; -fx-background-radius: 30;" text="Reject">
+                              <Button mnemonicParsing="false" onMouseClicked="#rejectReport" prefHeight="60.0" prefWidth="250.0" style="-fx-background-color: C4C4C4; -fx-background-radius: 30;" text="Reject">
                                  <font>
                                     <Font name="Arial" size="30.0" />
                                  </font>
