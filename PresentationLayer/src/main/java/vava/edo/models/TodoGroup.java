@@ -1,8 +1,9 @@
 package vava.edo.models;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class TodoGroup {
+public class TodoGroup implements Serializable {
 
     private String name;
     private ArrayList<Todo> todos = new ArrayList<>();
