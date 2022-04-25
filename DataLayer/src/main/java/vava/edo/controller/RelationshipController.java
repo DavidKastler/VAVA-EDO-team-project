@@ -146,7 +146,8 @@ public class RelationshipController {
         userService.getUser(token);
         log.info("Rejecting friend request.");
         Relationship relationship = relationshipService.getRelationship(relationshipId);
-        if (!Objects.equals(relationship.getSecondUser().getUId(), token)) {
+        if (!Objects.equals(relationship.getSecondUser().getUId(), token) &&
+                !Objects.equals(relationship.getFirstUser().getUId(), token)) {
             log.warn("Cannot reject requests for other users");
             throw new ResponseStatusException(HttpStatus.FORBIDDEN, "Relationship is not yours.");
         }
