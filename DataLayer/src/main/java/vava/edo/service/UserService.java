@@ -176,11 +176,11 @@ public class UserService {
      * @param userEdit   user Data Transfer Object you want to convert to user
      * @return          created user
      */
-    public User addUser(UserEdit userEdit) {
-        Role userRole = roleService.getRole(userEdit.getRoleId());
+    public User addUser(UserLogin userEdit) {
+        Role userRole = roleService.getRole(4);
         User user = User.from(userEdit);
         user.setUserRole(userRole);
-        log.info("Saving new user {} with role id {} into database.", userEdit.getUsername(), userEdit.getRoleId());
+        log.info("Saving new user {} with role id {} into database.", userEdit.getUsername(), userRole.getRId());
         log.info("User {} successfully registered.", user.getUsername());
         return userRepository.save(user);
     }

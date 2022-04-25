@@ -5,6 +5,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import vava.edo.schema.users.UserEdit;
+import vava.edo.schema.users.UserInfo;
+import vava.edo.schema.users.UserLogin;
 
 import javax.persistence.*;
 
@@ -37,6 +39,18 @@ public class User {
      * @return          cast User object
      */
     public static User from(UserEdit userEdit) {
+        User user = new User();
+        user.setUsername(userEdit.getUsername());
+        user.setPassword(userEdit.getPassword());
+        return user;
+    }
+
+    /**
+     * Static casting method from UserRegister object
+     * @param userEdit   UserRegister object that you want to casy
+     * @return          cast User object
+     */
+    public static User from(UserLogin userEdit) {
         User user = new User();
         user.setUsername(userEdit.getUsername());
         user.setPassword(userEdit.getPassword());
