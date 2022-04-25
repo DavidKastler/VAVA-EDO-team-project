@@ -13,7 +13,7 @@
             <Insets />
          </HBox.margin>
          <children>
-            <Button fx:id="username" mnemonicParsing="false" style="-fx-background-color: transparent;" text="Milan" textFill="WHITE">
+            <Button fx:id="username" mnemonicParsing="false" onMouseClicked="#openReport" style="-fx-background-color: transparent;" text="Milan" textFill="WHITE">
                <font>
                   <Font name="Arial Bold" size="36.0" />
                </font>

@@ -124,7 +124,7 @@ public class MenuScreenController {
             hBoxChangingScreen.getChildren().add(new AdminScreenModel(user, this).getAdminScreen()); }
         else if (this.user.getUserRole().getRoleName().equals("account_manager")) {
             hBoxChangingScreen.getChildren().clear();
-            hBoxChangingScreen.getChildren().add(new ManagerScreenModel(user).getManagerScreen());
+            hBoxChangingScreen.getChildren().add(new ManagerScreenModel(user, this).getManagerScreen());
         }
     }
 

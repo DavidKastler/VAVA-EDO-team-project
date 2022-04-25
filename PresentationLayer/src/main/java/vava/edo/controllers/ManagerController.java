@@ -73,11 +73,11 @@ public class ManagerController implements Initializable {
 
     }
 
-    public void loadReports(boolean all) {
-        if (all) {
-            this.reports = ReportHandler.getAllReports(this.model.getUser().getUid());
-        } else {
+    public void loadReports(boolean pending) {
+        if (pending) {
             this.reports = ReportHandler.getPendingReports(this.model.getUser().getUid());
+        } else {
+            this.reports = ReportHandler.getAllReports(this.model.getUser().getUid());
         }
 
         for (Report report : this.reports) {
@@ -96,7 +96,7 @@ public class ManagerController implements Initializable {
 
         for (Integer i = 0; i < searchedReports.size(); i++){
             try {
-                ManagerViewElementModel element = new ManagerViewElementModel(searchedReports.get(i).getViolatorName(), searchedReports.get(i).getViolator().getUserRole().getRoleName(), searchedReports.get(i).getStatus());
+                ManagerViewElementModel element = new ManagerViewElementModel(this.model.getUser(), searchedReports.get(i), this.model.getMenuScreenController());
                 HBox hbox = element.getElement();
                 users_vbox.getChildren().add(hbox);
             } catch (Exception e) {
@@ -108,13 +108,11 @@ public class ManagerController implements Initializable {
     }
 
     public void handleSearchUser(KeyEvent keyEvent) throws IOException {
-        System.out.println(search_users.getText());
+        reloadReports();
     }
 
 
     public void refreshReportList(Event event) {
-        System.out.println(pending.isSelected());
-
-
+        loadReports(pending.isSelected());
     }
 }

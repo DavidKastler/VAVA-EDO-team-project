@@ -26,10 +26,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.net.URLConnection;
 import java.time.Instant;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.List;
-import java.util.ResourceBundle;
+import java.util.*;
 
 
 public class ChatController implements Initializable {
@@ -227,6 +224,8 @@ public class ChatController implements Initializable {
 
     @FXML
     public void handleViewChatButton(MouseEvent mouseEvent, Integer groupId) throws IOException {
+
+        messages_list.getChildren().clear();
         refreshColorsOfChats(this.chat_list_pane.getChildren());
 
         //metoda na vratenie userov v danych chatoch/groupach
