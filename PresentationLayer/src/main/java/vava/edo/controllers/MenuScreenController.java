@@ -166,6 +166,9 @@ public class MenuScreenController {
             e.printStackTrace();
         }
 
+        // Changing the label to appropriate username
+        textFieldUsername.setText(this.user.getUsername());
+
         vBoxEditProfileScreen.setDisable(true);
         vBoxEditProfileScreen.setVisible(false);
 
