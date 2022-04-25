@@ -104,7 +104,8 @@ public class UserHandler {
 
     }
 
-    public static void registerUser(TextField textUsername, TextField textPassword1, TextField textPassword2, Label wrongInput){
+    public static void registerUser(TextField textUsername, TextField textPassword1,
+                                    TextField textPassword2, Label wrongInput) throws FailedToRegister{
         if (!textPassword1.getText().equals(textPassword2.getText()) || textUsername.getText().isEmpty()){
             System.out.println("Wrong Input!");
             wrongInput.setVisible(true);
@@ -117,7 +118,6 @@ public class UserHandler {
             JSONObject jo = new JSONObject();
             jo.put("username", textUsername.getText());
             jo.put("password", textPassword1.getText());
-            jo.put("confirm_password", textPassword2.getText());
             System.out.println(jo);
 
             try {
