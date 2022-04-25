@@ -35,6 +35,7 @@ public class ChatPinkElementController implements Initializable {
         this.model = model;
         this.message.setText(model.getMessageText());
         this.username.setText(model.getMessageAuthor());
+        setHeightOfMessage(model.getMessageText());
         this.time.setText(model.getTimeSent());
 
     }
@@ -60,7 +61,15 @@ public class ChatPinkElementController implements Initializable {
         this.time.setText(time);
     }
 
+    public void setHeightOfMessage(String messageText){
+        Integer i = 0;
+        i = messageText.length() / 19;
+        Integer height = 52;
+        height = height + (34 * i);
 
+        message.setMinHeight(height);
+
+    }
 
 
     @Override

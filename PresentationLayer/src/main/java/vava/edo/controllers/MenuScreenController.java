@@ -13,12 +13,12 @@ import vava.edo.Exepctions.MenuScreen.FailedToUpdateUser;
 import vava.edo.Exepctions.TodoScreen.MandatoryFieldNotInputted;
 import vava.edo.Handlers.TodoHandler;
 import vava.edo.Handlers.UserHandler;
-import vava.edo.controllers.models.CalendarScreenModel;
-import vava.edo.controllers.models.FriendsScreenModel;
-import vava.edo.controllers.models.TodoScreenModel;
+import vava.edo.controllers.models.*;
 import vava.edo.models.User;
 
 import java.io.IOException;
+
+import java.util.SimpleTimeZone;
 
 public class MenuScreenController {
     private User user;
@@ -222,6 +222,8 @@ public class MenuScreenController {
     }
 
     public void handleAdminButton() {
+        hBoxChangingScreen.getChildren().clear();
+        hBoxChangingScreen.getChildren().add(new AdminScreenModel(user).getAdminScreen());
         System.out.println("Admin button pressed");
 
         buttonUser.setStyle("-fx-background-color: transparent");
@@ -282,5 +284,10 @@ public class MenuScreenController {
 
         vBoxSettingsScreen.setDisable(false);
         vBoxSettingsScreen.setVisible(true);
+    }
+
+    public void handleChatButton(MouseEvent mouseEvent) {
+        hBoxChangingScreen.getChildren().clear();
+        hBoxChangingScreen.getChildren().add(new ChatScreenModel(user).getChatScreen());
     }
 }

@@ -19,6 +19,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
+import vava.edo.controllers.models.ChatScreenModel;
 import vava.edo.models.ChatGrayElementModel;
 import vava.edo.models.ChatPinkElementModel;
 import vava.edo.models.ManagerViewElementModel;
@@ -65,6 +66,9 @@ public class ChatController implements Initializable {
     private AnchorPane rootPane1;
 
     @FXML
+    private AnchorPane rootPane11;
+
+    @FXML
     private HBox report_hbox;
 
     @FXML
@@ -75,6 +79,13 @@ public class ChatController implements Initializable {
 
     @FXML
     private Label chat_name_error;
+
+    private ChatScreenModel model;
+
+    public void setModel(ChatScreenModel model) {
+        this.model = model;
+    }
+
 
     public ChatController() {
 
@@ -322,13 +333,13 @@ public class ChatController implements Initializable {
 
         List<String> messages = new ArrayList<>();
         messages.add("aa aa aa aa aa aa aa aa aa aa aa aa aa a  a a a a");
-        messages.add("ascljhauco ubABX");
-        messages.add("ASCLIUL alicsb ");
+        messages.add("ascljhauco ubABX aksjcba aksjcb c");
+        messages.add("ASCLIUL alicsb askcb sabc ablciscbasl lsciablcsi ");
         messages.add("askcsb  alisc lsbca clacbk avzlcacbasilcb");
-        messages.add("akcs aslibalc ");
+        messages.add("akcs aslibalc acsalibusc ailscascv cas");
         messages.add("acskhjhavsc ac vkau cvavkc");
         messages.add("sjdvb asocuaocbaj cabc");
-        messages.add("avdascsc");
+        messages.add("avdascsc ascasca asdvdvsd sdvasdvd sdvdsv avvd");
         messages.add("asau baicb isc b a aisbc");
         messages.add("asckba liscb abscbl acsbscl");
         messages.add("alkcb acbla c vascia cs");
@@ -339,6 +350,8 @@ public class ChatController implements Initializable {
             if (usernames.get(i).equals("Jano")){
                 ChatGrayElementModel element = new ChatGrayElementModel(messages.get(i), usernames.get(i), time.get(i));
                 HBox hbox = element.getMessageBox();
+
+
                 messages_list.getChildren().add(hbox);
             } else {
                 ChatPinkElementModel element = new ChatPinkElementModel(messages.get(i), usernames.get(i), time.get(i));
@@ -361,38 +374,31 @@ public class ChatController implements Initializable {
     @FXML
     public void handleNewChatButton(MouseEvent mouseEvent) throws IOException {
         //ak je dobry nazov chatu
-        chat_name.setText(search_field.getText());
-        chat_name.setVisible(true);
-        chat_name_error.setStyle("-fx-text-fill: transparent");
+        //chat_name.setText(search_field.getText());
+        //chat_name.setVisible(true);
+        //chat_name_error.setStyle("-fx-text-fill: transparent");
 
         //ak neni dobry nazov chatu
-        chat_name_error.setStyle("-fx-text-fill: red");
+        //chat_name_error.setStyle("-fx-text-fill: red");
+
+        rootPane11.setVisible(true);
+        rootPane11.setDisable(false);
+        chat_screen_box.setDisable(true);
+        //chat_screen_box.setVisible(false);
+
     }
 
     @FXML
     public void handleReportUserButton(MouseEvent mouseEvent) throws IOException {
 
-        report_hbox.setVisible(true);
-        report_hbox.setDisable(false);
+        rootPane1.setVisible(true);
+        rootPane1.setDisable(false);
         chat_screen_box.setDisable(true);
-        chat_screen_box.setVisible(false);
-
-        /*
-        Parent root;
-        try {
-            root = FXMLLoader. load(Objects.requireNonNull(getClass().getResource("/vava/edo/ReportScreen.fxml")));
-            Stage stage = new Stage();
-            stage.setTitle("Report message");
-            stage.setScene(new Scene(root, 600, 400));
-            stage.show();
-            // Hide this current window (if this is what you want)
-            //((Node)(mouseEvent.getSource())).getScene().getWindow().hide();
-        }
-        catch (IOException e) {
-            e.printStackTrace();
-        }
-        */
+        //chat_screen_box.setVisible(false);
     }
+
+
+
 
     @FXML
     public void handleSendMessageButton(MouseEvent mouseEvent) throws IOException {
@@ -403,9 +409,19 @@ public class ChatController implements Initializable {
 
     public void handleSendReportButton(MouseEvent mouseEvent) {
         System.out.println(text_area.getText());
-        report_hbox.setVisible(false);
-        report_hbox.setDisable(true);
+        rootPane1.setVisible(false);
+        rootPane1.setDisable(true);
         chat_screen_box.setDisable(false);
         chat_screen_box.setVisible(true);
     }
+
+    public void handleSendChatNameButton(MouseEvent mouseEvent) {
+        System.out.println(text_area.getText());
+        rootPane11.setVisible(false);
+        rootPane11.setDisable(true);
+        chat_screen_box.setDisable(false);
+        chat_screen_box.setVisible(true);
+    }
+
+
 }

@@ -6,6 +6,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
+import vava.edo.Handlers.UserHandler;
 import vava.edo.models.AdminViewElementModel;
 import vava.edo.models.FriendElementModel;
 
@@ -36,11 +37,6 @@ public class AdminViewElementController implements Initializable {
         return type_label;
     }
 
-
-    public String getUsername() {
-        return username.getText();
-    }
-
     public void setUsername(String username) {
         this.username.setText(username);
     }
@@ -55,9 +51,8 @@ public class AdminViewElementController implements Initializable {
 
     public void setModel(AdminViewElementModel model) {
         this.model = model;
-        setUsername(model.getUsername());
-        setType_label(model.getType());
-
+        setUsername(this.model.getDisplayedUser().getUsername());
+        setType_label(this.model.getDisplayedUser().getUserRole().getRoleName());
     }
 
 
@@ -68,6 +63,7 @@ public class AdminViewElementController implements Initializable {
 
 
     public void deleteUser(MouseEvent mouseEvent) {
-        System.out.println(this.getUsername_label().getText() + this.getType_label().getText());
+        UserHandler.deleteUser(this.model.getUser().getUid(), this.model.getDisplayedUser().getUid());
+        this.model.getAdminController().loadAllUsers();
     }
 }

@@ -8,8 +8,13 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import vava.edo.Handlers.SearchHandler;
+import vava.edo.Handlers.UserHandler;
+import vava.edo.controllers.models.AdminScreenModel;
 import vava.edo.models.AdminViewElementModel;
 import vava.edo.models.FriendElementModel;
+import vava.edo.models.Relationship;
+import vava.edo.models.User;
 
 import java.io.IOException;
 import java.net.URL;
@@ -30,6 +35,14 @@ public class AdminController implements Initializable {
     @FXML
     private TextField search_users;
 
+    private AdminScreenModel model;
+
+    public void setModel(AdminScreenModel model) {
+        this.model = model;
+    }
+
+    List<User> allRegisteredUsers = null;
+
     public AdminController() {
 
     }
@@ -37,59 +50,32 @@ public class AdminController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
-        List<String> usernames = new ArrayList<>();
-        usernames.add("Jano");
-        usernames.add("Fero");
-        usernames.add("Kubo");
-        usernames.add("Lubo");
-        usernames.add("Eva");
-        usernames.add("Katka");
-        usernames.add("Hana");
-        usernames.add("Karol");
-        usernames.add("Adam");
-        usernames.add("Erzika");
-        usernames.add("Gizela");
-        usernames.add("Gustav");
-        usernames.add("Adolf");
-        List<String> types = new ArrayList<>();
-        types.add("Admin");
-        types.add("Pleb");
-        types.add("Admin");
-        types.add("Pleb");
-        types.add("Guest");
-        types.add("Pleb");
-        types.add("Pleb");
-        types.add("Pleb");
-        types.add("Pleb");
-        types.add("Admin");
-        types.add("Guest");
-        types.add("Pleb");
-        types.add("Pleb");
-        List<String> registrations = new ArrayList<>();
-        registrations.add("12.3.2021");
-        registrations.add("10.8.3222");
-        registrations.add("210.212.3");
-        registrations.add(".301.1..230");
-        registrations.add("21.32..32");
-        registrations.add("12.3.2021");
-        registrations.add("10.8.3222");
-        registrations.add("210.212.3");
-        registrations.add(".301.1..230");
-        registrations.add("21.32..32");
-        registrations.add(".301.1..230");
-        registrations.add("21.32..32");
-        registrations.add("12.3.2021");
+    }
 
-        for (Integer i = 0; i < usernames.size(); i++){
-            AdminViewElementModel element = new AdminViewElementModel(usernames.get(i), types.get(i), registrations.get(i));
-            HBox hbox = element.getAdminViewElement();
-            users_vbox.getChildren().add(hbox);
+    public void loadAllUsers() {
+        this.allRegisteredUsers = UserHandler.getAllUsers(this.model.getUser().getUid());
+        reloadAllUsers();
+    }
+
+    public void reloadAllUsers() {
+
+        users_vbox.getChildren().clear();
+        @SuppressWarnings("unchecked")
+        List<User> searchedUsers = (List<User>)(List) SearchHandler.searchInList(allRegisteredUsers, "username", search_users.getText());
+
+        for (Integer i = 0; i < searchedUsers.size(); i++){
+            try {
+                AdminViewElementModel element = new AdminViewElementModel(this.model.getUser(), searchedUsers.get(i), this);
+                HBox hbox = element.getAdminViewElement();
+                users_vbox.getChildren().add(hbox);
+            } catch (Exception e) {
+
+            }
         }
-
     }
 
 
     public void handleSearchUsers(KeyEvent keyEvent) throws IOException {
-        System.out.println(search_users.getText());
+        reloadAllUsers();
     }
 }
