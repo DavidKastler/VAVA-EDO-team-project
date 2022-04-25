@@ -3,6 +3,7 @@ package vava.edo.Handlers;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import vava.edo.controllers.models.CalendarDayModel;
+import vava.edo.models.Todo;
 import vava.edo.models.User;
 
 import java.text.SimpleDateFormat;
@@ -17,7 +18,9 @@ public class RefreshCalendarScreen {
     private Month selectedMonth;
     private int selectedYear;
 
-    private ArrayList<HBox> weeks = new ArrayList<>();
+    private ArrayList<HBox> weeksHBoxes = new ArrayList<>();
+    private ArrayList<Todo> selectedMonthTodos = new ArrayList<>();
+    private ArrayList<CalendarDayModel> dayModels = new ArrayList<>();
 
     private VBox vBoxWeeks;
 
@@ -76,12 +79,12 @@ public class RefreshCalendarScreen {
         cal.set(Calendar.DAY_OF_MONTH, 1);
         cal.set(Calendar.MONTH, selectedMonth.getValue() - 1);
         SimpleDateFormat df = new SimpleDateFormat("u");
-        int startDay = Integer.parseInt(df.format(cal.getTime()));
-        int maxWeeknumber = cal.getActualMaximum(Calendar.WEEK_OF_MONTH);
-        if(startDay > 2) {
-            maxWeeknumber++;
-        }
-        return maxWeeknumber;
+        int startOffset = Integer.parseInt(df.format(cal.getTime())) - 1;
+
+        cal.set(Calendar.DAY_OF_MONTH, cal.getActualMaximum(Calendar.DAY_OF_MONTH));
+        int endOffset = 7 - Integer.parseInt(df.format(cal.getTime()));
+
+        return (int) Math.ceil((double)(getDaysCountInMonth() + startOffset + endOffset) / 7);
     }
 
     private int getFirstDateOfMonth() {
@@ -98,32 +101,28 @@ public class RefreshCalendarScreen {
         selectedYear = currentDate.getYear();
     }
 
-    // TODO toto uvidíme ako bude
-    public void getDayTodos(int dayNumber, int monthNumber, int yearNumber) {
-
-    }
-
     public void refreshCalendar() {
-        weeks.clear();
         vBoxWeeks.getChildren().clear();
-        int printedDaysOfMonth = 1;
-        int nextMonthDays = 1;
+        dayModels.clear();
         Calendar cal = Calendar.getInstance();
-        System.out.println("Week number: " + getWeeksCountInMonth());
-        System.out.println(cal.get(Calendar.MONTH));
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        LocalDate fromDate = getFromDate();
+        LocalDate toDate = getToDate();
+
+        selectedMonthTodos = TodoHandler.getTodosByDate(user, fromDate, toDate);
+
+        HBox weekBox = null;
+        int nextMonthDays = 1;
+        int thisMonthDays = 1;
         for(int dayCount = 1; dayCount <= (getWeeksCountInMonth() * 7); dayCount++) {
-            HBox hBox;
             if(dayCount % 7 == 1) {
-                hBox = new HBox();
-                weeks.add(hBox);
-            }
-            else {
-                hBox = weeks.get(weeks.size()-1);
+                weekBox = new HBox();
+                vBoxWeeks.getChildren().add(weekBox);
             }
 
             if(dayCount < getFirstDateOfMonth()) {
+                int tempYear = selectedYear;
                 if(selectedMonth.getValue() == 1) {
-                    int tempYear = selectedYear;
                     tempYear--;
                     cal.set(Calendar.YEAR, tempYear);
                     cal.set(Calendar.MONTH, 11);
@@ -132,11 +131,16 @@ public class RefreshCalendarScreen {
                     cal.set(Calendar.MONTH, selectedMonth.getValue() - 2);
 
                 int previousMonthDays = cal.getActualMaximum(Calendar.DATE) - (getFirstDateOfMonth() - dayCount) + 1;
-                hBox.getChildren().add(new CalendarDayModel(this, hBox, previousMonthDays).getDayVBox());
+                cal.set(Calendar.DAY_OF_MONTH, previousMonthDays);
+                String dayOfTodosString = dateFormat.format(cal.getTime());
+                LocalDate dayOfTodos = LocalDate.parse(dayOfTodosString);
+                CalendarDayModel dayModel = new CalendarDayModel(this, weekBox, previousMonthDays, TodoHandler.getTodosByDate(user, dayOfTodos, dayOfTodos));
+                dayModels.add(dayModel);
+                weekBox.getChildren().add(dayModel.getDayVBox());
             }
             else if(dayCount > (getDaysCountInMonth() + getFirstDateOfMonth() - 1)) {
+                int tempYear = selectedYear;
                 if(selectedMonth.getValue() == 11) {
-                    int tempYear = selectedYear;
                     tempYear++;
                     cal.set(Calendar.YEAR, tempYear);
                     cal.set(Calendar.MONTH, 0);
@@ -144,19 +148,100 @@ public class RefreshCalendarScreen {
                 else
                     cal.set(Calendar.MONTH, selectedMonth.getValue());
 
-                hBox.getChildren().add(new CalendarDayModel(this, hBox, nextMonthDays).getDayVBox());
+
+                cal.set(Calendar.DAY_OF_MONTH, nextMonthDays);
+                String dayOfTodosString = dateFormat.format(cal.getTime());
+                LocalDate dayOfTodos = LocalDate.parse(dayOfTodosString);
+                CalendarDayModel dayModel = new CalendarDayModel(this, weekBox, nextMonthDays, TodoHandler.getTodosByDate(user, dayOfTodos, dayOfTodos));
+                dayModels.add(dayModel);
+                weekBox.getChildren().add(dayModel.getDayVBox());
                 nextMonthDays++;
             }
             else {
-                hBox.getChildren().add(new CalendarDayModel(this, hBox, printedDaysOfMonth).getDayVBox());
-                printedDaysOfMonth++;
+                cal.set(Calendar.DAY_OF_MONTH, thisMonthDays);
+                String dayOfTodosString = dateFormat.format(cal.getTime());
+                LocalDate dayOfTodos = LocalDate.parse(dayOfTodosString);
+                CalendarDayModel dayModel = new CalendarDayModel(this, weekBox, thisMonthDays, TodoHandler.getTodosByDate(user, dayOfTodos, dayOfTodos));
+                dayModels.add(dayModel);
+                weekBox.getChildren().add(dayModel.getDayVBox());
+                thisMonthDays++;
+            }
+        }
+    }
+
+    public LocalDate getFromDate() {
+        Calendar cal = Calendar.getInstance();
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        LocalDate fromDate;
+
+        if(1 < getFirstDateOfMonth()) {
+            int tempYear = selectedYear;
+            if(selectedMonth.getValue() == 1) {
+                tempYear--;
+                cal.set(Calendar.YEAR, tempYear);
+                cal.set(Calendar.MONTH, 11);
+            }
+            else {
+                cal.set(Calendar.MONTH, selectedMonth.getValue() - 2);
+                cal.set(Calendar.YEAR, selectedYear);
+            }
+
+            int previousMonthDays = cal.getActualMaximum(Calendar.DATE) - (getFirstDateOfMonth() - 1) + 1;
+            cal.set(Calendar.DAY_OF_MONTH, previousMonthDays);
+            String fromDateString = dateFormat.format(cal.getTime());
+            fromDate = LocalDate.parse(fromDateString);
+        }
+        else {
+            cal.set(Calendar.DAY_OF_MONTH, 1);
+            String fromDateString = dateFormat.format(cal.getTime());
+            fromDate = LocalDate.parse(fromDateString);
+        }
+        return fromDate;
+    }
+
+    public LocalDate getToDate() {
+        Calendar cal = Calendar.getInstance();
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        LocalDate toDate;
+
+        if((getFirstDateOfMonth() - 1 + getDaysCountInMonth()) < (getWeeksCountInMonth() * 7)) {
+            int tempYear = selectedYear;
+            if(selectedMonth.getValue() == 12) {
+                tempYear++;
+                cal.set(Calendar.YEAR, tempYear);
+                cal.set(Calendar.MONTH, 0);
+            }
+            else {
+                cal.set(Calendar.MONTH, selectedMonth.getValue());
+                cal.set(Calendar.YEAR, selectedYear);
+            }
+
+            int nextMonthDays = (getWeeksCountInMonth() * 7) - (getFirstDateOfMonth() - 1 + getDaysCountInMonth());
+            cal.set(Calendar.DAY_OF_MONTH, nextMonthDays);
+            String fromDateString = dateFormat.format(cal.getTime());
+            toDate = LocalDate.parse(fromDateString);
+        }
+        else {
+            cal.set(Calendar.DAY_OF_MONTH, getDaysCountInMonth());
+            String fromDateString = dateFormat.format(cal.getTime());
+            toDate = LocalDate.parse(fromDateString);
+        }
+        return toDate;
+    }
+
+    /*public ArrayList<Todo> getDayTodosArraylist(ArrayList<Todo> todos, int day, int month, int year) throws ParseException {
+        ArrayList<Todo> todosInDay = new ArrayList<>();
+        LocalDate dayOfTodos = LocalDate.parse((year + "-" + month + "-" + day));
+
+        for(Todo todo : todos) {
+            if(dayOfTodos.compareTo(LocalDate.parse(todo.getFromTime(), DateTimeFormatter.ofPattern("yyyy-MM-dd"))) <= 0 &&
+                    dayOfTodos.compareTo(LocalDate.parse(todo.getToTime(), DateTimeFormatter.ofPattern("yyyy-MM-dd"))) >= 0) {
+                todosInDay.add(todo);
             }
         }
 
-        for(HBox week : weeks) {
-            vBoxWeeks.getChildren().add(week);
-        }
-    }
+        return todosInDay;
+    }*/
 
     public String getSelectedMonthandYear() {
         return "" + selectedMonth + " " + selectedYear;

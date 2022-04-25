@@ -15,17 +15,18 @@ public class CalendarDayModel {
     private VBox dayVBox;
     private RefreshCalendarScreen refresher;
     private User user;
-    private ArrayList<Todo> todos = new ArrayList<>();
 
     private HBox rootHBoxWeek;
 
     // TODO pridať ktory je to den pre daný cell
     private int dayNumber;
+    private ArrayList<Todo> dayTodos = new ArrayList<>();
 
-    public CalendarDayModel(RefreshCalendarScreen refresher, HBox rootHBoxWeek, int dayNumber) {
+    public CalendarDayModel(RefreshCalendarScreen refresher, HBox rootHBoxWeek, int dayNumber, ArrayList<Todo> dayTodos) {
         this.refresher = refresher;
         this.rootHBoxWeek = rootHBoxWeek;
         this.dayNumber = dayNumber;
+        this.dayTodos = dayTodos;
 
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/vava/edo/CalendarDayCell.fxml"));
@@ -48,5 +49,13 @@ public class CalendarDayModel {
 
     public RefreshCalendarScreen getRefresher() {
         return refresher;
+    }
+
+    public ArrayList<Todo> getDayTodos() {
+        return dayTodos;
+    }
+
+    public void setDayTodos(ArrayList<Todo> dayTodos) {
+        this.dayTodos = dayTodos;
     }
 }

@@ -90,11 +90,20 @@ public class TodosScreenController {
                 labelTodoInfoName, labelTodoInfoDescription, labelTodoInfoGroup, buttonEditTodoInfo, buttonDeleteTodo);
 
         refresher.initLoader();
+        actualSelectedGroup = 1;
+        buttonAllTodos.setStyle("-fx-background-color:  #8D8D8D");
+        buttonTodayTodos.setStyle("-fx-background-color:  transparent");
+        buttonTomorrowTodos.setStyle("-fx-background-color:  transparent");
+        buttonCompletedTodos.setStyle("-fx-background-color:  transparent");
     }
 
     public void handleAllTodos() {
         labelTodoGroupName.setText("All");
         actualSelectedGroup = 1;
+        buttonAllTodos.setStyle("-fx-background-color:  #8D8D8D");
+        buttonTodayTodos.setStyle("-fx-background-color:  transparent");
+        buttonTomorrowTodos.setStyle("-fx-background-color:  transparent");
+        buttonCompletedTodos.setStyle("-fx-background-color:  transparent");
         refresher.setActualGroupTodos(model.getUser().getTodos());
         refresher.refreshTodos(actualSelectedGroup);
     }
@@ -102,6 +111,10 @@ public class TodosScreenController {
     public void handleTodayTodos() {
         labelTodoGroupName.setText("Today");
         actualSelectedGroup = 2;
+        buttonAllTodos.setStyle("-fx-background-color:  transparent");
+        buttonTodayTodos.setStyle("-fx-background-color:  #8D8D8D");
+        buttonTomorrowTodos.setStyle("-fx-background-color:  transparent");
+        buttonCompletedTodos.setStyle("-fx-background-color:  transparent");
         refresher.setActualGroupTodos(TodoHandler.getTodayTodos(model.getUser()));
         refresher.refreshTodos(actualSelectedGroup);
     }
@@ -109,6 +122,10 @@ public class TodosScreenController {
     public void handleTomorrowTodos() {
         labelTodoGroupName.setText("Tomorrow");
         actualSelectedGroup = 3;
+        buttonAllTodos.setStyle("-fx-background-color:  transparent");
+        buttonTodayTodos.setStyle("-fx-background-color:  transparent");
+        buttonTomorrowTodos.setStyle("-fx-background-color:  #8D8D8D");
+        buttonCompletedTodos.setStyle("-fx-background-color:  transparent");
         refresher.setActualGroupTodos(TodoHandler.getTomorrowTodos(model.getUser()));
         refresher.refreshTodos(actualSelectedGroup);
     }
@@ -116,6 +133,10 @@ public class TodosScreenController {
     public void handleCompletedTodos() {
         labelTodoGroupName.setText("Completed");
         actualSelectedGroup = 4;
+        buttonAllTodos.setStyle("-fx-background-color:  transparent");
+        buttonTodayTodos.setStyle("-fx-background-color:  transparent");
+        buttonTomorrowTodos.setStyle("-fx-background-color:  transparent");
+        buttonCompletedTodos.setStyle("-fx-background-color:  #8D8D8D");
         refresher.setActualGroupTodos(TodoHandler.getCompletedTodos(model.getUser()));
         refresher.refreshTodos(actualSelectedGroup);
     }
