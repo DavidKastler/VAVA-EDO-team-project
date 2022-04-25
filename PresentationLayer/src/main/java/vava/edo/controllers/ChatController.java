@@ -10,6 +10,7 @@ import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.input.ScrollEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -27,9 +28,22 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.time.Instant;
 import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.ResourceBundle;
+import java.util.concurrent.TimeUnit;
 
 
 public class ChatController implements Initializable {
+    public MouseEvent getEvent() {
+        return event;
+    }
+
+    public void setEvent(MouseEvent event) {
+        this.event = event;
+    }
+
+    private MouseEvent event;
 
     @FXML
     private AnchorPane rootPane;
@@ -160,6 +174,7 @@ public class ChatController implements Initializable {
             //System.out.println(id1);
             Button button = new Button();
             Boolean color;
+            String username;
             if (i % 2 == 0){
                 color = false;
             } else {
@@ -214,6 +229,7 @@ public class ChatController implements Initializable {
         } catch (IOException e) {
             System.out.println("Internet is not connected");
         }
+        messages_list.heightProperty().addListener(observable -> chat_pane.setVvalue(1D));
 
     }
 
@@ -256,11 +272,11 @@ public class ChatController implements Initializable {
                 messages_list.getChildren().add(hbox);
             }
 
-        }
-
-        chat_pane.vvalueProperty().bind(messages_list.heightProperty());
 
         }
+
+
+    }
 
     @FXML
     public void handleSearchChatButton(KeyEvent keyEvent) throws IOException {
@@ -270,14 +286,6 @@ public class ChatController implements Initializable {
 
     @FXML
     public void handleNewChatButton(MouseEvent mouseEvent) throws IOException {
-        //ak je dobry nazov chatu
-        //chat_name.setText(search_field.getText());
-        //chat_name.setVisible(true);
-        //chat_name_error.setStyle("-fx-text-fill: transparent");
-
-        //ak neni dobry nazov chatu
-        //chat_name_error.setStyle("-fx-text-fill: red");
-
         rootPane11.setVisible(true);
         rootPane11.setDisable(false);
         chat_screen_box.setDisable(true);
@@ -293,6 +301,7 @@ public class ChatController implements Initializable {
         rootPane1.setDisable(false);
         chat_screen_box.setDisable(true);
         //chat_screen_box.setVisible(false);
+
     }
 
 
@@ -402,4 +411,20 @@ public class ChatController implements Initializable {
     }
 
 
+    public void checkIfOnTop(ScrollEvent scrollEvent) {
+
+        if (chat_pane.getVvalue() == chat_pane.getVmin()){
+            System.out.println("Si na vrchu");
+            chat_pane.setVvalue(1D);
+
+            try {
+                handleViewChatButton(this.getEvent());
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+
+        }
+
+    }
 }
