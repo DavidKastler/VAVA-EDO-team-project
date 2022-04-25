@@ -101,10 +101,6 @@ public class TodosScreenController {
 
         refresher.initLoader();
         actualSelectedGroup = 1;
-        buttonAllTodos.setStyle("-fx-background-color:  #8D8D8D");
-        buttonTodayTodos.setStyle("-fx-background-color:  transparent");
-        buttonTomorrowTodos.setStyle("-fx-background-color:  transparent");
-        buttonCompletedTodos.setStyle("-fx-background-color:  transparent");
 
         scrollPaneTodos.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
         scrollPaneTodos.setVbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
@@ -115,10 +111,7 @@ public class TodosScreenController {
     public void handleAllTodos() {
         labelTodoGroupName.setText("All");
         actualSelectedGroup = 1;
-        buttonAllTodos.setStyle("-fx-background-color:  #8D8D8D");
-        buttonTodayTodos.setStyle("-fx-background-color:  transparent");
-        buttonTomorrowTodos.setStyle("-fx-background-color:  transparent");
-        buttonCompletedTodos.setStyle("-fx-background-color:  transparent");
+
         refresher.setActualGroupTodos(model.getUser().getTodos());
         refresher.refreshTodos(actualSelectedGroup);
 
@@ -128,10 +121,6 @@ public class TodosScreenController {
     public void handleTodayTodos() {
         labelTodoGroupName.setText("Today");
         actualSelectedGroup = 2;
-        buttonAllTodos.setStyle("-fx-background-color:  transparent");
-        buttonTodayTodos.setStyle("-fx-background-color:  #8D8D8D");
-        buttonTomorrowTodos.setStyle("-fx-background-color:  transparent");
-        buttonCompletedTodos.setStyle("-fx-background-color:  transparent");
         refresher.setActualGroupTodos(TodoHandler.getTodayTodos(model.getUser()));
         refresher.refreshTodos(actualSelectedGroup);
 
@@ -141,10 +130,6 @@ public class TodosScreenController {
     public void handleTomorrowTodos() {
         labelTodoGroupName.setText("Tomorrow");
         actualSelectedGroup = 3;
-        buttonAllTodos.setStyle("-fx-background-color:  transparent");
-        buttonTodayTodos.setStyle("-fx-background-color:  transparent");
-        buttonTomorrowTodos.setStyle("-fx-background-color:  #8D8D8D");
-        buttonCompletedTodos.setStyle("-fx-background-color:  transparent");
         refresher.setActualGroupTodos(TodoHandler.getTomorrowTodos(model.getUser()));
         refresher.refreshTodos(actualSelectedGroup);
 
