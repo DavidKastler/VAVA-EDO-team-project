@@ -28,7 +28,9 @@ public class GroupHandler {
                     .routeParam("token", String.valueOf(userId))
                     .asJson();
 
-            ResponseMessage responseMessage = new Gson().fromJson(groupsJson.getBody().getObject().toString(), ResponseMessage.class);
+            ResponseMessage responseMessage = null;
+            if (groupsJson.getBody().getObject() != null) {
+            responseMessage = new Gson().fromJson(groupsJson.getBody().getObject().toString(), ResponseMessage.class); }
             if (groupsJson.getStatus() != 200) throw new UnexpectedHttpStatusException(groupsJson.getStatus(), 200, responseMessage.getMessage());
 
             for (Object group: groupsJson.getBody().getArray()){
@@ -69,7 +71,7 @@ public class GroupHandler {
             HttpResponse<JsonNode> membersJson = Unirest.post("http://localhost:8080/groupMembers/members/add/{group_id}?token={token}")
                     .header("Content-type", "application/json")
                     .routeParam("token", String.valueOf(userId))
-                    .routeParam("group_id", String.valueOf(createdGroup.getGrId()))
+                    .routeParam("group_id", String.valueOf(createdGroup.getGroupId()))
                     .body(Arrays.toString(memberIds))
                     .asJson();
 

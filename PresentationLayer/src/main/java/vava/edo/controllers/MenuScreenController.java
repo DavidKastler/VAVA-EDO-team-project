@@ -12,8 +12,6 @@ import vava.edo.Handlers.UserHandler;
 import vava.edo.controllers.models.*;
 import vava.edo.models.User;
 
-import java.util.SimpleTimeZone;
-
 public class MenuScreenController {
     private User user;
 
@@ -120,9 +118,14 @@ public class MenuScreenController {
     }
 
     public void handleAdminButton(MouseEvent mouseEvent) {
-        System.out.println("ddada");
-        hBoxChangingScreen.getChildren().clear();
-        hBoxChangingScreen.getChildren().add(new AdminScreenModel(user).getAdminScreen());
+
+        if (this.user.getUserRole().getRoleName().equals("admin")) {
+            hBoxChangingScreen.getChildren().clear();
+            hBoxChangingScreen.getChildren().add(new AdminScreenModel(user, this).getAdminScreen()); }
+        else if (this.user.getUserRole().getRoleName().equals("account_manager")) {
+            hBoxChangingScreen.getChildren().clear();
+            hBoxChangingScreen.getChildren().add(new ManagerScreenModel(user).getManagerScreen());
+        }
     }
 
     public void handleSettingsButton() {

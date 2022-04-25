@@ -12,9 +12,15 @@ import java.io.IOException;
 public class AdminScreenModel {
     private AnchorPane adminScreen;
     private final User user;
+    private final MenuScreenController menuScreenController;
 
-    public AdminScreenModel(User user) {
+    public MenuScreenController getMenuScreenController() {
+        return this.menuScreenController;
+    };
+
+    public AdminScreenModel(User user, MenuScreenController menuScreenController) {
         this.user = user;
+        this.menuScreenController = menuScreenController;
 
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/vava/edo/Admin.fxml"));

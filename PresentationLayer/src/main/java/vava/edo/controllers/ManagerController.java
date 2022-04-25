@@ -12,6 +12,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import vava.edo.controllers.models.ManagerScreenModel;
 import vava.edo.models.ManagerViewElementModel;
 
 import java.io.IOException;
@@ -42,6 +43,11 @@ public class ManagerController implements Initializable {
     @FXML
     private CheckBox rejected;
 
+    private ManagerScreenModel model;
+
+    public void setModel(ManagerScreenModel model) {
+        this.model = model;
+    }
 
     public ManagerController() {
 

@@ -16,16 +16,19 @@ public class RecentChatGroup {
     private Long lastSentMessage;
     @NotNull
     private String groupName;
+    @NotNull
+    private Integer groupId;
 
     private final static String SEPARATOR = ",";
 
     public RecentChatGroup(String queryOutput) {
         String[] columns = queryOutput.split(SEPARATOR);
-        if (columns.length != 2) {
+        if (columns.length != 3) {
             // TODO log error
             return;
         }
-        this.groupName = columns[0];
-        this.lastSentMessage = Long.valueOf(columns[1]);
+        this.groupId = Integer.valueOf(columns[0]);
+        this.groupName = columns[1];
+        this.lastSentMessage = Long.valueOf(columns[2]);
     }
 }
