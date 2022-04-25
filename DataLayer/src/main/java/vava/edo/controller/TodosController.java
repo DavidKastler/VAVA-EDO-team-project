@@ -32,11 +32,12 @@ public class TodosController {
     public TodosController(TodosService todosService, GroupService groupService, UserService userService) {
         this.todosService = todosService;
         this.groupService = groupService;
-        this.userService =userService;
+        this.userService = userService;
     }
 
     /**
      * Endpoint used to create a new to-do
+     *
      * @param token   user account id
      * @param todoDto data transfer object for to-do class
      * @return response entity containing to-do and http status 201 / 401 / 404
@@ -56,9 +57,10 @@ public class TodosController {
 
     /**
      * Endpoint that completes to-do for user
-     * @param token     user account id
-     * @param todoId    id of to-do we want to complete
-     * @return          updated to-do
+     *
+     * @param token  user account id
+     * @param todoId id of to-do we want to complete
+     * @return updated to-do
      */
     @PutMapping("/complete/{todoId}")
     public ResponseEntity<Todo> completeTodoById(@RequestParam(value = "token") Integer token,
@@ -69,8 +71,9 @@ public class TodosController {
 
     /**
      * Endpoint used to delete a specific to-do
-     * @param token     user account id
-     * @param todoId    id of to-do we want to delete
+     *
+     * @param token  user account id
+     * @param todoId id of to-do we want to delete
      * @return response entity containing deleted to-do and http status 200 / 401 / 404
      */
     @DeleteMapping("/delete/{todoId}")
@@ -87,9 +90,10 @@ public class TodosController {
 
     /**
      * Endpoint used to edit a specific to-do
-     * @param token     user account id
-     * @param todoId    id of to-do we want to update
-     * @param todoDto   data transfer object for To-do class
+     *
+     * @param token   user account id
+     * @param todoId  id of to-do we want to update
+     * @param todoDto data transfer object for To-do class
      * @return response entity containing to-do and http status 200 / 400 / 404
      */
     @PutMapping("/edit/{todoId}")
@@ -107,12 +111,13 @@ public class TodosController {
 
     /**
      * Endpoint returning a list of all users todos
-     * @param token   user account id whose messages we want to show
+     *
+     * @param token user account id whose messages we want to show
      * @return list of users todos and http status 200 / 404
      */
     @GetMapping("/get")
-    public ResponseEntity<List<Todo>> getAllTodos(@RequestParam(value = "token")  Integer token) {
-        log.info("Getll all ToDos.");
+    public ResponseEntity<List<Todo>> getAllTodos(@RequestParam(value = "token") Integer token) {
+        log.info("Get all ToDos.");
         // TODO handle if admin checks todos
         return new ResponseEntity<>(todosService.getAllTodosForUser(token), HttpStatus.OK);
     }

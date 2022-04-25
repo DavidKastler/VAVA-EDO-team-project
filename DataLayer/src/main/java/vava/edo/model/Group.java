@@ -1,5 +1,6 @@
 package vava.edo.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -8,6 +9,7 @@ import vava.edo.schema.groups.GroupCreate;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * Class representing group in groups table
@@ -30,6 +32,13 @@ public class Group implements Serializable {
     private User groupCreator;
 
 
+    @JsonIgnore
+    @OneToMany(mappedBy = "group", cascade = CascadeType.ALL)
+    private List<GroupMember> groupMembers;
+    @JsonIgnore
+    @OneToMany(mappedBy = "group", cascade = CascadeType.ALL)
+    private List<Chat> chats;
+
     /**
      * Static casting method from GroupCreate object
      *
@@ -41,7 +50,6 @@ public class Group implements Serializable {
         group.setGroupName(groupCreate.getGroupName());
         return group;
     }
-
 
     /**
      * Debugging method

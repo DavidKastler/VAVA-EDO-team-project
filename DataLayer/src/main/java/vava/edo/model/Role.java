@@ -4,7 +4,6 @@ package vava.edo.model;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
 
@@ -32,10 +31,10 @@ public class Role {
     @Column(name = "admin_rights", nullable = false)
     private boolean adminRights;
 
-
     /**
      * Debugging method
-     * @return  string with method variables
+     *
+     * @return string with method variables
      */
     @Override
     public String toString() {

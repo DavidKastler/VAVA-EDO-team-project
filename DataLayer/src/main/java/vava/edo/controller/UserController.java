@@ -8,11 +8,12 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 import vava.edo.model.User;
-import vava.edo.schema.users.UserLogin;
 import vava.edo.schema.users.UserEdit;
+import vava.edo.schema.users.UserLogin;
 import vava.edo.service.UserService;
 
 import java.util.List;
+import java.util.Objects;
 
 /**
  * Class that provides endpoints for user operations
@@ -29,6 +30,12 @@ public class UserController {
         this.userService = userService;
     }
 
+    /**
+     * Endpoint to log in user based on sending login credentials
+     *
+     * @param userLogin user login credentials
+     * @return user entity from database
+     */
     @PostMapping(value = "/login")
     public ResponseEntity<User> loginUser(@RequestBody UserLogin userLogin) {
         log.info("Logging user {}.", userLogin.getUsername());
@@ -38,12 +45,26 @@ public class UserController {
         return new ResponseEntity<>(user, HttpStatus.OK);
     }
 
+    /**
+     * Endpoint for registering new user, works same as login but here it saves to database
+     *
+     * @param userDto register credentials
+     * @return user entity from database
+     */
     @PostMapping(value = "/register")
-    public ResponseEntity<Object> registerNewUser(@RequestBody UserEdit userDto) {
+    public ResponseEntity<User> registerNewUser(@RequestBody UserLogin userDto) {
         log.info("Register new user {}.", userDto.getUsername());
         return new ResponseEntity<>(userService.addUser(userDto), HttpStatus.CREATED);
     }
 
+    /**
+     * Endpoint to update user credentials, its also for user itself
+     *
+     * @param token       user id
+     * @param userId      used id you want to check as admin required = false
+     * @param updatedUser updated user
+     * @return
+     */
     @PutMapping("/update/{userId}")
     public ResponseEntity<User> updateUser(@RequestParam(value = "token") Integer token,
                                            @PathVariable(value = "userId", required = false) Integer userId,
@@ -66,10 +87,18 @@ public class UserController {
         return new ResponseEntity<>(user, HttpStatus.OK);
     }
 
+    /**
+     * Endpoint to edit all user variables
+     *
+     * @param token      user id
+     * @param userId     user id you want to edit
+     * @param editedUser edited user parameters you want to save
+     * @return edited user
+     */
     @PutMapping("/edit/{userId}")
     public ResponseEntity<User> editUser(@RequestParam(value = "token") Integer token,
-                                             @PathVariable(value = "userId") Integer userId,
-                                             @RequestBody UserEdit editedUser) {
+                                         @PathVariable(value = "userId") Integer userId,
+                                         @RequestBody UserEdit editedUser) {
         log.info("Editing user profile.");
         if (!userService.isAdmin(token)) {
             log.warn("Edit rejected, insufficient rights to edit user profile.");
@@ -82,6 +111,13 @@ public class UserController {
         return new ResponseEntity<>(user, HttpStatus.OK);
     }
 
+    /**
+     * Endpoint that deletes user
+     *
+     * @param token  user id
+     * @param userId user id you want to delete
+     * @return deleted user
+     */
     @DeleteMapping(value = "/delete/{u_id}")
     public ResponseEntity<Object> deleteUserById(@RequestParam(value = "token") Integer token,
                                                  @PathVariable(value = "u_id") Integer userId) {
@@ -90,9 +126,19 @@ public class UserController {
             log.warn("Deleted request rejected, insufficient rights to delete user.");
             throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "This action requires admin privileges.");
         }
+        if (Objects.equals(token, userId)) {
+            log.info("{} tried to delete himself.", getAllUsers(token));
+            throw new ResponseStatusException(HttpStatus.CONFLICT, "Account manager cant delete himself.");
+        }
         return new ResponseEntity<>(userService.deleteUser(userId), HttpStatus.NO_CONTENT);
     }
 
+    /**
+     * Endpoint that gets all users from database
+     *
+     * @param token user id
+     * @return list of all users
+     */
     @GetMapping(value = "/all")
     public ResponseEntity<List<User>> getAllUsers(@RequestParam(value = "token") Integer token) {
         log.info("Getting all users from database.");
@@ -104,16 +150,22 @@ public class UserController {
         return new ResponseEntity<>(userService.getAllUsers(), HttpStatus.OK);
     }
 
+    /**
+     * Endpoint that gets user by its id
+     *
+     * @param token  user id
+     * @param userId wanted user id you want to get as admin required = false
+     * @return found user
+     */
     @GetMapping(value = "/get/{userId}")
     public ResponseEntity<User> getUserById(@RequestParam(value = "token") Integer token,
-                                            @PathVariable(value = "userId", required = false) Integer userId){
+                                            @PathVariable(value = "userId", required = false) Integer userId) {
         log.info("Searching for user with id:{}.", userId);
         int wantedUserId = token;
         // if userId is used and is not equal to token and user is admin
         if (userId != null && !userId.equals(token) && userService.isAdmin(token)) {
             wantedUserId = userId;
-        }
-        else {
+        } else {
             log.warn("Permission to perform this action has been denied. Changing search id to {}.", token);
         }
 

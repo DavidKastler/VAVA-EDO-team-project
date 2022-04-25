@@ -4,8 +4,6 @@ import com.sun.istack.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
-import java.util.Arrays;
-
 
 /**
  * Data transfer object for Chat class
@@ -24,6 +22,7 @@ public class RecentChatGroup {
     public RecentChatGroup(String queryOutput) {
         String[] columns = queryOutput.split(SEPARATOR);
         if (columns.length != 2) {
+            // TODO log error
             return;
         }
         this.groupName = columns[0];

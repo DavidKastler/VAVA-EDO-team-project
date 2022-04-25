@@ -2,7 +2,7 @@
 <!--https://lankydan.dev/2019/01/09/configuring-logback-with-spring-boot-->
 <configuration>
 
-    <property name="LOGS" value="Datalayer/src/main/resources/log/" />
+    <property name="LOGS" value="Datalayer/src/main/resources/log/"/>
 
     <appender name="Console"
               class="ch.qos.logback.core.ConsoleAppender">
@@ -35,14 +35,14 @@
 
     <!-- LOG everything at INFO level -->
     <root level="info">
-<!--        <appender-ref ref="RollingFile" level="warn"/>-->
-        <appender-ref ref="Console" />
+        <!--        <appender-ref ref="RollingFile" level="warn"/>-->
+        <appender-ref ref="Console"/>
     </root>
 
     <!-- LOG "vava.edo*" at info level -->
     <logger name="vava.edo" level="info" additivity="false">
-        <appender-ref ref="RollingFile" />
-        <appender-ref ref="Console" />
+        <appender-ref ref="RollingFile"/>
+        <appender-ref ref="Console"/>
     </logger>
 
 </configuration>

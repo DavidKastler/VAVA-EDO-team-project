@@ -1,11 +1,12 @@
 package vava.edo.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.server.ResponseStatusException;
 import vava.edo.model.Report;
 import vava.edo.model.enums.ReportStatus;
-import vava.edo.model.exeption.TaskNotFoundException;
 import vava.edo.repository.ReportRepository;
 import vava.edo.schema.reports.ReportCreate;
 
@@ -28,15 +29,18 @@ public class ReportService {
 
     /**
      * Method that returns report from reportId or throws if not found
-     * @param reportId  id of searched report
-     * @return  Report object
+     *
+     * @param reportId id of searched report
+     * @return Report object
      */
     public Report getReport(Integer reportId) {
-        return reportRepository.findById(reportId).orElseThrow(() -> new TaskNotFoundException(reportId));
+        return reportRepository.findById(reportId).orElseThrow(
+                () -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Report id not found."));
     }
 
     /**
      * Method that returns all reports
+     *
      * @return list of report objects
      */
     public List<Report> getAllReports() {
@@ -45,6 +49,7 @@ public class ReportService {
 
     /**
      * Method that returns all reports
+     *
      * @return list of report objects
      */
     public List<Report> getAllPendingReports() {
@@ -53,8 +58,9 @@ public class ReportService {
 
     /**
      * Method used to create a new report
-     * @param reportDto     report data transfer object
-     * @return  created report object
+     *
+     * @param reportDto report data transfer object
+     * @return created report object
      */
     public Report addReport(ReportCreate reportDto) {
         Report report = Report.from(reportDto);
@@ -65,26 +71,28 @@ public class ReportService {
 
     /**
      * Method used to change report status to accepted
-     * @param reportId  id of report we want to accept
-     * @return      resulting report object
+     *
+     * @param reportId id of report we want to accept
+     * @return resulting report object
      */
     @Transactional
     public Report acceptReport(Integer reportId) {
         Report report = getReport(reportId);
         userService.deleteUser(report.getViolator().getUId());
-        report.setStatus(ReportStatus.accepted);
+        report.setStatus(ReportStatus.ACCEPTED);
         return report;
     }
 
     /**
      * Method used to change report status to rejected
-     * @param reportId  id of report we want to reject
-     * @return      resulting report object
+     *
+     * @param reportId id of report we want to reject
+     * @return resulting report object
      */
     @Transactional
     public Report rejectReport(Integer reportId) {
         Report report = getReport(reportId);
-        report.setStatus(ReportStatus.rejected);
+        report.setStatus(ReportStatus.REJECTED);
         return report;
     }
 }
