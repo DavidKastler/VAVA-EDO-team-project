@@ -9,6 +9,9 @@ import vava.edo.Handlers.RefreshTodoScreen;
 import vava.edo.Handlers.TodoHandler;
 import vava.edo.controllers.models.TodoScreenModel;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
 
 public class TodosScreenController {
     private TodoScreenModel model;
@@ -199,9 +202,11 @@ public class TodosScreenController {
         textFieldTaskName.setText(labelTodoInfoName.getText());
         textAreaTaskDescription.setText(labelTodoInfoDescription.getText());
         textFieldTaskGroup.setText(labelTodoInfoGroup.getText());
-        // datePickerTaskFrom.
-        // datePickerTaskFrom.
-        // TODO datum to datepickrvo sa naplna cez konstruktor tak sa na to pozri potom Mario
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        LocalDate fromDate = LocalDate.parse(refresher.getSelectedTodo().getFromTime(), formatter);
+        LocalDate toDate = LocalDate.parse(refresher.getSelectedTodo().getToTime(), formatter);
+        datePickerTaskFrom.setValue(fromDate);
+        datePickerTaskTo.setValue(toDate);
         vBoxNewTaskScreen.setVisible(true);
         vBoxNewTaskScreen.setDisable(false);
         buttonEditTodo.setVisible(true);

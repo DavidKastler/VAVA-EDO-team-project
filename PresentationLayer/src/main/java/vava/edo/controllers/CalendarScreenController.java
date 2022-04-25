@@ -55,7 +55,7 @@ public class CalendarScreenController {
     public void setModel(CalendarScreenModel model) {
         this.model = model;
         this.refresher = new RefreshCalendarScreen(model.getUser(), vBoxNewTaskScreen, vBoxWeeks, labelTitleWindow,
-                textFieldTaskName, textFieldTaskGroup, textAreaTaskDescription, buttonAcceptTodo, buttonEditTodo);
+                textFieldTaskName, textFieldTaskGroup, textAreaTaskDescription, datePickerTaskFrom, datePickerTaskTo, buttonAcceptTodo, buttonEditTodo);
         labelSelectedMonth.setText(refresher.getSelectedMonthandYear());
 
         scrollPaneCalendar.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
