@@ -18,7 +18,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class LoginScreenController implements Initializable {
-    private User user;
+    private User user = null;
     private boolean rememberMeState = false;
 
     @FXML
@@ -58,8 +58,7 @@ public class LoginScreenController implements Initializable {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/vava/edo/Menu.fxml"));
             AnchorPane todoScreen = loader.load();
             MenuScreenController menuScreen = loader.getController();
-            menuScreen.initialize(user);
-
+            menuScreen.initialize(user, rootPane);
 
             rootPane.getChildren().setAll(todoScreen);
         }
