@@ -19,6 +19,9 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
+import vava.edo.models.ChatGrayElementModel;
+import vava.edo.models.ChatPinkElementModel;
+import vava.edo.models.ManagerViewElementModel;
 
 import java.io.IOException;
 import java.net.URL;
@@ -58,7 +61,20 @@ public class ChatController implements Initializable {
     @FXML
     private VBox messages_list;
 
+    @FXML
+    private AnchorPane rootPane1;
 
+    @FXML
+    private HBox report_hbox;
+
+    @FXML
+    private HBox chat_screen_box;
+
+    @FXML
+    private TextArea text_area;
+
+    @FXML
+    private Label chat_name_error;
 
     public ChatController() {
 
@@ -122,7 +138,6 @@ public class ChatController implements Initializable {
             label.setAlignment(Pos.CENTER_RIGHT);
             box.setAlignment(Pos.BOTTOM_RIGHT);
             box.setMargin(label, new Insets(5, 10, 5, 5));
-            System.out.println("Pridana farba");
         }
         label.setPadding(new Insets(10,30,10,30));
 
@@ -214,23 +229,25 @@ public class ChatController implements Initializable {
         String isLogged2 = "";
         String lastActivity2 = "";
         */
-
         List<String> usernames = new ArrayList<>();
         usernames.add("Jano");
         usernames.add("Fero");
-        usernames.add("Kubo");
-        usernames.add("Lubo");
-        usernames.add("Eva");
-        usernames.add("Katka");
-        usernames.add("Hana");
-        usernames.add("Karol");
-        usernames.add("Adam");
-        usernames.add("Erzika");
-        usernames.add("Gizela");
-        usernames.add("Gustav");
-        usernames.add("Adolf");
+        usernames.add("Jano");
+        usernames.add("Fero");
+        usernames.add("Jano");
+        usernames.add("Jano");
+        usernames.add("Jano");
+        usernames.add("Fero");
+        usernames.add("Jano");
+        usernames.add("Fero");
+        usernames.add("Fero");
+        usernames.add("Jano");
+        usernames.add("Fero");
 
         writeChatList(usernames);
+
+
+
 
 
     }
@@ -250,7 +267,7 @@ public class ChatController implements Initializable {
 
         chat_name.setStyle("-fx-text-fill: #000000");
         chat_name.setText(actualButton.getText());
-
+        /*
         List<String> userIdList = new ArrayList<>();
         List<String> messageList = new ArrayList<>();
 
@@ -279,6 +296,66 @@ public class ChatController implements Initializable {
         messageList.add("jkch asausbcli asbcb");
 
         writeChatMessages(userIdList, messageList);
+        */
+
+        List<String> usernames = new ArrayList<>();
+        usernames.add("Jano");
+        usernames.add("Fero");
+        usernames.add("Jano");
+        usernames.add("Fero");
+        usernames.add("Jano");
+        usernames.add("Jano");
+        usernames.add("Jano");
+        usernames.add("Fero");
+        usernames.add("Jano");
+        usernames.add("Fero");
+        usernames.add("Fero");
+        usernames.add("Jano");
+        usernames.add("Fero");
+
+        List<String> time = new ArrayList<>();
+        time.add("12");
+        time.add("13");
+        time.add("14");
+        time.add("15");
+        time.add("16");
+        time.add("17896");
+        time.add("1234");
+        time.add("1264");
+        time.add("12346");
+        time.add("12");
+        time.add("16");
+        time.add("17896");
+        time.add("32");
+
+        List<String> messages = new ArrayList<>();
+        messages.add("aa aa aa aa aa aa aa aa aa aa aa aa aa a  a a a a");
+        messages.add("ascljhauco ubABX");
+        messages.add("ASCLIUL alicsb ");
+        messages.add("askcsb  alisc lsbca clacbk avzlcacbasilcb");
+        messages.add("akcs aslibalc ");
+        messages.add("acskhjhavsc ac vkau cvavkc");
+        messages.add("sjdvb asocuaocbaj cabc");
+        messages.add("avdascsc");
+        messages.add("asau baicb isc b a aisbc");
+        messages.add("asckba liscb abscbl acsbscl");
+        messages.add("alkcb acbla c vascia cs");
+        messages.add("as,chal cbjcva scv  ua acscacca asc kavc");
+        messages.add(",ajsvc avc a lcsivkausvca vavsc  acsn");
+
+        for (Integer i = 0; i < usernames.size(); i++){
+            if (usernames.get(i).equals("Jano")){
+                ChatGrayElementModel element = new ChatGrayElementModel(messages.get(i), usernames.get(i), time.get(i));
+                HBox hbox = element.getMessageBox();
+                messages_list.getChildren().add(hbox);
+            } else {
+                ChatPinkElementModel element = new ChatPinkElementModel(messages.get(i), usernames.get(i), time.get(i));
+                HBox hbox = element.getMessageBox();
+                messages_list.getChildren().add(hbox);
+            }
+
+
+        }
 
 
         }
@@ -291,11 +368,24 @@ public class ChatController implements Initializable {
 
     @FXML
     public void handleNewChatButton(MouseEvent mouseEvent) throws IOException {
-        //
+        //ak je dobry nazov chatu
+        chat_name.setText(search_field.getText());
+        chat_name.setVisible(true);
+        chat_name_error.setStyle("-fx-text-fill: transparent");
+
+        //ak neni dobry nazov chatu
+        chat_name_error.setStyle("-fx-text-fill: red");
     }
 
     @FXML
     public void handleReportUserButton(MouseEvent mouseEvent) throws IOException {
+
+        report_hbox.setVisible(true);
+        report_hbox.setDisable(false);
+        chat_screen_box.setDisable(true);
+        chat_screen_box.setVisible(false);
+
+        /*
         Parent root;
         try {
             root = FXMLLoader. load(Objects.requireNonNull(getClass().getResource("/vava/edo/ReportScreen.fxml")));
@@ -309,7 +399,7 @@ public class ChatController implements Initializable {
         catch (IOException e) {
             e.printStackTrace();
         }
-
+        */
     }
 
     @FXML
@@ -319,7 +409,11 @@ public class ChatController implements Initializable {
     }
 
 
-
-
-
+    public void handleSendReportButton(MouseEvent mouseEvent) {
+        System.out.println(text_area.getText());
+        report_hbox.setVisible(false);
+        report_hbox.setDisable(true);
+        chat_screen_box.setDisable(false);
+        chat_screen_box.setVisible(true);
+    }
 }

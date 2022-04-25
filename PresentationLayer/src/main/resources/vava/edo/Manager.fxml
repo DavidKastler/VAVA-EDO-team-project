@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -40,30 +40,30 @@
                            <children>
                               <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="120.0" prefWidth="260.0">
                                  <children>
-                                    <RadioButton fx:id="pending_button" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#refreshReportList" prefHeight="30.0" prefWidth="180.0" selected="true" text="Pending" textFill="WHITE">
+                                    <CheckBox fx:id="pending" mnemonicParsing="false" onAction="#refreshReportList" prefHeight="30.0" prefWidth="160.0" text="Pending" textFill="WHITE">
                                        <font>
-                                          <Font name="Arial" size="22.0" />
+                                          <Font name="Arial Bold" size="20.0" />
                                        </font>
                                        <VBox.margin>
-                                          <Insets top="5.0" />
+                                          <Insets top="10.0" />
                                        </VBox.margin>
-                                    </RadioButton>
-                                    <RadioButton fx:id="accepted_button" layoutX="50.0" layoutY="55.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#refreshReportList" prefHeight="30.0" prefWidth="180.0" selected="true" text="Accepted" textFill="WHITE">
+                                    </CheckBox>
+                                    <CheckBox fx:id="accepted" layoutX="60.0" layoutY="60.0" mnemonicParsing="false" onAction="#refreshReportList" prefHeight="30.0" prefWidth="160.0" text="Accepted" textFill="WHITE">
                                        <font>
-                                          <Font name="Arial" size="22.0" />
+                                          <Font name="Arial Bold" size="20.0" />
                                        </font>
                                        <VBox.margin>
-                                          <Insets top="5.0" />
+                                          <Insets top="10.0" />
                                        </VBox.margin>
-                                    </RadioButton>
-                                    <RadioButton fx:id="rejected_button" layoutX="50.0" layoutY="70.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#refreshReportList" prefHeight="30.0" prefWidth="180.0" selected="true" text="Rejected" textFill="WHITE">
+                                    </CheckBox>
+                                    <CheckBox fx:id="rejected" layoutX="60.0" layoutY="76.0" mnemonicParsing="false" onAction="#refreshReportList" prefHeight="30.0" prefWidth="160.0" text="Rejected" textFill="WHITE">
                                        <font>
-                                          <Font name="Arial" size="22.0" />
+                                          <Font name="Arial Bold" size="20.0" />
                                        </font>
                                        <VBox.margin>
-                                          <Insets top="5.0" />
+                                          <Insets top="10.0" />
                                        </VBox.margin>
-                                    </RadioButton>
+                                    </CheckBox>
                                  </children>
                               </VBox>
                            </children>
