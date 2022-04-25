@@ -134,11 +134,11 @@
                               <Insets bottom="5.0" />
                            </VBox.margin>
                         </Button>
-                        <ScrollPane prefHeight="620.0" prefWidth="429.0" style="-fx-background-color: #323232; -fx-background:  #323232;">
+                        <ScrollPane fx:id="scrollPaneTodos" prefHeight="620.0" prefWidth="430.0" style="-fx-background-color: #323232; -fx-background:  #323232;">
                           <content>
-                            <AnchorPane minHeight="0.0" minWidth="0.0" prefWidth="410.0" style="-fx-background-color: transparent;">
+                            <AnchorPane minHeight="0.0" minWidth="0.0" style="-fx-background-color: transparent;">
                                  <children>
-                                    <VBox fx:id="vBoxTodos" alignment="TOP_CENTER" prefWidth="408.0" style="-fx-border-color: #555555; -fx-border-width: 0 0 0 0;">
+                                    <VBox fx:id="vBoxTodos" alignment="TOP_CENTER" style="-fx-border-color: #555555; -fx-border-width: 0 0 0 0;">
                                        <padding>
                                           <Insets top="10.0" />
                                        </padding>
@@ -220,7 +220,7 @@
          <children>
             <VBox fx:id="vBoxNewTaskWindow" alignment="CENTER" maxWidth="-Infinity" prefHeight="441.0" prefWidth="548.0" spacing="10.0" style="-fx-background-color: black;">
                <children>
-                  <Label alignment="TOP_CENTER" prefHeight="41.0" prefWidth="508.0" style="-fx-border-color: #888888; -fx-border-width: 0 0 1 0;" text="New Todo" textFill="WHITE">
+                  <Label fx:id="labelTitleWindow" alignment="TOP_CENTER" prefHeight="41.0" prefWidth="508.0" style="-fx-border-color: #888888; -fx-border-width: 0 0 1 0;" text="New Todo" textFill="WHITE">
                      <font>
                         <Font name="Arial Bold" size="25.0" />
                      </font>

@@ -36,9 +36,16 @@ public class TodosScreenController {
     @FXML
     private VBox vBoxTodos;
 
+    @FXML
+    private ScrollPane scrollPaneTodos;
+
+
     // FXML elements for new to_do window
     @FXML
     private VBox vBoxNewTaskScreen;
+
+    @FXML
+    private Label labelTitleWindow;
 
     @FXML
     private TextField textFieldTaskName;
@@ -90,11 +97,23 @@ public class TodosScreenController {
                 labelTodoInfoName, labelTodoInfoDescription, labelTodoInfoGroup, buttonEditTodoInfo, buttonDeleteTodo);
 
         refresher.initLoader();
+        actualSelectedGroup = 1;
+        buttonAllTodos.setStyle("-fx-background-color:  #8D8D8D");
+        buttonTodayTodos.setStyle("-fx-background-color:  transparent");
+        buttonTomorrowTodos.setStyle("-fx-background-color:  transparent");
+        buttonCompletedTodos.setStyle("-fx-background-color:  transparent");
+
+        scrollPaneTodos.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
+        scrollPaneTodos.setVbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
     }
 
     public void handleAllTodos() {
         labelTodoGroupName.setText("All");
         actualSelectedGroup = 1;
+        buttonAllTodos.setStyle("-fx-background-color:  #8D8D8D");
+        buttonTodayTodos.setStyle("-fx-background-color:  transparent");
+        buttonTomorrowTodos.setStyle("-fx-background-color:  transparent");
+        buttonCompletedTodos.setStyle("-fx-background-color:  transparent");
         refresher.setActualGroupTodos(model.getUser().getTodos());
         refresher.refreshTodos(actualSelectedGroup);
     }
@@ -102,6 +121,10 @@ public class TodosScreenController {
     public void handleTodayTodos() {
         labelTodoGroupName.setText("Today");
         actualSelectedGroup = 2;
+        buttonAllTodos.setStyle("-fx-background-color:  transparent");
+        buttonTodayTodos.setStyle("-fx-background-color:  #8D8D8D");
+        buttonTomorrowTodos.setStyle("-fx-background-color:  transparent");
+        buttonCompletedTodos.setStyle("-fx-background-color:  transparent");
         refresher.setActualGroupTodos(TodoHandler.getTodayTodos(model.getUser()));
         refresher.refreshTodos(actualSelectedGroup);
     }
@@ -109,6 +132,10 @@ public class TodosScreenController {
     public void handleTomorrowTodos() {
         labelTodoGroupName.setText("Tomorrow");
         actualSelectedGroup = 3;
+        buttonAllTodos.setStyle("-fx-background-color:  transparent");
+        buttonTodayTodos.setStyle("-fx-background-color:  transparent");
+        buttonTomorrowTodos.setStyle("-fx-background-color:  #8D8D8D");
+        buttonCompletedTodos.setStyle("-fx-background-color:  transparent");
         refresher.setActualGroupTodos(TodoHandler.getTomorrowTodos(model.getUser()));
         refresher.refreshTodos(actualSelectedGroup);
     }
@@ -116,15 +143,20 @@ public class TodosScreenController {
     public void handleCompletedTodos() {
         labelTodoGroupName.setText("Completed");
         actualSelectedGroup = 4;
+        buttonAllTodos.setStyle("-fx-background-color:  transparent");
+        buttonTodayTodos.setStyle("-fx-background-color:  transparent");
+        buttonTomorrowTodos.setStyle("-fx-background-color:  transparent");
+        buttonCompletedTodos.setStyle("-fx-background-color:  #8D8D8D");
         refresher.setActualGroupTodos(TodoHandler.getCompletedTodos(model.getUser()));
         refresher.refreshTodos(actualSelectedGroup);
     }
 
     @FXML
     protected void handleAddNewTodo() {
-        System.out.println("Clicked add new task button");
+        System.out.println("Clicked add new task button (Todo screen)");
 
         // Have to be emptied before use
+        labelTitleWindow.setText("New Todo");
         textFieldTaskName.setText("");
         textAreaTaskDescription.setText("");
         textFieldTaskGroup.setText("");
@@ -163,7 +195,7 @@ public class TodosScreenController {
 
     @FXML
     public void handleEditTodoInfo() {
-        // TODO zmenit nazov new task na edit todo
+        labelTitleWindow.setText("Edit Todo");
         textFieldTaskName.setText(labelTodoInfoName.getText());
         textAreaTaskDescription.setText(labelTodoInfoDescription.getText());
         textFieldTaskGroup.setText(labelTodoInfoGroup.getText());
