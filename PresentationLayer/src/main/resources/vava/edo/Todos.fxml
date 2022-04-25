@@ -15,7 +15,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="todoScreen" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1040.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="vava.edo.controllers.TodosScreenController">
+<AnchorPane fx:id="todoScreen" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1040.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="vava.edo.controllers.TodosScreenController">
    <children>
       <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1100.0" style="-fx-background-color: #323232;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -34,7 +34,7 @@
                                                 <Image url="@../../images/all-tasks.png" />
                                              </image>
                                           </ImageView>
-                                          <Label prefHeight="40.0" prefWidth="142.0" text="All" textFill="WHITE">
+                                          <Label prefHeight="40.0" prefWidth="142.0" text="%Todos.all" textFill="WHITE">
                                              <font>
                                                 <Font name="Arial Bold" size="25.0" />
                                              </font>
@@ -55,7 +55,7 @@
                                                 <Image url="@../../images/today-tasks.png" />
                                              </image>
                                           </ImageView>
-                                          <Label prefHeight="40.0" prefWidth="142.0" text="Today" textFill="WHITE">
+                                          <Label prefHeight="40.0" prefWidth="142.0" text="%Todos.today" textFill="WHITE">
                                              <font>
                                                 <Font name="Arial Bold" size="25.0" />
                                              </font>
@@ -76,7 +76,7 @@
                                                 <Image url="@../../images/tomorrow-tasks.png" />
                                              </image>
                                           </ImageView>
-                                          <Label prefHeight="40.0" prefWidth="142.0" text="Tomorrow" textFill="WHITE">
+                                          <Label prefHeight="40.0" prefWidth="142.0" text="%Todos.tomorrow" textFill="WHITE">
                                              <font>
                                                 <Font name="Arial Bold" size="25.0" />
                                              </font>
@@ -97,7 +97,7 @@
                                                 <Image url="@../../images/completed-tasks.png" />
                                              </image>
                                           </ImageView>
-                                          <Label prefHeight="40.0" prefWidth="142.0" text="Completed" textFill="WHITE">
+                                          <Label prefHeight="40.0" prefWidth="142.0" text="%Todos.completed" textFill="WHITE">
                                              <font>
                                                 <Font name="Arial Bold" size="25.0" />
                                              </font>
@@ -118,7 +118,7 @@
                   </VBox>
                   <VBox alignment="TOP_CENTER" prefHeight="750.0" prefWidth="450.0" style="-fx-border-color: #888888; -fx-border-width: 0 1 0 0;">
                      <children>
-                        <Label fx:id="labelTodoGroupName" prefHeight="64.0" prefWidth="430.0" text="All" textFill="WHITE">
+                        <Label fx:id="labelTodoGroupName" prefHeight="64.0" prefWidth="430.0" text="%Todos.all" textFill="WHITE">
                            <font>
                               <Font name="Arial Bold" size="31.0" />
                            </font>
@@ -126,7 +126,7 @@
                               <Insets left="30.0" />
                            </padding>
                         </Label>
-                        <Button fx:id="buttonAddNewTodo" mnemonicParsing="false" onMouseClicked="#handleAddNewTodo" prefHeight="40.0" prefWidth="430.0" style="-fx-background-color: #464646; -fx-background-radius: 10;" text="+ Add new task" textFill="#a4a4a4">
+                        <Button fx:id="buttonAddNewTodo" mnemonicParsing="false" onMouseClicked="#handleAddNewTodo" prefHeight="40.0" prefWidth="430.0" style="-fx-background-color: #464646; -fx-background-radius: 10;" text="%Todos.addNewTask" textFill="#a4a4a4">
                            <font>
                               <Font name="Arial Bold" size="19.0" />
                            </font>
@@ -161,7 +161,7 @@
                                     <Font name="Arial" size="13.0" />
                                  </font>
                               </CheckBox>
-                              <Label fx:id="labelTodoInfoDueTIme" prefHeight="73.0" prefWidth="290.0" text="Today" textFill="#3994ff">
+                              <Label fx:id="labelTodoInfoDueTIme" prefHeight="73.0" prefWidth="290.0" text="%Todos.today" textFill="#3994ff">
                                  <font>
                                     <Font name="Arial Bold" size="25.0" />
                                  </font>
@@ -173,12 +173,12 @@
                         </HBox>
                         <VBox prefHeight="515.0" prefWidth="350.0" style="-fx-border-color: #888888; -fx-border-width: 1 0 1 0;">
                            <children>
-                              <Label fx:id="labelTodoInfoName" prefHeight="63.0" prefWidth="330.0" text="Názov tasku" textFill="WHITE" wrapText="true">
+                              <Label fx:id="labelTodoInfoName" prefHeight="63.0" prefWidth="330.0" text="%Todos.taskName" textFill="WHITE" wrapText="true">
                                  <font>
                                     <Font name="Arial Bold" size="20.0" />
                                  </font>
                               </Label>
-                              <Label fx:id="labelTodoInfoDescription" alignment="TOP_LEFT" prefHeight="450.0" prefWidth="330.0" text="Description" textFill="#909090" wrapText="true">
+                              <Label fx:id="labelTodoInfoDescription" alignment="TOP_LEFT" prefHeight="450.0" prefWidth="330.0" text="%Todos.description" textFill="#909090" wrapText="true">
                                  <font>
                                     <Font name="Arial" size="16.0" />
                                  </font>
@@ -195,12 +195,12 @@
                         </Label>
                         <HBox alignment="CENTER" prefHeight="75.0" prefWidth="350.0" spacing="20.0">
                            <children>
-                              <Button fx:id="buttonEditTodoInfo" mnemonicParsing="false" onMouseClicked="#handleEditTodoInfo" prefHeight="65.0" prefWidth="150.0" style="-fx-background-color: #b8b8b8;" text="EDIT">
+                              <Button fx:id="buttonEditTodoInfo" mnemonicParsing="false" onMouseClicked="#handleEditTodoInfo" prefHeight="65.0" prefWidth="150.0" style="-fx-background-color: #b8b8b8;" text="%Todos.edit">
                                  <font>
                                     <Font name="Arial Bold" size="18.0" />
                                  </font>
                               </Button>
-                              <Button fx:id="buttonDeleteTodo" mnemonicParsing="false" onMouseClicked="#handleDeleteTodo" prefHeight="65.0" prefWidth="150.0" style="-fx-background-color: #961717;" text="DELETE" textFill="#c9c9c9">
+                              <Button fx:id="buttonDeleteTodo" mnemonicParsing="false" onMouseClicked="#handleDeleteTodo" prefHeight="65.0" prefWidth="150.0" style="-fx-background-color: #961717;" text="%Todos.delete" textFill="#c9c9c9">
                                  <font>
                                     <Font name="Arial Bold" size="18.0" />
                                  </font>

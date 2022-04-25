@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="rootPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1040.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="vava.edo.controllers.ManagerController">
+<AnchorPane fx:id="rootPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1040.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="vava.edo.controllers.ManagerController">
    <children>
       <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1040.0" style="-fx-background-color: #323232;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -20,7 +20,7 @@
                      <children>
                         <HBox alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="120.0" prefWidth="400.0">
                            <children>
-                              <Label text="Reported users" textFill="WHITE">
+                              <Label text="%Manager.reportedUsers" textFill="WHITE">
                                  <font>
                                     <Font name="Arial Bold" size="46.0" />
                                  </font>
@@ -40,7 +40,7 @@
                            <children>
                               <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="120.0" prefWidth="260.0">
                                  <children>
-                                    <CheckBox fx:id="pending" mnemonicParsing="false" onAction="#refreshReportList" prefHeight="30.0" prefWidth="160.0" text="Pending" textFill="WHITE">
+                                    <CheckBox fx:id="pending" mnemonicParsing="false" onAction="#refreshReportList" prefHeight="30.0" prefWidth="160.0" text="%Manager.pending" textFill="WHITE">
                                        <font>
                                           <Font name="Arial Bold" size="20.0" />
                                        </font>
@@ -48,7 +48,7 @@
                                           <Insets top="10.0" />
                                        </VBox.margin>
                                     </CheckBox>
-                                    <CheckBox fx:id="accepted" layoutX="60.0" layoutY="60.0" mnemonicParsing="false" onAction="#refreshReportList" prefHeight="30.0" prefWidth="160.0" text="Accepted" textFill="WHITE">
+                                    <CheckBox fx:id="accepted" layoutX="60.0" layoutY="60.0" mnemonicParsing="false" onAction="#refreshReportList" prefHeight="30.0" prefWidth="160.0" text="%Manager.accepted" textFill="WHITE">
                                        <font>
                                           <Font name="Arial Bold" size="20.0" />
                                        </font>
@@ -56,7 +56,7 @@
                                           <Insets top="10.0" />
                                        </VBox.margin>
                                     </CheckBox>
-                                    <CheckBox fx:id="rejected" layoutX="60.0" layoutY="76.0" mnemonicParsing="false" onAction="#refreshReportList" prefHeight="30.0" prefWidth="160.0" text="Rejected" textFill="WHITE">
+                                    <CheckBox fx:id="rejected" layoutX="60.0" layoutY="76.0" mnemonicParsing="false" onAction="#refreshReportList" prefHeight="30.0" prefWidth="160.0" text="%Manager.rejected" textFill="WHITE">
                                        <font>
                                           <Font name="Arial Bold" size="20.0" />
                                        </font>
@@ -70,7 +70,7 @@
                         </HBox>
                         <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="120.0" prefWidth="380.0">
                            <children>
-                              <TextField fx:id="search_users" alignment="CENTER" maxWidth="-Infinity" onKeyTyped="#handleSearchUser" prefHeight="60.0" prefWidth="300.0" promptText="Search" style="-fx-background-color: #c4c4c4; -fx-background-radius: 40;">
+                              <TextField fx:id="search_users" alignment="CENTER" maxWidth="-Infinity" onKeyTyped="#handleSearchUser" prefHeight="60.0" prefWidth="300.0" promptText="%Search" style="-fx-background-color: #c4c4c4; -fx-background-radius: 40;">
                                  <font>
                                     <Font name="Arial" size="30.0" />
                                  </font>
@@ -86,7 +86,7 @@
                      <children>
                         <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="80.0" prefWidth="230.0">
                            <children>
-                              <Label text="Username" textFill="WHITE">
+                              <Label text="%Username" textFill="WHITE">
                                  <font>
                                     <Font name="Arial" size="30.0" />
                                  </font>
@@ -98,7 +98,7 @@
                         </HBox>
                         <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="80.0" prefWidth="230.0">
                            <children>
-                              <Label text="Type" textFill="WHITE">
+                              <Label text="%Type" textFill="WHITE">
                                  <font>
                                     <Font name="Arial" size="30.0" />
                                  </font>
@@ -108,7 +108,7 @@
                         <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="80.0" prefWidth="328.0" />
                         <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="80.0" prefWidth="246.0">
                            <children>
-                              <Label text="Status" textFill="WHITE">
+                              <Label text="%Status" textFill="WHITE">
                                  <font>
                                     <Font name="Arial" size="30.0" />
                                  </font>

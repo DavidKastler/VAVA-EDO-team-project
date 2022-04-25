@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="calendarScreen" maxHeight="750.0" maxWidth="1040.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1040.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="vava.edo.controllers.CalendarScreenController">
+<AnchorPane fx:id="calendarScreen" maxHeight="750.0" maxWidth="1040.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1040.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="vava.edo.controllers.CalendarScreenController">
    <children>
       <VBox maxHeight="750.0" maxWidth="1040.0" prefHeight="750.0" prefWidth="1040.0" style="-fx-background-color: #323232;">
          <children>
@@ -36,7 +36,7 @@
                         <Font name="Arial Bold" size="20.0" />
                      </font>
                   </Button>
-                  <Button fx:id="buttonShowToday" mnemonicParsing="false" onMouseClicked="#handleShowToday" prefHeight="40.0" prefWidth="110.0" style="-fx-background-radius: 20; -fx-background-color: #C4C4C4;" text="Today">
+                  <Button fx:id="buttonShowToday" mnemonicParsing="false" onMouseClicked="#handleShowToday" prefHeight="40.0" prefWidth="110.0" style="-fx-background-radius: 20; -fx-background-color: #C4C4C4;" text="%Calendar.today">
                      <font>
                         <Font name="Arial Bold" size="20.0" />
                      </font>
@@ -57,37 +57,37 @@
                <children>
                   <HBox prefHeight="20.0" prefWidth="1040.0">
                      <children>
-                        <Label alignment="CENTER" maxWidth="1.7976931348623157E308" prefHeight="20.0" prefWidth="148.1" text="Mon" textFill="WHITE">
+                        <Label alignment="CENTER" maxWidth="1.7976931348623157E308" prefHeight="20.0" prefWidth="148.1" text="%Calendar.mon" textFill="WHITE">
                            <font>
                               <Font name="Arial Bold" size="15.0" />
                            </font>
                         </Label>
-                        <Label alignment="CENTER" maxWidth="1.7976931348623157E308" prefHeight="20.0" prefWidth="148.1" text="Tue" textFill="WHITE">
+                        <Label alignment="CENTER" maxWidth="1.7976931348623157E308" prefHeight="20.0" prefWidth="148.1" text="%Calendar.tue" textFill="WHITE">
                            <font>
                               <Font name="Arial Bold" size="15.0" />
                            </font>
                         </Label>
-                        <Label alignment="CENTER" maxWidth="1.7976931348623157E308" prefHeight="20.0" prefWidth="148.1" text="Wed" textFill="WHITE">
+                        <Label alignment="CENTER" maxWidth="1.7976931348623157E308" prefHeight="20.0" prefWidth="148.1" text="%Calendar.wed" textFill="WHITE">
                            <font>
                               <Font name="Arial Bold" size="15.0" />
                            </font>
                         </Label>
-                        <Label alignment="CENTER" maxWidth="1.7976931348623157E308" prefHeight="20.0" prefWidth="148.1" text="Thu" textFill="WHITE">
+                        <Label alignment="CENTER" maxWidth="1.7976931348623157E308" prefHeight="20.0" prefWidth="148.1" text="%Calendar.thu" textFill="WHITE">
                            <font>
                               <Font name="Arial Bold" size="15.0" />
                            </font>
                         </Label>
-                        <Label alignment="CENTER" maxWidth="1.7976931348623157E308" prefHeight="20.0" prefWidth="148.1" text="Fri" textFill="WHITE">
+                        <Label alignment="CENTER" maxWidth="1.7976931348623157E308" prefHeight="20.0" prefWidth="148.1" text="%Calendar.fri" textFill="WHITE">
                            <font>
                               <Font name="Arial Bold" size="15.0" />
                            </font>
                         </Label>
-                        <Label alignment="CENTER" maxWidth="1.7976931348623157E308" prefHeight="20.0" prefWidth="148.1" text="Sat" textFill="WHITE">
+                        <Label alignment="CENTER" maxWidth="1.7976931348623157E308" prefHeight="20.0" prefWidth="148.1" text="%Calendar.sat" textFill="WHITE">
                            <font>
                               <Font name="Arial Bold" size="15.0" />
                            </font>
                         </Label>
-                        <Label alignment="CENTER" maxWidth="1.7976931348623157E308" prefHeight="20.0" prefWidth="148.1" text="Sun" textFill="WHITE">
+                        <Label alignment="CENTER" maxWidth="1.7976931348623157E308" prefHeight="20.0" prefWidth="148.1" text="%Calendar.sun" textFill="WHITE">
                            <font>
                               <Font name="Arial Bold" size="15.0" />
                            </font>

@@ -20,6 +20,7 @@ import vava.edo.Handlers.UserHandler;
 import java.io.IOException;
 import java.net.URL;
 import java.net.URLConnection;
+import java.util.Locale;
 import java.util.ResourceBundle;
 
 
@@ -46,6 +47,8 @@ public class RegisterController{
     @FXML
     private Button btnBackToLogin;
 
+    ResourceBundle resourceBundle = ResourceBundle.getBundle("Localization Bundle");
+
     public RegisterController() {
     }
 
@@ -67,13 +70,30 @@ public class RegisterController{
         }
 
     }
+    @FXML
+    public void changeLanguage(){
+        if(Locale.getDefault().toString().equals("sk_SK")){
+            Locale.setDefault(new Locale("en", "EN"));
+        }
+        else{
+            Locale.setDefault(new Locale("sk", "SK"));
+        }
+        try {
+            AnchorPane registerScreen = FXMLLoader.load(getClass().getResource("/vava/edo/Register.fxml"), resourceBundle);
+
+            rootPane.getChildren().setAll(registerScreen);
+
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
     @FXML
     public void handleBackToLoginButton(MouseEvent mouseEvent) throws IOException {
         Node node = (Node) mouseEvent.getSource();
         Stage stage = (Stage) node.getScene().getWindow();
 
-        AnchorPane loginScreen = FXMLLoader.load(getClass().getResource("/vava/edo/Login.fxml"));
+        AnchorPane loginScreen = FXMLLoader.load(getClass().getResource("/vava/edo/Login.fxml"),resourceBundle);
 
         this.rootPane.getChildren().setAll(new Node[]{loginScreen});
 

@@ -7,11 +7,16 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.Arrays;
+import java.util.Locale;
+import java.util.ResourceBundle;
 
 public class Main extends Application {
     @Override
     public void start(Stage stage) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("Login.fxml"));
+        Locale.setDefault(new Locale("sk", "SK"));
+        ResourceBundle resourceBundle = ResourceBundle.getBundle("Localization Bundle");
+        Parent root = FXMLLoader.load(getClass().getResource("Login.fxml"), resourceBundle);
 
         Scene scene = new Scene(root, 1100, 750);
         stage.setTitle("Everyday organizer");

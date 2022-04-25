@@ -14,6 +14,7 @@
    <children>
       <VBox alignment="CENTER" layoutX="7.0" layoutY="7.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1100.0" spacing="20.0" style="-fx-background-color: #323232;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
+            <Button mnemonicParsing="false" onMouseClicked="#changeLanguage" text="%Language" />
             <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="198.0" prefWidth="531.0" text=" EVERYDAY ORGANIZER" textAlignment="CENTER" textFill="#d4d4d4" wrapText="true">
                <font>
                   <Font name="Arial Bold" size="75.0" />
@@ -21,7 +22,7 @@
             </Label>
             <HBox>
                <children>
-                  <Label alignment="CENTER_RIGHT" contentDisplay="CENTER" maxWidth="-Infinity" prefHeight="70.0" prefWidth="300.0" text="Username:" textAlignment="CENTER" textFill="#d4d4d4" wrapText="true">
+                  <Label alignment="CENTER_RIGHT" contentDisplay="CENTER" maxWidth="-Infinity" prefHeight="70.0" prefWidth="300.0" text="%Register.username" textAlignment="CENTER" textFill="#d4d4d4" wrapText="true">
                      <font>
                         <Font name="Arial" size="31.0" />
                      </font>
@@ -51,7 +52,7 @@
             </HBox>
             <HBox>
                <children>
-                  <Label alignment="CENTER_RIGHT" contentDisplay="CENTER" maxWidth="-Infinity" prefHeight="70.0" prefWidth="300.0" text="Password:" textAlignment="CENTER" textFill="#d4d4d4" wrapText="true">
+                  <Label alignment="CENTER_RIGHT" contentDisplay="CENTER" maxWidth="-Infinity" prefHeight="70.0" prefWidth="300.0" text="%Register.password" textAlignment="CENTER" textFill="#d4d4d4" wrapText="true">
                      <font>
                         <Font name="Arial" size="31.0" />
                      </font>
@@ -75,7 +76,7 @@
             </HBox>
             <HBox>
                <children>
-                  <Label alignment="CENTER_RIGHT" contentDisplay="CENTER" maxWidth="-Infinity" prefHeight="70.0" prefWidth="300.0" text="*Password:" textAlignment="CENTER" textFill="#d4d4d4" wrapText="true">
+                  <Label alignment="CENTER_RIGHT" contentDisplay="CENTER" maxWidth="-Infinity" prefHeight="70.0" prefWidth="300.0" text="%Register.*password" textAlignment="CENTER" textFill="#d4d4d4" wrapText="true">
                      <font>
                         <Font name="Arial" size="31.0" />
                      </font>
@@ -97,7 +98,7 @@
                   </HBox>
                </children>
             </HBox>
-            <Button fx:id="btnRegister" mnemonicParsing="false" onMouseClicked="#handleRegisterButton" prefHeight="60.0" prefWidth="210.0" style="-fx-background-color: C4C4C4; -fx-background-radius: 30;" text="REGISTER">
+            <Button fx:id="btnRegister" mnemonicParsing="false" onMouseClicked="#handleRegisterButton" prefHeight="60.0" prefWidth="210.0" style="-fx-background-color: C4C4C4; -fx-background-radius: 30;" text="%Register.register">
                <font>
                   <Font name="Arial Bold" size="30.0" />
                </font>
@@ -109,7 +110,7 @@
             </Label>
             <HBox alignment="CENTER" maxWidth="-Infinity" prefHeight="41.0" prefWidth="500.0" spacing="80.0">
                <children>
-                  <Button fx:id="btnBackToLogin" alignment="CENTER" mnemonicParsing="false" onMouseClicked="#handleBackToLoginButton" style="-fx-background-color: transparent;" text="Back to login" textAlignment="CENTER" textFill="#3994ff" underline="true">
+                  <Button fx:id="btnBackToLogin" alignment="CENTER" mnemonicParsing="false" onMouseClicked="#handleBackToLoginButton" style="-fx-background-color: transparent;" text="%Register.backToLogin" textAlignment="CENTER" textFill="#3994ff" underline="true">
                      <font>
                         <Font name="Arial" size="18.0" />
                      </font>

@@ -17,9 +17,13 @@ import vava.edo.models.User;
 
 import java.time.Instant;
 import java.util.ArrayList;
+import java.util.Locale;
 import java.util.Objects;
+import java.util.ResourceBundle;
 
 public class UserHandler extends UserSerializationHandler {
+
+    static ResourceBundle resourceBundle = ResourceBundle.getBundle("Localization Bundle", Locale.getDefault());
 
     /**
      * Method which is responsible for validation and logging of the user into the system
@@ -55,7 +59,8 @@ public class UserHandler extends UserSerializationHandler {
                     return user;
                 }
                 else {
-                    throw new IncorrectCredentials("Incorrect credentials", wrongCredentials);
+                    resourceBundle = ResourceBundle.getBundle("Localization Bundle", Locale.getDefault());
+                    throw new IncorrectCredentials(resourceBundle.getString("UserHandler.incorrectCredentials"), wrongCredentials);
                 }
 
             }
@@ -63,7 +68,8 @@ public class UserHandler extends UserSerializationHandler {
                 System.out.println("Connection to localhost:8080 failed ! (PLease start backend server)");
             }
         } else {
-            throw new EmptyLoginFields("Login fields are left empty", wrongCredentials);
+            resourceBundle = ResourceBundle.getBundle("Localization Bundle", Locale.getDefault());
+            throw new EmptyLoginFields(resourceBundle.getString("UserHandler.emptyLoginFields"), wrongCredentials);
         }
 
         return null;
@@ -136,7 +142,8 @@ public class UserHandler extends UserSerializationHandler {
             User respondedUser = new Gson().fromJson(apiResponse.getBody().toString(), User.class);
 
             if(respondedUser.getUsername() == null){
-                throw new FailedToUpdateUser("Failed to update the user");
+                resourceBundle = ResourceBundle.getBundle("Localization Bundle", Locale.getDefault());
+                throw new FailedToUpdateUser(resourceBundle.getString("UserHandler.failedToUpdateUser"));
             }
 
         }catch (UnirestException e){
@@ -172,7 +179,8 @@ public class UserHandler extends UserSerializationHandler {
                 System.out.println(apiResponse.getBody().toString());
 
                 if(respondedUser.getUsername() == null){
-                    throw new FailedToRegister("Failed to register a new user");
+                    resourceBundle = ResourceBundle.getBundle("Localization Bundle", Locale.getDefault());
+                    throw new FailedToRegister(resourceBundle.getString("UserHandler.failedToRegister"));
                 }
 
             } catch (UnirestException e) {
