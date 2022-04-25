@@ -1,43 +1,20 @@
 package vava.edo.models;
 
+import com.google.gson.Gson;
+import com.mashape.unirest.http.JsonNode;
+
 import java.sql.Date;
 
 public class Message {
-    private int chatId;
-    private int groupId;
-    private int senderId;
-    private Date timeSent;
+    private Long timeSent;
     private String message;
+    private User sender;
 
-    public int getChatId() {
-        return chatId;
-    }
-
-    public void setChatId(int chatId) {
-        this.chatId = chatId;
-    }
-
-    public int getGroupId() {
-        return groupId;
-    }
-
-    public void setGroupId(int groupId) {
-        this.groupId = groupId;
-    }
-
-    public int getSenderId() {
-        return senderId;
-    }
-
-    public void setSenderId(int senderId) {
-        this.senderId = senderId;
-    }
-
-    public Date getTimeSent() {
+    public long getTimeSent() {
         return timeSent;
     }
 
-    public void setTimeSent(Date timeSent) {
+    public void setTimeSent(long timeSent) {
         this.timeSent = timeSent;
     }
 
@@ -49,15 +26,21 @@ public class Message {
         this.message = message;
     }
 
+    public User getSender() {
+        return sender;
+    }
+
+    public void setSender(User sender) {
+        this.sender = sender;
+    }
+
 
     @Override
     public String toString() {
         return "Message{" +
-                "chatId=" + chatId +
-                ", groupId=" + groupId +
-                ", senderId=" + senderId +
-                ", timeSent=" + timeSent +
-                ", message='" + message + '\'' +
+                "timeSent=" + timeSent +
+                ", message=" + message +
+                ", sender=" + sender +
                 '}';
     }
 }

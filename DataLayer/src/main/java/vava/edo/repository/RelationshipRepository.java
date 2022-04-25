@@ -11,7 +11,7 @@ public interface RelationshipRepository extends JpaRepository<Relationship, Inte
     @Query("select r from Relationship r where r.firstUser.uId = ?1 and r.secondUser.uId = ?2")
     Relationship findByFirstUserUIdAndSecondUserUId(Integer sender, Integer receiver);
 
-    @Query("select r from Relationship r where r.firstUser.uId = ?1 and r.status = 'PENDING'")
+    @Query("select r from Relationship r where r.secondUser.uId = ?1 and r.status = 'PENDING'")
     List<Relationship> findAllByUserUIdAndStatusIsPending(Integer userId);
 
     @Query("select r from Relationship r where (r.firstUser.uId = ?1 or r.secondUser.uId = ?1) and r.status = 'ACCEPTED'")

@@ -30,14 +30,14 @@ public class GroupMember {
     @JoinColumn(name = "member_id", nullable = false)
     private User member;
 
-    public GroupMember(Group group, User user){
+    public GroupMember(Group group, User user) {
         this.group = group;
         this.member = user;
     }
 
-
     /**
      * Debugging method
+     *
      * @return string with method variables
      */
     @Override

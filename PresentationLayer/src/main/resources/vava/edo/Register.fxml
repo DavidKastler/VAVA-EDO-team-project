@@ -10,13 +10,13 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="rootPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="vava.edo.controllers.RegisterController">
+<AnchorPane fx:id="rootPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="vava.edo.controllers.RegisterController">
    <children>
       <VBox alignment="CENTER" layoutX="7.0" layoutY="7.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1100.0" spacing="20.0" style="-fx-background-color: #323232;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="198.0" prefWidth="531.0" text=" EVERYDAY ORGANIZER" textAlignment="CENTER" textFill="#d4d4d4" wrapText="true">
                <font>
-                  <Font name="Arial" size="75.0" />
+                  <Font name="Arial Bold" size="75.0" />
                </font>
             </Label>
             <HBox>
@@ -99,7 +99,7 @@
             </HBox>
             <Button fx:id="btnRegister" mnemonicParsing="false" onMouseClicked="#handleRegisterButton" prefHeight="60.0" prefWidth="210.0" style="-fx-background-color: C4C4C4; -fx-background-radius: 30;" text="REGISTER">
                <font>
-                  <Font name="Arial" size="30.0" />
+                  <Font name="Arial Bold" size="30.0" />
                </font>
             </Button>
             <Label fx:id="wrongInput" alignment="CENTER" prefHeight="24.0" prefWidth="273.0" text="Wrong Input!" textFill="RED" visible="false">

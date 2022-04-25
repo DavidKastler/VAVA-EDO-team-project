@@ -35,12 +35,15 @@ public class RelationshipController {
 
     /**
      * Endpoint returning new friend request
-     * @param token  user account rights verification
+     *
+     * @param token user account rights verification
      * @return friend request
      */
     @PostMapping(value = "/create")
     public ResponseEntity<Object> createNewFriendRequest(@RequestParam(value = "token") Integer token,
                                                          @RequestBody RelationshipCreate relationshipDto) {
+        // verification if user is in database
+        userService.getUser(token);
         log.info("Creating new friend request from user {} to user {} ",
                 relationshipDto.getSenderId(), relationshipDto.getReceiverName());
         if (!Objects.equals(token, relationshipDto.getSenderId())) {
@@ -59,15 +62,13 @@ public class RelationshipController {
         Relationship existingRequest = relationshipService.getRelationshipBySenderIdAndReceiverId(senderId, receiverId);
         if (existingRequest != null) {
             RelationshipStatus status = existingRequest.getStatus();
-            if (status == RelationshipStatus.accepted) {
+            if (status == RelationshipStatus.ACCEPTED) {
                 log.info("User {} and {} are already friends.", senderId, receiverId);
                 throw new ResponseStatusException(HttpStatus.OK, "Relationship already exists.");
-            }
-            else if (status == RelationshipStatus.pending) {
+            } else if (status == RelationshipStatus.PENDING) {
                 log.info("Request already exists, just wait for answer.");
                 throw new ResponseStatusException(HttpStatus.CONFLICT, "Relationship is already pending.");
-            }
-            else if (status == RelationshipStatus.blocked) {
+            } else if (status == RelationshipStatus.BLOCKED) {
                 log.info("User {} has blocked you. Please respect others and do not bothered them.", receiverId);
                 throw new ResponseStatusException(HttpStatus.FORBIDDEN, "User has blocked you.");
             }
@@ -78,13 +79,16 @@ public class RelationshipController {
 
     /**
      * Endpoint returning new accepted friend request
-     * @param token  user account rights verification
+     *
+     * @param token          user account rights verification
      * @param relationshipId user who accepted request
      * @return accepted friend request
      */
     @PutMapping(value = "/accept/{rsId}")
     public ResponseEntity<Relationship> acceptRequest(@RequestParam(value = "token") Integer token,
                                                       @PathVariable("rsId") Integer relationshipId) {
+        // verification if user is in database
+        userService.getUser(token);
         log.info("Accepting friend request.");
         Relationship relationship = relationshipService.getRelationship(relationshipId);
         if (!Objects.equals(relationship.getSecondUser().getUId(), token)) {
@@ -97,19 +101,22 @@ public class RelationshipController {
             relationshipService.deleteRelationship(otherWayRelationship.getRelationshipId());
         }
         log.info("Request form {} to user {} accepted.",
-                relationship.getFirstUser().getUsername(),relationship.getSecondUser().getUsername());
+                relationship.getFirstUser().getUsername(), relationship.getSecondUser().getUsername());
         return new ResponseEntity<>(relationshipService.acceptRelationshipRequest(relationshipId), HttpStatus.OK);
     }
 
     /**
      * Endpoint returning blocking friends
-     * @param token  user account rights verification
+     *
+     * @param token          user account rights verification
      * @param relationshipId user who will be blocked
      * @return blocked user
      */
     @PutMapping(value = "/block/{rsId}")
     public ResponseEntity<Relationship> blockUser(@RequestParam(value = "token") Integer token,
                                                   @PathVariable("rsId") Integer relationshipId) {
+        // verification if user is in database
+        userService.getUser(token);
         log.info("Blocking user.");
         Relationship relationship = relationshipService.getRelationship(relationshipId);
         if (!Objects.equals(relationship.getSecondUser().getUId(), token)) {
@@ -127,16 +134,20 @@ public class RelationshipController {
 
     /**
      * Endpoint for rejecting friend request, rejected requests will be removed from database
-     * @param token  user account rights verification
+     *
+     * @param token          user account rights verification
      * @param relationshipId relationshipId who reject request
      * @return rejected friend request
      */
     @DeleteMapping(value = "/delete/{rsId}")
     public ResponseEntity<Object> rejectRequest(@RequestParam(value = "token") int token,
                                                 @PathVariable("rsId") Integer relationshipId) {
+        // verification if user is in database
+        userService.getUser(token);
         log.info("Rejecting friend request.");
         Relationship relationship = relationshipService.getRelationship(relationshipId);
-        if (!Objects.equals(relationship.getSecondUser().getUId(), token)) {
+        if (!Objects.equals(relationship.getSecondUser().getUId(), token) &&
+                !Objects.equals(relationship.getFirstUser().getUId(), token)) {
             log.warn("Cannot reject requests for other users");
             throw new ResponseStatusException(HttpStatus.FORBIDDEN, "Relationship is not yours.");
         }
@@ -146,22 +157,28 @@ public class RelationshipController {
 
     /**
      * Endpoint returning a list of friends
+     *
      * @param token user account rights verification
      * @return list of friends {"username}
      */
     @GetMapping(value = "/friends")
     public ResponseEntity<List<RelationshipRequest>> getAllFriends(@RequestParam(value = "token") Integer token) {
+        // verification if user is in database
+        userService.getUser(token);
         log.info("Get list of all friends.");
         return new ResponseEntity<>(relationshipService.getAllFriends(token), HttpStatus.OK);
     }
 
     /**
      * Endpoint returning a list of friend requests
+     *
      * @param token user account rights verification
      * @return list of friend requests
      */
     @GetMapping(value = "/requests")
     public ResponseEntity<List<RelationshipRequest>> getAllFriendRequests(@RequestParam(value = "token") Integer token) {
+        // verification if user is in database
+        userService.getUser(token);
         log.info("Get list of all friend requests.");
         return new ResponseEntity<>(relationshipService.getAllPendingRequests(token), HttpStatus.OK);
     }

@@ -1,30 +1,35 @@
 package vava.edo.controllers;
 
 
-import com.mashape.unirest.http.HttpResponse;
-import com.mashape.unirest.http.JsonNode;
-import com.mashape.unirest.http.Unirest;
-import com.mashape.unirest.http.exceptions.UnirestException;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
-import org.json.JSONObject;
+import vava.edo.controllers.models.ChatScreenModel;
+import vava.edo.models.ChatGrayElementModel;
+import vava.edo.models.ChatPinkElementModel;
+import vava.edo.models.ManagerViewElementModel;
 
 import java.io.IOException;
 import java.net.URL;
 import java.net.URLConnection;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
+import java.util.Objects;
 import java.util.ResourceBundle;
 
 
@@ -34,7 +39,7 @@ public class ChatController implements Initializable {
     private AnchorPane rootPane;
 
     @FXML
-    private Button search_button;
+    private TextField search_field;
 
     @FXML
     private Button send_message_button;
@@ -54,6 +59,32 @@ public class ChatController implements Initializable {
     @FXML
     private ScrollPane chat_pane;
 
+    @FXML
+    private VBox messages_list;
+
+    @FXML
+    private AnchorPane rootPane1;
+
+    @FXML
+    private AnchorPane rootPane11;
+
+    @FXML
+    private HBox report_hbox;
+
+    @FXML
+    private HBox chat_screen_box;
+
+    @FXML
+    private TextArea text_area;
+
+    @FXML
+    private Label chat_name_error;
+
+    private ChatScreenModel model;
+
+    public void setModel(ChatScreenModel model) {
+        this.model = model;
+    }
 
 
     public ChatController() {
@@ -64,6 +95,7 @@ public class ChatController implements Initializable {
     public Button editButton(Button button, String username, Boolean color){
         button.setText(username);
         button.setWrapText(true);
+
         Font font = Font.font("Arial", FontWeight.BOLD, 24);
         button.setFont(font);
         //button.setStyle("-fx-background-insets: 0 0 -1 0");
@@ -88,12 +120,46 @@ public class ChatController implements Initializable {
         return button;
     }
 
-    public Label editLabel(Label label, String username){
+    public HBox editLabel(Label label, String messageText, Boolean color){
 
-        return label;
+        label.setWrapText(true);
+        label.setText(messageText);
+
+        Font font = Font.font("Arial", 34);
+        label.setFont(font);
+        label.setMaxWidth(350);
+        HBox messageBox = new HBox();
+
+
+        label.setStyle("-fx-background-radius: 20");
+
+        HBox box = new HBox();
+
+
+        box.setPrefWidth(800);
+
+
+        if (color == true){
+            label.setStyle("-fx-background-color: #ff9797");
+            label.setAlignment(Pos.CENTER_LEFT);
+            box.setAlignment(Pos.BOTTOM_LEFT);
+            box.setMargin(label, new Insets(5, 5, 5, 5));
+        } else {
+            label.setStyle("-fx-background-color:  #c4c4c4");
+            label.setAlignment(Pos.CENTER_RIGHT);
+            box.setAlignment(Pos.BOTTOM_RIGHT);
+            box.setMargin(label, new Insets(5, 10, 5, 5));
+        }
+        label.setPadding(new Insets(10,30,10,30));
+
+
+
+        box.getChildren().add(label);
+
+        return box;
     }
 
-    public void refreshChatList(List<String> usernames){
+    public void writeChatList(List<String> usernames){
         for (int i = 0; i < usernames.size(); i++){
             //System.out.println(id1);
             Button button = new Button();
@@ -121,16 +187,31 @@ public class ChatController implements Initializable {
         }
     }
 
+    public void writeChatMessages(List<String> userIds, List<String> messages){
+        messages_list.getChildren().clear();
+        HBox box = new HBox();
+
+
+        for (int i = 0; i < messages.size(); i++){
+            //System.out.println(id1);
+            //HBox box = new HBox();
+            Label message = new Label();
+            Boolean color;
+            if (userIds.get(i).equals("13")){
+                color = false;
+            } else {
+                color = true;
+            }
+            box = editLabel(message, messages.get(i), color);
+
+
+            this.messages_list.getChildren().add(box);
+
+        }
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        try {
-            URL checkConnectionURL = new URL("http://www.google.com");
-            URLConnection checkConnection = checkConnectionURL.openConnection();
-            checkConnection.connect();
-            System.out.println("Internet is connected");
-        } catch (IOException e) {
-            System.out.println("Internet is not connected");
-        }
 
         /*
         //**** user 1 ***
@@ -151,24 +232,25 @@ public class ChatController implements Initializable {
         String isLogged2 = "";
         String lastActivity2 = "";
         */
-
         List<String> usernames = new ArrayList<>();
         usernames.add("Jano");
         usernames.add("Fero");
-        usernames.add("Kubo");
-        usernames.add("Lubo");
-        usernames.add("Eva");
-        usernames.add("Katka");
-        usernames.add("Hana");
-        usernames.add("Karol");
-        usernames.add("Adam");
-        usernames.add("Erzika");
-        usernames.add("Gizela");
-        usernames.add("Gustav");
-        usernames.add("Adolf");
+        usernames.add("Jano");
+        usernames.add("Fero");
+        usernames.add("Jano");
+        usernames.add("Jano");
+        usernames.add("Jano");
+        usernames.add("Fero");
+        usernames.add("Jano");
+        usernames.add("Fero");
+        usernames.add("Fero");
+        usernames.add("Jano");
+        usernames.add("Fero");
+
+        writeChatList(usernames);
 
 
-        refreshChatList(usernames);
+
 
 
     }
@@ -188,33 +270,158 @@ public class ChatController implements Initializable {
 
         chat_name.setStyle("-fx-text-fill: #000000");
         chat_name.setText(actualButton.getText());
+        /*
+        List<String> userIdList = new ArrayList<>();
+        List<String> messageList = new ArrayList<>();
+
+        userIdList.add("12");
+        userIdList.add("13");
+        userIdList.add("12");
+        userIdList.add("13");
+        userIdList.add("13");
+        userIdList.add("12");
+        userIdList.add("13");
+        userIdList.add("12");
+        userIdList.add("12");
+        userIdList.add("13");
+        userIdList.add("12");
+
+        messageList.add("ivbiedv widbbs jodncsd  djnsdb b" );
+        messageList.add("Fero b");
+        messageList.add("sdlibdb i dbhb  kdjn j");
+        messageList.add("dlkhbvdk; jdkcjkdbc dbcd");
+        messageList.add("dk;jbjcks jcdbskh sbjdchkdb hdbchdbc hbdchdbcd ");
+        messageList.add("adlcbsdl ascbiasb aiusbc sbclb acslkhhbc");
+        messageList.add("lkcsbjdsahbcl sncbbak aksbcaslb bcsailcb");
+        messageList.add("acsjhbs aksjcba ajsbcc kajhsbcc");
+        messageList.add("kjbjccakl");
+        messageList.add("ljkachbsdc aihsc akshcbh aisbccc");
+        messageList.add("jkch asausbcli asbcb");
+
+        writeChatMessages(userIdList, messageList);
+        */
+
+        List<String> usernames = new ArrayList<>();
+        usernames.add("Jano");
+        usernames.add("Fero");
+        usernames.add("Jano");
+        usernames.add("Fero");
+        usernames.add("Jano");
+        usernames.add("Jano");
+        usernames.add("Jano");
+        usernames.add("Fero");
+        usernames.add("Jano");
+        usernames.add("Fero");
+        usernames.add("Fero");
+        usernames.add("Jano");
+        usernames.add("Fero");
+
+        List<String> time = new ArrayList<>();
+        time.add("12");
+        time.add("13");
+        time.add("14");
+        time.add("15");
+        time.add("16");
+        time.add("17896");
+        time.add("1234");
+        time.add("1264");
+        time.add("12346");
+        time.add("12");
+        time.add("16");
+        time.add("17896");
+        time.add("32");
+
+        List<String> messages = new ArrayList<>();
+        messages.add("aa aa aa aa aa aa aa aa aa aa aa aa aa a  a a a a");
+        messages.add("ascljhauco ubABX aksjcba aksjcb c");
+        messages.add("ASCLIUL alicsb askcb sabc ablciscbasl lsciablcsi ");
+        messages.add("askcsb  alisc lsbca clacbk avzlcacbasilcb");
+        messages.add("akcs aslibalc acsalibusc ailscascv cas");
+        messages.add("acskhjhavsc ac vkau cvavkc");
+        messages.add("sjdvb asocuaocbaj cabc");
+        messages.add("avdascsc ascasca asdvdvsd sdvasdvd sdvdsv avvd");
+        messages.add("asau baicb isc b a aisbc");
+        messages.add("asckba liscb abscbl acsbscl");
+        messages.add("alkcb acbla c vascia cs");
+        messages.add("as,chal cbjcva scv  ua acscacca asc kavc");
+        messages.add(",ajsvc avc a lcsivkausvca vavsc  acsn");
+
+        for (Integer i = 0; i < usernames.size(); i++){
+            if (usernames.get(i).equals("Jano")){
+                ChatGrayElementModel element = new ChatGrayElementModel(messages.get(i), usernames.get(i), time.get(i));
+                HBox hbox = element.getMessageBox();
+
+
+                messages_list.getChildren().add(hbox);
+            } else {
+                ChatPinkElementModel element = new ChatPinkElementModel(messages.get(i), usernames.get(i), time.get(i));
+                HBox hbox = element.getMessageBox();
+                messages_list.getChildren().add(hbox);
+            }
+
+
+        }
 
 
         }
 
     @FXML
-    public void handleSearchChatButton(MouseEvent mouseEvent) throws IOException {
-        //searching v zozname
+    public void handleSearchChatButton(KeyEvent keyEvent) throws IOException {
+        //tu bude zavolana metoda writeChatList(argument); a ako argument bude pouzita metoda na vratenie vyhovujucich vzoriek do ktorej pojde argument search_field.getText()
+        System.out.println(search_field.getText());
     }
 
     @FXML
     public void handleNewChatButton(MouseEvent mouseEvent) throws IOException {
-        //
+        //ak je dobry nazov chatu
+        //chat_name.setText(search_field.getText());
+        //chat_name.setVisible(true);
+        //chat_name_error.setStyle("-fx-text-fill: transparent");
+
+        //ak neni dobry nazov chatu
+        //chat_name_error.setStyle("-fx-text-fill: red");
+
+        rootPane11.setVisible(true);
+        rootPane11.setDisable(false);
+        chat_screen_box.setDisable(true);
+        //chat_screen_box.setVisible(false);
+
     }
 
     @FXML
     public void handleReportUserButton(MouseEvent mouseEvent) throws IOException {
 
+        rootPane1.setVisible(true);
+        rootPane1.setDisable(false);
+        chat_screen_box.setDisable(true);
+        //chat_screen_box.setVisible(false);
     }
+
+
+
 
     @FXML
     public void handleSendMessageButton(MouseEvent mouseEvent) throws IOException {
+        System.out.println(chat_message.getText());
+        //zavolanie metody ktora dostane ako argument id usera a text spravy
     }
 
-    //metoda na vratenie friendov
-    //metoda na vyhladavanie medzi friendami
-    //metoda na vymazanie frienda podla ID
-    //report usera
+
+    public void handleSendReportButton(MouseEvent mouseEvent) {
+        System.out.println(text_area.getText());
+        rootPane1.setVisible(false);
+        rootPane1.setDisable(true);
+        chat_screen_box.setDisable(false);
+        chat_screen_box.setVisible(true);
+    }
+
+    public void handleSendChatNameButton(MouseEvent mouseEvent) {
+        System.out.println(text_area.getText());
+        rootPane11.setVisible(false);
+        rootPane11.setDisable(true);
+        chat_screen_box.setDisable(false);
+        chat_screen_box.setVisible(true);
+    }
 
 
 }

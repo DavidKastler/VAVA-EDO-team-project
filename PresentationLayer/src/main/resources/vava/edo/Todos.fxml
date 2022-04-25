@@ -15,7 +15,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="todoScreen" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1040.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="vava.edo.controllers.TodosScreenController">
+<AnchorPane fx:id="todoScreen" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1040.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="vava.edo.controllers.TodosScreenController">
    <children>
       <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1100.0" style="-fx-background-color: #323232;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -134,11 +134,11 @@
                               <Insets bottom="5.0" />
                            </VBox.margin>
                         </Button>
-                        <ScrollPane prefHeight="620.0" prefWidth="429.0" style="-fx-background-color: #323232; -fx-background:  #323232;">
+                        <ScrollPane fx:id="scrollPaneTodos" prefHeight="620.0" prefWidth="430.0" style="-fx-background-color: #323232; -fx-background:  #323232;">
                           <content>
-                            <AnchorPane minHeight="0.0" minWidth="0.0" prefWidth="410.0" style="-fx-background-color: transparent;">
+                            <AnchorPane minHeight="0.0" minWidth="0.0" style="-fx-background-color: transparent;">
                                  <children>
-                                    <VBox fx:id="vBoxTodos" alignment="TOP_CENTER" prefWidth="408.0" style="-fx-border-color: #555555; -fx-border-width: 0 0 0 0;">
+                                    <VBox fx:id="vBoxTodos" alignment="TOP_CENTER" style="-fx-border-color: #555555; -fx-border-width: 0 0 0 0;">
                                        <padding>
                                           <Insets top="10.0" />
                                        </padding>
@@ -220,7 +220,7 @@
          <children>
             <VBox fx:id="vBoxNewTaskWindow" alignment="CENTER" maxWidth="-Infinity" prefHeight="441.0" prefWidth="548.0" spacing="10.0" style="-fx-background-color: black;">
                <children>
-                  <Label alignment="TOP_CENTER" prefHeight="41.0" prefWidth="508.0" style="-fx-border-color: #888888; -fx-border-width: 0 0 1 0;" text="New Todo" textFill="WHITE">
+                  <Label fx:id="labelTitleWindow" alignment="TOP_CENTER" prefHeight="41.0" prefWidth="508.0" style="-fx-border-color: #888888; -fx-border-width: 0 0 1 0;" text="New Todo" textFill="WHITE">
                      <font>
                         <Font name="Arial Bold" size="25.0" />
                      </font>

@@ -1,13 +1,16 @@
 package vava.edo.Handlers;
 
+import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import vava.edo.controllers.models.CalendarDayModel;
+import vava.edo.models.Todo;
 import vava.edo.models.User;
 
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.Month;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Calendar;
 
@@ -17,14 +20,36 @@ public class RefreshCalendarScreen {
     private Month selectedMonth;
     private int selectedYear;
 
-    private ArrayList<HBox> weeks = new ArrayList<>();
+    private ArrayList<CalendarDayModel> dayModels = new ArrayList<>();
+    private Todo editingTodo;  // needed to edit in CalendarScreenController for TodoHandler.editTodo()
 
+    private VBox vBoxNewTaskScreen;
     private VBox vBoxWeeks;
+    private Label labelTitleWindow;
+    private TextField textFieldTaskName;
+    private TextField textFieldTaskGroup;
+    private TextArea textAreaTaskDescription;
+    private Button buttonAcceptTodo;
+    private Button buttonEditTodo;
+    private DatePicker datePickerTaskFrom;
+    private DatePicker datePickerTaskTo;
 
 
-    public RefreshCalendarScreen(User user, VBox vBoxWeeks) {
+    public RefreshCalendarScreen(User user, VBox vBoxNewTaskScreen, VBox vBoxWeeks, Label labelTitleWindow,
+                                 TextField textFieldTaskName, TextField textFieldTaskGroup,
+                                 TextArea textAreaTaskDescription, DatePicker datePickerTaskFrom,
+                                 DatePicker datePickerTaskTo, Button buttonAcceptTodo, Button buttonEditTodo) {
         this.user = user;
+        this.vBoxNewTaskScreen = vBoxNewTaskScreen;
         this.vBoxWeeks = vBoxWeeks;
+        this.labelTitleWindow = labelTitleWindow;
+        this.textFieldTaskName = textFieldTaskName;
+        this.textAreaTaskDescription = textAreaTaskDescription;
+        this.textFieldTaskGroup = textFieldTaskGroup;
+        this.datePickerTaskFrom = datePickerTaskFrom;
+        this.datePickerTaskTo = datePickerTaskTo;
+        this.buttonAcceptTodo = buttonAcceptTodo;
+        this.buttonEditTodo = buttonEditTodo;
 
         this.currentDate = LocalDate.now();
         this.selectedMonth = currentDate.getMonth();
@@ -76,12 +101,12 @@ public class RefreshCalendarScreen {
         cal.set(Calendar.DAY_OF_MONTH, 1);
         cal.set(Calendar.MONTH, selectedMonth.getValue() - 1);
         SimpleDateFormat df = new SimpleDateFormat("u");
-        int startDay = Integer.parseInt(df.format(cal.getTime()));
-        int maxWeeknumber = cal.getActualMaximum(Calendar.WEEK_OF_MONTH);
-        if(startDay > 2) {
-            maxWeeknumber++;
-        }
-        return maxWeeknumber;
+        int startOffset = Integer.parseInt(df.format(cal.getTime())) - 1;
+
+        cal.set(Calendar.DAY_OF_MONTH, cal.getActualMaximum(Calendar.DAY_OF_MONTH));
+        int endOffset = 7 - Integer.parseInt(df.format(cal.getTime()));
+
+        return (int) Math.ceil((double)(getDaysCountInMonth() + startOffset + endOffset) / 7);
     }
 
     private int getFirstDateOfMonth() {
@@ -98,32 +123,27 @@ public class RefreshCalendarScreen {
         selectedYear = currentDate.getYear();
     }
 
-    // TODO toto uvidíme ako bude
-    public void getDayTodos(int dayNumber, int monthNumber, int yearNumber) {
-
-    }
-
     public void refreshCalendar() {
-        weeks.clear();
         vBoxWeeks.getChildren().clear();
-        int printedDaysOfMonth = 1;
-        int nextMonthDays = 1;
+        dayModels.clear();
         Calendar cal = Calendar.getInstance();
-        System.out.println("Week number: " + getWeeksCountInMonth());
-        System.out.println(cal.get(Calendar.MONTH));
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+
+        HBox weekBox = null;
+        int nextMonthDays = 1;
+        int thisMonthDays = 1;
         for(int dayCount = 1; dayCount <= (getWeeksCountInMonth() * 7); dayCount++) {
-            HBox hBox;
             if(dayCount % 7 == 1) {
-                hBox = new HBox();
-                weeks.add(hBox);
+                weekBox = new HBox();
+                vBoxWeeks.getChildren().add(weekBox);
             }
-            else {
-                hBox = weeks.get(weeks.size()-1);
-            }
+
+            cal.set(Calendar.YEAR, selectedYear);
+            cal.set(Calendar.MONTH, (selectedMonth.getValue() - 1));
 
             if(dayCount < getFirstDateOfMonth()) {
+                int tempYear = selectedYear;
                 if(selectedMonth.getValue() == 1) {
-                    int tempYear = selectedYear;
                     tempYear--;
                     cal.set(Calendar.YEAR, tempYear);
                     cal.set(Calendar.MONTH, 11);
@@ -132,11 +152,16 @@ public class RefreshCalendarScreen {
                     cal.set(Calendar.MONTH, selectedMonth.getValue() - 2);
 
                 int previousMonthDays = cal.getActualMaximum(Calendar.DATE) - (getFirstDateOfMonth() - dayCount) + 1;
-                hBox.getChildren().add(new CalendarDayModel(this, hBox, previousMonthDays).getDayVBox());
+                cal.set(Calendar.DAY_OF_MONTH, previousMonthDays);
+                String dayOfTodosString = dateFormat.format(cal.getTime());
+                LocalDate dayOfTodos = LocalDate.parse(dayOfTodosString);
+                CalendarDayModel dayModel = new CalendarDayModel(this, weekBox, previousMonthDays, TodoHandler.getTodosByDate(user, dayOfTodos, dayOfTodos));
+                dayModels.add(dayModel);
+                weekBox.getChildren().add(dayModel.getDayVBox());
             }
             else if(dayCount > (getDaysCountInMonth() + getFirstDateOfMonth() - 1)) {
+                int tempYear = selectedYear;
                 if(selectedMonth.getValue() == 11) {
-                    int tempYear = selectedYear;
                     tempYear++;
                     cal.set(Calendar.YEAR, tempYear);
                     cal.set(Calendar.MONTH, 0);
@@ -144,21 +169,53 @@ public class RefreshCalendarScreen {
                 else
                     cal.set(Calendar.MONTH, selectedMonth.getValue());
 
-                hBox.getChildren().add(new CalendarDayModel(this, hBox, nextMonthDays).getDayVBox());
+
+                cal.set(Calendar.DAY_OF_MONTH, nextMonthDays);
+                String dayOfTodosString = dateFormat.format(cal.getTime());
+                LocalDate dayOfTodos = LocalDate.parse(dayOfTodosString);
+                CalendarDayModel dayModel = new CalendarDayModel(this, weekBox, nextMonthDays, TodoHandler.getTodosByDate(user, dayOfTodos, dayOfTodos));
+                dayModels.add(dayModel);
+                weekBox.getChildren().add(dayModel.getDayVBox());
                 nextMonthDays++;
             }
             else {
-                hBox.getChildren().add(new CalendarDayModel(this, hBox, printedDaysOfMonth).getDayVBox());
-                printedDaysOfMonth++;
+                cal.set(Calendar.DAY_OF_MONTH, thisMonthDays);
+                String dayOfTodosString = dateFormat.format(cal.getTime());
+                LocalDate dayOfTodos = LocalDate.parse(dayOfTodosString);
+                CalendarDayModel dayModel = new CalendarDayModel(this, weekBox, thisMonthDays, TodoHandler.getTodosByDate(user, dayOfTodos, dayOfTodos));
+                dayModels.add(dayModel);
+                weekBox.getChildren().add(dayModel.getDayVBox());
+                thisMonthDays++;
             }
-        }
-
-        for(HBox week : weeks) {
-            vBoxWeeks.getChildren().add(week);
         }
     }
 
     public String getSelectedMonthandYear() {
         return "" + selectedMonth + " " + selectedYear;
+    }
+
+    /**
+     * Function which display edit task window, when task in calendar is clicked
+     * @param todo
+     */
+    public void setEditWindow(Todo todo) {
+        editingTodo = todo;
+        labelTitleWindow.setText("Edit Todo");
+        textFieldTaskName.setText(todo.getTodoName());
+        textAreaTaskDescription.setText(todo.getTodoDescription());
+        textFieldTaskGroup.setText(todo.getGroupName());
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        LocalDate fromDate = LocalDate.parse(editingTodo.getFromTime(), formatter);
+        LocalDate toDate = LocalDate.parse(editingTodo.getToTime(), formatter);
+        datePickerTaskFrom.setValue(fromDate);
+        datePickerTaskTo.setValue(toDate);
+        vBoxNewTaskScreen.setVisible(true);
+        vBoxNewTaskScreen.setDisable(false);
+        buttonEditTodo.setVisible(true);
+        buttonAcceptTodo.setVisible(false);
+    }
+
+    public Todo getEditingTodo() {
+        return editingTodo;
     }
 }

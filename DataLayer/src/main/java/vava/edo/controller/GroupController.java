@@ -34,6 +34,7 @@ public class GroupController {
 
     /**
      * Endpoint creating a group
+     *
      * @param groupDto new group
      * @return response entity containing new group
      */
@@ -53,13 +54,14 @@ public class GroupController {
 
     /**
      * Endpoint deleting a group with given id
+     *
      * @param token   user account rights verification
      * @param groupId id of deleting group
      * @return response entity containing deleted group
      */
     @DeleteMapping(value = "/delete/{groupId}")
     public ResponseEntity<Group> deleteGroupById(@RequestParam(value = "token") int token,
-                                                  @PathVariable(value = "groupId") int groupId) {
+                                                 @PathVariable(value = "groupId") int groupId) {
         log.info("Deleting group from database.");
         if (!userService.isTeamLeader(token)) {
             log.warn("Permission denied, to delete a group need to be team leader.");
@@ -73,10 +75,11 @@ public class GroupController {
 
     /**
      * Endpoint updating group based on given group id
-     * @param token         user id
-     * @param group_id      group id
-     * @param updatedGroup  updated DTO object
-     * @return              updated group
+     *
+     * @param token        user id
+     * @param group_id     group id
+     * @param updatedGroup updated DTO object
+     * @return updated group
      */
     @PutMapping("/update/{group_id}")
     public ResponseEntity<Group> updateGroup(@RequestParam(value = "token") Integer token,
@@ -93,6 +96,7 @@ public class GroupController {
 
     /**
      * Endpoint returning a list of all groups
+     *
      * @param token user account rights verification
      * @return list of groups
      */

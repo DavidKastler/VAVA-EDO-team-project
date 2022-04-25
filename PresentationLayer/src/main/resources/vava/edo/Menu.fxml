@@ -45,7 +45,7 @@
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Button mnemonicParsing="false" prefHeight="60.0" prefWidth="60.0" style="-fx-background-color: transparent; -fx-background-image: url('images/profile.png');">
+                  <Button fx:id="buttonChat" mnemonicParsing="false" onMouseClicked="#handleChatButton" prefHeight="60.0" prefWidth="60.0" style="-fx-background-color: transparent; -fx-background-image: url('images/profile.png');">
                      <graphic>
                         <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -54,9 +54,9 @@
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Button mnemonicParsing="false" onMouseClicked="#handleFriendsButton" prefHeight="60.0" prefWidth="60.0" style="-fx-background-color: transparent; -fx-background-image: url('images/profile.png');">
+                  <Button fx:id="buttonFriends" mnemonicParsing="false" onMouseClicked="#handleFriendsButton" prefHeight="60.0" prefWidth="60.0" style="-fx-background-color: transparent; -fx-background-image: url('images/profile.png');">
                      <graphic>
-                        <ImageView fx:id="buttonFriends" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../../images/friends.png" />
                            </image>
@@ -64,9 +64,9 @@
                      </graphic>
                   </Button>
                   <VBox prefHeight="516.0" prefWidth="60.0" />
-                  <Button mnemonicParsing="false" prefHeight="60.0" prefWidth="60.0" style="-fx-background-color: transparent; -fx-background-image: url('images/profile.png');">
+                  <Button fx:id="buttonAdmin" onMouseClicked="#handleAdminButton" mnemonicParsing="false" prefHeight="60.0" prefWidth="60.0" style="-fx-background-color: transparent; -fx-background-image: url('images/profile.png');">
                      <graphic>
-                        <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="40.0" fitWidth="40.0"  pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../../images/admin.png" />
                            </image>

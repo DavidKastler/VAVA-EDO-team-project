@@ -68,9 +68,12 @@ public class LoginScreenController implements Initializable {
                 this.user = UserHandler.loginUser(textUsername.getText(), textPassword.getText(), wrongCredentials);
 
             }else {
-                textUsername.setText(deserializedUser.getUsername());
-                textPassword.setText(deserializedUser.getPassword());
-                this.user = UserHandler.loginUser(deserializedUser.getUsername(), deserializedUser.getPassword(), wrongCredentials);
+                if (textUsername.getText().equals(deserializedUser.getUsername()) &&
+                        textPassword.getText().equals(deserializedUser.getPassword())) {
+                    this.user = UserHandler.loginUser(deserializedUser.getUsername(), deserializedUser.getPassword(), wrongCredentials);
+                } else {
+                    this.user = UserHandler.loginUser(textUsername.getText(), textPassword.getText(), wrongCredentials);
+                }
             }
 
 
@@ -87,11 +90,9 @@ public class LoginScreenController implements Initializable {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/vava/edo/Menu.fxml"));
             AnchorPane todoScreen = loader.load();
             MenuScreenController menuScreen = loader.getController();
-            menuScreen.initialize(user);
-
+            menuScreen.initialize(user, rootPane);
 
             rootPane.getChildren().setAll(todoScreen);
-
         }
         catch (EmptyLoginFields | IncorrectCredentials e){
             e.printStackTrace();

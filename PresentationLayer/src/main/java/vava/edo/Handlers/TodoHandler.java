@@ -334,13 +334,11 @@ public class TodoHandler {
      * @return ArrayList of all todos which are from the given range
      */
     public static ArrayList<Todo> getTodosByDate(User user, LocalDate fromDate, LocalDate toDate){
-        // TODO pre maria ked budes posielat tie datumy tak prosim ta za ten cas este daj ze .atStartOfDay()
         ArrayList<Todo> selectedTodos = new ArrayList<>();
-
 
         for (Todo todo: user.getTodos()){
             // Checks whether the to_do time is from desired range
-            if(fromDate.compareTo(LocalDate.parse(todo.getFromTime(), DateTimeFormatter.ofPattern("yyyy-MM-dd"))) >= 0 ||
+            if(fromDate.compareTo(LocalDate.parse(todo.getFromTime(), DateTimeFormatter.ofPattern("yyyy-MM-dd"))) >= 0 &&
                     toDate.compareTo(LocalDate.parse(todo.getToTime(), DateTimeFormatter.ofPattern("yyyy-MM-dd"))) <= 0){
                 selectedTodos.add(todo);
             }

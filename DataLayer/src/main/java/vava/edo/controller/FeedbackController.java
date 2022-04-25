@@ -30,9 +30,10 @@ public class FeedbackController {
 
     /**
      * Endpoint to create feedback
-     * @param token             user id
-     * @param feedbackMessage   message with feedback
-     * @return                  created feedback
+     *
+     * @param token           user id
+     * @param feedbackMessage message with feedback
+     * @return created feedback
      */
     @PostMapping("/create")
     public ResponseEntity<Feedback> createFeedback(@RequestParam(value = "token") Integer token,
@@ -43,9 +44,10 @@ public class FeedbackController {
 
     /**
      * Endpoint that sets feedback as seen based on given feedback id
+     *
      * @param token user is
      * @param fbId  feedback id
-     * @return      updated feedback
+     * @return updated feedback
      */
     @PutMapping("seen/{fbId}")
     public ResponseEntity<Feedback> setFeedbackSeen(@RequestParam(value = "token") Integer token,
@@ -61,9 +63,10 @@ public class FeedbackController {
 
     /**
      * Endpoint that deletes feedback based on given feedback id
+     *
      * @param token user is
      * @param fbId  feedback id
-     * @return      deleted feedback
+     * @return deleted feedback
      */
     @DeleteMapping("delete/{fbId}")
     public ResponseEntity<Feedback> deleteFeedback(@RequestParam(value = "token") Integer token,
@@ -79,6 +82,7 @@ public class FeedbackController {
 
     /**
      * Endpoint returning a list of all unseen feedback
+     *
      * @param token user account rights verification
      * @return list of unseen feedback
      */
@@ -95,6 +99,7 @@ public class FeedbackController {
 
     /**
      * Endpoint returning a list of feedback
+     *
      * @param token user account rights verification
      * @return list of feedback
      */
@@ -111,6 +116,7 @@ public class FeedbackController {
 
     /**
      * Endpoint returning a feedback
+     *
      * @param token user account rights verification
      * @param fbId  id of wanted feedback
      * @return feedback
