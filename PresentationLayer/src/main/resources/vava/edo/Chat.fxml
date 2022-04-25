@@ -136,52 +136,84 @@
                               <Font name="Arial" size="20.0" />
                            </font>
                         </TextArea>
-                        <Button fx:id="report_button" mnemonicParsing="false" onMouseClicked="#handleSendReportButton" prefHeight="50.0" prefWidth="140.0" style="-fx-background-color: #c4c4c4; -fx-background-radius: 40;" text="Report">
-                           <font>
-                              <Font name="Arial" size="24.0" />
-                           </font>
+                        <VBox>
                            <HBox.margin>
                               <Insets left="30.0" right="30.0" top="150.0" />
                            </HBox.margin>
-                        </Button>
+                           <children>
+                              <Button fx:id="report_button" mnemonicParsing="false" onMouseClicked="#handleSendReportButton" prefHeight="50.0" prefWidth="140.0" style="-fx-background-color: #c4c4c4; -fx-background-radius: 40;" text="Report">
+                                 <font>
+                                    <Font name="Arial" size="24.0" />
+                                 </font>
+                                 <VBox.margin>
+                                    <Insets />
+                                 </VBox.margin>
+                              </Button>
+                              <Button fx:id="cancel_report1" mnemonicParsing="false" onMouseClicked="#handleCancelReport" prefHeight="50.0" prefWidth="140.0" style="-fx-background-color: #c4c4c4; -fx-background-radius: 40;" text="Cancel">
+                                 <font>
+                                    <Font name="Arial" size="24.0" />
+                                 </font>
+                                 <VBox.margin>
+                                    <Insets top="10.0" />
+                                 </VBox.margin>
+                              </Button>
+                           </children>
+                        </VBox>
                      </children>
                   </HBox>
                </children>
             </VBox>
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="rootPane11" disable="true" layoutX="10.0" layoutY="10.0" prefHeight="750.0" prefWidth="1040.0" visible="false">
+      <AnchorPane fx:id="rootPane11" layoutX="10.0" layoutY="10.0" prefHeight="750.0" prefWidth="1040.0" visible="false">
          <children>
-            <VBox alignment="CENTER" layoutX="203.0" layoutY="78.0" prefHeight="428.0" prefWidth="679.0" style="-fx-background-color: #323232; -fx-border-color: red;">
+            <VBox alignment="TOP_CENTER" layoutX="203.0" layoutY="78.0" prefHeight="511.0" prefWidth="679.0" style="-fx-background-color: #323232; -fx-border-color: red;">
                <children>
                   <Label text="New chat" textFill="WHITE">
                      <font>
                         <Font name="Arial Bold" size="48.0" />
                      </font>
                      <VBox.margin>
-                        <Insets top="20.0" />
+                        <Insets top="10.0" />
                      </VBox.margin>
                   </Label>
-                  <HBox fx:id="report_hbox1" maxWidth="-Infinity" prefHeight="238.0" prefWidth="630.0" style="-fx-background-color: #323232;">
+                  <HBox fx:id="report_hbox1" maxWidth="-Infinity" prefHeight="150.0" prefWidth="630.0" style="-fx-background-color: #323232;">
                      <children>
                         <TextArea fx:id="text_area1" maxHeight="-Infinity" prefHeight="100.0" prefWidth="372.0" promptText="New conversation" wrapText="true">
                            <HBox.margin>
-                              <Insets bottom="30.0" left="30.0" right="30.0" top="60.0" />
+                              <Insets bottom="30.0" left="30.0" right="30.0" top="20.0" />
                            </HBox.margin>
                            <font>
                               <Font name="Arial" size="30.0" />
                            </font>
                         </TextArea>
-                        <Button fx:id="report_button1" mnemonicParsing="false" onMouseClicked="#handleSendChatNameButton" prefHeight="50.0" prefWidth="140.0" style="-fx-background-color: #c4c4c4; -fx-background-radius: 40;" text="Report">
-                           <font>
-                              <Font name="Arial" size="24.0" />
-                           </font>
+                        <VBox prefHeight="122.0" prefWidth="139.0">
                            <HBox.margin>
-                              <Insets left="30.0" right="30.0" top="80.0" />
+                              <Insets left="30.0" right="30.0" top="10.0" />
                            </HBox.margin>
-                        </Button>
+                           <children>
+                              <Button fx:id="report_button1" mnemonicParsing="false" onMouseClicked="#handleSendChatNameButton" prefHeight="50.0" prefWidth="140.0" style="-fx-background-color: #c4c4c4; -fx-background-radius: 40;" text="Create">
+                                 <font>
+                                    <Font name="Arial" size="24.0" />
+                                 </font>
+                              </Button>
+                              <Button fx:id="cancel_report" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onMouseClicked="#handleCancelNewChat" prefHeight="50.0" prefWidth="140.0" style="-fx-background-color: #c4c4c4; -fx-background-radius: 40;" text="Cancel">
+                                 <font>
+                                    <Font name="Arial" size="24.0" />
+                                 </font>
+                                 <VBox.margin>
+                                    <Insets top="10.0" />
+                                 </VBox.margin>
+                              </Button>
+                           </children>
+                        </VBox>
                      </children>
                   </HBox>
+                  <ScrollPane hbarPolicy="NEVER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="260.0" prefWidth="510.0">
+                     <content>
+                        <VBox fx:id="friends_vbox" alignment="TOP_CENTER" maxWidth="-Infinity" minHeight="258.0" minWidth="-Infinity" prefWidth="510.0" style="-fx-background-color: #323232;" />
+                     </content>
+                  </ScrollPane>
                </children>
             </VBox>
          </children>

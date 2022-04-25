@@ -36,12 +36,6 @@ public class ManagerController implements Initializable {
     @FXML
     private CheckBox pending;
 
-    @FXML
-    private CheckBox accepted;
-
-    @FXML
-    private CheckBox rejected;
-
 
     public ManagerController() {
 
@@ -109,8 +103,6 @@ public class ManagerController implements Initializable {
 
 
     public void refreshReportList(Event event) {
-        System.out.println(accepted.isSelected());
-        System.out.println(rejected.isSelected());
         System.out.println(pending.isSelected());
 
 
