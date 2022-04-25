@@ -1,9 +1,6 @@
 package vava.edo.Handlers;
 
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import vava.edo.controllers.models.CalendarDayModel;
@@ -13,6 +10,7 @@ import vava.edo.models.User;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.Month;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Calendar;
 
@@ -33,11 +31,14 @@ public class RefreshCalendarScreen {
     private TextArea textAreaTaskDescription;
     private Button buttonAcceptTodo;
     private Button buttonEditTodo;
+    private DatePicker datePickerTaskFrom;
+    private DatePicker datePickerTaskTo;
 
 
     public RefreshCalendarScreen(User user, VBox vBoxNewTaskScreen, VBox vBoxWeeks, Label labelTitleWindow,
                                  TextField textFieldTaskName, TextField textFieldTaskGroup,
-                                 TextArea textAreaTaskDescription, Button buttonAcceptTodo, Button buttonEditTodo) {
+                                 TextArea textAreaTaskDescription, DatePicker datePickerTaskFrom,
+                                 DatePicker datePickerTaskTo, Button buttonAcceptTodo, Button buttonEditTodo) {
         this.user = user;
         this.vBoxNewTaskScreen = vBoxNewTaskScreen;
         this.vBoxWeeks = vBoxWeeks;
@@ -45,6 +46,8 @@ public class RefreshCalendarScreen {
         this.textFieldTaskName = textFieldTaskName;
         this.textAreaTaskDescription = textAreaTaskDescription;
         this.textFieldTaskGroup = textFieldTaskGroup;
+        this.datePickerTaskFrom = datePickerTaskFrom;
+        this.datePickerTaskTo = datePickerTaskTo;
         this.buttonAcceptTodo = buttonAcceptTodo;
         this.buttonEditTodo = buttonEditTodo;
 
@@ -201,9 +204,11 @@ public class RefreshCalendarScreen {
         textFieldTaskName.setText(todo.getTodoName());
         textAreaTaskDescription.setText(todo.getTodoDescription());
         textFieldTaskGroup.setText(todo.getGroupName());
-        // datePickerTaskFrom.
-        // datePickerTaskFrom.
-        // TODO datum to datepickrvo sa naplna cez konstruktor tak sa na to pozri potom Mario
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        LocalDate fromDate = LocalDate.parse(editingTodo.getFromTime(), formatter);
+        LocalDate toDate = LocalDate.parse(editingTodo.getToTime(), formatter);
+        datePickerTaskFrom.setValue(fromDate);
+        datePickerTaskTo.setValue(toDate);
         vBoxNewTaskScreen.setVisible(true);
         vBoxNewTaskScreen.setDisable(false);
         buttonEditTodo.setVisible(true);

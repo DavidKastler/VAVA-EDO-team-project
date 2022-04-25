@@ -90,11 +90,9 @@ public class LoginScreenController implements Initializable {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/vava/edo/Menu.fxml"));
             AnchorPane todoScreen = loader.load();
             MenuScreenController menuScreen = loader.getController();
-            menuScreen.initialize(user);
-
+            menuScreen.initialize(user, rootPane);
 
             rootPane.getChildren().setAll(todoScreen);
-
         }
         catch (EmptyLoginFields | IncorrectCredentials e){
             e.printStackTrace();

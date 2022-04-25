@@ -3,8 +3,10 @@ package vava.edo.controllers;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
-import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import vava.edo.Exepctions.MenuScreen.FailedToUpdateUser;
@@ -16,9 +18,33 @@ import vava.edo.controllers.models.FriendsScreenModel;
 import vava.edo.controllers.models.TodoScreenModel;
 import vava.edo.models.User;
 
+import java.io.IOException;
+
 public class MenuScreenController {
     private User user;
     private boolean showPassword = false;
+    private AnchorPane rootPane;
+
+    @FXML
+    private Button buttonUser;
+
+    @FXML
+    private Button buttonTodos;
+
+    @FXML
+    private Button buttonCalendar;
+
+    @FXML
+    private Button buttonChat;
+
+    @FXML
+    private Button buttonFriends;
+
+    @FXML
+    private Button buttonAdmin;
+
+    @FXML
+    private Button buttonSettings;
 
     @FXML
     private HBox hBoxChangingScreen;
@@ -58,8 +84,9 @@ public class MenuScreenController {
      *
      * @param user Object of user which has logged in to the system
      */
-    public void initialize(User user)  {
+    public void initialize(User user, AnchorPane rootPane)  {
         setUser(user);
+        this.rootPane = rootPane;
         TodoHandler.startUp(this.user);
 
         // Preloaded information for edit info
@@ -71,6 +98,14 @@ public class MenuScreenController {
         labelPassword.setText("********");
 
         hBoxChangingScreen.getChildren().add(new TodoScreenModel(user).getTodoScreen());
+
+        buttonUser.setStyle("-fx-background-color: transparent");
+        buttonTodos.setStyle("-fx-background-color: #006DAB");
+        buttonCalendar.setStyle("-fx-background-color: transparent");
+        buttonChat.setStyle("-fx-background-color: transparent");
+        buttonFriends.setStyle("-fx-background-color: transparent");
+        buttonAdmin.setStyle("-fx-background-color: transparent");
+        buttonSettings.setStyle("-fx-background-color: transparent");
     }
 
     public void handleUserButton() {
@@ -78,6 +113,14 @@ public class MenuScreenController {
 
         vBoxProfileScreen.setDisable(false);
         vBoxProfileScreen.setVisible(true);
+
+        buttonUser.setStyle("-fx-background-color: #006DAB");
+        buttonTodos.setStyle("-fx-background-color: transparent");
+        buttonCalendar.setStyle("-fx-background-color: transparent");
+        buttonChat.setStyle("-fx-background-color: transparent");
+        buttonFriends.setStyle("-fx-background-color: transparent");
+        buttonAdmin.setStyle("-fx-background-color: transparent");
+        buttonSettings.setStyle("-fx-background-color: transparent");
     }
 
     public void handleShowPassword() {
@@ -131,20 +174,63 @@ public class MenuScreenController {
     public void handleTodosButton() {
         hBoxChangingScreen.getChildren().clear();
         hBoxChangingScreen.getChildren().add(new TodoScreenModel(user).getTodoScreen());
+
+        buttonUser.setStyle("-fx-background-color: transparent");
+        buttonTodos.setStyle("-fx-background-color: #006DAB");
+        buttonCalendar.setStyle("-fx-background-color: transparent");
+        buttonChat.setStyle("-fx-background-color: transparent");
+        buttonFriends.setStyle("-fx-background-color: transparent");
+        buttonAdmin.setStyle("-fx-background-color: transparent");
+        buttonSettings.setStyle("-fx-background-color: transparent");
     }
 
     public void handleCalendarButton() {
         hBoxChangingScreen.getChildren().clear();
         hBoxChangingScreen.getChildren().add(new CalendarScreenModel(user).getCalendarScreen());
+
+        buttonUser.setStyle("-fx-background-color: transparent");
+        buttonTodos.setStyle("-fx-background-color: transparent");
+        buttonCalendar.setStyle("-fx-background-color: #006DAB");
+        buttonChat.setStyle("-fx-background-color: transparent");
+        buttonFriends.setStyle("-fx-background-color: transparent");
+        buttonAdmin.setStyle("-fx-background-color: transparent");
+        buttonSettings.setStyle("-fx-background-color: transparent");
+    }
+
+    public void handleChatButton() {
+
+        buttonUser.setStyle("-fx-background-color: transparent");
+        buttonTodos.setStyle("-fx-background-color: transparent");
+        buttonCalendar.setStyle("-fx-background-color: transparent");
+        buttonChat.setStyle("-fx-background-color: #006DAB");
+        buttonFriends.setStyle("-fx-background-color: transparent");
+        buttonAdmin.setStyle("-fx-background-color: transparent");
+        buttonSettings.setStyle("-fx-background-color: transparent");
     }
 
     public void handleFriendsButton() {
+
+        buttonUser.setStyle("-fx-background-color: transparent");
+        buttonTodos.setStyle("-fx-background-color: transparent");
+        buttonCalendar.setStyle("-fx-background-color: transparent");
+        buttonChat.setStyle("-fx-background-color: transparent");
+        buttonFriends.setStyle("-fx-background-color: #006DAB");
+        buttonAdmin.setStyle("-fx-background-color: transparent");
+        buttonSettings.setStyle("-fx-background-color: transparent");
         hBoxChangingScreen.getChildren().clear();
         hBoxChangingScreen.getChildren().add(new FriendsScreenModel(user, this).getFriendsScreen());
     }
 
     public void handleAdminButton() {
         System.out.println("Admin button pressed");
+
+        buttonUser.setStyle("-fx-background-color: transparent");
+        buttonTodos.setStyle("-fx-background-color: transparent");
+        buttonCalendar.setStyle("-fx-background-color: transparent");
+        buttonChat.setStyle("-fx-background-color: transparent");
+        buttonFriends.setStyle("-fx-background-color: transparent");
+        buttonAdmin.setStyle("-fx-background-color: #006DAB");
+        buttonSettings.setStyle("-fx-background-color: transparent");
     }
 
     public void handleSettingsButton() {
@@ -152,6 +238,14 @@ public class MenuScreenController {
 
         vBoxSettingsScreen.setDisable(false);
         vBoxSettingsScreen.setVisible(true);
+
+        buttonUser.setStyle("-fx-background-color: transparent");
+        buttonTodos.setStyle("-fx-background-color: transparent");
+        buttonCalendar.setStyle("-fx-background-color: transparent");
+        buttonChat.setStyle("-fx-background-color: transparent");
+        buttonFriends.setStyle("-fx-background-color: transparent");
+        buttonAdmin.setStyle("-fx-background-color: transparent");
+        buttonSettings.setStyle("-fx-background-color: #006DAB");
     }
 
     public void handleCancelSettings() {
@@ -173,9 +267,13 @@ public class MenuScreenController {
     }
 
     public void handleLogout() {
-    }
+        try {
+            AnchorPane loginScreen = FXMLLoader.load(getClass().getResource("/vava/edo/Login.fxml"));
 
-    public void handleManagerButton(MouseEvent mouseEvent) {
+            rootPane.getChildren().setAll(loginScreen);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public void handleCancelAbout() {
