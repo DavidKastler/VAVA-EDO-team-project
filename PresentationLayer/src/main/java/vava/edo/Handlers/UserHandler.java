@@ -6,7 +6,6 @@ import com.mashape.unirest.http.JsonNode;
 import com.mashape.unirest.http.Unirest;
 import com.mashape.unirest.http.exceptions.UnirestException;
 import javafx.scene.control.Label;
-import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import org.json.JSONObject;
 import vava.edo.Exepctions.LoginScreen.EmptyLoginFields;
@@ -18,7 +17,7 @@ import vava.edo.models.User;
 import java.time.Instant;
 import java.util.Objects;
 
-public class UserHandler {
+public class UserHandler extends UserSerializationHandler {
 
     /**
      * Method which is responsible for validation and logging of the user into the system
@@ -29,15 +28,14 @@ public class UserHandler {
      *
      * @return returning a object of logged in user
      */
-    public static User loginUser(TextField username, PasswordField password, Label wrongCredentials) throws EmptyLoginFields, IncorrectCredentials {
+    public static User loginUser(String username, String password, Label wrongCredentials)
+            throws EmptyLoginFields, IncorrectCredentials {
 
-        User user;
-
-        if(!Objects.equals(username.getText(), "") && !Objects.equals(password.getText(), "")){
+        if(!Objects.equals(username, "") && !Objects.equals(password, "")){
 
             JSONObject jo = new JSONObject();
-            jo.put("username", username.getText());
-            jo.put("password", password.getText());
+            jo.put("username", username);
+            jo.put("password", password);
             System.out.println(jo);
 
             try {
@@ -45,10 +43,9 @@ public class UserHandler {
                         .header("Content-Type", "application/json")
                         .body(jo)
                         .asJson();
-                user = new Gson().fromJson(apiResponse.getBody().toString(), User.class);
+                User user = new Gson().fromJson(apiResponse.getBody().toString(), User.class);
 
                 if(user.getUsername() != null){
-                    user.setLogged(true);
                     user.setLastActivity(Instant.now().getEpochSecond());
                     System.out.println("Logged in\t->\t" + user);
                     wrongCredentials.setVisible(false);
@@ -63,8 +60,7 @@ public class UserHandler {
             catch (UnirestException e){
                 System.out.println("Connection to localhost:8080 failed ! (PLease start backend server)");
             }
-        }
-        else {
+        } else {
             throw new EmptyLoginFields("Login fields are left empty", wrongCredentials);
         }
 

@@ -1,14 +1,9 @@
 package vava.edo.controllers;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import vava.edo.Exepctions.LoginScreen.EmptyLoginFields;
 import vava.edo.Exepctions.LoginScreen.IncorrectCredentials;
@@ -16,11 +11,13 @@ import vava.edo.Handlers.UserHandler;
 import vava.edo.models.User;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.net.URL;
 import java.util.ResourceBundle;
 
 public class LoginScreenController implements Initializable {
-    private User user;
+    private User user = null;
+    private User deserializedUser = null;
     private boolean rememberMeState = false;
 
     @FXML
@@ -36,6 +33,8 @@ public class LoginScreenController implements Initializable {
     private Label wrongCredentials;
 
     @FXML
+    private CheckBox checkBoxRememberMe;
+    @FXML
     private Button btnRegister;
 
     @FXML
@@ -47,15 +46,43 @@ public class LoginScreenController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
+        deserializedUser = UserHandler.loadSerializedUser();
+
+        if(deserializedUser != null){
+
+            rememberMeState = deserializedUser.isRememberMe();
+
+            textUsername.setText(deserializedUser.getUsername());
+            textPassword.setText(deserializedUser.getPassword());
+            checkBoxRememberMe.setSelected(deserializedUser.isRememberMe());
+        }
+
     }
 
     @FXML
     protected void handleLoginButton() throws IOException {
 
         try {
-            this.user = UserHandler.loginUser(textUsername, textPassword, wrongCredentials);
 
+            if(deserializedUser == null){
+                this.user = UserHandler.loginUser(textUsername.getText(), textPassword.getText(), wrongCredentials);
+
+            }else {
+                textUsername.setText(deserializedUser.getUsername());
+                textPassword.setText(deserializedUser.getPassword());
+                this.user = UserHandler.loginUser(deserializedUser.getUsername(), deserializedUser.getPassword(), wrongCredentials);
+            }
+
+
+            // Null shouldn't be possible TODO
+            // Serialization takes place here if desired
             this.user.setRememberMe(this.rememberMeState);
+
+            if(this.user.isRememberMe()) {
+                UserHandler.serializeUser(this.user);
+            }else {
+                new PrintWriter(UserHandler.getPATH()).close();
+            }
 
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/vava/edo/Menu.fxml"));
             AnchorPane todoScreen = loader.load();
@@ -64,6 +91,7 @@ public class LoginScreenController implements Initializable {
 
 
             rootPane.getChildren().setAll(todoScreen);
+
         }
         catch (EmptyLoginFields | IncorrectCredentials e){
             e.printStackTrace();

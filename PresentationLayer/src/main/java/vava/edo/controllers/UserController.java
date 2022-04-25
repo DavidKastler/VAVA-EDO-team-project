@@ -6,7 +6,7 @@ import java.io.*;
 
 public class UserController {
 
-    public void  loadSerializeUser() {
+    public void  loadSerializedUser() {
         User user = null;
         try {
             FileInputStream fileIn = new FileInputStream("/tmp/employee.ser");

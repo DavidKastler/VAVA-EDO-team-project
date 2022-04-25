@@ -15,7 +15,6 @@ public class User implements Serializable {
     private String password = null;
     private Role userRole = null;
     private boolean rememberMe = false;  // potrebné pre serializáciu dát (mimo db)
-    private boolean isLogged = false;  // potrebné pre serializáciu dát (mimo db)
     private long lastActivity = 0;  // potrebné pre serializáciu dát (mimo db)
     private ArrayList<Todo> todos = null;
     private ArrayList<TodoGroup> todoGroups = null;
@@ -34,10 +33,6 @@ public class User implements Serializable {
 
     public Role getUserRole() {
         return userRole;
-    }
-
-    public boolean isLogged() {
-        return isLogged;
     }
 
     public void setUsername(String username) {
@@ -60,10 +55,6 @@ public class User implements Serializable {
 
     public void setRememberMe(boolean rememberMe) {
         this.rememberMe = rememberMe;
-    }
-
-    public void setLogged(boolean logged) {
-        isLogged = logged;
     }
 
     public void setLastActivity(long lastActivity) {
@@ -122,7 +113,6 @@ public class User implements Serializable {
                 ", password='" + password + '\'' +
                 ", userRole=" + userRole +
                 ", rememberMe=" + rememberMe +
-                ", isLogged=" + isLogged +
                 ", lastActivity=" + lastActivity +
                 '}';
     }
