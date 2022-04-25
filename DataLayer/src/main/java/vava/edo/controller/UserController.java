@@ -51,7 +51,7 @@ public class UserController {
      * @return user entity from database
      */
     @PostMapping(value = "/register")
-    public ResponseEntity<Object> registerNewUser(@RequestBody UserEdit userDto) {
+    public ResponseEntity<User> registerNewUser(@RequestBody UserLogin userDto) {
         log.info("Register new user {}.", userDto.getUsername());
         return new ResponseEntity<>(userService.addUser(userDto), HttpStatus.CREATED);
     }
@@ -61,7 +61,7 @@ public class UserController {
      *
      * @param token       user id
      * @param userId      used id you want to check as admin required = false
-     * @param updatedUser
+     * @param updatedUser updated user
      * @return
      */
     @PutMapping("/update/{userId}")
@@ -86,6 +86,14 @@ public class UserController {
         return new ResponseEntity<>(user, HttpStatus.OK);
     }
 
+    /**
+     * Endpoint to edit all user variables
+     *
+     * @param token      user id
+     * @param userId     user id you want to edit
+     * @param editedUser edited user parameters you want to save
+     * @return edited user
+     */
     @PutMapping("/edit/{userId}")
     public ResponseEntity<User> editUser(@RequestParam(value = "token") Integer token,
                                          @PathVariable(value = "userId") Integer userId,
@@ -102,6 +110,13 @@ public class UserController {
         return new ResponseEntity<>(user, HttpStatus.OK);
     }
 
+    /**
+     * Endpoint that deletes user
+     *
+     * @param token  user id
+     * @param userId user id you want to delete
+     * @return deleted user
+     */
     @DeleteMapping(value = "/delete/{u_id}")
     public ResponseEntity<Object> deleteUserById(@RequestParam(value = "token") Integer token,
                                                  @PathVariable(value = "u_id") Integer userId) {
@@ -113,6 +128,12 @@ public class UserController {
         return new ResponseEntity<>(userService.deleteUser(userId), HttpStatus.NO_CONTENT);
     }
 
+    /**
+     * Endpoint that gets all users from database
+     *
+     * @param token user id
+     * @return list of all users
+     */
     @GetMapping(value = "/all")
     public ResponseEntity<List<User>> getAllUsers(@RequestParam(value = "token") Integer token) {
         log.info("Getting all users from database.");
@@ -124,6 +145,13 @@ public class UserController {
         return new ResponseEntity<>(userService.getAllUsers(), HttpStatus.OK);
     }
 
+    /**
+     * Endpoint that gets user by its id
+     *
+     * @param token  user id
+     * @param userId wanted user id you want to get as admin required = false
+     * @return found user
+     */
     @GetMapping(value = "/get/{userId}")
     public ResponseEntity<User> getUserById(@RequestParam(value = "token") Integer token,
                                             @PathVariable(value = "userId", required = false) Integer userId) {

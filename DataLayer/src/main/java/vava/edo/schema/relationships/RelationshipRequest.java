@@ -23,8 +23,8 @@ public class RelationshipRequest {
         RelationshipRequest relationshipRequest = new RelationshipRequest();
 
         relationshipRequest.setRelationshipId(relationship.getRelationshipId());
-        relationshipRequest.setUserId(relationship.getSecondUser().getUId());
-        relationshipRequest.setUserName(relationship.getSecondUser().getUsername());
+        relationshipRequest.setUserId(relationship.getFirstUser().getUId());
+        relationshipRequest.setUserName(relationship.getFirstUser().getUsername());
 
         return relationshipRequest;
     }
