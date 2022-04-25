@@ -48,22 +48,6 @@
                                           <Insets top="10.0" />
                                        </VBox.margin>
                                     </CheckBox>
-                                    <CheckBox fx:id="accepted" layoutX="60.0" layoutY="60.0" mnemonicParsing="false" onAction="#refreshReportList" prefHeight="30.0" prefWidth="160.0" text="Accepted" textFill="WHITE">
-                                       <font>
-                                          <Font name="Arial Bold" size="20.0" />
-                                       </font>
-                                       <VBox.margin>
-                                          <Insets top="10.0" />
-                                       </VBox.margin>
-                                    </CheckBox>
-                                    <CheckBox fx:id="rejected" layoutX="60.0" layoutY="76.0" mnemonicParsing="false" onAction="#refreshReportList" prefHeight="30.0" prefWidth="160.0" text="Rejected" textFill="WHITE">
-                                       <font>
-                                          <Font name="Arial Bold" size="20.0" />
-                                       </font>
-                                       <VBox.margin>
-                                          <Insets top="10.0" />
-                                       </VBox.margin>
-                                    </CheckBox>
                                  </children>
                               </VBox>
                            </children>

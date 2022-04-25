@@ -5,7 +5,10 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.input.MouseEvent;
+import vava.edo.controllers.models.ManagerViewReportModel;
 import vava.edo.models.ManagerViewElementModel;
+import vava.edo.models.Report;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -62,13 +65,9 @@ public class ManagerViewElementController implements Initializable {
     public void setModel(ManagerViewElementModel model) {
         this.model = model;
 
-        setUsername(model.getUsername());
-        setType(model.getType());
-        setStatus(model.getStatus());
-
-
-
-
+        setUsername(model.getReport().getViolatorName());
+        setType(model.getUser().getUserRole().getRoleName());
+        setStatus(model.getReport().getStatus());
     }
 
 
@@ -77,4 +76,8 @@ public class ManagerViewElementController implements Initializable {
 
     }
 
+    public void openReport(MouseEvent mouseEvent) {
+        this.model.getMenuScreenController().gethBoxChangingScreen().getChildren().clear();
+        this.model.getMenuScreenController().gethBoxChangingScreen().getChildren().add(new ManagerViewReportModel(this.model.getUser(), this.model.getMenuScreenController() , this.model.getReport()).getReportScreen());
+    }
 }

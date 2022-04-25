@@ -12,8 +12,13 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import vava.edo.Handlers.ReportHandler;
+import vava.edo.Handlers.SearchHandler;
 import vava.edo.controllers.models.ManagerScreenModel;
+import vava.edo.models.FriendElementModel;
 import vava.edo.models.ManagerViewElementModel;
+import vava.edo.models.Relationship;
+import vava.edo.models.Report;
 
 import java.io.IOException;
 import java.net.URL;
@@ -49,6 +54,8 @@ public class ManagerController implements Initializable {
         this.model = model;
     }
 
+    private List<Report> reports = null;
+
     public ManagerController() {
 
     }
@@ -56,61 +63,48 @@ public class ManagerController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
-        List<String> usernames = new ArrayList<>();
-        usernames.add("Jano");
-        usernames.add("Fero");
-        usernames.add("Kubo");
-        usernames.add("Lubo");
-        usernames.add("Eva");
-        usernames.add("Katka");
-        usernames.add("Hana");
-        usernames.add("Karol");
-        usernames.add("Adam");
-        usernames.add("Erzika");
+    }
 
-        List<String> type = new ArrayList<>();
-        type.add("pleb");
-        type.add("Guest");
-        type.add("Guest");
-        type.add("pleb");
-        type.add("pleb");
-        type.add("pleb");
-        type.add("Admin");
-        type.add("Admin");
-        type.add("pleb");
-        type.add("Admin");
+    public void loadReports(boolean pending) {
+        if (pending) {
+            this.reports = ReportHandler.getPendingReports(this.model.getUser().getUid());
+        } else {
+            this.reports = ReportHandler.getAllReports(this.model.getUser().getUid());
+        }
 
+        for (Report report : this.reports) {
+            report.setViolatorName();
+        }
 
-        List<String> status = new ArrayList<>();
-        status.add("pending");
-        status.add("accepted");
-        status.add("rejected");
-        status.add("rejected");
-        status.add("pending");
-        status.add("rejected");
-        status.add("accepted");
-        status.add("accepted");
-        status.add("rejected");
-        status.add("pending");
+        reloadReports();
+    }
 
-        for (Integer i = 0; i < usernames.size(); i++){
-            ManagerViewElementModel element = new ManagerViewElementModel(usernames.get(i), type.get(i), status.get(i));
-            HBox hbox = element.getElement();
-            users_vbox.getChildren().add(hbox);
+    public void reloadReports() {
+
+        users_vbox.getChildren().clear();
+
+        @SuppressWarnings("unchecked")
+        List<Report> searchedReports = (List<Report>)(List) SearchHandler.searchInList(this.reports , "violatorName", search_users.getText());
+
+        for (Integer i = 0; i < searchedReports.size(); i++){
+            try {
+                ManagerViewElementModel element = new ManagerViewElementModel(this.model.getUser(), searchedReports.get(i), this.model.getMenuScreenController());
+                HBox hbox = element.getElement();
+                users_vbox.getChildren().add(hbox);
+            } catch (Exception e) {
+
+            }
+
         }
 
     }
 
     public void handleSearchUser(KeyEvent keyEvent) throws IOException {
-        System.out.println(search_users.getText());
+        reloadReports();
     }
 
 
     public void refreshReportList(Event event) {
-        System.out.println(accepted.isSelected());
-        System.out.println(rejected.isSelected());
-        System.out.println(pending.isSelected());
-
-
+        loadReports(pending.isSelected());
     }
 }

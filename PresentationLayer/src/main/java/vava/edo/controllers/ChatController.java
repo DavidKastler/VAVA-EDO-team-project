@@ -19,15 +19,14 @@ import vava.edo.Handlers.GroupHandler;
 import vava.edo.Handlers.MessageHandler;
 import vava.edo.controllers.models.ChatScreenModel;
 import vava.edo.models.*;
+import vava.edo.models.ChatGrayElementModel;
+import vava.edo.models.ChatPinkElementModel;
 
 import java.io.IOException;
 import java.net.URL;
 import java.net.URLConnection;
 import java.time.Instant;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.List;
-import java.util.ResourceBundle;
+import java.util.*;
 
 
 public class ChatController implements Initializable {
@@ -217,6 +216,8 @@ public class ChatController implements Initializable {
 
     @FXML
     public void handleViewChatButton(MouseEvent mouseEvent, Integer groupId) throws IOException {
+
+        messages_list.getChildren().clear();
         refreshColorsOfChats(this.chat_list_pane.getChildren());
 
         //metoda na vratenie userov v danych chatoch/groupach
@@ -273,6 +274,7 @@ public class ChatController implements Initializable {
         rootPane11.setDisable(false);
         chat_screen_box.setDisable(true);
         //chat_screen_box.setVisible(false);
+        loadFriends();
 
     }
 
@@ -305,6 +307,86 @@ public class ChatController implements Initializable {
 
     public void handleSendChatNameButton(MouseEvent mouseEvent) {
         System.out.println(text_area.getText());
+        List<String> friends = new ArrayList<>();
+        friends = checkedFriends();
+        System.out.println(friends);
+        rootPane11.setVisible(false);
+        rootPane11.setDisable(true);
+        chat_screen_box.setDisable(false);
+        chat_screen_box.setVisible(true);
+
+    }
+
+    private List<String> checkedFriends() {
+        List<String> friends = new ArrayList<>();
+        List<Node> hboxes = new ArrayList<>();
+        hboxes = friends_vbox.getChildren();
+
+        for (Integer i = 0; i < hboxes.size(); i++){
+            if (((CheckBox)((HBox)hboxes.get(i)).getChildren().get(1)).isSelected()){
+                friends.add(((Label)((HBox)hboxes.get(i)).getChildren().get(0)).getText());
+            }
+
+        }
+
+        return friends;
+    }
+
+
+    @FXML
+    private VBox friends_vbox;
+    public void loadFriends(){
+        List<String> usernames = new ArrayList<>();
+        usernames.add("Jano");
+        usernames.add("Fero");
+        usernames.add("Jano");
+        usernames.add("Fero");
+        usernames.add("Jano");
+
+        for (Integer i = 0; i < usernames.size(); i++){
+            HBox hBox = createFriendBox(usernames.get(i));
+            friends_vbox.getChildren().add(hBox);
+        }
+
+    }
+
+    public HBox createFriendBox(String username){
+        HBox hbox = new HBox();
+        Label label = new Label();
+        CheckBox checkhbox = new CheckBox();
+        label.setText(username);
+
+        label.setMinWidth(419);
+        label.prefWidth(419);
+        label.prefHeight(46);
+        label.setPadding(new Insets(10, 0, 0, 30));
+
+
+
+        label.setStyle("-fx-font-weight: bold");
+        label.setAlignment(Pos.CENTER_LEFT);
+        label.setFont(new Font("Arial", 30));
+        label.setStyle("-fx-text-fill: white");
+
+
+        checkhbox.setStyle("-fx-font-family: Arial");
+        checkhbox.setStyle("-fx-font-size: 22");
+        checkhbox.setAlignment(Pos.CENTER_LEFT);
+        checkhbox.setPadding(new Insets(10, 0, 0, 0));
+        hbox.getChildren().add(label);
+        hbox.getChildren().add(checkhbox);
+
+        return hbox;
+    }
+
+    public void handleCancelReport(MouseEvent mouseEvent){
+        rootPane1.setVisible(false);
+        rootPane1.setDisable(true);
+        chat_screen_box.setDisable(false);
+        chat_screen_box.setVisible(true);
+    }
+
+    public void handleCancelNewChat(MouseEvent mouseEvent){
         rootPane11.setVisible(false);
         rootPane11.setDisable(true);
         chat_screen_box.setDisable(false);
