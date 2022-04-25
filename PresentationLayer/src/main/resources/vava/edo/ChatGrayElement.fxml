@@ -8,7 +8,7 @@
 
 <HBox fx:id="user" alignment="BOTTOM_RIGHT" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="vava.edo.controllers.ChatGrayElementController">
    <children>
-      <VBox maxHeight="Infinity">
+      <VBox fillWidth="false">
          <HBox.margin>
             <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
          </HBox.margin>
@@ -18,7 +18,7 @@
                   <Font name="Arial" size="16.0" />
                </font>
             </Label>
-            <Label fx:id="message" contentDisplay="CENTER" maxHeight="Infinity" maxWidth="350.0" style="-fx-background-color: #c4c4c4; -fx-background-radius: 20;" text="odc; oabz scbpai asc iasbca slsac b;" wrapText="true">
+            <Label fx:id="message" contentDisplay="CENTER" maxWidth="350.0" style="-fx-background-color: #c4c4c4; -fx-background-radius: 20;" text="hello" wrapText="true">
                <font>
                   <Font name="Arial" size="28.0" />
                </font>
