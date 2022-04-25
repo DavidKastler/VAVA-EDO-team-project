@@ -52,15 +52,6 @@ public class FriendRequestController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        try {
-            URL checkConnectionURL = new URL("http://www.google.com");
-            URLConnection checkConnection = checkConnectionURL.openConnection();
-            checkConnection.connect();
-            System.out.println("Internet is connected");
-        } catch (IOException e) {
-            System.out.println("Internet is not connected");
-        }
-
     }
 
     public void loadFriendRequests() {

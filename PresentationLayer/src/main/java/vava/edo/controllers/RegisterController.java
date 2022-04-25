@@ -14,6 +14,8 @@ import javafx.fxml.FXML;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import org.json.JSONObject;
+import vava.edo.Exepctions.LoginScreen.FailedToRegister;
+import vava.edo.Handlers.UserHandler;
 
 import java.io.IOException;
 import java.net.URL;
@@ -21,7 +23,7 @@ import java.net.URLConnection;
 import java.util.ResourceBundle;
 
 
-public class RegisterController implements Initializable {
+public class RegisterController{
 
     @FXML
     private AnchorPane rootPane;
@@ -47,48 +49,23 @@ public class RegisterController implements Initializable {
     public RegisterController() {
     }
 
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-        try {
-            URL checkConnectionURL = new URL("http://www.google.com");
-            URLConnection checkConnection = checkConnectionURL.openConnection();
-            checkConnection.connect();
-            System.out.println("Internet is connected");
-        } catch (IOException e) {
-            System.out.println("Internet is not connected");
-        }
-    }
 
     @FXML
     public void handleRegisterButton(MouseEvent mouseEvent) {
         Node node = (Node) mouseEvent.getSource();
         Stage stage = (Stage) node.getScene().getWindow();
 
-        if (!this.textPassword1.getText().equals(this.textPassword2.getText()) || this.textUsername.getText().isEmpty()){
-            System.out.println("Wrong Input!");
-            wrongInput.setVisible(true);
-            this.textUsername.clear();
-            this.textPassword1.clear();
-            this.textPassword2.clear();
-        }else {
-            wrongInput.setVisible(false);
+        try {
+            UserHandler.registerUser(this.textUsername, this.textPassword1, this.textPassword2, this.wrongInput);
 
-            JSONObject jo = new JSONObject();
-            jo.put("username", this.textUsername.getText());
-            jo.put("password", this.textPassword1.getText());
-            jo.put("confirm_password", this.textPassword2.getText());
-            System.out.println(jo);
+            AnchorPane loginScreen = FXMLLoader.load(getClass().getResource("/vava/edo/Login.fxml"));
 
-            try {
-                HttpResponse<JsonNode> apiResponse = Unirest.post("http://localhost:8080/users/register").header("Content-Type", "application/json").body(jo).asJson();
-                System.out.println(apiResponse.getBody().toString());
-                //AnchorPane todoScreen = FXMLLoader.load(getClass().getResource("/vava/edo/Login.fxml"));
-                //this.rootPane.getChildren().setAll(new Node[]{todoScreen});
+            this.rootPane.getChildren().setAll(new Node[]{loginScreen});
 
-            } catch (UnirestException e) {
-                e.printStackTrace();
-            }
+        }catch (IOException | FailedToRegister e){
+            e.printStackTrace();
         }
+
     }
 
     @FXML

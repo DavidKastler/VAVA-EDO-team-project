@@ -9,6 +9,9 @@ import vava.edo.Handlers.RefreshTodoScreen;
 import vava.edo.Handlers.TodoHandler;
 import vava.edo.controllers.models.TodoScreenModel;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
 
 public class TodosScreenController {
     private TodoScreenModel model;
@@ -36,9 +39,16 @@ public class TodosScreenController {
     @FXML
     private VBox vBoxTodos;
 
+    @FXML
+    private ScrollPane scrollPaneTodos;
+
+
     // FXML elements for new to_do window
     @FXML
     private VBox vBoxNewTaskScreen;
+
+    @FXML
+    private Label labelTitleWindow;
 
     @FXML
     private TextField textFieldTaskName;
@@ -90,13 +100,22 @@ public class TodosScreenController {
                 labelTodoInfoName, labelTodoInfoDescription, labelTodoInfoGroup, buttonEditTodoInfo, buttonDeleteTodo);
 
         refresher.initLoader();
+        actualSelectedGroup = 1;
+
+        scrollPaneTodos.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
+        scrollPaneTodos.setVbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
+
+        buttonHighlight("AllTodos");
     }
 
     public void handleAllTodos() {
         labelTodoGroupName.setText("All");
         actualSelectedGroup = 1;
+
         refresher.setActualGroupTodos(model.getUser().getTodos());
         refresher.refreshTodos(actualSelectedGroup);
+
+        buttonHighlight("AllTodos");
     }
 
     public void handleTodayTodos() {
@@ -104,6 +123,8 @@ public class TodosScreenController {
         actualSelectedGroup = 2;
         refresher.setActualGroupTodos(TodoHandler.getTodayTodos(model.getUser()));
         refresher.refreshTodos(actualSelectedGroup);
+
+        buttonHighlight("TodayTodos");
     }
 
     public void handleTomorrowTodos() {
@@ -111,6 +132,9 @@ public class TodosScreenController {
         actualSelectedGroup = 3;
         refresher.setActualGroupTodos(TodoHandler.getTomorrowTodos(model.getUser()));
         refresher.refreshTodos(actualSelectedGroup);
+
+        buttonHighlight("TomorrowTodos");
+
     }
 
     public void handleCompletedTodos() {
@@ -118,13 +142,16 @@ public class TodosScreenController {
         actualSelectedGroup = 4;
         refresher.setActualGroupTodos(TodoHandler.getCompletedTodos(model.getUser()));
         refresher.refreshTodos(actualSelectedGroup);
+
+        buttonHighlight("CompletedTodos");
     }
 
     @FXML
     protected void handleAddNewTodo() {
-        System.out.println("Clicked add new task button");
+        System.out.println("Clicked add new task button (Todo screen)");
 
         // Have to be emptied before use
+        labelTitleWindow.setText("New Todo");
         textFieldTaskName.setText("");
         textAreaTaskDescription.setText("");
         textFieldTaskGroup.setText("");
@@ -163,13 +190,15 @@ public class TodosScreenController {
 
     @FXML
     public void handleEditTodoInfo() {
-        // TODO zmenit nazov new task na edit todo
+        labelTitleWindow.setText("Edit Todo");
         textFieldTaskName.setText(labelTodoInfoName.getText());
         textAreaTaskDescription.setText(labelTodoInfoDescription.getText());
         textFieldTaskGroup.setText(labelTodoInfoGroup.getText());
-        // datePickerTaskFrom.
-        // datePickerTaskFrom.
-        // TODO datum to datepickrvo sa naplna cez konstruktor tak sa na to pozri potom Mario
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        LocalDate fromDate = LocalDate.parse(refresher.getSelectedTodo().getFromTime(), formatter);
+        LocalDate toDate = LocalDate.parse(refresher.getSelectedTodo().getToTime(), formatter);
+        datePickerTaskFrom.setValue(fromDate);
+        datePickerTaskTo.setValue(toDate);
         vBoxNewTaskScreen.setVisible(true);
         vBoxNewTaskScreen.setDisable(false);
         buttonEditTodo.setVisible(true);
@@ -226,5 +255,18 @@ public class TodosScreenController {
         }
 
         refresher.refreshTodos(actualSelectedGroup);
+    }
+
+    /**
+     * Method which highlights the selected button
+     *
+     * @param buttonName name of the button which is going to be highlighted
+     */
+    private void buttonHighlight(String buttonName) {
+        buttonAllTodos.setStyle(buttonName.equals("AllTodos") ? "-fx-background-color:  #8D8D8D" : "-fx-background-color:  transparent");
+        buttonTodayTodos.setStyle(buttonName.equals("TodayTodos") ? "-fx-background-color:  #8D8D8D" : "-fx-background-color:  transparent");
+        buttonTomorrowTodos.setStyle(buttonName.equals("TomorrowTodos") ? "-fx-background-color:  #8D8D8D" : "-fx-background-color:  transparent");
+        buttonCompletedTodos.setStyle(buttonName.equals("CompletedTodos") ? "-fx-background-color:  #8D8D8D" : "-fx-background-color:  transparent");
+
     }
 }

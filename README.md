@@ -18,6 +18,17 @@
 
 ---
 
+# Ako spustit program
+
+- Treba inizializovat backend
+  - treba si vytvorit databazu a nastavit ju v `DataLayer/src/main/resources/application.properties`
+  - treba si to enviroment variables nastavit prihlasovacie meno a heslo do databazy
+  - setup databazy spravime spustenim `DataLayer/src/main/resources/PostgreSQL-database-setup.sql`
+  - pre vlozenie mock dat treba spustit `DataLayer/src/main/resources/PostgreSQL-database-mockup.sql`
+- Backend spustime pomocou `DataLayer/src/main/java/vava/edo/StartUpBackend.java`
+- Frontend spustime pomocou `PresentationLayer/src/main/java/vava/edo/Main.java`
+
+---
 # ✅ Pravidla clean code ✅
 - chceme mat cisty kod v ktorom sa bude dat lahko pracovat a lahko sa bude dat upravovat
 - nechceme aby kazdy pisal kod inak pretoze s toho vznikne gulas a jeden nebude chciet robit v kode toto druheho

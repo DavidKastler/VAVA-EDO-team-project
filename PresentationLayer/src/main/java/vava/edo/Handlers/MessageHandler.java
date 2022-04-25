@@ -9,7 +9,6 @@ import org.json.JSONObject;
 import vava.edo.Exepctions.HttpStatusExceptions.UnexpectedHttpStatusException;
 import vava.edo.models.Group;
 import vava.edo.models.Message;
-import vava.edo.schema.MessageDto;
 
 
 import java.time.Instant;

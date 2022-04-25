@@ -43,7 +43,6 @@ public class RefreshTodoScreen {
 
         for(Todo todo : actualGroupTodos) {
             vBoxTodos.getChildren().add(new TodoHBoxModel(todo, this).getTodoHBOx());
-            System.out.println("Loaded: " + todo);
         }
 
         if(!user.getTodos().isEmpty()) {

@@ -8,7 +8,6 @@ import com.mashape.unirest.http.exceptions.UnirestException;
 import org.json.JSONObject;
 import vava.edo.Exepctions.HttpStatusExceptions.UnexpectedHttpStatusException;
 import vava.edo.models.Report;
-import vava.edo.models.User;
 
 import java.util.ArrayList;
 

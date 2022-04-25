@@ -13,11 +13,11 @@ import lombok.Data;
 @AllArgsConstructor
 public class RecentChatGroup {
     @NotNull
-    private Long lastSentMessage;
+    private Integer groupId;
     @NotNull
     private String groupName;
     @NotNull
-    private Integer groupId;
+    private Long lastSentMessage;
 
     private final static String SEPARATOR = ",";
 
