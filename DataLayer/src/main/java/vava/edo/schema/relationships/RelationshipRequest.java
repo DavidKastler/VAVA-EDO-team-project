@@ -27,11 +27,11 @@ public class RelationshipRequest {
 
         relationshipRequest.setRelationshipId(relationship.getRelationshipId());
         if (Objects.equals(relationship.getFirstUser().getUId(), userId)) {
-            relationshipRequest.setUserId(relationship.getFirstUser().getUId());
-            relationshipRequest.setUserName(relationship.getFirstUser().getUsername());
-        } else {
             relationshipRequest.setUserId(relationship.getSecondUser().getUId());
             relationshipRequest.setUserName(relationship.getSecondUser().getUsername());
+        } else {
+            relationshipRequest.setUserId(relationship.getFirstUser().getUId());
+            relationshipRequest.setUserName(relationship.getFirstUser().getUsername());
         }
         return relationshipRequest;
     }
