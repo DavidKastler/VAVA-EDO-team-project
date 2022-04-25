@@ -20,7 +20,7 @@ public class CalendarDayModel {
 
     // TODO pridať ktory je to den pre daný cell
     private int dayNumber;
-    private ArrayList<Todo> dayTodos = new ArrayList<>();
+    private ArrayList<Todo> dayTodos;
 
     public CalendarDayModel(RefreshCalendarScreen refresher, HBox rootHBoxWeek, int dayNumber, ArrayList<Todo> dayTodos) {
         this.refresher = refresher;
@@ -53,9 +53,5 @@ public class CalendarDayModel {
 
     public ArrayList<Todo> getDayTodos() {
         return dayTodos;
-    }
-
-    public void setDayTodos(ArrayList<Todo> dayTodos) {
-        this.dayTodos = dayTodos;
     }
 }

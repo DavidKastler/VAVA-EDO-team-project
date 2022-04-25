@@ -36,6 +36,10 @@ public class TodosScreenController {
     @FXML
     private VBox vBoxTodos;
 
+    @FXML
+    private ScrollPane scrollPaneTodos;
+
+
     // FXML elements for new to_do window
     @FXML
     private VBox vBoxNewTaskScreen;
@@ -95,6 +99,9 @@ public class TodosScreenController {
         buttonTodayTodos.setStyle("-fx-background-color:  transparent");
         buttonTomorrowTodos.setStyle("-fx-background-color:  transparent");
         buttonCompletedTodos.setStyle("-fx-background-color:  transparent");
+
+        scrollPaneTodos.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
+        scrollPaneTodos.setVbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
     }
 
     public void handleAllTodos() {

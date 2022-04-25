@@ -3,7 +3,6 @@ package vava.edo.Handlers;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import vava.edo.controllers.models.CalendarDayModel;
-import vava.edo.models.Todo;
 import vava.edo.models.User;
 
 import java.text.SimpleDateFormat;
@@ -18,8 +17,6 @@ public class RefreshCalendarScreen {
     private Month selectedMonth;
     private int selectedYear;
 
-    private ArrayList<HBox> weeksHBoxes = new ArrayList<>();
-    private ArrayList<Todo> selectedMonthTodos = new ArrayList<>();
     private ArrayList<CalendarDayModel> dayModels = new ArrayList<>();
 
     private VBox vBoxWeeks;
@@ -106,10 +103,6 @@ public class RefreshCalendarScreen {
         dayModels.clear();
         Calendar cal = Calendar.getInstance();
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-        LocalDate fromDate = getFromDate();
-        LocalDate toDate = getToDate();
-
-        selectedMonthTodos = TodoHandler.getTodosByDate(user, fromDate, toDate);
 
         HBox weekBox = null;
         int nextMonthDays = 1;
@@ -119,6 +112,9 @@ public class RefreshCalendarScreen {
                 weekBox = new HBox();
                 vBoxWeeks.getChildren().add(weekBox);
             }
+
+            cal.set(Calendar.YEAR, selectedYear);
+            cal.set(Calendar.MONTH, (selectedMonth.getValue() - 1));
 
             if(dayCount < getFirstDateOfMonth()) {
                 int tempYear = selectedYear;
@@ -228,20 +224,6 @@ public class RefreshCalendarScreen {
         }
         return toDate;
     }
-
-    /*public ArrayList<Todo> getDayTodosArraylist(ArrayList<Todo> todos, int day, int month, int year) throws ParseException {
-        ArrayList<Todo> todosInDay = new ArrayList<>();
-        LocalDate dayOfTodos = LocalDate.parse((year + "-" + month + "-" + day));
-
-        for(Todo todo : todos) {
-            if(dayOfTodos.compareTo(LocalDate.parse(todo.getFromTime(), DateTimeFormatter.ofPattern("yyyy-MM-dd"))) <= 0 &&
-                    dayOfTodos.compareTo(LocalDate.parse(todo.getToTime(), DateTimeFormatter.ofPattern("yyyy-MM-dd"))) >= 0) {
-                todosInDay.add(todo);
-            }
-        }
-
-        return todosInDay;
-    }*/
 
     public String getSelectedMonthandYear() {
         return "" + selectedMonth + " " + selectedYear;

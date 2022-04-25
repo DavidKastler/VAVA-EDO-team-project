@@ -338,8 +338,8 @@ public class TodoHandler {
 
         for (Todo todo: user.getTodos()){
             // Checks whether the to_do time is from desired range
-            if(fromDate.compareTo(LocalDate.parse(todo.getFromTime(), DateTimeFormatter.ofPattern("yyyy-MM-dd"))) <= 0 &&
-                    toDate.compareTo(LocalDate.parse(todo.getToTime(), DateTimeFormatter.ofPattern("yyyy-MM-dd"))) >= 0){
+            if(fromDate.compareTo(LocalDate.parse(todo.getFromTime(), DateTimeFormatter.ofPattern("yyyy-MM-dd"))) >= 0 &&
+                    toDate.compareTo(LocalDate.parse(todo.getToTime(), DateTimeFormatter.ofPattern("yyyy-MM-dd"))) <= 0){
                 selectedTodos.add(todo);
             }
         }
