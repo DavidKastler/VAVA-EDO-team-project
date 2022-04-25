@@ -15,6 +15,12 @@ public class FriendReqElementModel {
 
     private Relationship relationship;
 
+    private User user;
+
+    public User getUser() {
+        return user;
+    }
+
     public Relationship getRelationship() {
         return relationship;
     }
@@ -30,7 +36,7 @@ public class FriendReqElementModel {
     }
 
 
-    public FriendReqElementModel(Relationship relationship, FriendRequestController friendRequestController){
+    public FriendReqElementModel(Relationship relationship, FriendRequestController friendRequestController, User user){
 
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/vava/edo/FriendRequestElement.fxml"));
@@ -38,6 +44,7 @@ public class FriendReqElementModel {
             FriendReqElementController controller = loader.getController();
             this.relationship = relationship;
             this.friendRequestController = friendRequestController;
+            this.user = user;
             controller.setModel(this);
             controller.setUserName(relationship.getUserName());
         } catch (IOException e) {

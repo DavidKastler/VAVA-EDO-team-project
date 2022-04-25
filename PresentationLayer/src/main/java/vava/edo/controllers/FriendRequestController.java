@@ -77,7 +77,7 @@ public class FriendRequestController implements Initializable {
 
         for (Integer i = 0; i < this.model.getUser().getFriendRequests().size(); i++){
             try {
-                FriendReqElementModel element = new FriendReqElementModel(searchedFriends.get(i), this);
+                FriendReqElementModel element = new FriendReqElementModel(searchedFriends.get(i), this, this.model.getUser());
                 HBox hbox = element.getFriendElement();
                 requests_vbox.getChildren().add(hbox);
             } catch (Exception e) {

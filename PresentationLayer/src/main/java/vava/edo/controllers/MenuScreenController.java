@@ -119,7 +119,7 @@ public class MenuScreenController {
         hBoxChangingScreen.getChildren().add(new FriendsScreenModel(user, this).getFriendsScreen());
     }
 
-    public void handleAdminButton() {
+    public void handleAdminButton(MouseEvent mouseEvent) {
     }
 
     public void handleSettingsButton() {
@@ -143,5 +143,8 @@ public class MenuScreenController {
     }
 
     public void handleLogout() {
+    }
+
+    public void handleManagerButton(MouseEvent mouseEvent) {
     }
 }

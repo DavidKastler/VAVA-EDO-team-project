@@ -48,17 +48,17 @@ public class FriendReqElementController implements Initializable {
 
 
     public void deleteFriend(javafx.scene.input.MouseEvent mouseEvent) {
-        RelationshipHandler.rejectRequest(model.getRelationship().getUserId(), model.getRelationship().getRelationshipId());
+        RelationshipHandler.rejectRequest(model.getUser().getUid(), model.getRelationship().getRelationshipId());
         this.model.getFriendRequestController().loadFriendRequests();
     }
 
     public void blockFriend(javafx.scene.input.MouseEvent mouseEvent) {
-        RelationshipHandler.blockUser(model.getRelationship().getUserId(), model.getRelationship().getRelationshipId());
+        RelationshipHandler.blockUser(model.getUser().getUid(), model.getRelationship().getRelationshipId());
         this.model.getFriendRequestController().loadFriendRequests();
     }
 
     public void acceptFriend(javafx.scene.input.MouseEvent mouseEvent) {
-        RelationshipHandler.acceptRequest(model.getRelationship().getUserId(), model.getRelationship().getRelationshipId());
+        RelationshipHandler.acceptRequest(model.getUser().getUid(), model.getRelationship().getRelationshipId());
         this.model.getFriendRequestController().loadFriendRequests();
     }
 }

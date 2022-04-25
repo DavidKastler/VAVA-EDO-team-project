@@ -47,7 +47,7 @@ public class FriendElementController implements Initializable {
 
 
     public void deleteFriend(javafx.scene.input.MouseEvent mouseEvent) {
-        RelationshipHandler.rejectRequest(model.getRelationship().getUserId(), model.getRelationship().getRelationshipId());
+        RelationshipHandler.rejectRequest(model.getUser().getUid(), model.getRelationship().getRelationshipId());
         this.model.getFriendsController().loadFriends();
 
     }

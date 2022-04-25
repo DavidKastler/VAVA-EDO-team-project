@@ -105,7 +105,8 @@ public class RelationshipHandler {
                     .routeParam("request_id", String.valueOf(requestId))
                     .asJson();
 
-            if (acceptRequestJson.getStatus() != 200) throw new UnexpectedHttpStatusException(acceptRequestJson.getStatus(), 200, acceptRequestJson.getStatusText());
+            ResponseMessage responseMessage = new Gson().fromJson(acceptRequestJson.getBody().getObject().toString(), ResponseMessage.class);
+            if (acceptRequestJson.getStatus() != 200) throw new UnexpectedHttpStatusException(acceptRequestJson.getStatus(), 200, responseMessage.getMessage());
 
         } catch (UnirestException e) {
             System.out.println(e.getMessage());
