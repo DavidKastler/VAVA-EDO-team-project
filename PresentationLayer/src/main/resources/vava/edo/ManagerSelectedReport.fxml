@@ -15,7 +15,7 @@
                      <children>
                         <HBox alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="120.0" prefWidth="520.0">
                            <children>
-                              <Label text="Report" textFill="WHITE">
+                              <Label prefHeight="53.0" prefWidth="150.0" text="Report" textFill="WHITE">
                                  <font>
                                     <Font name="Arial Bold" size="46.0" />
                                  </font>

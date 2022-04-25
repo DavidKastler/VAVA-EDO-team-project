@@ -417,13 +417,6 @@ public class ChatController implements Initializable {
             System.out.println("Si na vrchu");
             chat_pane.setVvalue(1D);
 
-            try {
-                handleViewChatButton(this.getEvent());
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-
-
         }
 
     }
