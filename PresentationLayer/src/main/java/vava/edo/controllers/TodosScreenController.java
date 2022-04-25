@@ -108,6 +108,8 @@ public class TodosScreenController {
 
         scrollPaneTodos.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
         scrollPaneTodos.setVbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
+
+        buttonHighlight("AllTodos");
     }
 
     public void handleAllTodos() {
@@ -119,6 +121,8 @@ public class TodosScreenController {
         buttonCompletedTodos.setStyle("-fx-background-color:  transparent");
         refresher.setActualGroupTodos(model.getUser().getTodos());
         refresher.refreshTodos(actualSelectedGroup);
+
+        buttonHighlight("AllTodos");
     }
 
     public void handleTodayTodos() {
@@ -130,6 +134,8 @@ public class TodosScreenController {
         buttonCompletedTodos.setStyle("-fx-background-color:  transparent");
         refresher.setActualGroupTodos(TodoHandler.getTodayTodos(model.getUser()));
         refresher.refreshTodos(actualSelectedGroup);
+
+        buttonHighlight("TodayTodos");
     }
 
     public void handleTomorrowTodos() {
@@ -141,17 +147,18 @@ public class TodosScreenController {
         buttonCompletedTodos.setStyle("-fx-background-color:  transparent");
         refresher.setActualGroupTodos(TodoHandler.getTomorrowTodos(model.getUser()));
         refresher.refreshTodos(actualSelectedGroup);
+
+        buttonHighlight("TomorrowTodos");
+
     }
 
     public void handleCompletedTodos() {
         labelTodoGroupName.setText("Completed");
         actualSelectedGroup = 4;
-        buttonAllTodos.setStyle("-fx-background-color:  transparent");
-        buttonTodayTodos.setStyle("-fx-background-color:  transparent");
-        buttonTomorrowTodos.setStyle("-fx-background-color:  transparent");
-        buttonCompletedTodos.setStyle("-fx-background-color:  #8D8D8D");
         refresher.setActualGroupTodos(TodoHandler.getCompletedTodos(model.getUser()));
         refresher.refreshTodos(actualSelectedGroup);
+
+        buttonHighlight("CompletedTodos");
     }
 
     @FXML
@@ -263,5 +270,18 @@ public class TodosScreenController {
         }
 
         refresher.refreshTodos(actualSelectedGroup);
+    }
+
+    /**
+     * Method which highlights the selected button
+     *
+     * @param buttonName name of the button which is going to be highlighted
+     */
+    private void buttonHighlight(String buttonName) {
+        buttonAllTodos.setStyle(buttonName.equals("AllTodos") ? "-fx-background-color:  #8D8D8D" : "-fx-background-color:  transparent");
+        buttonTodayTodos.setStyle(buttonName.equals("TodayTodos") ? "-fx-background-color:  #8D8D8D" : "-fx-background-color:  transparent");
+        buttonTomorrowTodos.setStyle(buttonName.equals("TomorrowTodos") ? "-fx-background-color:  #8D8D8D" : "-fx-background-color:  transparent");
+        buttonCompletedTodos.setStyle(buttonName.equals("CompletedTodos") ? "-fx-background-color:  #8D8D8D" : "-fx-background-color:  transparent");
+
     }
 }

@@ -196,13 +196,14 @@ public class MenuScreenController {
     public void handleAdminButton() {
         if (this.user.getUserRole().getRoleName().equals("admin")) {
             hBoxChangingScreen.getChildren().clear();
-            hBoxChangingScreen.getChildren().add(new AdminScreenModel(user, this).getAdminScreen()); }
+            hBoxChangingScreen.getChildren().add(new AdminScreenModel(user, this).getAdminScreen());
+            this.highlightButton("Admin");
+        }
         else if (this.user.getUserRole().getRoleName().equals("account_manager")) {
             hBoxChangingScreen.getChildren().clear();
             hBoxChangingScreen.getChildren().add(new ManagerScreenModel(user).getManagerScreen());
+            this.highlightButton("Admin");
         }
-
-        this.highlightButton("Admin");
     }
 
     public void handleSettingsButton() {
