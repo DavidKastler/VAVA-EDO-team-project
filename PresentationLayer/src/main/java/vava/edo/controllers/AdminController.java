@@ -41,6 +41,8 @@ public class AdminController implements Initializable {
         this.model = model;
     }
 
+    public AdminScreenModel getModel() {return this.model; }
+
     List<User> allRegisteredUsers = null;
 
     public AdminController() {

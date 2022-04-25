@@ -228,6 +228,13 @@ public class MenuScreenController {
     }
 
     public void handleAdminButton() {
+        if (this.user.getUserRole().getRoleName().equals("admin")) {
+            hBoxChangingScreen.getChildren().clear();
+            hBoxChangingScreen.getChildren().add(new AdminScreenModel(user, this).getAdminScreen()); }
+        else if (this.user.getUserRole().getRoleName().equals("account_manager")) {
+            hBoxChangingScreen.getChildren().clear();
+            hBoxChangingScreen.getChildren().add(new ManagerScreenModel(user).getManagerScreen());
+        }
         hBoxChangingScreen.getChildren().clear();
         hBoxChangingScreen.getChildren().add(new AdminScreenModel(user).getAdminScreen());
         System.out.println("Admin button pressed");
@@ -291,5 +298,4 @@ public class MenuScreenController {
         vBoxSettingsScreen.setDisable(false);
         vBoxSettingsScreen.setVisible(true);
     }
-
 }
