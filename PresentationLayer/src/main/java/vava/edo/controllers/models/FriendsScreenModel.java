@@ -3,6 +3,7 @@ package vava.edo.controllers.models;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.AnchorPane;
 import vava.edo.controllers.FriendsController;
+import vava.edo.controllers.MenuScreenController;
 import vava.edo.controllers.TodosScreenController;
 import vava.edo.models.User;
 
@@ -12,7 +13,7 @@ public class FriendsScreenModel {
     private AnchorPane friendsScreen;
     private final User user;
 
-    public FriendsScreenModel(User user) {
+    public FriendsScreenModel(User user, MenuScreenController menuScreenController) {
         this.user = user;
 
         try {
@@ -20,6 +21,7 @@ public class FriendsScreenModel {
             this.friendsScreen = loader.load();
             FriendsController controller = loader.getController();
             controller.setModel(this);
+            controller.setMenuScreenController(menuScreenController);
             controller.loadFriends();
         }
         catch (IOException e) {

@@ -46,7 +46,7 @@
             </HBox>
             <HBox alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="100.0">
                <children>
-                  <Button mnemonicParsing="false" onMouseClicked="#reportFriend" style="-fx-background-color: transparent;" text="!" textFill="WHITE">
+                  <Button mnemonicParsing="false" onMouseClicked="#blockFriend" style="-fx-background-color: transparent;" text="!" textFill="WHITE">
                      <font>
                         <Font name="Arial Bold" size="40.0" />
                      </font>

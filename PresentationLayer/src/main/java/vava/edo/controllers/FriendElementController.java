@@ -4,10 +4,8 @@ package vava.edo.controllers;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
-import org.w3c.dom.events.MouseEvent;
 import vava.edo.Handlers.RelationshipHandler;
 import vava.edo.models.FriendElementModel;
-import vava.edo.models.FriendReqElementModel;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -21,10 +19,10 @@ public class FriendElementController implements Initializable {
     @FXML
     private Label label;
 
-    private FriendElementModel modelElem;
+    private FriendElementModel model;
 
     public void setModel(FriendElementModel model){
-        this.modelElem = model;
+        this.model = model;
         //label.setText(model.getUsername());
     }
 
@@ -49,8 +47,8 @@ public class FriendElementController implements Initializable {
 
 
     public void deleteFriend(javafx.scene.input.MouseEvent mouseEvent) {
-        RelationshipHandler.rejectRequest(modelElem.getRelationship().getUserId(), modelElem.getRelationship().getRelationshipId());
-        this.modelElem.getFriendsController().loadFriends();
+        RelationshipHandler.rejectRequest(model.getRelationship().getUserId(), model.getRelationship().getRelationshipId());
+        this.model.getFriendsController().loadFriends();
 
     }
 

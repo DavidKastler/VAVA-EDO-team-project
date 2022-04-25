@@ -37,6 +37,12 @@ public class MenuScreenController {
 
     public void setUser(User user){this.user = user;}
 
+    public HBox gethBoxChangingScreen() {
+        return hBoxChangingScreen;
+    }
+
+
+
     /**
      * Overloaded initialize method which serves as constructor in LoginController to pass the logged user
      *
@@ -110,7 +116,7 @@ public class MenuScreenController {
 
     public void handleFriendsButton() {
         hBoxChangingScreen.getChildren().clear();
-        hBoxChangingScreen.getChildren().add(new FriendsScreenModel(user).getFriendsScreen());
+        hBoxChangingScreen.getChildren().add(new FriendsScreenModel(user, this).getFriendsScreen());
     }
 
     public void handleAdminButton() {

@@ -3,6 +3,7 @@ package vava.edo.models;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.HBox;
 import vava.edo.controllers.FriendElementController;
+import vava.edo.controllers.FriendRequestController;
 import vava.edo.controllers.FriendsController;
 
 import java.io.IOException;

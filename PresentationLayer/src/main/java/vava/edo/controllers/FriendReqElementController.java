@@ -4,6 +4,7 @@ package vava.edo.controllers;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
+import vava.edo.Handlers.RelationshipHandler;
 import vava.edo.models.FriendElementModel;
 import vava.edo.models.FriendReqElementModel;
 
@@ -47,14 +48,17 @@ public class FriendReqElementController implements Initializable {
 
 
     public void deleteFriend(javafx.scene.input.MouseEvent mouseEvent) {
-        System.out.println(getLabel().getText());
+        RelationshipHandler.rejectRequest(model.getRelationship().getUserId(), model.getRelationship().getRelationshipId());
+        this.model.getFriendRequestController().loadFriendRequests();
     }
 
-    public void reportFriend(javafx.scene.input.MouseEvent mouseEvent) {
-        System.out.println(this.getLabel().getText());
+    public void blockFriend(javafx.scene.input.MouseEvent mouseEvent) {
+        RelationshipHandler.blockUser(model.getRelationship().getUserId(), model.getRelationship().getRelationshipId());
+        this.model.getFriendRequestController().loadFriendRequests();
     }
 
     public void acceptFriend(javafx.scene.input.MouseEvent mouseEvent) {
-        System.out.println(this.getLabel().getText());
+        RelationshipHandler.acceptRequest(model.getRelationship().getUserId(), model.getRelationship().getRelationshipId());
+        this.model.getFriendRequestController().loadFriendRequests();
     }
 }

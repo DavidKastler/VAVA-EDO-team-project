@@ -12,6 +12,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import vava.edo.Handlers.RelationshipHandler;
 import vava.edo.Handlers.SearchHandler;
+import vava.edo.controllers.models.FriendRequestScreenModel;
 import vava.edo.controllers.models.FriendsScreenModel;
 import vava.edo.models.FriendElementModel;
 import vava.edo.models.Relationship;
@@ -42,6 +43,14 @@ public class FriendsController implements Initializable {
     public void setModel(FriendsScreenModel model) {
         this.model = model;
     }
+
+    private MenuScreenController menuScreenController;
+
+    public void setMenuScreenController(MenuScreenController menuScreenController) {
+        this.menuScreenController = menuScreenController;
+    }
+
+
 
     public FriendsController() {
 
@@ -92,18 +101,8 @@ public class FriendsController implements Initializable {
         reloadFriends();
     }
 
-    public void deleteFriend(MouseEvent mouseEvent){
-        Button button = (Button)mouseEvent.getSource();
-
-        System.out.println("Zavolane");
-    }
-
-    public void reportFriend(MouseEvent mouseEvent){
-        Button button = (Button)mouseEvent.getSource();
-
-        System.out.println("Zavolane");
-    }
-
     public void switchRequestsScreen(MouseEvent mouseEvent) {
+        this.menuScreenController.gethBoxChangingScreen().getChildren().clear();
+        this.menuScreenController.gethBoxChangingScreen().getChildren().add(new FriendRequestScreenModel(this.model.getUser(), this.menuScreenController).getFriendRequestScreen());
     }
 }

@@ -11,15 +11,14 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import vava.edo.Handlers.RelationshipHandler;
 import vava.edo.Handlers.SearchHandler;
-import vava.edo.controllers.models.RequestScreenModel;
-import vava.edo.models.FriendElementModel;
+import vava.edo.controllers.models.FriendRequestScreenModel;
+import vava.edo.controllers.models.FriendsScreenModel;
 import vava.edo.models.FriendReqElementModel;
 import vava.edo.models.Relationship;
 
 import java.io.IOException;
 import java.net.URL;
 import java.net.URLConnection;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -35,10 +34,16 @@ public class FriendRequestController implements Initializable {
     @FXML
     private VBox requests_vbox;
 
-    private RequestScreenModel model;
+    private FriendRequestScreenModel model;
 
-    public void setModel(RequestScreenModel model) {
+    public void setModel(FriendRequestScreenModel model) {
         this.model = model;
+    }
+
+    private MenuScreenController menuScreenController;
+
+    public void setMenuScreenController(MenuScreenController menuScreenController) {
+        this.menuScreenController = menuScreenController;
     }
 
     public FriendRequestController() {
@@ -59,7 +64,7 @@ public class FriendRequestController implements Initializable {
     }
 
     public void loadFriendRequests() {
-        this.model.getUser().setFriends(RelationshipHandler.getAllFriends(this.model.getUser().getUid()));
+        this.model.getUser().setFriendRequests(RelationshipHandler.getAllRequests(this.model.getUser().getUid()));
         reloadFriendRequests();
     }
 
@@ -72,7 +77,7 @@ public class FriendRequestController implements Initializable {
 
         for (Integer i = 0; i < this.model.getUser().getFriendRequests().size(); i++){
             try {
-                FriendReqElementModel element = new FriendReqElementModel(searchedFriends.get(i));
+                FriendReqElementModel element = new FriendReqElementModel(searchedFriends.get(i), this);
                 HBox hbox = element.getFriendElement();
                 requests_vbox.getChildren().add(hbox);
             } catch (Exception e) {
@@ -88,5 +93,7 @@ public class FriendRequestController implements Initializable {
 
 
     public void switchFriendsScreen(MouseEvent mouseEvent) {
+        this.menuScreenController.gethBoxChangingScreen().getChildren().clear();
+        this.menuScreenController.gethBoxChangingScreen().getChildren().add(new FriendsScreenModel(this.model.getUser(), this.menuScreenController).getFriendsScreen());
     }
 }

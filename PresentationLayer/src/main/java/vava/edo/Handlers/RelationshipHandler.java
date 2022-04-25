@@ -74,26 +74,22 @@ public class RelationshipHandler {
      * @param userId    id of user who wants to add a friend
      * @param friendUsername    username of friend who we want to add
      */
-    public static void createFriendRequest(Integer userId, String friendUsername) {
+    public static void createFriendRequest(Integer userId, String friendUsername) throws UnexpectedHttpStatusException, Exception{
 
         JSONObject newFriendRequest = new JSONObject();
         newFriendRequest.put("senderId", userId);
         newFriendRequest.put("receiverName", friendUsername);
 
-        try {
-            HttpResponse<JsonNode> friendJson = Unirest.post("http://localhost:8080/relationships/create?token={token}")
-                    .header("Content-type", "application/json")
-                    .routeParam("token", String.valueOf(userId))
-                    .body(newFriendRequest)
-                    .asJson();
 
-            if (friendJson.getStatus() != 201) throw new UnexpectedHttpStatusException(friendJson.getStatus(), 201, friendJson.getStatusText());
+        HttpResponse<JsonNode> friendJson = Unirest.post("http://localhost:8080/relationships/create?token={token}")
+                .header("Content-type", "application/json")
+                .routeParam("token", String.valueOf(userId))
+                .body(newFriendRequest)
+                .asJson();
 
-        } catch (UnirestException e) {
-            System.out.println(e.getMessage());
-        } catch (UnexpectedHttpStatusException e) {
-            System.out.println(e.getMessage());
-        }
+        if (friendJson.getStatus() != 201) throw new UnexpectedHttpStatusException(friendJson.getStatus(), 201, friendJson.getStatusText());
+
+
 
     }
 
