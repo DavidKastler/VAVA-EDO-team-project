@@ -15,10 +15,11 @@ public class ManagerScreenModel {
         this.user = user;
 
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/vava/edo/Admin.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/vava/edo/Manager.fxml"));
             this.managerScreen = loader.load();
             ManagerController controller = loader.getController();
             controller.setModel(this);
+            controller.loadReports(true);
         }
         catch (IOException e) {
             e.printStackTrace();
