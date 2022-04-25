@@ -19,6 +19,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
+import vava.edo.controllers.models.ChatScreenModel;
 import vava.edo.models.ChatGrayElementModel;
 import vava.edo.models.ChatPinkElementModel;
 import vava.edo.models.ManagerViewElementModel;
@@ -78,6 +79,12 @@ public class ChatController implements Initializable {
 
     @FXML
     private Label chat_name_error;
+
+    private ChatScreenModel model;
+
+    public void setModel(ChatScreenModel model) {
+        this.model = model;
+    }
 
 
     public ChatController() {

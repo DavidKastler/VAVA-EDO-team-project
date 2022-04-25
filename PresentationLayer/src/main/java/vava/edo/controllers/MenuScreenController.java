@@ -9,10 +9,10 @@ import vava.edo.Exepctions.MenuScreen.FailedToUpdateUser;
 import vava.edo.Exepctions.TodoScreen.MandatoryFieldNotInputted;
 import vava.edo.Handlers.TodoHandler;
 import vava.edo.Handlers.UserHandler;
-import vava.edo.controllers.models.CalendarScreenModel;
-import vava.edo.controllers.models.FriendsScreenModel;
-import vava.edo.controllers.models.TodoScreenModel;
+import vava.edo.controllers.models.*;
 import vava.edo.models.User;
+
+import java.util.SimpleTimeZone;
 
 public class MenuScreenController {
     private User user;
@@ -120,6 +120,9 @@ public class MenuScreenController {
     }
 
     public void handleAdminButton(MouseEvent mouseEvent) {
+        System.out.println("ddada");
+        hBoxChangingScreen.getChildren().clear();
+        hBoxChangingScreen.getChildren().add(new AdminScreenModel(user).getAdminScreen());
     }
 
     public void handleSettingsButton() {
@@ -146,5 +149,10 @@ public class MenuScreenController {
     }
 
     public void handleManagerButton(MouseEvent mouseEvent) {
+    }
+
+    public void handleChatButton(MouseEvent mouseEvent) {
+        hBoxChangingScreen.getChildren().clear();
+        hBoxChangingScreen.getChildren().add(new ChatScreenModel(user).getChatScreen());
     }
 }

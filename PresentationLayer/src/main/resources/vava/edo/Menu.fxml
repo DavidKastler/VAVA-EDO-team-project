@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane fx:id="rootPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="vava.edo.controllers.MenuScreenController">
+<AnchorPane fx:id="rootPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="vava.edo.controllers.MenuScreenController">
    <children>
       <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1100.0" style="-fx-background-color: #323232;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -39,7 +39,7 @@
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Button mnemonicParsing="false" prefHeight="60.0" prefWidth="60.0" style="-fx-background-color: transparent; -fx-background-image: url('images/profile.png');">
+                  <Button fx:id="buttonChat" mnemonicParsing="false" onMouseClicked="#handleChatButton" prefHeight="60.0" prefWidth="60.0" style="-fx-background-color: transparent; -fx-background-image: url('images/profile.png');">
                      <graphic>
                         <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -59,10 +59,9 @@
                   </Button>
                   <VBox prefHeight="516.0" prefWidth="60.0">
                      <children>
-                        <Button fx:id="adminButton" mnemonicParsing="false" onMouseClicked="#handleAdminButton" text="Admin" />
                         <Button fx:id="managerButton" mnemonicParsing="false" onMouseClicked="#handleManagerButton" text="Spravca" />
                      </children></VBox>
-                  <Button mnemonicParsing="false" prefHeight="60.0" prefWidth="60.0" style="-fx-background-color: transparent; -fx-background-image: url('images/profile.png');">
+                  <Button fx:id="adminButton" mnemonicParsing="false" onMouseClicked="#handleAdminButton" prefHeight="60.0" prefWidth="60.0" style="-fx-background-color: transparent; -fx-background-image: url('images/profile.png');">
                      <graphic>
                         <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
                            <image>
