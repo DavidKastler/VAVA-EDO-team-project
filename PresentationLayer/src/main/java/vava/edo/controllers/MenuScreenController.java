@@ -1,6 +1,8 @@
 package vava.edo.controllers;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
@@ -15,6 +17,7 @@ import vava.edo.models.User;
 
 public class MenuScreenController {
     private User user;
+    private boolean showPassword = false;
 
     @FXML
     private HBox hBoxChangingScreen;
@@ -34,6 +37,12 @@ public class MenuScreenController {
     @FXML
     private VBox vBoxSettingsScreen;
 
+    @FXML
+    private Label labelUsername;
+
+    @FXML
+    private Label labelPassword;
+
     public void setUser(User user){this.user = user;}
 
     /**
@@ -44,6 +53,14 @@ public class MenuScreenController {
     public void initialize(User user)  {
         setUser(user);
         TodoHandler.startUp(this.user);
+
+        // Preloaded information for edit info
+        textFieldUsername.setText(this.user.getUsername());
+        textFieldPassword.setText(this.user.getPassword());
+
+        // Preloaded information for user profile labels
+        labelUsername.setText(this.user.getUsername());
+        labelPassword.setText("********");
 
         hBoxChangingScreen.getChildren().add(new TodoScreenModel(user).getTodoScreen());
     }
@@ -56,6 +73,12 @@ public class MenuScreenController {
     }
 
     public void handleShowPassword() {
+        if (!this.showPassword){
+            labelPassword.setText(this.user.getPassword());
+        }else {
+            labelPassword.setText("********");
+        }
+        this.showPassword = !this.showPassword;
     }
 
     public void handleCancelProfile() {

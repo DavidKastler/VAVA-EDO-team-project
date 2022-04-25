@@ -108,7 +108,7 @@
                               <Font name="Arial Bold" size="20.0" />
                            </font>
                         </Label>
-                        <Label prefHeight="23.0" prefWidth="260.0" text="&lt;User_name&gt;" textFill="WHITE">
+                        <Label fx:id="labelUsername" prefHeight="23.0" prefWidth="260.0" text="&lt;User_name&gt;" textFill="WHITE">
                            <font>
                               <Font name="Arial Bold" size="20.0" />
                            </font>
@@ -122,7 +122,7 @@
                               <Font name="Arial Bold" size="20.0" />
                            </font>
                         </Label>
-                        <Label prefHeight="23.0" prefWidth="260.0" text="&lt;User_password&gt;" textFill="WHITE">
+                        <Label fx:id="labelPassword" prefHeight="23.0" prefWidth="260.0" text="&lt;User_password&gt;" textFill="WHITE">
                            <font>
                               <Font name="Arial Bold" size="20.0" />
                            </font>
