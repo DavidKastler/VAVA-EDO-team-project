@@ -74,7 +74,7 @@
                   </HBox>
                   <VBox prefHeight="645.0" prefWidth="800.0">
                      <children>
-                        <ScrollPane fx:id="chat_pane" hbarPolicy="NEVER" maxHeight="550.0" maxWidth="800.0" onScroll="#checkIfOnTop" prefHeight="550.0" prefWidth="800.0" style="-fx-background-color: transparent;">
+                        <ScrollPane fx:id="chat_pane" hbarPolicy="NEVER" maxWidth="800.0" onScroll="#checkIfOnTop" prefHeight="550.0" prefWidth="800.0" style="-fx-background-color: transparent;">
                            <content>
                               <VBox fx:id="messages_list" prefHeight="550.0" prefWidth="785.0" style="-fx-background-color: #323232;" />
                            </content>
