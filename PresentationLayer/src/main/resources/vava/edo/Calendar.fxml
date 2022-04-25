@@ -137,7 +137,7 @@
                               <Font name="Arial Bold" size="20.0" />
                            </font>
                         </Label>
-                        <TextArea fx:id="textAreaTaskDescription" prefHeight="116.0" prefWidth="288.0" promptText="Enter task description">
+                        <TextArea fx:id="textAreaTaskDescription" prefHeight="116.0" prefWidth="288.0" promptText="Enter task description" wrapText="true">
                            <font>
                               <Font name="Arial" size="13.0" />
                            </font>
