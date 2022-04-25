@@ -144,6 +144,7 @@ public class MenuScreenController {
     }
 
     public void handleAdminButton() {
+        System.out.println("Admin button pressed");
     }
 
     public void handleSettingsButton() {

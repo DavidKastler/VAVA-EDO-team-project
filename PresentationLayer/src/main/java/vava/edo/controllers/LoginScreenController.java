@@ -68,9 +68,12 @@ public class LoginScreenController implements Initializable {
                 this.user = UserHandler.loginUser(textUsername.getText(), textPassword.getText(), wrongCredentials);
 
             }else {
-                textUsername.setText(deserializedUser.getUsername());
-                textPassword.setText(deserializedUser.getPassword());
-                this.user = UserHandler.loginUser(deserializedUser.getUsername(), deserializedUser.getPassword(), wrongCredentials);
+                if (textUsername.getText().equals(deserializedUser.getUsername()) &&
+                        textPassword.getText().equals(deserializedUser.getPassword())) {
+                    this.user = UserHandler.loginUser(deserializedUser.getUsername(), deserializedUser.getPassword(), wrongCredentials);
+                } else {
+                    this.user = UserHandler.loginUser(textUsername.getText(), textPassword.getText(), wrongCredentials);
+                }
             }
 
 

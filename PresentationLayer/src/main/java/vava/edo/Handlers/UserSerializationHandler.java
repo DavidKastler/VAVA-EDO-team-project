@@ -29,7 +29,7 @@ public class UserSerializationHandler {
             fileIn.close();
             return user;
         } catch (IOException e) {
-            System.err.println("IOException pre seriazaciu.");
+            System.err.println("IOException pre serializaciu.");
             return null;
         } catch (ClassNotFoundException e) {
             System.err.println("Subor s ulozenym pouzivatelom sa nenasiel!");
