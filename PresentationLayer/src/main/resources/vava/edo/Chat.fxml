@@ -13,30 +13,6 @@
 
 <AnchorPane fx:id="rootPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1040.0" style="-fx-background-color: #323232;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="vava.edo.controllers.ChatController">
    <children>
-      <AnchorPane fx:id="rootPane1" layoutX="10.0" layoutY="10.0" prefHeight="750.0" prefWidth="1040.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-         <children>
-            <HBox fx:id="report_hbox" layoutX="203.0" layoutY="143.0" prefHeight="427.0" prefWidth="679.0" style="-fx-background-color: #323232;">
-               <children>
-                  <TextArea fx:id="text_area" prefHeight="400.0" prefWidth="400.0" promptText="Write report message...">
-                     <HBox.margin>
-                        <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
-                     </HBox.margin>
-                     <font>
-                        <Font name="Arial" size="20.0" />
-                     </font>
-                  </TextArea>
-                  <Button fx:id="report_button" mnemonicParsing="false" onMouseClicked="#handleSendReportButton" prefHeight="50.0" prefWidth="140.0" style="-fx-background-color: #c4c4c4; -fx-background-radius: 40;" text="Report">
-                     <font>
-                        <Font name="Arial" size="24.0" />
-                     </font>
-                     <HBox.margin>
-                        <Insets left="30.0" right="30.0" top="150.0" />
-                     </HBox.margin>
-                  </Button>
-               </children>
-            </HBox>
-         </children>
-      </AnchorPane>
       <HBox fx:id="chat_screen_box" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1040.0" style="-fx-background-color: #323232;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <VBox prefHeight="750.0" prefWidth="240.0" style="-fx-border-color: #888888; -fx-border-width: 0 1 0 0;">
@@ -51,7 +27,7 @@
                               <Insets right="10.0" />
                            </HBox.margin>
                         </TextField>
-                        <Button alignment="CENTER" mnemonicParsing="false" onMouseClicked="#handleNewChatButton" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: #33557e; -fx-background-radius: 100;" text="+" textFill="#95c6ff">
+                        <Button fx:id="handleNewChatButton" alignment="CENTER" mnemonicParsing="false" onMouseClicked="#handleNewChatButton" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: #33557e; -fx-background-radius: 100;" text="+" textFill="#95c6ff">
                            <font>
                               <Font name="Arial" size="25.0" />
                            </font>
@@ -113,9 +89,9 @@
                                     <Insets left="15.0" top="15.0" />
                                  </HBox.margin>
                               </TextField>
-                              <Button fx:id="send_message_button" contentDisplay="CENTER" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#handleSendMessageButton" prefHeight="70.0" prefWidth="70.0" style="-fx-background-color: #c4c4c4; -fx-font-weight: bold; -fx-background-radius: 40;" textAlignment="CENTER">
+                              <Button fx:id="send_message_button" contentDisplay="CENTER" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#handleSendMessageButton" prefHeight="70.0" prefWidth="100.0" style="-fx-background-color: #c4c4c4; -fx-font-weight: bold; -fx-background-radius: 40;" text="SEND" textAlignment="CENTER">
                                  <font>
-                                    <Font name="Arial" size="20.0" />
+                                    <Font name="Arial Bold" size="20.0" />
                                  </font>
                                  <HBox.margin>
                                     <Insets left="10.0" top="15.0" />
@@ -139,6 +115,75 @@
                   <Insets left="30.0" />
                </padding>
             </Label>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="rootPane1" disable="true" layoutX="10.0" layoutY="10.0" prefHeight="750.0" prefWidth="1040.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <VBox alignment="CENTER" layoutX="203.0" layoutY="78.0" prefHeight="570.0" prefWidth="679.0" style="-fx-background-color: #323232; -fx-border-color: red;">
+               <children>
+                  <Label text="REPORT" textFill="WHITE">
+                     <font>
+                        <Font name="Arial Bold" size="48.0" />
+                     </font>
+                  </Label>
+                  <HBox fx:id="report_hbox" maxWidth="-Infinity" prefHeight="427.0" prefWidth="630.0" style="-fx-background-color: #323232;">
+                     <children>
+                        <TextArea fx:id="text_area" prefHeight="400.0" prefWidth="400.0" promptText="Write report message...">
+                           <HBox.margin>
+                              <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
+                           </HBox.margin>
+                           <font>
+                              <Font name="Arial" size="20.0" />
+                           </font>
+                        </TextArea>
+                        <Button fx:id="report_button" mnemonicParsing="false" onMouseClicked="#handleSendReportButton" prefHeight="50.0" prefWidth="140.0" style="-fx-background-color: #c4c4c4; -fx-background-radius: 40;" text="Report">
+                           <font>
+                              <Font name="Arial" size="24.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets left="30.0" right="30.0" top="150.0" />
+                           </HBox.margin>
+                        </Button>
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="rootPane11" disable="true" layoutX="10.0" layoutY="10.0" prefHeight="750.0" prefWidth="1040.0" visible="false">
+         <children>
+            <VBox alignment="CENTER" layoutX="203.0" layoutY="78.0" prefHeight="428.0" prefWidth="679.0" style="-fx-background-color: #323232; -fx-border-color: red;">
+               <children>
+                  <Label text="New chat" textFill="WHITE">
+                     <font>
+                        <Font name="Arial Bold" size="48.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets top="20.0" />
+                     </VBox.margin>
+                  </Label>
+                  <HBox fx:id="report_hbox1" maxWidth="-Infinity" prefHeight="238.0" prefWidth="630.0" style="-fx-background-color: #323232;">
+                     <children>
+                        <TextArea fx:id="text_area1" maxHeight="-Infinity" prefHeight="100.0" prefWidth="372.0" promptText="New conversation" wrapText="true">
+                           <HBox.margin>
+                              <Insets bottom="30.0" left="30.0" right="30.0" top="60.0" />
+                           </HBox.margin>
+                           <font>
+                              <Font name="Arial" size="30.0" />
+                           </font>
+                        </TextArea>
+                        <Button fx:id="report_button1" mnemonicParsing="false" onMouseClicked="#handleSendChatNameButton" prefHeight="50.0" prefWidth="140.0" style="-fx-background-color: #c4c4c4; -fx-background-radius: 40;" text="Report">
+                           <font>
+                              <Font name="Arial" size="24.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets left="30.0" right="30.0" top="80.0" />
+                           </HBox.margin>
+                        </Button>
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
          </children>
       </AnchorPane>
    </children>
