@@ -86,7 +86,7 @@ public class RelationshipService {
         List<RelationshipRequest> requests = new ArrayList<>();
 
         for (Relationship relationship : friendList) {
-            requests.add(RelationshipRequest.from(relationship));
+            requests.add(RelationshipRequest.from(relationship, userId));
         }
         return requests;
     }
@@ -102,7 +102,7 @@ public class RelationshipService {
         List<RelationshipRequest> requests = new ArrayList<>();
 
         for (Relationship relationship : pendingList) {
-            requests.add(RelationshipRequest.from(relationship));
+            requests.add(RelationshipRequest.from(relationship, userId));
         }
         return requests;
     }
