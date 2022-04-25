@@ -29,6 +29,9 @@ public class MenuScreenController {
     private VBox vBoxEditProfileScreen;
 
     @FXML
+    private VBox vBoxAboutScreen;
+
+    @FXML
     private TextField textFieldUsername;
 
     @FXML
@@ -151,11 +154,24 @@ public class MenuScreenController {
     }
 
     public void handleAbout() {
+        vBoxSettingsScreen.setDisable(true);
+        vBoxSettingsScreen.setVisible(false);
+
+        vBoxAboutScreen.setDisable(false);
+        vBoxAboutScreen.setVisible(true);
     }
 
     public void handleFeedback() {
     }
 
     public void handleLogout() {
+    }
+
+    public void handleCancelAbout() {
+        vBoxAboutScreen.setDisable(true);
+        vBoxAboutScreen.setVisible(false);
+
+        vBoxSettingsScreen.setDisable(false);
+        vBoxSettingsScreen.setVisible(true);
     }
 }
