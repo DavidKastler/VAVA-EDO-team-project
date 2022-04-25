@@ -1,8 +1,10 @@
 package vava.edo.controllers;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
@@ -75,5 +77,20 @@ public class LoginScreenController implements Initializable {
     @FXML
     public void rememberMe() {
         this.rememberMeState = !this.rememberMeState;
+    }
+
+    /**
+     *
+     */
+    public void handleRegisterButton() {
+        try {
+
+            AnchorPane registerScreen = FXMLLoader.load(getClass().getResource("/vava/edo/Register.fxml"));
+
+            rootPane.getChildren().setAll(registerScreen);
+
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

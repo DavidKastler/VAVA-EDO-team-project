@@ -14,6 +14,7 @@ import javafx.fxml.FXML;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import org.json.JSONObject;
+import vava.edo.Exepctions.LoginScreen.FailedToRegister;
 import vava.edo.Handlers.UserHandler;
 
 import java.io.IOException;
@@ -22,7 +23,7 @@ import java.net.URLConnection;
 import java.util.ResourceBundle;
 
 
-public class RegisterController implements Initializable {
+public class RegisterController{
 
     @FXML
     private AnchorPane rootPane;
@@ -48,24 +49,23 @@ public class RegisterController implements Initializable {
     public RegisterController() {
     }
 
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-        try {
-            URL checkConnectionURL = new URL("http://www.google.com");
-            URLConnection checkConnection = checkConnectionURL.openConnection();
-            checkConnection.connect();
-            System.out.println("Internet is connected");
-        } catch (IOException e) {
-            System.out.println("Internet is not connected");
-        }
-    }
 
     @FXML
     public void handleRegisterButton(MouseEvent mouseEvent) {
         Node node = (Node) mouseEvent.getSource();
         Stage stage = (Stage) node.getScene().getWindow();
 
-        UserHandler.registerUser(this.textUsername, this.textPassword1, this.textPassword2, this.wrongInput);
+        try {
+            UserHandler.registerUser(this.textUsername, this.textPassword1, this.textPassword2, this.wrongInput);
+
+            AnchorPane loginScreen = FXMLLoader.load(getClass().getResource("/vava/edo/Login.fxml"));
+
+            this.rootPane.getChildren().setAll(new Node[]{loginScreen});
+
+        }catch (IOException | FailedToRegister e){
+            e.printStackTrace();
+        }
+
     }
 
     @FXML

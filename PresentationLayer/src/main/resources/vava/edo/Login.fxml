@@ -82,7 +82,7 @@
             </Label>
             <HBox alignment="CENTER" maxWidth="-Infinity" prefHeight="41.0" prefWidth="500.0" spacing="80.0">
                <children>
-                  <Button fx:id="btnRegister" alignment="CENTER" mnemonicParsing="false" style="-fx-background-color: transparent;" text="Register as new user" textAlignment="CENTER" textFill="#3994ff" underline="true">
+                  <Button fx:id="btnRegister" alignment="CENTER" onAction="#handleRegisterButton" mnemonicParsing="false" style="-fx-background-color: transparent;" text="Register as new user" textAlignment="CENTER" textFill="#3994ff" underline="true">
                      <font>
                         <Font name="Arial Bold" size="18.0" />
                      </font>

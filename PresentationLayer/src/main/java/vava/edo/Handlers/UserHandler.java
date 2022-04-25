@@ -10,6 +10,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import org.json.JSONObject;
 import vava.edo.Exepctions.LoginScreen.EmptyLoginFields;
+import vava.edo.Exepctions.LoginScreen.FailedToRegister;
 import vava.edo.Exepctions.LoginScreen.IncorrectCredentials;
 import vava.edo.Exepctions.MenuScreen.FailedToUpdateUser;
 import vava.edo.models.User;
@@ -120,10 +121,18 @@ public class UserHandler {
             System.out.println(jo);
 
             try {
-                HttpResponse<JsonNode> apiResponse = Unirest.post("http://localhost:8080/users/register").header("Content-Type", "application/json").body(jo).asJson();
+                HttpResponse<JsonNode> apiResponse = Unirest.post("http://localhost:8080/users/register")
+                        .header("Content-Type", "application/json")
+                        .body(jo)
+                        .asJson();
+
+                User respondedUser = new Gson().fromJson(apiResponse.getBody().toString(), User.class);
+
                 System.out.println(apiResponse.getBody().toString());
-                //AnchorPane todoScreen = FXMLLoader.load(getClass().getResource("/vava/edo/Login.fxml"));
-                //this.rootPane.getChildren().setAll(new Node[]{todoScreen});
+
+                if(respondedUser.getUsername() == null){
+                    throw new FailedToRegister("Failed to register a new user");
+                }
 
             } catch (UnirestException e) {
                 e.printStackTrace();
