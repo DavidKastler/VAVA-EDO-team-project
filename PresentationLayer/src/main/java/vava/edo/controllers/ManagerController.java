@@ -113,8 +113,6 @@ public class ManagerController implements Initializable {
 
 
     public void refreshReportList(Event event) {
-        System.out.println(accepted.isSelected());
-        System.out.println(rejected.isSelected());
         System.out.println(pending.isSelected());
 
 
