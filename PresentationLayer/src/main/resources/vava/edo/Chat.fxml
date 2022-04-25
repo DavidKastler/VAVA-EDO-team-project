@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="rootPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="vava.edo.controllers.ChatController">
+   <children>
+      <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1100.0" style="-fx-background-color: #323232;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <VBox alignment="TOP_CENTER" prefHeight="750.0" prefWidth="60.0" spacing="10.0" style="-fx-background-color: black;">
+               <children>
+                  <Button mnemonicParsing="false" prefHeight="60.0" prefWidth="60.0" style="-fx-background-color: transparent; -fx-background-image: url('images/profile.png');">
+                     <graphic>
+                        <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../images/profile.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Button mnemonicParsing="false" prefHeight="60.0" prefWidth="60.0" style="-fx-background-color: transparent; -fx-background-image: url('images/profile.png');">
+                     <graphic>
+                        <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../images/tasks.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Button mnemonicParsing="false" prefHeight="60.0" prefWidth="60.0" style="-fx-background-color: transparent; -fx-background-image: url('images/profile.png');">
+                     <graphic>
+                        <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../images/calendar.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Button mnemonicParsing="false" prefHeight="60.0" prefWidth="60.0" style="-fx-background-color: transparent; -fx-background-image: url('images/profile.png');">
+                     <graphic>
+                        <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../images/chat.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Button mnemonicParsing="false" prefHeight="60.0" prefWidth="60.0" style="-fx-background-color: transparent; -fx-background-image: url('images/profile.png');">
+                     <graphic>
+                        <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../images/friends.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <VBox prefHeight="516.0" prefWidth="60.0" />
+                  <Button mnemonicParsing="false" prefHeight="60.0" prefWidth="60.0" style="-fx-background-color: transparent; -fx-background-image: url('images/profile.png');">
+                     <graphic>
+                        <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../images/admin.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Button mnemonicParsing="false" prefHeight="60.0" prefWidth="60.0" style="-fx-background-color: transparent; -fx-background-image: url('images/profile.png');">
+                     <graphic>
+                        <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../images/settings.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+               </children>
+               <padding>
+                  <Insets bottom="15.0" top="15.0" />
+               </padding>
+            </VBox>
+            <VBox prefHeight="750.0" prefWidth="240.0" style="-fx-border-color: #888888; -fx-border-width: 0 1 0 0;">
+               <children>
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="240.0">
+                     <children>
+                        <Button fx:id="search_button" mnemonicParsing="false" prefHeight="50.0" prefWidth="134.0" style="-fx-background-color: #c4c4c4; -fx-background-radius: 40;" text="Search">
+                           <font>
+                              <Font name="Arial Bold" size="24.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets right="10.0" />
+                           </HBox.margin>
+                        </Button>
+                        <Button alignment="CENTER" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: #33557e; -fx-background-radius: 100;" text="+" textFill="#95c6ff">
+                           <font>
+                              <Font name="Arial" size="25.0" />
+                           </font>
+                        </Button>
+                     </children>
+                  </HBox>
+                  <ScrollPane hbarPolicy="NEVER" prefHeight="650.0" prefWidth="239.0" style="-fx-background: #323232; -fx-border-color: #323232;">
+                     <content>
+                        <VBox fx:id="chat_list_pane" alignment="TOP_CENTER" prefWidth="233.0" />
+                     </content></ScrollPane>
+               </children>
+            </VBox>
+            <VBox prefHeight="750.0" prefWidth="800.0">
+               <children>
+                  <HBox prefHeight="100.0" prefWidth="800.0" style="-fx-background-color: #c4c4c4;">
+                     <children>
+                        <HBox prefHeight="100.0" prefWidth="400.0">
+                           <children>
+                              <Label fx:id="chat_name" contentDisplay="CENTER" prefHeight="100.0" prefWidth="400.0" style="-fx-text-fill: transparent;" text="Label">
+                                 <font>
+                                    <Font name="Arial Bold" size="34.0" />
+                                 </font>
+                                 <HBox.margin>
+                                    <Insets />
+                                 </HBox.margin>
+                                 <padding>
+                                    <Insets left="30.0" />
+                                 </padding>
+                              </Label>
+                           </children>
+                        </HBox>
+                        <HBox prefHeight="100.0" prefWidth="250.0" />
+                        <HBox prefHeight="100.0" prefWidth="150.0">
+                           <children>
+                              <Button fx:id="block_user" mnemonicParsing="false" prefHeight="100.0" prefWidth="150.0" style="-fx-background-color: transparent;" text="!">
+                                 <font>
+                                    <Font name="Arial Bold" size="40.0" />
+                                 </font>
+                              </Button>
+                           </children>
+                        </HBox>
+                     </children>
+                  </HBox>
+                  <ScrollPane fx:id="chat_pane" hbarPolicy="NEVER" prefHeight="650.0" prefWidth="800.0" style="-fx-background: #323232; -fx-border-color: #323232;">
+                     <content>
+                        <VBox prefHeight="645.0" prefWidth="800.0">
+                           <children>
+                              <VBox prefHeight="550.0" prefWidth="800.0">
+                                 <children>
+                                    <HBox alignment="BOTTOM_LEFT">
+                                       <children>
+                                          <Label contentDisplay="CENTER" maxWidth="350.0" style="-fx-background-color: #ff9797; -fx-background-radius: 20;" text="ojcnwsb dvsdbvsodbvdn vsodjnv " wrapText="true">
+                                             <font>
+                                                <Font name="Arial" size="34.0" />
+                                             </font>
+                                             <padding>
+                                                <Insets bottom="10.0" left="30.0" right="30.0" top="10.0" />
+                                             </padding>
+                                             <HBox.margin>
+                                                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                             </HBox.margin>
+                                          </Label>
+                                       </children>
+                                    </HBox>
+                                    <HBox alignment="BOTTOM_RIGHT">
+                                       <children>
+                                          <Label contentDisplay="CENTER" maxWidth="350.0" style="-fx-background-color: #c4c4c4; -fx-background-radius: 20;" text="ahoj" wrapText="true">
+                                             <font>
+                                                <Font name="Arial" size="34.0" />
+                                             </font>
+                                             <padding>
+                                                <Insets bottom="10.0" left="30.0" right="30.0" top="10.0" />
+                                             </padding>
+                                             <HBox.margin>
+                                                <Insets bottom="5.0" left="5.0" right="10.0" top="5.0" />
+                                             </HBox.margin>
+                                          </Label>
+                                       </children>
+                                    </HBox>
+                                 </children></VBox>
+                              <HBox prefHeight="100.0" prefWidth="800.0">
+                                 <children>
+                                    <TextField fx:id="chat_message" minHeight="-Infinity" minWidth="-Infinity" prefHeight="70.0" prefWidth="650.0" promptText="Write message..." style="-fx-background-color: #c4c4c4; -fx-background-radius: 40;">
+                                       <font>
+                                          <Font name="Arial" size="24.0" />
+                                       </font>
+                                       <HBox.margin>
+                                          <Insets left="15.0" top="15.0" />
+                                       </HBox.margin>
+                                    </TextField>
+                                    <Button fx:id="send_message_button" contentDisplay="CENTER" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="70.0" prefWidth="70.0" style="-fx-background-color: #c4c4c4; -fx-font-weight: bold; -fx-background-radius: 40;" textAlignment="CENTER">
+                                       <font>
+                                          <Font name="Arial" size="20.0" />
+                                       </font>
+                                       <HBox.margin>
+                                          <Insets left="10.0" top="15.0" />
+                                       </HBox.margin>
+                                    </Button>
+                                 </children>
+                              </HBox>
+                           </children>
+                        </VBox>
+                     </content>
+                  </ScrollPane>
+               </children></VBox>
+         </children>
+      </HBox>
+   </children>
+</AnchorPane>
