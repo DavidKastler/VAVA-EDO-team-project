@@ -8,7 +8,6 @@ import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import vava.edo.Handlers.UserHandler;
 import vava.edo.models.AdminViewElementModel;
-import vava.edo.models.FriendElementModel;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -27,15 +26,6 @@ public class AdminViewElementController implements Initializable {
 
     @FXML
     private Label type_label;
-
-
-
-    public Button getUsername_label() {
-        return username;
-    }
-    public Label getType_label() {
-        return type_label;
-    }
 
     public void setUsername(String username) {
         this.username.setText(username);
@@ -65,5 +55,9 @@ public class AdminViewElementController implements Initializable {
     public void deleteUser(MouseEvent mouseEvent) {
         UserHandler.deleteUser(this.model.getUser().getUid(), this.model.getDisplayedUser().getUid());
         this.model.getAdminController().loadAllUsers();
+    }
+
+    public void openSelectedUser(MouseEvent mouseEvent) {
+        SelectedUserController.initSelectedUser(this.model.getUser(), this.model.getDisplayedUser(), this.model.getAdminController().getModel().getMenuScreenController());
     }
 }

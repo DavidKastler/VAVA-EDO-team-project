@@ -2,9 +2,12 @@ package vava.edo.models;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.HBox;
+import lombok.Getter;
 import vava.edo.controllers.ManagerViewElementController;
+import vava.edo.controllers.MenuScreenController;
 
 import java.io.IOException;
+
 
 public class ManagerViewElementModel {
 
@@ -16,46 +19,35 @@ public class ManagerViewElementModel {
         this.element = element;
     }
 
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
     private HBox element;
-    private String username;
-    private String type;
-    private String status;
 
+    public User getUser() {
+        return user;
+    }
 
+    private final User user;
 
-    public ManagerViewElementModel(String username, String type, String status){
+    public Report getReport() {
+        return report;
+    }
+
+    public MenuScreenController getMenuScreenController() {
+        return menuScreenController;
+    }
+
+    private final Report report;
+
+    private final MenuScreenController menuScreenController;
+
+    public ManagerViewElementModel(User user, Report report, MenuScreenController menuScreenController){
+        this.user = user;
+        this.report = report;
+        this.menuScreenController = menuScreenController;
 
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/vava/edo/ManagerViewElement.fxml"));
             this.element = loader.load();
             ManagerViewElementController controller = loader.getController();
-            setUsername(username);
-            setType(type);
-            setStatus(status);
             controller.setModel(this);
 
         } catch (IOException e) {

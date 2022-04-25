@@ -7,6 +7,6 @@ import vava.edo.model.Report;
 import java.util.List;
 
 public interface ReportRepository extends JpaRepository<Report, Integer> {
-    @Query("select r from Report r where r.status = 'pending'")
+    @Query("select r from Report r where r.status = 'PENDING'")
     List<Report> findAllByStatusIsPending();
 }

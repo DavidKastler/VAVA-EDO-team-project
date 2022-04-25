@@ -20,6 +20,7 @@ public class ChatScreenModel {
             this.chatScreen= loader.load();
             ChatController controller = loader.getController();
             controller.setModel(this);
+            controller.loadAllGroups();
         }
         catch (IOException e) {
             e.printStackTrace();

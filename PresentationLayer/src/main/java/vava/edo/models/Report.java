@@ -1,11 +1,16 @@
 package vava.edo.models;
 
+import lombok.Getter;
+
+@Getter
 public class Report {
     private ReporterViolator reporter;
     private ReporterViolator violator;
     private Integer reportId;
     private String reportMessage;
     private String status;
+
+    private String violatorName;
 
     @Override
     public String toString() {
@@ -17,4 +22,7 @@ public class Report {
                 ", status=" + status +
                 '}';
     }
+
+    public void setViolatorName() {
+        this.violatorName = this.violator.getUsername();}
 }

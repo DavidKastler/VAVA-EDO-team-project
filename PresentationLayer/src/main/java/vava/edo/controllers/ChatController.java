@@ -3,13 +3,10 @@ package vava.edo.controllers;
 
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
@@ -18,19 +15,18 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
-import javafx.stage.Stage;
+import vava.edo.Handlers.GroupHandler;
+import vava.edo.Handlers.MessageHandler;
 import vava.edo.controllers.models.ChatScreenModel;
+import vava.edo.models.*;
 import vava.edo.models.ChatGrayElementModel;
 import vava.edo.models.ChatPinkElementModel;
-import vava.edo.models.ManagerViewElementModel;
 
 import java.io.IOException;
 import java.net.URL;
 import java.net.URLConnection;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
-import java.util.ResourceBundle;
+import java.time.Instant;
+import java.util.*;
 
 
 public class ChatController implements Initializable {
@@ -92,8 +88,8 @@ public class ChatController implements Initializable {
     }
 
 
-    public Button editButton(Button button, String username, Boolean color){
-        button.setText(username);
+    public Button editButton(Button button, String groupName, Boolean color, Integer groupId){
+        button.setText(groupName);
         button.setWrapText(true);
 
         Font font = Font.font("Arial", FontWeight.BOLD, 24);
@@ -111,7 +107,7 @@ public class ChatController implements Initializable {
         button.setPrefWidth(240);
         button.setOnMouseClicked(event -> {
             try {
-                handleViewChatButton(event);
+                handleViewChatButton(event, groupId);
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -159,19 +155,17 @@ public class ChatController implements Initializable {
         return box;
     }
 
-    public void writeChatList(List<String> usernames){
+    public void writeChatList(List<Group> usernames){
         for (int i = 0; i < usernames.size(); i++){
             //System.out.println(id1);
             Button button = new Button();
             Boolean color;
-            String username;
             if (i % 2 == 0){
                 color = false;
             } else {
                 color = true;
             }
-            editButton(button, usernames.get(i), color);
-
+            editButton(button, usernames.get(i).getGroupName(), color, usernames.get(i).getGroupId());
 
             this.chat_list_pane.getChildren().add(button);
         }
@@ -213,50 +207,17 @@ public class ChatController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
-        /*
-        //**** user 1 ***
-        String id1 = "1234";
-        String username1 = "Jano";
-        String password1 = "";
-        String role1 = "";
-        String rememberMe1 = "";
-        String isLogged1 = "";
-        String lastActivity1 = "";
+    }
 
-        //**** user 2 ***
-        String id2 = "1235";
-        String username2 = "Fero";
-        String password2 = "";
-        String role2 = "";
-        String rememberMe2 = "";
-        String isLogged2 = "";
-        String lastActivity2 = "";
-        */
-        List<String> usernames = new ArrayList<>();
-        usernames.add("Jano");
-        usernames.add("Fero");
-        usernames.add("Jano");
-        usernames.add("Fero");
-        usernames.add("Jano");
-        usernames.add("Jano");
-        usernames.add("Jano");
-        usernames.add("Fero");
-        usernames.add("Jano");
-        usernames.add("Fero");
-        usernames.add("Fero");
-        usernames.add("Jano");
-        usernames.add("Fero");
-
-        writeChatList(usernames);
-
-
-
-
-
+    public void loadAllGroups() {
+        List<Group> allUsersGroups = GroupHandler.getAllGroups(this.model.getUser().getUid());
+        writeChatList(allUsersGroups);
     }
 
     @FXML
-    public void handleViewChatButton(MouseEvent mouseEvent) throws IOException {
+    public void handleViewChatButton(MouseEvent mouseEvent, Integer groupId) throws IOException {
+
+        messages_list.getChildren().clear();
         refreshColorsOfChats(this.chat_list_pane.getChildren());
 
         //metoda na vratenie userov v danych chatoch/groupach
@@ -270,98 +231,26 @@ public class ChatController implements Initializable {
 
         chat_name.setStyle("-fx-text-fill: #000000");
         chat_name.setText(actualButton.getText());
-        /*
-        List<String> userIdList = new ArrayList<>();
-        List<String> messageList = new ArrayList<>();
 
-        userIdList.add("12");
-        userIdList.add("13");
-        userIdList.add("12");
-        userIdList.add("13");
-        userIdList.add("13");
-        userIdList.add("12");
-        userIdList.add("13");
-        userIdList.add("12");
-        userIdList.add("12");
-        userIdList.add("13");
-        userIdList.add("12");
+        List<Message> allChatMessages = MessageHandler.getAllMessagesInGroup(this.model.getUser().getUid(), groupId, 0, 200);
+        Collections.reverse(allChatMessages);
 
-        messageList.add("ivbiedv widbbs jodncsd  djnsdb b" );
-        messageList.add("Fero b");
-        messageList.add("sdlibdb i dbhb  kdjn j");
-        messageList.add("dlkhbvdk; jdkcjkdbc dbcd");
-        messageList.add("dk;jbjcks jcdbskh sbjdchkdb hdbchdbc hbdchdbcd ");
-        messageList.add("adlcbsdl ascbiasb aiusbc sbclb acslkhhbc");
-        messageList.add("lkcsbjdsahbcl sncbbak aksbcaslb bcsailcb");
-        messageList.add("acsjhbs aksjcba ajsbcc kajhsbcc");
-        messageList.add("kjbjccakl");
-        messageList.add("ljkachbsdc aihsc akshcbh aisbccc");
-        messageList.add("jkch asausbcli asbcb");
-
-        writeChatMessages(userIdList, messageList);
-        */
-
-        List<String> usernames = new ArrayList<>();
-        usernames.add("Jano");
-        usernames.add("Fero");
-        usernames.add("Jano");
-        usernames.add("Fero");
-        usernames.add("Jano");
-        usernames.add("Jano");
-        usernames.add("Jano");
-        usernames.add("Fero");
-        usernames.add("Jano");
-        usernames.add("Fero");
-        usernames.add("Fero");
-        usernames.add("Jano");
-        usernames.add("Fero");
-
-        List<String> time = new ArrayList<>();
-        time.add("12");
-        time.add("13");
-        time.add("14");
-        time.add("15");
-        time.add("16");
-        time.add("17896");
-        time.add("1234");
-        time.add("1264");
-        time.add("12346");
-        time.add("12");
-        time.add("16");
-        time.add("17896");
-        time.add("32");
-
-        List<String> messages = new ArrayList<>();
-        messages.add("aa aa aa aa aa aa aa aa aa aa aa aa aa a  a a a a");
-        messages.add("ascljhauco ubABX aksjcba aksjcb c");
-        messages.add("ASCLIUL alicsb askcb sabc ablciscbasl lsciablcsi ");
-        messages.add("askcsb  alisc lsbca clacbk avzlcacbasilcb");
-        messages.add("akcs aslibalc acsalibusc ailscascv cas");
-        messages.add("acskhjhavsc ac vkau cvavkc");
-        messages.add("sjdvb asocuaocbaj cabc");
-        messages.add("avdascsc ascasca asdvdvsd sdvasdvd sdvdsv avvd");
-        messages.add("asau baicb isc b a aisbc");
-        messages.add("asckba liscb abscbl acsbscl");
-        messages.add("alkcb acbla c vascia cs");
-        messages.add("as,chal cbjcva scv  ua acscacca asc kavc");
-        messages.add(",ajsvc avc a lcsivkausvca vavsc  acsn");
-
-        for (Integer i = 0; i < usernames.size(); i++){
-            if (usernames.get(i).equals("Jano")){
-                ChatGrayElementModel element = new ChatGrayElementModel(messages.get(i), usernames.get(i), time.get(i));
+        for (Integer i = 0; i < allChatMessages.size(); i++){
+            if (allChatMessages.get(i).getSender().getUid() == this.model.getUser().getUid()){
+                ChatGrayElementModel element = new ChatGrayElementModel(allChatMessages.get(i).getMessage(), allChatMessages.get(i).getSender().getUsername(), Instant.ofEpochSecond(allChatMessages.get(i).getTimeSent()).toString());
                 HBox hbox = element.getMessageBox();
 
 
                 messages_list.getChildren().add(hbox);
             } else {
-                ChatPinkElementModel element = new ChatPinkElementModel(messages.get(i), usernames.get(i), time.get(i));
+                ChatPinkElementModel element = new ChatPinkElementModel(allChatMessages.get(i).getMessage(), allChatMessages.get(i).getSender().getUsername(), Instant.ofEpochSecond(allChatMessages.get(i).getTimeSent()).toString());
                 HBox hbox = element.getMessageBox();
                 messages_list.getChildren().add(hbox);
             }
 
-
         }
 
+        chat_pane.vvalueProperty().bind(messages_list.heightProperty());
 
         }
 
@@ -385,6 +274,7 @@ public class ChatController implements Initializable {
         rootPane11.setDisable(false);
         chat_screen_box.setDisable(true);
         //chat_screen_box.setVisible(false);
+        loadFriends();
 
     }
 
@@ -417,6 +307,86 @@ public class ChatController implements Initializable {
 
     public void handleSendChatNameButton(MouseEvent mouseEvent) {
         System.out.println(text_area.getText());
+        List<String> friends = new ArrayList<>();
+        friends = checkedFriends();
+        System.out.println(friends);
+        rootPane11.setVisible(false);
+        rootPane11.setDisable(true);
+        chat_screen_box.setDisable(false);
+        chat_screen_box.setVisible(true);
+
+    }
+
+    private List<String> checkedFriends() {
+        List<String> friends = new ArrayList<>();
+        List<Node> hboxes = new ArrayList<>();
+        hboxes = friends_vbox.getChildren();
+
+        for (Integer i = 0; i < hboxes.size(); i++){
+            if (((CheckBox)((HBox)hboxes.get(i)).getChildren().get(1)).isSelected()){
+                friends.add(((Label)((HBox)hboxes.get(i)).getChildren().get(0)).getText());
+            }
+
+        }
+
+        return friends;
+    }
+
+
+    @FXML
+    private VBox friends_vbox;
+    public void loadFriends(){
+        List<String> usernames = new ArrayList<>();
+        usernames.add("Jano");
+        usernames.add("Fero");
+        usernames.add("Jano");
+        usernames.add("Fero");
+        usernames.add("Jano");
+
+        for (Integer i = 0; i < usernames.size(); i++){
+            HBox hBox = createFriendBox(usernames.get(i));
+            friends_vbox.getChildren().add(hBox);
+        }
+
+    }
+
+    public HBox createFriendBox(String username){
+        HBox hbox = new HBox();
+        Label label = new Label();
+        CheckBox checkhbox = new CheckBox();
+        label.setText(username);
+
+        label.setMinWidth(419);
+        label.prefWidth(419);
+        label.prefHeight(46);
+        label.setPadding(new Insets(10, 0, 0, 30));
+
+
+
+        label.setStyle("-fx-font-weight: bold");
+        label.setAlignment(Pos.CENTER_LEFT);
+        label.setFont(new Font("Arial", 30));
+        label.setStyle("-fx-text-fill: white");
+
+
+        checkhbox.setStyle("-fx-font-family: Arial");
+        checkhbox.setStyle("-fx-font-size: 22");
+        checkhbox.setAlignment(Pos.CENTER_LEFT);
+        checkhbox.setPadding(new Insets(10, 0, 0, 0));
+        hbox.getChildren().add(label);
+        hbox.getChildren().add(checkhbox);
+
+        return hbox;
+    }
+
+    public void handleCancelReport(MouseEvent mouseEvent){
+        rootPane1.setVisible(false);
+        rootPane1.setDisable(true);
+        chat_screen_box.setDisable(false);
+        chat_screen_box.setVisible(true);
+    }
+
+    public void handleCancelNewChat(MouseEvent mouseEvent){
         rootPane11.setVisible(false);
         rootPane11.setDisable(true);
         chat_screen_box.setDisable(false);
