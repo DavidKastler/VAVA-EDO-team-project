@@ -9,6 +9,7 @@ import org.json.JSONObject;
 import vava.edo.Exepctions.HttpStatusExceptions.UnexpectedHttpStatusException;
 import vava.edo.models.Group;
 import vava.edo.models.Relationship;
+import vava.edo.models.ResponseMessage;
 import vava.edo.models.User;
 
 import java.util.ArrayList;
@@ -87,7 +88,8 @@ public class RelationshipHandler {
                 .body(newFriendRequest)
                 .asJson();
 
-        if (friendJson.getStatus() != 201) throw new UnexpectedHttpStatusException(friendJson.getStatus(), 201, friendJson.getStatusText());
+        ResponseMessage responseMessage = new Gson().fromJson(friendJson.getBody().getObject().toString(), ResponseMessage.class);
+        if (friendJson.getStatus() != 201) throw new UnexpectedHttpStatusException(friendJson.getStatus(), 201, responseMessage.getMessage());
 
 
 

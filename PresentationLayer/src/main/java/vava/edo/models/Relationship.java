@@ -13,8 +13,8 @@ public class Relationship {
     public String toString() {
         return "Relationship{" +
                 "relationshipId=" + relationshipId +
-                ", secondUserId=" + userId +
-                ", secondUsername=" + userName +
+                ", firstUserId=" + userId +
+                ", firstUsername=" + userName +
                 '}';
     }
 }

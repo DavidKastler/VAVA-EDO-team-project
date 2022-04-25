@@ -38,7 +38,7 @@
                                     <Font name="Arial" size="30.0" />
                                  </font>
                               </TextField>
-                              <Button alignment="CENTER" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: #33557e; -fx-background-radius: 100;" text="+" textFill="#95c6ff">
+                              <Button alignment="CENTER" mnemonicParsing="false" onMouseClicked="#addFriend" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: #33557e; -fx-background-radius: 100;" text="+" textFill="#95c6ff">
                                  <font>
                                     <Font name="Arial" size="25.0" />
                                  </font>

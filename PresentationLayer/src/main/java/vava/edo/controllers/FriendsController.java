@@ -10,6 +10,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import vava.edo.Exepctions.HttpStatusExceptions.UnexpectedHttpStatusException;
 import vava.edo.Handlers.RelationshipHandler;
 import vava.edo.Handlers.SearchHandler;
 import vava.edo.controllers.models.FriendRequestScreenModel;
@@ -95,6 +96,16 @@ public class FriendsController implements Initializable {
 
     public void handleSearchNewFriend(KeyEvent keyEvent) throws IOException {
         System.out.println(search_field_new_friend.getText());
+    }
+
+    public void addFriend() {
+        try {
+            RelationshipHandler.createFriendRequest(this.model.getUser().getUid(), search_field_new_friend.getText());
+        } catch (UnexpectedHttpStatusException e) {
+            System.out.println(e.getMessage());
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
     }
 
     public void handleSearchFriend(KeyEvent keyEvent) throws IOException {
