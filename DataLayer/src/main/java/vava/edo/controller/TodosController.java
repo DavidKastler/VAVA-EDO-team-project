@@ -45,7 +45,7 @@ public class TodosController {
     @PostMapping("/create")
     public ResponseEntity<Todo> createTodo(@RequestParam(value = "token") Integer token,
                                            @RequestBody TodoCreate todoDto) {
-        log.info("Create new element to ToDo list.");
+        log.info("Creating new element to ToDo list.");
         if (!token.equals(todoDto.getUserId()) &&
                 !groupService.isUserCreatorsGroupMember(token, todoDto.getUserId())) {
             log.warn("Request failed, todos can be created only in your own ToDo list.");
@@ -100,7 +100,7 @@ public class TodosController {
     public ResponseEntity<Todo> updateTodoById(@RequestParam(value = "token") Integer token,
                                                @PathVariable(value = "todoId") Integer todoId,
                                                @RequestBody TodoUpdate todoDto) {
-        log.info("Editing ToDo.");
+        log.info("Request to edit ToDo with id:{} based on data given in data transfer object.", todoId);
         if (!Objects.equals(token, todoDto.getUserId())) {
             log.warn("Only owner can edit ToDo from his/her ToDo list");
             throw new ResponseStatusException(HttpStatus.FORBIDDEN, "You cant edit foreign todo");
@@ -117,7 +117,7 @@ public class TodosController {
      */
     @GetMapping("/get")
     public ResponseEntity<List<Todo>> getAllTodos(@RequestParam(value = "token") Integer token) {
-        log.info("Get all ToDos.");
+        log.info("Getting all ToDos for user with id:{}.", token);
         // TODO handle if admin checks todos
         return new ResponseEntity<>(todosService.getAllTodosForUser(token), HttpStatus.OK);
     }

@@ -44,7 +44,7 @@ public class ReportController {
             log.warn("User {} tried to report as other user", token);
             throw new ResponseStatusException(HttpStatus.FORBIDDEN, "You cant report for somebody else.");
         }
-        log.info("Sending new report.");
+        log.info("Sending new report to support team.");
         return new ResponseEntity<>(reportService.addReport(reportDto), HttpStatus.CREATED);
     }
 
@@ -58,12 +58,12 @@ public class ReportController {
     @PutMapping("/accept/{rep_id}")
     public ResponseEntity<Report> acceptReport(@RequestParam(name = "token") Integer token,
                                                @PathVariable(name = "rep_id") Integer reportId) {
-        log.info("Mark report as ACCEPTED.");
+        log.info("Request to mark report as ACCEPTED.");
         if (!userService.isAccountManager(token)) {
             log.warn("Request rejected, insufficient rights to accept report.");
             throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "User needs to be admin.");
         }
-        log.info("Report accepted.");
+        log.info("Report has been accepted.");
         return new ResponseEntity<>(reportService.acceptReport(reportId), HttpStatus.OK);
     }
 
@@ -77,12 +77,12 @@ public class ReportController {
     @PutMapping("/reject/{rep_id}")
     public ResponseEntity<Report> rejectReport(@RequestParam(name = "token") Integer token,
                                                @PathVariable(name = "rep_id") Integer reportId) {
-        log.info("Mark report as REJECTED.");
+        log.info("Request to mark report as REJECTED.");
         if (userService.isAccountManager(token)) {
             log.warn("Request rejected, insufficient rights to reject report.");
             return new ResponseEntity<>(reportService.rejectReport(reportId), HttpStatus.OK);
         }
-        log.info("Report rejected.");
+        log.info("Report has been rejected.");
         throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "User needs to be admin.");
     }
 
@@ -99,7 +99,7 @@ public class ReportController {
             log.warn("Permission denied, insufficient rights to see all pending reports.");
             throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "User needs to be admin.");
         }
-        log.info("Found all pending reports.");
+        log.info("List of all pending reports.");
         return new ResponseEntity<>(reportService.getAllPendingReports(), HttpStatus.OK);
     }
 
@@ -111,12 +111,12 @@ public class ReportController {
      */
     @GetMapping("/all")
     public ResponseEntity<List<Report>> getAllReports(@RequestParam(value = "token") int token) {
-        log.info("Show all reports.");
+        log.info("Show all processed and unprocessed reports.");
         if (!userService.isAccountManager(token)) {
             log.warn("Permission denied, insufficient rights to see all reports.");
             throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "User needs to be admin.");
         }
-        log.info("Found all reports.");
+        log.info("List of all reports.");
         return new ResponseEntity<>(reportService.getAllReports(), HttpStatus.OK);
     }
 }
