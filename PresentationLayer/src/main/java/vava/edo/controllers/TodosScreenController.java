@@ -45,6 +45,9 @@ public class TodosScreenController {
     private VBox vBoxNewTaskScreen;
 
     @FXML
+    private Label labelTitleWindow;
+
+    @FXML
     private TextField textFieldTaskName;
 
     @FXML
@@ -150,9 +153,10 @@ public class TodosScreenController {
 
     @FXML
     protected void handleAddNewTodo() {
-        System.out.println("Clicked add new task button");
+        System.out.println("Clicked add new task button (Todo screen)");
 
         // Have to be emptied before use
+        labelTitleWindow.setText("New Todo");
         textFieldTaskName.setText("");
         textAreaTaskDescription.setText("");
         textFieldTaskGroup.setText("");
@@ -191,7 +195,7 @@ public class TodosScreenController {
 
     @FXML
     public void handleEditTodoInfo() {
-        // TODO zmenit nazov new task na edit todo
+        labelTitleWindow.setText("Edit Todo");
         textFieldTaskName.setText(labelTodoInfoName.getText());
         textAreaTaskDescription.setText(labelTodoInfoDescription.getText());
         textFieldTaskGroup.setText(labelTodoInfoGroup.getText());

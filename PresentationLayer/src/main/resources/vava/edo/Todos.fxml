@@ -220,7 +220,7 @@
          <children>
             <VBox fx:id="vBoxNewTaskWindow" alignment="CENTER" maxWidth="-Infinity" prefHeight="441.0" prefWidth="548.0" spacing="10.0" style="-fx-background-color: black;">
                <children>
-                  <Label alignment="TOP_CENTER" prefHeight="41.0" prefWidth="508.0" style="-fx-border-color: #888888; -fx-border-width: 0 0 1 0;" text="New Todo" textFill="WHITE">
+                  <Label fx:id="labelTitleWindow" alignment="TOP_CENTER" prefHeight="41.0" prefWidth="508.0" style="-fx-border-color: #888888; -fx-border-width: 0 0 1 0;" text="New Todo" textFill="WHITE">
                      <font>
                         <Font name="Arial Bold" size="25.0" />
                      </font>

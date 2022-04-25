@@ -1,6 +1,5 @@
 package vava.edo.controllers;
 
-import javafx.scene.input.MouseEvent;
 import vava.edo.Handlers.RefreshCalendarScreen;
 import vava.edo.controllers.models.CalendarTodoItemModel;
 
@@ -14,6 +13,8 @@ public class CalendarTodoItemController {
         model.getButton().setText(model.getTodo().getTodoName());
     }
 
-    public void handleClickTodoItem(MouseEvent mouseEvent) {
+    public void handleClickTodoItem() {
+        System.out.println("Clicked todo: " + model.getTodo().getTodoName());
+        model.getRefresher().setEditWindow(model.getTodo());
     }
 }

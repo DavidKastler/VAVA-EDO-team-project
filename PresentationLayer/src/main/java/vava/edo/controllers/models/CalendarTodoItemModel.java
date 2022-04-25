@@ -32,6 +32,10 @@ public class CalendarTodoItemModel {
         return button;
     }
 
+    public RefreshCalendarScreen getRefresher() {
+        return refresher;
+    }
+
     public Todo getTodo() {
         return todo;
     }
