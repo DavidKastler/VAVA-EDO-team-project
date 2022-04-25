@@ -1,14 +1,15 @@
 package vava.edo.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import vava.edo.schema.users.UserEdit;
-import vava.edo.schema.users.UserInfo;
 import vava.edo.schema.users.UserLogin;
 
 import javax.persistence.*;
+import java.util.List;
 
 /**
  * Class representing user in users table
@@ -32,11 +33,39 @@ public class User {
     @JoinColumn(name = "role_id", nullable = false)
     private Role userRole;
 
+    @JsonIgnore
+    @OneToMany(mappedBy = "groupCreator", cascade = CascadeType.ALL)
+    private List<Group> userGroups;
+    @JsonIgnore
+    @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
+    private List<GroupMember> groupMembers;
+    @JsonIgnore
+    @OneToMany(mappedBy = "sender", cascade = CascadeType.ALL)
+    private List<Chat> chats;
+    @JsonIgnore
+    @OneToMany(mappedBy = "firstUser", cascade = CascadeType.ALL)
+    private List<Relationship> relationshipsFirstUser;
+    @JsonIgnore
+    @OneToMany(mappedBy = "secondUser", cascade = CascadeType.ALL)
+    private List<Relationship> relationshipsSecondUser;
+    @JsonIgnore
+    @OneToMany(mappedBy = "reporter", cascade = CascadeType.ALL)
+    private List<Report> reporterReports;
+    @JsonIgnore
+    @OneToMany(mappedBy = "violator", cascade = CascadeType.ALL)
+    private List<Report> violatorReports;
+    @JsonIgnore
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private List<Feedback> feedbacks;
+    @JsonIgnore
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private List<Todo> todos;
 
     /**
-     * Static casting method from UserRegister object
-     * @param userEdit   UserRegister object that you want to casy
-     * @return          cast User object
+     * Static casting method from UserEdit object
+     *
+     * @param userEdit UserRegister object that you want to casy
+     * @return cast User object
      */
     public static User from(UserEdit userEdit) {
         User user = new User();
@@ -46,9 +75,10 @@ public class User {
     }
 
     /**
-     * Static casting method from UserRegister object
-     * @param userEdit   UserRegister object that you want to casy
-     * @return          cast User object
+     * Static casting method from UserLogin object
+     *
+     * @param userEdit UserRegister object that you want to casy
+     * @return cast User object
      */
     public static User from(UserLogin userEdit) {
         User user = new User();
@@ -57,10 +87,10 @@ public class User {
         return user;
     }
 
-
     /**
      * Debugging method
-     * @return  string with method variables
+     *
+     * @return string with method variables
      */
     @Override
     public String toString() {

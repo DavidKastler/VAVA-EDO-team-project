@@ -1,5 +1,6 @@
 package vava.edo.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -35,10 +36,16 @@ public class Todo {
     @Column(name = "group_name")
     private String groupName;
 
+    @JsonIgnore
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "user_id", nullable = false, insertable = false, updatable = false)
+    private User user;
+
     /**
      * Static casting method from TaskCreate object
-     * @param taskDto    TaskCreate object that you want to cast
-     * @return          cast Task object
+     *
+     * @param taskDto TaskCreate object that you want to cast
+     * @return cast Task object
      */
     public static Todo from(TodoCreate taskDto) {
         Todo todo = new Todo();
@@ -54,7 +61,8 @@ public class Todo {
 
     /**
      * Debugging method
-     * @return  string with method variables
+     *
+     * @return string with method variables
      */
     @Override
     public String toString() {

@@ -10,7 +10,7 @@ import vava.edo.repository.TodoRepository;
 import vava.edo.schema.todos.TodoCreate;
 import vava.edo.schema.todos.TodoUpdate;
 
-import java.util.*;
+import java.util.List;
 
 /**
  * Service that operates over todos database table
@@ -27,7 +27,8 @@ public class TodosService {
 
     /**
      * Method returns all todos in database for given user id
-     * @param userId    id of user whose todos you want to see
+     *
+     * @param userId id of user whose todos you want to see
      * @return list of users todos
      */
     public List<Todo> getAllTodosForUser(int userId) {
@@ -36,8 +37,9 @@ public class TodosService {
 
     /**
      * Method returns to-do from to-do id if to-do exists, otherwise throws
-     * @param todoId    id of to-do we want to find
-     * @return          found to-do object
+     *
+     * @param todoId id of to-do we want to find
+     * @return found to-do object
      */
     public Todo getTodo(Integer todoId) {
         return todoRepository.findById(todoId).orElseThrow(
@@ -47,8 +49,9 @@ public class TodosService {
     /**
      * Method converts DTO object to To-do object
      * and saves it to database
-     * @param todoDto   to-do Data Transfer Object you want to convert to To-do
-     * @return          created user
+     *
+     * @param todoDto to-do Data Transfer Object you want to convert to To-do
+     * @return created user
      */
     public Todo createTodo(TodoCreate todoDto) {
 
@@ -60,8 +63,9 @@ public class TodosService {
 
     /**
      * Method for deleting todos from database by ID
-     * @param todoId    ID of to-do you want to delete
-     * @return          deleted to-do
+     *
+     * @param todoId ID of to-do you want to delete
+     * @return deleted to-do
      */
     public Todo deleteTodo(Integer todoId) {
         Todo todo = getTodo(todoId);
@@ -71,9 +75,10 @@ public class TodosService {
 
     /**
      * Method for updating todos from database by ID
-     * @param todoId    ID of to-do you want to update
-     * @param todoDto   to-do Data Transfer Object for updating to-do
-     * @return          updated to-do
+     *
+     * @param todoId  ID of to-do you want to update
+     * @param todoDto to-do Data Transfer Object for updating to-do
+     * @return updated to-do
      */
     @Transactional
     public Todo updateTodo(Integer todoId, TodoUpdate todoDto) {
@@ -91,9 +96,10 @@ public class TodosService {
 
     /**
      * Method to invert completed variable in to-do
-     * @param userId    user id
-     * @param todoId    to-do id
-     * @return          updated to-do
+     *
+     * @param userId user id
+     * @param todoId to-do id
+     * @return updated to-do
      */
     @Transactional
     public Todo invertCompleted(Integer userId, Integer todoId) {

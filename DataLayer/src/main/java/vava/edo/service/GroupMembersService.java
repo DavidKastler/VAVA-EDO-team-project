@@ -30,6 +30,7 @@ public class GroupMembersService {
 
     /**
      * Method returns all group and their members in database
+     *
      * @return list of all group members
      */
     public List<GroupMember> getAllGroupMembers() {
@@ -38,6 +39,7 @@ public class GroupMembersService {
 
     /**
      * Method returns members within given group
+     *
      * @param groupId group id which will be checked
      * @return list of all members of given group
      */
@@ -50,6 +52,7 @@ public class GroupMembersService {
 
     /**
      * Method converts DTO object to GroupMembers object, finds wanted group for it if exists and saves it to it
+     *
      * @param groupMemberDto group member Data Transfer Object you want to convert to GroupMembers
      * @return added user to a group
      */
@@ -66,9 +69,10 @@ public class GroupMembersService {
 
     /**
      * Method that all users in list, if user is already in group he gets skipped
-     * @param groupId       id of a group you want add users to
-     * @param userIdList    list of user ids you want to add
-     * @return              list of added members
+     *
+     * @param groupId    id of a group you want add users to
+     * @param userIdList list of user ids you want to add
+     * @return list of added members
      */
     public List<GroupMember> addMembers(Integer groupId, List<Integer> userIdList) {
         List<GroupMember> groupMemberList = new ArrayList<>();
@@ -85,9 +89,10 @@ public class GroupMembersService {
 
     /**
      * Method for removing member from a group
-     * @param groupId   ID of group where user is
-     * @param userId    ID of user who will be removed from group
-     * @return          removed group member
+     *
+     * @param groupId ID of group where user is
+     * @param userId  ID of user who will be removed from group
+     * @return removed group member
      */
     public GroupMember deleteMember(int groupId, int userId) {
         GroupMember groupMember = groupMembersRepository.findByGroupIdAndMemberId(groupId, userId);
@@ -97,7 +102,8 @@ public class GroupMembersService {
 
     /**
      * Method for removing all members from a group
-     * @param groupId   ID of group which will be cleaned
+     *
+     * @param groupId ID of group which will be cleaned
      */
     public List<GroupMember> deleteAllMember(int groupId) {
         List<GroupMember> groupMember = groupMembersRepository.findAllGroupMembersByGroupId(groupId);
@@ -107,8 +113,9 @@ public class GroupMembersService {
 
     /**
      * Method for finding all group of given member
-     * @param userId    user ID
-     * @return          list of groups where the given user is
+     *
+     * @param userId user ID
+     * @return list of groups where the given user is
      */
     public List<Group> getMyGroups(int userId) {
         List<GroupMember> groupsWithMembers = groupMembersRepository.findAllByMemberId(userId);
@@ -122,9 +129,10 @@ public class GroupMembersService {
 
     /**
      * Method used to check whether user is part of given group
-     * @param userId    id of user who you want to check
-     * @param  groupId  id of group to check egains
-     * @return          boolean true/false
+     *
+     * @param userId  id of user who you want to check
+     * @param groupId id of group to check egains
+     * @return boolean true/false
      */
     public boolean isUserInGroup(int userId, int groupId) {
         return groupMembersRepository.existsByGroupIdAndMemberId(groupId, userId);

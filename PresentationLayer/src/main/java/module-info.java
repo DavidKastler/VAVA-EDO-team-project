@@ -10,6 +10,7 @@ module vava.edo.presentationlayer {
     requires gson;
     requires json;
     requires org.jetbrains.annotations;
+    requires lombok;
 
     // needed for the DateUtils to compare dates
     requires commons.lang3;

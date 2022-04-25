@@ -12,6 +12,7 @@ import vava.edo.Exepctions.TodoScreen.MandatoryFieldNotInputted;
 import vava.edo.Handlers.TodoHandler;
 import vava.edo.Handlers.UserHandler;
 import vava.edo.controllers.models.CalendarScreenModel;
+import vava.edo.controllers.models.FriendsScreenModel;
 import vava.edo.controllers.models.TodoScreenModel;
 import vava.edo.models.User;
 
@@ -47,6 +48,10 @@ public class MenuScreenController {
     private Label labelPassword;
 
     public void setUser(User user){this.user = user;}
+
+    public HBox gethBoxChangingScreen() {
+        return hBoxChangingScreen;
+    }
 
     /**
      * Overloaded initialize method which serves as constructor in LoginController to pass the logged user
@@ -134,6 +139,8 @@ public class MenuScreenController {
     }
 
     public void handleFriendsButton() {
+        hBoxChangingScreen.getChildren().clear();
+        hBoxChangingScreen.getChildren().add(new FriendsScreenModel(user, this).getFriendsScreen());
     }
 
     public void handleAdminButton() {
@@ -165,6 +172,9 @@ public class MenuScreenController {
     }
 
     public void handleLogout() {
+    }
+
+    public void handleManagerButton(MouseEvent mouseEvent) {
     }
 
     public void handleCancelAbout() {

@@ -28,7 +28,7 @@ public class CalendarDayController {
         this.model = model;
 
         // TODO toto je zle ale je to v priebehu vyrabania
-        vBoxTodos.getChildren().add(new CalendarTodoItemModel(model.getRefresher(), vBoxTodos).getButton());
+        //vBoxTodos.getChildren().add(new CalendarTodoItemModel(model.getRefresher(), vBoxTodos).getButton());
 
         labelDayNumber.setText("" + model.getDayNumber());
     }

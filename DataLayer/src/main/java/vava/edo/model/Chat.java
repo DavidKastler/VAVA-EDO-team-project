@@ -1,5 +1,6 @@
 package vava.edo.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -30,11 +31,17 @@ public class Chat {
     @Column(name = "message", nullable = false)
     private String message;
 
+    @JsonIgnore
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinColumn(name = "group_id", nullable = false, insertable = false, updatable = false)
+    private Group group;
+
 
     /**
      * Static casting method from MessageCreate object
-     * @param messageDto    MessageCreate object that you want to cast
-     * @return          cast Chat object
+     *
+     * @param messageDto MessageCreate object that you want to cast
+     * @return cast Chat object
      */
     public static Chat from(Message messageDto) {
         Chat chat = new Chat();
@@ -46,7 +53,8 @@ public class Chat {
 
     /**
      * Debugging method
-     * @return  string with method variables
+     *
+     * @return string with method variables
      */
     @Override
     public String toString() {
