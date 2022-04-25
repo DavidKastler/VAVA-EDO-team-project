@@ -5,6 +5,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import org.w3c.dom.events.MouseEvent;
+import vava.edo.Handlers.RelationshipHandler;
 import vava.edo.models.FriendElementModel;
 import vava.edo.models.FriendReqElementModel;
 
@@ -48,7 +49,9 @@ public class FriendElementController implements Initializable {
 
 
     public void deleteFriend(javafx.scene.input.MouseEvent mouseEvent) {
-        System.out.println(getLabel().getText());
+        RelationshipHandler.rejectRequest(modelElem.getRelationship().getUserId(), modelElem.getRelationship().getRelationshipId());
+        this.modelElem.getFriendsController().loadFriends();
+
     }
 
     public void reportFriend(javafx.scene.input.MouseEvent mouseEvent) {

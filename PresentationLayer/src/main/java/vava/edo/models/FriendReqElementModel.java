@@ -11,29 +11,26 @@ public class FriendReqElementModel {
 
     private HBox friendReqElement;
 
-    public String getUsername() {
-        return username;
-    }
+    private Relationship relationship;
 
-    public void setUsername(String username) {
-        this.username = username;
+    public Relationship getRelationship() {
+        return relationship;
     }
-
-    private String username;
 
     public HBox getFriendReqElement() {
         return friendReqElement;
     }
 
 
-    public FriendReqElementModel(String username){
+    public FriendReqElementModel(Relationship relationship){
 
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/vava/edo/FriendRequestElement.fxml"));
             this.friendReqElement = loader.load();
             FriendReqElementController controller = loader.getController();
+            this.relationship = relationship;
             controller.setModel(this);
-            controller.setUserName(username);
+            controller.setUserName(relationship.getUserName());
         } catch (IOException e) {
             e.printStackTrace();
         }

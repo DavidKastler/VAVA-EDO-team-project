@@ -11,7 +11,7 @@ import java.util.Comparator;
 import java.util.List;
 
 public class User implements Serializable {
-    private Integer userId = null;
+    private Integer uid = null;
     private String username = null;
     private String password = null;
     private Role userRole = null;
@@ -20,10 +20,27 @@ public class User implements Serializable {
     private long lastActivity = 0;  // potrebné pre serializáciu dát (mimo db)
     private ArrayList<Todo> todos = null;
     private ArrayList<TodoGroup> todoGroups = null;
+    private List<Relationship> friends= null;
     private List<Relationship> friendRequests = null;
 
-    public Integer getUserId() {
-        return userId;
+    public List<Relationship> getFriendRequests() {
+        return friendRequests;
+    }
+
+    public void setFriendRequests(List<Relationship> friendRequests) {
+        this.friendRequests = friendRequests;
+    }
+
+    public List<Relationship> getFriends() {
+        return friends;
+    }
+
+    public void setFriends(List<Relationship> friends) {
+        this.friends = friends;
+    }
+
+    public Integer getUid() {
+        return uid;
     }
 
     public String getUsername() {
@@ -119,7 +136,7 @@ public class User implements Serializable {
     @Override
     public String toString() {
         return "User{" +
-                "userId=" + userId +
+                "userId=" + uid +
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
                 ", userRole=" + userRole +

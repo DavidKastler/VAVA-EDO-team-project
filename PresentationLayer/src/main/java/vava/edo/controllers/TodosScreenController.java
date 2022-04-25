@@ -220,7 +220,7 @@ public class TodosScreenController {
     @FXML
     public void handleStatusChange() {
         try {
-            TodoHandler.changeTodoStatus(refresher.getSelectedTodo(), model.getUser().getUserId());
+            TodoHandler.changeTodoStatus(refresher.getSelectedTodo(), model.getUser().getUid());
         }catch (TodoDatabaseFail e){
             e.printStackTrace();
         }

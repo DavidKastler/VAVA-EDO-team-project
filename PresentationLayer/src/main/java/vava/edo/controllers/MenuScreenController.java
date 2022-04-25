@@ -10,6 +10,7 @@ import vava.edo.Exepctions.TodoScreen.MandatoryFieldNotInputted;
 import vava.edo.Handlers.TodoHandler;
 import vava.edo.Handlers.UserHandler;
 import vava.edo.controllers.models.CalendarScreenModel;
+import vava.edo.controllers.models.FriendsScreenModel;
 import vava.edo.controllers.models.TodoScreenModel;
 import vava.edo.models.User;
 
@@ -108,6 +109,8 @@ public class MenuScreenController {
     }
 
     public void handleFriendsButton() {
+        hBoxChangingScreen.getChildren().clear();
+        hBoxChangingScreen.getChildren().add(new FriendsScreenModel(user).getFriendsScreen());
     }
 
     public void handleAdminButton() {

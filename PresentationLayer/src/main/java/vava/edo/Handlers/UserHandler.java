@@ -130,8 +130,8 @@ public class UserHandler {
         try {
             HttpResponse<JsonNode> apiResponse = Unirest.put("http://localhost:8080/" +
                             "users/update/{userId}/?token={token}")
-                    .routeParam("userId", String.valueOf(user.getUserId()))
-                    .routeParam("token", String.valueOf(user.getUserId()))
+                    .routeParam("userId", String.valueOf(user.getUid()))
+                    .routeParam("token", String.valueOf(user.getUid()))
                     .header("Content-Type", "application/json")
                     .body(newCred)
                     .asJson();

@@ -49,7 +49,7 @@ public class TodoController {
     @FXML
     public void handleStatusChange() {
         try {
-            TodoHandler.changeTodoStatus(model.getTodo(), model.getRefresher().getUser().getUserId());
+            TodoHandler.changeTodoStatus(model.getTodo(), model.getRefresher().getUser().getUid());
         }catch (TodoDatabaseFail e){
             e.printStackTrace();
         }

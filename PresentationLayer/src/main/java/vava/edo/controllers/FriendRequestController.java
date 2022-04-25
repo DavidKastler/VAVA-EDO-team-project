@@ -11,6 +11,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import vava.edo.Handlers.RelationshipHandler;
 import vava.edo.Handlers.SearchHandler;
+import vava.edo.controllers.models.RequestScreenModel;
 import vava.edo.models.FriendElementModel;
 import vava.edo.models.FriendReqElementModel;
 import vava.edo.models.Relationship;
@@ -34,8 +35,11 @@ public class FriendRequestController implements Initializable {
     @FXML
     private VBox requests_vbox;
 
-    private List<Relationship> requests = null;
+    private RequestScreenModel model;
 
+    public void setModel(RequestScreenModel model) {
+        this.model = model;
+    }
 
     public FriendRequestController() {
 
@@ -52,10 +56,11 @@ public class FriendRequestController implements Initializable {
             System.out.println("Internet is not connected");
         }
 
-        this.requests = RelationshipHandler.getAllRequests(5);
+    }
 
+    public void loadFriendRequests() {
+        this.model.getUser().setFriends(RelationshipHandler.getAllFriends(this.model.getUser().getUid()));
         reloadFriendRequests();
-
     }
 
     public void reloadFriendRequests() {
@@ -63,11 +68,11 @@ public class FriendRequestController implements Initializable {
         requests_vbox.getChildren().clear();
 
         @SuppressWarnings("unchecked")
-        List<Relationship> searchedFriends = (List<Relationship>)(List) SearchHandler.searchInList(requests, "userName", search_friends.getText());
+        List<Relationship> searchedFriends = (List<Relationship>)(List) SearchHandler.searchInList(this.model.getUser().getFriendRequests(), "userName", search_friends.getText());
 
-        for (Integer i = 0; i < requests.size(); i++){
+        for (Integer i = 0; i < this.model.getUser().getFriendRequests().size(); i++){
             try {
-                FriendElementModel element = new FriendElementModel(searchedFriends.get(i).getUserName());
+                FriendReqElementModel element = new FriendReqElementModel(searchedFriends.get(i));
                 HBox hbox = element.getFriendElement();
                 requests_vbox.getChildren().add(hbox);
             } catch (Exception e) {
