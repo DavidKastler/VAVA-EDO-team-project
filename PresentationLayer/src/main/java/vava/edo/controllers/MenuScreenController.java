@@ -23,6 +23,7 @@ import java.util.SimpleTimeZone;
 public class MenuScreenController {
     private User user;
     private boolean showPassword = false;
+    @FXML
     private AnchorPane rootPane;
 
     @FXML
@@ -198,6 +199,8 @@ public class MenuScreenController {
     }
 
     public void handleChatButton() {
+        hBoxChangingScreen.getChildren().clear();
+        hBoxChangingScreen.getChildren().add(new ChatScreenModel(user).getChatScreen());
 
         buttonUser.setStyle("-fx-background-color: transparent");
         buttonTodos.setStyle("-fx-background-color: transparent");
@@ -286,8 +289,4 @@ public class MenuScreenController {
         vBoxSettingsScreen.setVisible(true);
     }
 
-    public void handleChatButton(MouseEvent mouseEvent) {
-        hBoxChangingScreen.getChildren().clear();
-        hBoxChangingScreen.getChildren().add(new ChatScreenModel(user).getChatScreen());
-    }
 }

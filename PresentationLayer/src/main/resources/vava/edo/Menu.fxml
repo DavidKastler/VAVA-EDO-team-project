@@ -64,9 +64,9 @@
                      </graphic>
                   </Button>
                   <VBox prefHeight="516.0" prefWidth="60.0" />
-                  <Button fx:id="buttonAdmin" mnemonicParsing="false" prefHeight="60.0" prefWidth="60.0" style="-fx-background-color: transparent; -fx-background-image: url('images/profile.png');">
+                  <Button fx:id="buttonAdmin" onMouseClicked="#handleAdminButton" mnemonicParsing="false" prefHeight="60.0" prefWidth="60.0" style="-fx-background-color: transparent; -fx-background-image: url('images/profile.png');">
                      <graphic>
-                        <ImageView fitHeight="40.0" fitWidth="40.0" onMouseClicked="#handleAdminButton" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="40.0" fitWidth="40.0"  pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../../images/admin.png" />
                            </image>

@@ -16,7 +16,7 @@
          <children>
             <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="198.0" prefWidth="531.0" text=" EVERYDAY ORGANIZER" textAlignment="CENTER" textFill="#d4d4d4" wrapText="true">
                <font>
-                  <Font name="Arial" size="75.0" />
+                  <Font name="Arial Bold" size="75.0" />
                </font>
             </Label>
             <HBox>
@@ -99,7 +99,7 @@
             </HBox>
             <Button fx:id="btnRegister" mnemonicParsing="false" onMouseClicked="#handleRegisterButton" prefHeight="60.0" prefWidth="210.0" style="-fx-background-color: C4C4C4; -fx-background-radius: 30;" text="REGISTER">
                <font>
-                  <Font name="Arial" size="30.0" />
+                  <Font name="Arial Bold" size="30.0" />
                </font>
             </Button>
             <Label fx:id="wrongInput" alignment="CENTER" prefHeight="24.0" prefWidth="273.0" text="Wrong Input!" textFill="RED" visible="false">
