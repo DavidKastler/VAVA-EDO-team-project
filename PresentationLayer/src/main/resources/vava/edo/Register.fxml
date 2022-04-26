@@ -14,7 +14,6 @@
    <children>
       <VBox alignment="CENTER" layoutX="7.0" layoutY="7.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1100.0" spacing="20.0" style="-fx-background-color: #323232;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Button mnemonicParsing="false" onMouseClicked="#changeLanguage" text="%Language" />
             <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="198.0" prefWidth="531.0" text=" EVERYDAY ORGANIZER" textAlignment="CENTER" textFill="#d4d4d4" wrapText="true">
                <font>
                   <Font name="Arial Bold" size="75.0" />

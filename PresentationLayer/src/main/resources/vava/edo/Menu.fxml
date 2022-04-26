@@ -236,6 +236,7 @@
                               <Font name="Arial Bold" size="20.0" />
                            </font>
                         </Label>
+                        <Button mnemonicParsing="false" onMouseClicked="#changeLanguage" text="%Language" />
                      </children>
                   </HBox>
                   <HBox alignment="CENTER_LEFT" maxWidth="-Infinity" prefHeight="45.0" prefWidth="480.0">

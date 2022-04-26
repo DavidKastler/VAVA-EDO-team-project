@@ -69,24 +69,6 @@ public class RegisterController{
         }
 
     }
-    @FXML
-    public void changeLanguage(){
-        if(Locale.getDefault().toString().equals("sk_SK")){
-            Locale.setDefault(new Locale("en", "EN"));
-        }
-        else{
-            Locale.setDefault(new Locale("sk", "SK"));
-        }
-        try {
-            AnchorPane registerScreen = FXMLLoader.load(getClass().getResource("/vava/edo/Register.fxml"),
-                    ResourceBundle.getBundle("Localization Bundle"));
-
-            rootPane.getChildren().setAll(registerScreen);
-
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-    }
 
     @FXML
     public void handleBackToLoginButton(MouseEvent mouseEvent) throws IOException {
