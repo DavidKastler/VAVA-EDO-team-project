@@ -61,8 +61,8 @@ public class Role implements Serializable {
     }
 
     public void normalizeRoleName() {
-        if (this.getRoleName().equals("account_manager")) this.roleName = "Account manager";
-        if (this.getRoleName().equals("team_leader")) this.roleName = "Team leader";
+        //if (this.getRoleName().equals("account_manager")) this.roleName = "Account manager";
+        //if (this.getRoleName().equals("team_leader")) this.roleName = "Team leader";
     }
 
 
