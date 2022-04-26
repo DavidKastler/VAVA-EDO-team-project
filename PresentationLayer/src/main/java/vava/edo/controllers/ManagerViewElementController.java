@@ -66,6 +66,7 @@ public class ManagerViewElementController implements Initializable {
         this.model = model;
 
         setUsername(model.getReport().getViolatorName());
+        this.model.getUser().getUserRole().normalizeRoleName();
         setType(model.getUser().getUserRole().getRoleName());
         setStatus(model.getReport().getStatus());
     }

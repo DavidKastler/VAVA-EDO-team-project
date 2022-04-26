@@ -329,10 +329,8 @@ public class ChatController implements Initializable {
     @FXML
     public void handleReportUserButton(MouseEvent mouseEvent) throws IOException {
 
-        rootPane1.setVisible(true);
-        rootPane1.setDisable(false);
-        chat_screen_box.setDisable(true);
-        //chat_screen_box.setVisible(false);
+        loadMessages(messagesToLoad, currentGroup);
+        chat_pane.setVvalue(1D);
 
     }
 
@@ -344,14 +342,12 @@ public class ChatController implements Initializable {
         MessageHandler.sendMessage(this.model.getUser().getUid(), currentGroup, chat_message.getText());
         loadMessages(messagesToLoad, currentGroup);
         chat_message.clear();
+        loadAllGroups();
     }
 
 
     public void handleSendReportButton(MouseEvent mouseEvent) {
-        rootPane1.setVisible(false);
-        rootPane1.setDisable(true);
-        chat_screen_box.setDisable(false);
-        chat_screen_box.setVisible(true);
+
     }
 
     public void handleSendChatNameButton(MouseEvent mouseEvent) {
