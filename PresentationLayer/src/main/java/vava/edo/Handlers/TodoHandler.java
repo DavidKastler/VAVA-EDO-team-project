@@ -217,7 +217,6 @@ public class TodoHandler {
                 groupName.getText());
 
         if(updated_todo.getTodoName() != null){
-            System.out.println(updated_todo);
             user.updateTodo(updated_todo);
             return updated_todo;
         }

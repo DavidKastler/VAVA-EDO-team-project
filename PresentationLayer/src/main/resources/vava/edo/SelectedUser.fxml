@@ -2,16 +2,20 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="750.0" prefWidth="1040.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="vava.edo.controllers.SelectedUserController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="750.0" prefWidth="1040.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="vava.edo.controllers.SelectedUserController">
    <children>
-      <HBox prefHeight="750.0" prefWidth="1040.0" style="-fx-background-color: #323232;">
+      <HBox fx:id="hBoxUserScreen" prefHeight="750.0" prefWidth="1041.0" style="-fx-background-color: #323232;">
          <children>
             <VBox prefHeight="750.0" prefWidth="560.0">
                <children>
@@ -95,12 +99,12 @@
                         </HBox>
                         <HBox alignment="CENTER" maxWidth="-Infinity" prefHeight="90.0" prefWidth="560.0" spacing="100.0">
                            <children>
-                              <Button fx:id="buttonEditProfile" mnemonicParsing="false" prefHeight="50.0" prefWidth="140.0" style="-fx-background-color: #C4C4C4; -fx-background-radius: 20;" text="EDIT">
+                              <Button fx:id="buttonEditProfile" mnemonicParsing="false" onMouseClicked="#handleEditProfile" prefHeight="50.0" prefWidth="140.0" style="-fx-background-color: #C4C4C4; -fx-background-radius: 20;" text="EDIT">
                                  <font>
                                     <Font name="Arial Bold" size="20.0" />
                                  </font>
                               </Button>
-                              <Button fx:id="buttonDeleteProfile" mnemonicParsing="false" prefHeight="50.0" prefWidth="140.0" style="-fx-background-color: #FD8989; -fx-background-radius: 20;" text="DELETE">
+                              <Button fx:id="buttonDeleteProfile" mnemonicParsing="false" onMouseClicked="#handleDeleteProfile" prefHeight="50.0" prefWidth="140.0" style="-fx-background-color: #FD8989; -fx-background-radius: 20;" text="DELETE">
                                  <font>
                                     <Font name="Arial Bold" size="20.0" />
                                  </font>
@@ -165,5 +169,168 @@
                </padding></VBox>
          </children>
       </HBox>
+      <VBox fx:id="vBoxEditProfileScreen" alignment="CENTER" disable="true" layoutX="1.0" prefHeight="750.0" prefWidth="1040.0" style="-fx-background-color: transparent;" visible="false">
+         <children>
+            <VBox fx:id="vBoxEditProfileWindow" alignment="TOP_CENTER" maxWidth="-Infinity" prefHeight="380.0" prefWidth="548.0" spacing="20.0" style="-fx-background-color: black;">
+               <children>
+                  <Label alignment="TOP_CENTER" prefHeight="41.0" prefWidth="508.0" style="-fx-border-color: #888888; -fx-border-width: 0 0 1 0;" text="Profile edit" textFill="WHITE">
+                     <font>
+                        <Font name="Arial Bold" size="25.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets bottom="20.0" />
+                     </VBox.margin>
+                  </Label>
+                  <HBox alignment="CENTER_LEFT" maxWidth="-Infinity" prefHeight="45.0" prefWidth="397.0" spacing="20.0">
+                     <children>
+                        <Label prefHeight="23.0" prefWidth="120.0" text="Username: " textFill="WHITE">
+                           <font>
+                              <Font name="Arial Bold" size="20.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="textFieldUsername" prefHeight="26.0" prefWidth="240.0">
+                           <font>
+                              <Font name="Arial" size="13.0" />
+                           </font>
+                        </TextField>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER_LEFT" maxWidth="-Infinity" prefHeight="45.0" prefWidth="397.0" spacing="20.0">
+                     <children>
+                        <Label prefHeight="23.0" prefWidth="120.0" text="Password: " textFill="WHITE">
+                           <font>
+                              <Font name="Arial Bold" size="20.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="textFieldPassword" prefHeight="26.0" prefWidth="240.0">
+                           <font>
+                              <Font name="Arial" size="13.0" />
+                           </font>
+                        </TextField>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER_LEFT" maxWidth="-Infinity" prefHeight="45.0" prefWidth="397.0" spacing="20.0">
+                     <children>
+                        <Label prefHeight="23.0" prefWidth="120.0" text="Type: " textFill="WHITE">
+                           <font>
+                              <Font name="Arial Bold" size="20.0" />
+                           </font>
+                        </Label>
+                        <ChoiceBox fx:id="choiceBoxTypes" prefWidth="150.0" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" maxWidth="-Infinity" prefHeight="59.0" prefWidth="315.0" spacing="50.0">
+                     <children>
+                        <Button fx:id="buttonCancelProfileEdit" mnemonicParsing="false" onMouseClicked="#handleCancelProfileEdit" prefHeight="50.0" prefWidth="130.0" style="-fx-background-color: #ff0021;" text="Cancel" textFill="WHITE">
+                           <font>
+                              <Font name="Arial Bold" size="20.0" />
+                           </font>
+                        </Button>
+                        <Button fx:id="buttonSaveProfile" mnemonicParsing="false" onMouseClicked="#handleSaveProfile" prefHeight="50.0" prefWidth="130.0" style="-fx-background-color: #009933;" text="Save" textFill="WHITE">
+                           <font>
+                              <Font name="Arial Bold" size="20.0" />
+                           </font>
+                        </Button>
+                     </children>
+                  </HBox>
+               </children>
+               <padding>
+                  <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+               </padding>
+            </VBox>
+         </children>
+      </VBox>
+      <VBox fx:id="vBoxEditTask" alignment="CENTER" disable="true" layoutX="1.0" prefHeight="750.0" prefWidth="1040.0" style="-fx-background-color: transparent;" visible="false">
+         <children>
+            <VBox fx:id="vBoxNewTaskWindow" alignment="CENTER" maxWidth="-Infinity" prefHeight="441.0" prefWidth="548.0" spacing="10.0" style="-fx-background-color: black;">
+               <children>
+                  <Label fx:id="labelTitleWindow" alignment="TOP_CENTER" prefHeight="41.0" prefWidth="508.0" style="-fx-border-color: #888888; -fx-border-width: 0 0 1 0;" text="Todo edit" textFill="WHITE">
+                     <font>
+                        <Font name="Arial Bold" size="25.0" />
+                     </font>
+                  </Label>
+                  <HBox alignment="CENTER_LEFT" maxWidth="-Infinity" prefHeight="45.0" prefWidth="397.0" spacing="20.0">
+                     <children>
+                        <Label text="Task name: " textFill="WHITE">
+                           <font>
+                              <Font name="Arial Bold" size="20.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="textFieldTaskName" prefHeight="26.0" prefWidth="240.0" promptText="Enter task name">
+                           <font>
+                              <Font name="Arial" size="13.0" />
+                           </font>
+                        </TextField>
+                     </children>
+                  </HBox>
+                  <HBox maxWidth="-Infinity" prefHeight="86.0" prefWidth="508.0" spacing="20.0">
+                     <children>
+                        <Label text="Task description: " textFill="WHITE">
+                           <font>
+                              <Font name="Arial Bold" size="20.0" />
+                           </font>
+                        </Label>
+                        <TextArea fx:id="textAreaTaskDescription" prefHeight="116.0" prefWidth="288.0" promptText="Enter task description" wrapText="true">
+                           <font>
+                              <Font name="Arial" size="13.0" />
+                           </font>
+                        </TextArea>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER_LEFT" maxWidth="-Infinity" prefHeight="39.0" prefWidth="408.0" spacing="20.0">
+                     <children>
+                        <Label text="Task group: " textFill="WHITE">
+                           <font>
+                              <Font name="Arial Bold" size="20.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="textFieldTaskGroup" prefHeight="26.0" prefWidth="240.0" promptText="Enter task group">
+                           <font>
+                              <Font name="Arial" size="13.0" />
+                           </font>
+                        </TextField>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" maxWidth="-Infinity" prefHeight="34.0" prefWidth="305.0">
+                     <children>
+                        <Label text="From: " textFill="WHITE">
+                           <font>
+                              <Font name="Arial Bold" size="20.0" />
+                           </font>
+                        </Label>
+                        <DatePicker fx:id="datePickerTaskFrom" promptText="Enter from date" style="-fx-font-family: 'Arial'" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" maxWidth="-Infinity" prefHeight="34.0" prefWidth="305.0">
+                     <children>
+                        <Label prefHeight="23.0" prefWidth="62.0" text="To: " textFill="WHITE">
+                           <font>
+                              <Font name="Arial Bold" size="20.0" />
+                           </font>
+                        </Label>
+                        <DatePicker fx:id="datePickerTaskTo" promptText="Enter to date" style="-fx-font-family: 'Arial'" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" maxWidth="-Infinity" prefHeight="59.0" prefWidth="315.0" spacing="50.0">
+                     <children>
+                        <Button fx:id="buttonCancelTodo" mnemonicParsing="false" onMouseClicked="#handleCancelTodo" prefHeight="50.0" prefWidth="130.0" style="-fx-background-color: #ff0021;" text="Cancel" textFill="WHITE">
+                           <font>
+                              <Font name="Arial Bold" size="20.0" />
+                           </font>
+                        </Button>
+                        <Button fx:id="buttonEditTodo" mnemonicParsing="false" onMouseClicked="#handleEditTodo" prefHeight="50.0" prefWidth="130.0" style="-fx-background-color: #009933;" text="Edit" textFill="WHITE">
+                           <font>
+                              <Font name="Arial Bold" size="20.0" />
+                           </font>
+                        </Button>
+                     </children>
+                  </HBox>
+               </children>
+               <padding>
+                  <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+               </padding>
+            </VBox>
+         </children>
+      </VBox>
    </children>
 </AnchorPane>
