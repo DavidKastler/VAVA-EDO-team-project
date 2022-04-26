@@ -54,35 +54,37 @@ public class RefreshTodoScreen {
     }
 
     public void refreshTodos(int selectedGroup) {
-        switch (selectedGroup) {
-            case 1:
-                actualGroupTodos = user.getTodos();
-                break;
-            case 2:
-                actualGroupTodos = TodoHandler.getTodayTodos(user);
-                break;
-            case 3:
-                actualGroupTodos = TodoHandler.getTomorrowTodos(user);
-                break;
-            case 4:
-                actualGroupTodos = TodoHandler.getCompletedTodos(user);
-                break;
+        if(!user.getTodos().isEmpty()) {
+            switch (selectedGroup) {
+                case 1:
+                    actualGroupTodos = user.getTodos();
+                    break;
+                case 2:
+                    actualGroupTodos = TodoHandler.getTodayTodos(user);
+                    break;
+                case 3:
+                    actualGroupTodos = TodoHandler.getTomorrowTodos(user);
+                    break;
+                case 4:
+                    actualGroupTodos = TodoHandler.getCompletedTodos(user);
+                    break;
+            }
+
+            vBoxTodos.getChildren().clear();
+
+            for(Todo todo : actualGroupTodos) {
+                vBoxTodos.getChildren().add(new TodoHBoxModel(todo, this).getTodoHBOx());
+            }
+
+            if(actualGroupTodos.size() == 1) {
+                this.checkBoxTodoInfo.setVisible(true);
+                this.selectedTodo = actualGroupTodos.get(0);
+                this.buttonEdit.setVisible(true);
+                this.buttonDelete.setVisible(true);
+            }
+
+            setInfoSelectedTodo(this.selectedTodo);
         }
-
-        vBoxTodos.getChildren().clear();
-
-        for(Todo todo : actualGroupTodos) {
-            vBoxTodos.getChildren().add(new TodoHBoxModel(todo, this).getTodoHBOx());
-        }
-
-        if(actualGroupTodos.size() == 1) {
-            this.checkBoxTodoInfo.setVisible(true);
-            this.selectedTodo = actualGroupTodos.get(0);
-            this.buttonEdit.setVisible(true);
-            this.buttonDelete.setVisible(true);
-        }
-
-        setInfoSelectedTodo(this.selectedTodo);
     }
 
     /**

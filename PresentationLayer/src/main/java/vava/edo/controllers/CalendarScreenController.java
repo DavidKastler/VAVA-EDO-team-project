@@ -77,6 +77,7 @@ public class CalendarScreenController {
     public void handleShowToday() {
         refresher.setTodayMonth();
         labelSelectedMonth.setText(refresher.getSelectedMonthandYear());
+        refresher.refreshCalendar();
     }
 
     @FXML

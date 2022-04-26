@@ -6,8 +6,11 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
+import vava.edo.Handlers.TodoHandler;
 import vava.edo.Handlers.UserHandler;
+import vava.edo.controllers.models.SelectedUserModel;
 import vava.edo.models.AdminViewElementModel;
+import vava.edo.models.User;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -35,10 +38,6 @@ public class AdminViewElementController implements Initializable {
         this.type_label.setText(type_label);
     }
 
-
-
-
-
     public void setModel(AdminViewElementModel model) {
         this.model = model;
         setUsername(this.model.getDisplayedUser().getUsername());
@@ -57,7 +56,14 @@ public class AdminViewElementController implements Initializable {
         this.model.getAdminController().loadAllUsers();
     }
 
-    public void openSelectedUser(MouseEvent mouseEvent) {
-        SelectedUserController.initSelectedUser(this.model.getUser(), this.model.getDisplayedUser(), this.model.getAdminController().getModel().getMenuScreenController());
+    public void openSelectedUser() {
+        User displayedUser = this.model.getDisplayedUser();
+
+        TodoHandler.startUp(displayedUser);
+
+        this.model.getAdminController().getModel().getMenuScreenController().gethBoxChangingScreen().getChildren().clear();
+        this.model.getAdminController().getModel().getMenuScreenController().gethBoxChangingScreen().getChildren().
+                add(new SelectedUserModel(this.model.getUser(), displayedUser,
+                        this.model.getAdminController().getModel().getMenuScreenController()).getSelectedUserScreen());
     }
 }
