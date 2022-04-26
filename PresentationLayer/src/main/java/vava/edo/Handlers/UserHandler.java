@@ -159,7 +159,6 @@ public class UserHandler extends UserSerializationHandler {
         newCred.put("username", user.getUsername());
         newCred.put("password", user.getPassword());
         newCred.put("roleId", user.getUserRole().getrId());
-        System.out.println(newCred);
 
         try {
             HttpResponse<JsonNode> apiResponse = Unirest.put("http://localhost:8080/" +

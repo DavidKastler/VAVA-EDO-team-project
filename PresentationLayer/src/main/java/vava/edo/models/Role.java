@@ -4,11 +4,11 @@ import java.io.Serializable;
 
 public class Role implements Serializable {
 
-    private int rId;
+    private Integer rid;
     private String roleName;
-    private boolean basicRights;
     private boolean todoAccessRights;
     private boolean teamLeaderRights;
+    private boolean managerRights;
     private boolean adminRights;
 
 
@@ -28,12 +28,12 @@ public class Role implements Serializable {
         this.roleName = roleName;
     }
 
-    public boolean isBasicRights() {
-        return basicRights;
+    public boolean isManagerRights() {
+        return managerRights;
     }
 
-    public void setBasicRights(boolean basicRights) {
-        this.basicRights = basicRights;
+    public void setManagerRights(boolean managerRights) {
+        this.managerRights = managerRights;
     }
 
     public boolean isTodoAccessRights() {
@@ -64,7 +64,7 @@ public class Role implements Serializable {
     @Override
     public String toString() {
         return "Role{" +
-                "rId=" + rId +
+                "rId=" + rid +
                 ", roleName='" + roleName + '\'' +
                 ", basicRights=" + basicRights +
                 ", todoAccessRights=" + todoAccessRights +

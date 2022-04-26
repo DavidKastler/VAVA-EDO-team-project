@@ -147,11 +147,11 @@
                         <Font name="Arial Bold" size="30.0" />
                      </font>
                   </Label>
-                  <ScrollPane fx:id="scrollPaneTodos" maxWidth="-Infinity" prefHeight="660.0" prefWidth="480.0" style="-fx-background-color: #323232; -fx-background:  #323232;">
+                  <ScrollPane fx:id="scrollPaneTodos" maxWidth="-Infinity" prefHeight="660.0" prefWidth="470.0" style="-fx-background-color: #323232; -fx-background:  #323232;">
                      <content>
-                        <AnchorPane maxWidth="480.0" minHeight="0.0" minWidth="0.0" style="-fx-background-color: transparent;">
+                        <AnchorPane maxWidth="-Infinity" minHeight="0.0" minWidth="0.0" prefWidth="470.0" style="-fx-background-color: transparent;">
                            <children>
-                              <VBox fx:id="vBoxTodos" alignment="TOP_CENTER" maxWidth="480.0" style="-fx-border-color: #555555; -fx-border-width: 0 0 0 0;">
+                              <VBox fx:id="vBoxTodos" alignment="TOP_CENTER" maxWidth="-Infinity" prefWidth="470.0" style="-fx-border-color: #555555; -fx-border-width: 0 0 0 0;">
                                  <padding>
                                     <Insets top="10.0" />
                                  </padding>

@@ -19,8 +19,8 @@ public class RoleHandler {
     public static void changeRole(String roleId, Role role) throws FailedToAcquireRole{
 
         try {
-            HttpResponse<JsonNode> apiResponse = Unirest.put("http://localhost:8080/roles/{roleId}")
-                    .routeParam("userId", roleId)
+            HttpResponse<JsonNode> apiResponse = Unirest.get("http://localhost:8080/roles/{roleId}")
+                    .routeParam("roleId", roleId)
                     .asJson();
 
             Role returnedRole = new Gson().fromJson(apiResponse.getBody().toString(), Role.class);

@@ -7,6 +7,8 @@ import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import vava.edo.Exepctions.AdminWindow.FailedToAcquireRole;
+import vava.edo.Exepctions.MenuScreen.FailedToUpdateUser;
 import vava.edo.Exepctions.TodoScreen.MandatoryFieldNotInputted;
 import vava.edo.Exepctions.TodoScreen.TodoDatabaseFail;
 import vava.edo.Handlers.RefreshUserScreen;
@@ -17,7 +19,7 @@ import vava.edo.controllers.models.SelectedUserModel;
 public class SelectedUserController {
     private SelectedUserModel model;
     private RefreshUserScreen refresher;
-    ObservableList<String> typesOfUsers = FXCollections.observableArrayList("admin", "manager", "team leader", "pleb", "guest");
+    ObservableList<String> typesOfUsers = FXCollections.observableArrayList("admin", "account_manager", "team leader", "pleb", "guest");
 
     @FXML
     private HBox hBoxUserScreen;
@@ -123,20 +125,29 @@ public class SelectedUserController {
     }
 
     public void handleSaveProfile() {
-        /*try {
-            model.getSelectedUser().updateUserCred(textFieldUsername.getText(), textFieldPassword.getText());
-            UserHandler.editUser(user);
-        }catch (FailedToUpdateUser | MandatoryFieldNotInputted e){
+        int roleId = 0;
+        for(int i = 0; i < typesOfUsers.size(); i++) {
+            if(choiceBoxTypes.getValue().equals(typesOfUsers.get(i))) {
+                roleId = i + 1;
+                break;
+            }
+        }
+
+        try {
+            model.getSelectedUser().editUserCred(String.valueOf(roleId), textFieldUsername.getText(), textFieldPassword.getText());
+            UserHandler.editUser(model.getSelectedUser(), model.getCurrentUser().getUid());
+        }catch (FailedToUpdateUser | MandatoryFieldNotInputted | FailedToAcquireRole e){
             e.printStackTrace();
         }
 
-        // Changing the label to appropriate username
-        labelUsername.setText(this.user.getUsername());
-
         vBoxEditProfileScreen.setDisable(true);
         vBoxEditProfileScreen.setVisible(false);
-
-        vBoxProfileScreen.setDisable(false);*/
+        hBoxUserScreen.setDisable(false);
+        refresher.refresh();
+        labelNameTitle.setText(model.getSelectedUser().getUsername());
+        labelName.setText(model.getSelectedUser().getUsername());
+        labelPassword.setText(model.getSelectedUser().getPassword());
+        labelType.setText(model.getSelectedUser().getUserRole().getRoleName());
     }
 
     public void handleCancelTodo() {
