@@ -331,6 +331,7 @@ public class ChatController implements Initializable {
 
         loadMessages(messagesToLoad, currentGroup);
         chat_pane.setVvalue(1D);
+        loadAllGroups();
 
     }
 
