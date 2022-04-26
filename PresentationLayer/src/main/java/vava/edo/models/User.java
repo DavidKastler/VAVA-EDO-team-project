@@ -1,6 +1,8 @@
 package vava.edo.models;
 
+import vava.edo.Exepctions.AdminWindow.FailedToAcquireRole;
 import vava.edo.Exepctions.TodoScreen.MandatoryFieldNotInputted;
+import vava.edo.Handlers.RoleHandler;
 
 import java.io.Serializable;
 import java.time.Instant;
@@ -52,6 +54,10 @@ public class User implements Serializable {
 
     public Role getUserRole() {
         return userRole;
+    }
+
+    public void setUserRole(Role userRole) {
+        this.userRole = userRole;
     }
 
     public void setUsername(String username) {
@@ -122,6 +128,17 @@ public class User implements Serializable {
 
         this.setUsername(username);
         this.setPassword(password);
+    }
+
+    public void editUserCred(String roleId, String username, String password) throws MandatoryFieldNotInputted, FailedToAcquireRole {
+
+        if(username.equals("") || password.equals("") || roleId.equals("")){
+            throw new MandatoryFieldNotInputted("You have not inputted all of the mandatory fields (Username/Password/RoleId)");
+        }
+
+        this.setUsername(username);
+        this.setPassword(password);
+        RoleHandler.changeRole(roleId, this.getUserRole());
     }
 
     @Override

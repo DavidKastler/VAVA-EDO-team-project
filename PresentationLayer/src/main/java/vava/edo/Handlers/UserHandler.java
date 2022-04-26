@@ -117,7 +117,7 @@ public class UserHandler extends UserSerializationHandler {
      *
      * @param user User object with the updated parameters
      */
-    public static void editUser(User user) throws FailedToUpdateUser {
+    public static void updateUser(User user) throws FailedToUpdateUser {
 
         JSONObject newCred = new JSONObject();
         newCred.put("username", user.getUsername());
@@ -142,8 +142,42 @@ public class UserHandler extends UserSerializationHandler {
         }catch (UnirestException e){
             System.out.println("Connection to localhost:8080 failed ! (PLease start backend server)");
         }
-
     }
+
+
+    /**
+     * Method which edits user role, password and username
+     *
+     * @param user User object with the updated parameters
+     */
+    public static void editUser(User user) throws FailedToUpdateUser {
+
+        JSONObject newCred = new JSONObject();
+        newCred.put("username", user.getUsername());
+        newCred.put("password", user.getPassword());
+        newCred.put("roleId", user.getUserRole().getrId());
+        System.out.println(newCred);
+
+        try {
+            HttpResponse<JsonNode> apiResponse = Unirest.put("http://localhost:8080/" +
+                            "users/edit/{userId}/?token={token}")
+                    .routeParam("userId", String.valueOf(user.getUid()))
+                    .routeParam("token", String.valueOf(user.getUid()))
+                    .header("Content-Type", "application/json")
+                    .body(newCred)
+                    .asJson();
+
+            User respondedUser = new Gson().fromJson(apiResponse.getBody().toString(), User.class);
+
+            if(respondedUser.getUsername() == null){
+                throw new FailedToUpdateUser("Failed to edit the user");
+            }
+
+        }catch (UnirestException e){
+            System.out.println("Connection to localhost:8080 failed ! (PLease start backend server)");
+        }
+    }
+
 
     public static void registerUser(TextField textUsername, TextField textPassword1,
                                     TextField textPassword2, Label wrongInput) throws FailedToRegister{

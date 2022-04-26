@@ -154,7 +154,7 @@ public class MenuScreenController {
     public void handleSaveProfile() {
         try {
             user.updateUserCred(textFieldUsername.getText(), textFieldPassword.getText());
-            UserHandler.editUser(user);
+            UserHandler.updateUser(user);
         }catch (FailedToUpdateUser | MandatoryFieldNotInputted e){
             e.printStackTrace();
         }
