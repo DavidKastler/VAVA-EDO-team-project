@@ -36,6 +36,10 @@ public class SelectedUserModel {
         return selectedUserScreen;
     }
 
+    public User getCurrentUser() {
+        return currentUser;
+    }
+
     public User getSelectedUser() {
         return selectedUser;
     }
