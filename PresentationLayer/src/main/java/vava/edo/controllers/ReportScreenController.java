@@ -45,7 +45,6 @@ public class ReportScreenController implements Initializable {
 
     public void handleSendReportButton(javafx.scene.input.MouseEvent mouseEvent) {
         String reportMessage = text_area.getText();
-        System.out.println(reportMessage);
 
         Stage stage = (Stage) report_button.getScene().getWindow();
         stage.close();

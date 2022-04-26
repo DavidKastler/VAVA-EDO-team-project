@@ -29,9 +29,7 @@ public class ReportHandler {
 
             if (reportJson.getStatus() != 201) throw new UnexpectedHttpStatusException(reportJson.getStatus(), 201, reportJson.getStatusText());
 
-        } catch (UnirestException e) {
-            System.out.println(e.getMessage());
-        } catch (UnexpectedHttpStatusException e) {
+        } catch (UnirestException | UnexpectedHttpStatusException e) {
             System.out.println(e.getMessage());
         }
     }
@@ -47,9 +45,7 @@ public class ReportHandler {
 
             if (acceptReportJson.getStatus() != 200) throw new UnexpectedHttpStatusException(acceptReportJson.getStatus(), 200, acceptReportJson.getStatusText());
 
-        } catch (UnirestException e) {
-            System.out.println(e.getMessage());
-        } catch (UnexpectedHttpStatusException e) {
+        } catch (UnirestException | UnexpectedHttpStatusException e) {
             System.out.println(e.getMessage());
         }
     }
@@ -64,9 +60,7 @@ public class ReportHandler {
 
             if (rejectReportJson.getStatus() != 200) throw new UnexpectedHttpStatusException(rejectReportJson.getStatus(), 200, rejectReportJson.getStatusText());
 
-        } catch (UnirestException e) {
-            System.out.println(e.getMessage());
-        } catch (UnexpectedHttpStatusException e) {
+        } catch (UnirestException | UnexpectedHttpStatusException e) {
             System.out.println(e.getMessage());
         }
     }

@@ -87,7 +87,7 @@ public class TodoHandler {
         reqTodo.put("fromTime", fromTime);
         reqTodo.put("completed", false);
         reqTodo.put("groupName", groupName);
-        System.out.println(reqTodo);
+
 
         try{
             HttpResponse<JsonNode> apiResponse = Unirest.post("http://localhost:8080/todos/create/?token={token}")
@@ -132,7 +132,6 @@ public class TodoHandler {
                                     groupName.getText());
 
         if (new_todo.getTodoName() != null){
-            System.out.println(new_todo);
             user.addTodo(new_todo);
         }
         else {
@@ -168,7 +167,6 @@ public class TodoHandler {
         reqTodo.put("fromTime", fromTime);
         reqTodo.put("completed", false);
         reqTodo.put("groupName", groupName);
-        System.out.println(reqTodo);
 
         try{
             HttpResponse<JsonNode> apiResponse = Unirest.put("http://localhost:8080/todos" +
@@ -246,7 +244,6 @@ public class TodoHandler {
             Todo deletedTodo = new Gson().fromJson(apiResponse.getBody().toString(), Todo.class);
 
             if (deletedTodo.getTodoName() != null){
-                System.out.println(deletedTodo);
                 user.removeTodo(deletedTodo);
             }
             else {

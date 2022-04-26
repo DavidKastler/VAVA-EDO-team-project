@@ -197,8 +197,6 @@ public class ChatController implements Initializable {
 
 
         for (int i = 0; i < messages.size(); i++){
-            //System.out.println(id1);
-            //HBox box = new HBox();
             Label message = new Label();
             Boolean color;
             if (userIds.get(i).equals("13")){
@@ -236,7 +234,6 @@ public class ChatController implements Initializable {
     public void writeChatList(List<Group> usernames){
         this.chat_list_pane.getChildren().clear();
         for (int i = 0; i < usernames.size(); i++){
-            //System.out.println(id1);
             Button button = new Button();
             Boolean color;
             String username;
@@ -304,7 +301,6 @@ public class ChatController implements Initializable {
     @FXML
     public void handleSearchChatButton(KeyEvent keyEvent) throws IOException {
         reloadAllGroups();
-        System.out.println(search_field.getText());
     }
 
     @FXML
@@ -343,7 +339,6 @@ public class ChatController implements Initializable {
     }
 
     public void handleSendChatNameButton(MouseEvent mouseEvent) {
-        System.out.println(text_area.getText());
         List<Integer> selectedFriends = returnSelectedFriends();
         Integer[] friendsInt = new Integer[selectedFriends.size()+1];
 

@@ -42,7 +42,6 @@ public class UserHandler extends UserSerializationHandler {
             JSONObject jo = new JSONObject();
             jo.put("username", username);
             jo.put("password", password);
-            System.out.println(jo);
 
             try {
                 HttpResponse<JsonNode> apiResponse = Unirest.post("http://localhost:8080/users/login")
@@ -53,7 +52,6 @@ public class UserHandler extends UserSerializationHandler {
 
                 if(user.getUsername() != null){
                     user.setLastActivity(Instant.now().getEpochSecond());
-                    System.out.println("Logged in\t->\t" + user);
                     wrongCredentials.setVisible(false);
 
                     return user;
@@ -124,7 +122,6 @@ public class UserHandler extends UserSerializationHandler {
         JSONObject newCred = new JSONObject();
         newCred.put("username", user.getUsername());
         newCred.put("password", user.getPassword());
-        System.out.println(newCred);
 
         try {
             HttpResponse<JsonNode> apiResponse = Unirest.put("http://localhost:8080/" +
@@ -184,7 +181,6 @@ public class UserHandler extends UserSerializationHandler {
     public static void registerUser(TextField textUsername, TextField textPassword1,
                                     TextField textPassword2, Label wrongInput) throws FailedToRegister{
         if (!textPassword1.getText().equals(textPassword2.getText()) || textUsername.getText().isEmpty()){
-            System.out.println("Wrong Input!");
             wrongInput.setVisible(true);
             textUsername.clear();
             textPassword1.clear();
@@ -195,7 +191,6 @@ public class UserHandler extends UserSerializationHandler {
             JSONObject jo = new JSONObject();
             jo.put("username", textUsername.getText());
             jo.put("password", textPassword1.getText());
-            System.out.println(jo);
 
             try {
                 HttpResponse<JsonNode> apiResponse = Unirest.post("http://localhost:8080/users/register")
@@ -204,8 +199,6 @@ public class UserHandler extends UserSerializationHandler {
                         .asJson();
 
                 User respondedUser = new Gson().fromJson(apiResponse.getBody().toString(), User.class);
-
-                System.out.println(apiResponse.getBody().toString());
 
                 if(respondedUser.getUsername() == null){
                     resourceBundle = ResourceBundle.getBundle("Localization Bundle", Locale.getDefault());

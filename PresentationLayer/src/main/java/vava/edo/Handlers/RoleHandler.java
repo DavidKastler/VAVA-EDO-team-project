@@ -24,7 +24,7 @@ public class RoleHandler {
                     .asJson();
 
             Role returnedRole = new Gson().fromJson(apiResponse.getBody().toString(), Role.class);
-            System.out.println(returnedRole);
+
             if(returnedRole.getRoleName() != null){
 
                 role.setrId(returnedRole.getrId());

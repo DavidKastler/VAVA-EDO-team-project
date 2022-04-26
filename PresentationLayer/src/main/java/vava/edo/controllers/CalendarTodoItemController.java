@@ -14,7 +14,6 @@ public class CalendarTodoItemController {
     }
 
     public void handleClickTodoItem() {
-        System.out.println("Clicked todo: " + model.getTodo().getTodoName());
         model.getRefresher().setEditWindow(model.getTodo());
     }
 }
