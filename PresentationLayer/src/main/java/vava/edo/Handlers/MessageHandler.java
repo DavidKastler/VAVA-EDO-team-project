@@ -62,7 +62,6 @@ public class MessageHandler {
         JSONObject newMessage = new JSONObject();
         newMessage.put("senderId", userId);
         newMessage.put("groupId", groupId);
-        newMessage.put("timeSent", Instant.now().getEpochSecond()*1000);
         newMessage.put("message", message);
 
         try {

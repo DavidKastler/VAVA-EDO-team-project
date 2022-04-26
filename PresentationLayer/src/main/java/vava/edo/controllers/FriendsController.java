@@ -86,7 +86,6 @@ public class FriendsController implements Initializable {
     }
 
     public void handleSearchNewFriend(KeyEvent keyEvent) throws IOException {
-        System.out.println(search_field_new_friend.getText());
     }
 
     public void addFriend() {

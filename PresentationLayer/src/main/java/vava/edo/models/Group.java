@@ -1,8 +1,9 @@
 package vava.edo.models;
 
+import lombok.Getter;
 
+@Getter
 public class Group {
-
 
     private int groupId;
     private String groupName;
