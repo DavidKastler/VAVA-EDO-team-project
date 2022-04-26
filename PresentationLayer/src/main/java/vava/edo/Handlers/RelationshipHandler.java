@@ -108,12 +108,9 @@ public class RelationshipHandler {
             ResponseMessage responseMessage = new Gson().fromJson(acceptRequestJson.getBody().getObject().toString(), ResponseMessage.class);
             if (acceptRequestJson.getStatus() != 200) throw new UnexpectedHttpStatusException(acceptRequestJson.getStatus(), 200, responseMessage.getMessage());
 
-        } catch (UnirestException e) {
-            System.out.println(e.getMessage());
-        } catch (UnexpectedHttpStatusException e) {
+        } catch (UnirestException | UnexpectedHttpStatusException e) {
             System.out.println(e.getMessage());
         }
-
     }
 
     //DONE
@@ -129,9 +126,7 @@ public class RelationshipHandler {
             ResponseMessage responseMessage = new Gson().fromJson(rejectRequestJson.getBody().getObject().toString(), ResponseMessage.class);
             if (rejectRequestJson.getStatus() != 200) throw new UnexpectedHttpStatusException(rejectRequestJson.getStatus(), 200, responseMessage.getMessage());
 
-        } catch (UnirestException e) {
-            System.out.println(e.getMessage());
-        } catch (UnexpectedHttpStatusException e) {
+        } catch (UnirestException | UnexpectedHttpStatusException e) {
             System.out.println(e.getMessage());
         }
 
@@ -150,9 +145,7 @@ public class RelationshipHandler {
             ResponseMessage responseMessage = new Gson().fromJson(blockUserJson.getBody().getObject().toString(), ResponseMessage.class);
             if (blockUserJson.getStatus() != 200) throw new UnexpectedHttpStatusException(blockUserJson.getStatus(), 200, responseMessage.getMessage());
 
-        } catch (UnirestException e) {
-            System.out.println(e.getMessage());
-        } catch (UnexpectedHttpStatusException e) {
+        } catch (UnirestException | UnexpectedHttpStatusException e) {
             System.out.println(e.getMessage());
         }
     }

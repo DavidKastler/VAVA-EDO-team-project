@@ -18,6 +18,6 @@ public class FriendElementAdminController {
     public void handleDeleteFriend() {
         RelationshipHandler.rejectRequest(model.getUser().getUid(), model.getFriend().getRelationshipId());
         model.getRefresher().refresh();
-        System.out.println("Friend was removed");
+
     }
 }

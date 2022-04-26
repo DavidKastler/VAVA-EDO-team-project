@@ -94,7 +94,7 @@ public class RefreshCalendarScreen {
         cal.set(Calendar.YEAR, selectedYear);
         cal.set(Calendar.MONTH, selectedMonth.getValue() - 1);
         int numDays = cal.getActualMaximum(Calendar.DATE);
-        // System.out.println("Days number: " + numDays);
+
         return numDays;
     }
 

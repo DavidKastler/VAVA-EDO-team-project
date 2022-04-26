@@ -41,9 +41,7 @@ public class MessageHandler {
                 messages.add(new Gson().fromJson(message.toString(), Message.class));
             }
 
-        } catch (UnirestException e) {
-            System.out.println(e.getMessage());
-        } catch (UnexpectedHttpStatusException e) {
+        } catch (UnirestException | UnexpectedHttpStatusException e) {
             System.out.println(e.getMessage());
         }
 

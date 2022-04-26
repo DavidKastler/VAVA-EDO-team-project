@@ -84,7 +84,6 @@ public class CalendarScreenController {
 
     @FXML
     protected void handleAddNewTodo() {
-        System.out.println("Clicked add new task button (Calendar screen)");
 
         // Have to be emptied before use
         labelTitleWindow.setText(resourceBundle.getString("Todo.newTodo"));

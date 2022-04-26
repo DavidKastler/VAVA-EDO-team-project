@@ -37,9 +37,7 @@ public class GroupHandler {
                 groups.add(new Gson().fromJson(group.toString(), Group.class));
             }
 
-        } catch (UnirestException e) {
-            System.out.println(e.getMessage());
-        } catch (UnexpectedHttpStatusException e) {
+        } catch (UnirestException | UnexpectedHttpStatusException e) {
             System.out.println(e.getMessage());
         }
 
@@ -79,9 +77,7 @@ public class GroupHandler {
 
             MessageHandler.sendMessage(userId, createdGroup.getGroupId(), "Created new group with name " + createdGroup.getGroupName());
 
-        } catch (UnirestException e) {
-            System.out.println(e.getMessage());
-        } catch (UnexpectedHttpStatusException e) {
+        } catch (UnirestException | UnexpectedHttpStatusException e) {
             System.out.println(e.getMessage());
         }
 
