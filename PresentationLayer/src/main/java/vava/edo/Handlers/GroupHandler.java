@@ -24,7 +24,7 @@ public class GroupHandler {
         ArrayList<Group> groups = new ArrayList<>();
 
         try {
-            HttpResponse<JsonNode> groupsJson = Unirest.get("http://localhost:8080/groupMembers/groups?token={token}")
+            HttpResponse<JsonNode> groupsJson = Unirest.get("http://localhost:8080/chats/get/recent?token={token}")
                     .routeParam("token", String.valueOf(userId))
                     .asJson();
 
@@ -76,6 +76,8 @@ public class GroupHandler {
                     .asJson();
 
             if (membersJson.getStatus() != 201) throw new UnexpectedHttpStatusException(membersJson.getStatus(), 201, membersJson.getStatusText());
+
+            MessageHandler.sendMessage(userId, createdGroup.getGroupId(), "Created new group with name " + createdGroup.getGroupName());
 
         } catch (UnirestException e) {
             System.out.println(e.getMessage());

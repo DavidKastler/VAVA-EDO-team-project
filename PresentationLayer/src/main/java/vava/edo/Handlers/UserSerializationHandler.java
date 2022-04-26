@@ -3,6 +3,8 @@ package vava.edo.Handlers;
 import vava.edo.models.User;
 
 import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 
 /**
  * Serialization class for user
@@ -10,7 +12,8 @@ import java.io.*;
  */
 public class UserSerializationHandler {
 
-    private static final String PATH = "PresentationLayer/src/main/resources/serialization/user.ser";
+    private static final String DIR_PATH = "PresentationLayer/src/main/resources/serialization/";
+    private static final String PATH = DIR_PATH + "user.ser";
 
     public static String getPATH() {
         return PATH;
@@ -43,7 +46,7 @@ public class UserSerializationHandler {
      * @throws IOException
      */
     public static void serializeUser(User user) throws IOException {
-
+        Files.createDirectories(Paths.get(DIR_PATH));
         // vytvorenie (alebo hladanie uz vytvoreneho) suboru, kde sa bude serializovat
         FileOutputStream fileOut = new FileOutputStream(PATH);
         ObjectOutputStream out = new ObjectOutputStream(fileOut);

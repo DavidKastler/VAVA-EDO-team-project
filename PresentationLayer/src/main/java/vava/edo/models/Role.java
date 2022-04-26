@@ -60,6 +60,11 @@ public class Role implements Serializable {
         this.adminRights = adminRights;
     }
 
+    public void normalizeRoleName() {
+        if (this.getRoleName().equals("account_manager")) this.roleName = "Account manager";
+        if (this.getRoleName().equals("team_leader")) this.roleName = "Team leader";
+    }
+
 
     @Override
     public String toString() {

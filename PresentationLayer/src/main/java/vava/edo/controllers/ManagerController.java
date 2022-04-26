@@ -74,6 +74,7 @@ public class ManagerController implements Initializable {
 
         for (Report report : this.reports) {
             report.setViolatorName();
+            report.getViolator().getUserRole().normalizeRoleName();
         }
 
         reloadReports();
@@ -88,6 +89,7 @@ public class ManagerController implements Initializable {
 
         for (Integer i = 0; i < searchedReports.size(); i++){
             try {
+                searchedReports.get(i).getViolator().getUserRole().normalizeRoleName();
                 ManagerViewElementModel element = new ManagerViewElementModel(this.model.getUser(), searchedReports.get(i), this.model.getMenuScreenController());
                 HBox hbox = element.getElement();
                 users_vbox.getChildren().add(hbox);
