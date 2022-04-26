@@ -103,6 +103,7 @@ public class FriendsController implements Initializable {
     public void addFriend() {
         try {
             RelationshipHandler.createFriendRequest(this.model.getUser().getUid(), search_field_new_friend.getText());
+            search_field_new_friend.clear();
         } catch (UnexpectedHttpStatusException e) {
             System.out.println(e.getMessage());
         } catch (Exception e) {

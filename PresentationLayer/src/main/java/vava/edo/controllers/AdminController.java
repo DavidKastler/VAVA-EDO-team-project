@@ -67,6 +67,7 @@ public class AdminController implements Initializable {
 
         for (Integer i = 0; i < searchedUsers.size(); i++){
             try {
+                searchedUsers.get(i).getUserRole().normalizeRoleName();
                 AdminViewElementModel element = new AdminViewElementModel(this.model.getUser(), searchedUsers.get(i), this);
                 HBox hbox = element.getAdminViewElement();
                 users_vbox.getChildren().add(hbox);
