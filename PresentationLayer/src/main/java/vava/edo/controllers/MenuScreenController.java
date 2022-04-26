@@ -19,6 +19,7 @@ import vava.edo.controllers.models.*;
 import vava.edo.models.User;
 
 import java.io.IOException;
+import java.util.Locale;
 import java.util.ResourceBundle;
 
 public class MenuScreenController {
