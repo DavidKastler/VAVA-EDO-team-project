@@ -83,7 +83,7 @@
                                     <Insets left="15.0" top="15.0" />
                                  </HBox.margin>
                               </TextField>
-                              <Button fx:id="send_message_button" contentDisplay="CENTER" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#handleSendMessageButton" prefHeight="70.0" prefWidth="100.0" style="-fx-background-color: #c4c4c4; -fx-font-weight: regular; -fx-background-radius: 40;" text="SEND" textAlignment="CENTER">
+                              <Button fx:id="send_message_button" contentDisplay="CENTER" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#handleSendMessageButton" prefHeight="70.0" prefWidth="100.0" style="-fx-background-color: #c4c4c4; -fx-font-weight: normal; -fx-background-radius: 40;" text="SEND" textAlignment="CENTER">
                                  <font>
                                     <Font name="Arial" size="20.0" />
                                  </font>
