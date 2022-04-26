@@ -39,7 +39,7 @@ public class TodoHBoxModel {
         this.refresherUserScreen = refresher;
 
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/vava/edo/Todo.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/vava/edo/Todo.fxml"), ResourceBundle.getBundle("Localization Bundle"));
             todoHBox = loader.load();
             TodoController controller = loader.getController();
             controller.setModel(this);

@@ -204,7 +204,7 @@ public class RefreshCalendarScreen {
     public void setEditWindow(Todo todo) {
         editingTodo = todo;
         labelTitleWindow.setText(resourceBundle.getString("Todo.editTodo"));
-//        textFieldTaskName.setText(todo.getTodoName());
+        textFieldTaskName.setText(todo.getTodoName());
         textAreaTaskDescription.setText(todo.getTodoDescription());
         textFieldTaskGroup.setText(todo.getGroupName());
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
