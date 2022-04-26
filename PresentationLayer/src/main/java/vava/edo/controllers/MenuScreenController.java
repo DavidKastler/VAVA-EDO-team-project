@@ -113,6 +113,29 @@ public class MenuScreenController {
         this.highlightButton("Todos");
     }
 
+    @FXML
+    public void changeLanguage(){
+        if(Locale.getDefault().toString().equals("sk_SK")){
+            Locale.setDefault(new Locale("en", "EN"));
+        }
+        else{
+            Locale.setDefault(new Locale("sk", "SK"));
+        }
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/vava/edo/Menu.fxml"),
+                    ResourceBundle.getBundle("Localization Bundle"));
+            AnchorPane todoScreen = loader.load();
+            MenuScreenController menuScreen = loader.getController();
+            menuScreen.initialize(user, rootPane);
+            rootPane.getChildren().setAll(todoScreen);
+
+            menuScreen.handleSettingsButton();
+
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     public void handleUserButton() {
         hBoxChangingScreen.setDisable(true);
 

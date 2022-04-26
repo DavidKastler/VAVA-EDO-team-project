@@ -14,7 +14,7 @@ import java.util.ResourceBundle;
 public class Main extends Application {
     @Override
     public void start(Stage stage) throws IOException {
-        Locale.setDefault(new Locale("sk", "SK"));
+        Locale.setDefault(new Locale("en", "EN"));
         ResourceBundle resourceBundle = ResourceBundle.getBundle("Localization Bundle");
         Parent root = FXMLLoader.load(getClass().getResource("Login.fxml"), resourceBundle);
 
