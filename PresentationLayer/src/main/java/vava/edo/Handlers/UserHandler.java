@@ -79,9 +79,7 @@ public class UserHandler extends UserSerializationHandler {
 
             if (deleteUserJson.getStatus() != 204) throw new UnexpectedHttpStatusException(deleteUserJson.getStatus(), 204, deleteUserJson.getStatusText());
 
-        } catch (UnirestException e) {
-            System.out.println(e.getMessage());
-        } catch (UnexpectedHttpStatusException e) {
+        } catch (UnirestException | UnexpectedHttpStatusException e) {
             System.out.println(e.getMessage());
         }
     }
@@ -102,9 +100,7 @@ public class UserHandler extends UserSerializationHandler {
                 users.add(new Gson().fromJson(message.toString(), User.class));
             }
 
-        } catch (UnirestException e) {
-            System.out.println(e.getMessage());
-        } catch (UnexpectedHttpStatusException e) {
+        } catch (UnirestException | UnexpectedHttpStatusException e) {
             System.out.println(e.getMessage());
         }
 
