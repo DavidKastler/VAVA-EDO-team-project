@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<HBox fx:id="user" alignment="BOTTOM_LEFT" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="vava.edo.controllers.ChatPinkElementController">
+<HBox fx:id="user" alignment="BOTTOM_LEFT" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="vava.edo.controllers.ChatScreen.ChatPinkElementController">
    <children>
       <VBox alignment="TOP_RIGHT">
          <HBox.margin>

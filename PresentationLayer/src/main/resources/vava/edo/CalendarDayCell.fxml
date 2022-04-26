@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox maxHeight="134.0" prefHeight="133.0" prefWidth="148.1" style="-fx-border-color: #575757; -fx-background-color: transparent;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="vava.edo.controllers.CalendarDayController">
+<VBox maxHeight="134.0" prefHeight="133.0" prefWidth="148.1" style="-fx-border-color: #575757; -fx-background-color: transparent;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="vava.edo.controllers.CalendarScreen.CalendarDayController">
    <children>
       <Label fx:id="labelDayNumber" prefHeight="15.0" prefWidth="38.0" text="28." textFill="WHITE">
          <font>
