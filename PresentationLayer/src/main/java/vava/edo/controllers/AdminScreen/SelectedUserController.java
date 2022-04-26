@@ -17,7 +17,7 @@ import vava.edo.Handlers.UserHandler;
 public class SelectedUserController {
     private SelectedUserModel model;
     private RefreshUserScreen refresher;
-    ObservableList<String> typesOfUsers = FXCollections.observableArrayList("admin", "account_manager", "team leader", "pleb", "guest");
+    ObservableList<String> typesOfUsers = FXCollections.observableArrayList("admin", "account_manager", "team_leader", "pleb", "guest");
 
     @FXML
     private HBox hBoxUserScreen;
