@@ -64,7 +64,7 @@
                      </graphic>
                   </Button>
                   <VBox prefHeight="516.0" prefWidth="60.0" />
-                  <Button fx:id="buttonAdmin" onMouseClicked="#handleAdminButton" mnemonicParsing="false" prefHeight="60.0" prefWidth="60.0" style="-fx-background-color: transparent; -fx-background-image: url('images/profile.png');">
+                  <Button fx:id="buttonAdmin" mnemonicParsing="false" onMouseClicked="#handleAdminButton" prefHeight="60.0" prefWidth="60.0" style="-fx-background-color: transparent; -fx-background-image: url('images/profile.png');">
                      <graphic>
                         <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -299,6 +299,53 @@
                <VBox.margin>
                   <Insets />
                </VBox.margin>
+            </VBox>
+         </children>
+      </VBox>
+      <VBox fx:id="vBoxFeedbackScreen" alignment="CENTER" disable="true" layoutX="213.0" layoutY="88.0" prefHeight="570.0" prefWidth="679.0" style="-fx-background-color: #323232; -fx-border-color: red;" visible="false">
+         <children>
+            <Label text="Feedback" textFill="WHITE">
+               <font>
+                  <Font name="Arial Bold" size="48.0" />
+               </font>
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
+            </Label>
+            <VBox>
+               <children>
+                  <TextArea fx:id="textArea" prefHeight="400.0" prefWidth="400.0" promptText="Write feedback message...">
+                     <font>
+                        <Font name="Arial" size="20.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets left="20.0" right="20.0" top="10.0" />
+                     </VBox.margin>
+                  </TextArea>
+                  <HBox alignment="CENTER">
+                     <children>
+                        <Button fx:id="sendFeedback" mnemonicParsing="false" onMouseClicked="#handleSendFeedback" prefHeight="50.0" prefWidth="140.0" style="-fx-background-color: #c4c4c4; -fx-background-radius: 40;" text="Send">
+                           <font>
+                              <Font name="Arial" size="24.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets left="30.0" right="30.0" top="15.0" />
+                           </HBox.margin>
+                        </Button>
+                        <Button fx:id="cancelFeedback" mnemonicParsing="false" onMouseClicked="#handleCancelFeedback" prefHeight="50.0" prefWidth="140.0" style="-fx-background-color: #c4c4c4; -fx-background-radius: 40;" text="Cancel">
+                           <font>
+                              <Font name="Arial" size="24.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets left="30.0" right="30.0" top="15.0" />
+                           </HBox.margin>
+                        </Button>
+                     </children>
+                  </HBox>
+               </children>
+               <padding>
+                  <Insets bottom="20.0" left="30.0" right="30.0" top="20.0" />
+               </padding>
             </VBox>
          </children>
       </VBox>

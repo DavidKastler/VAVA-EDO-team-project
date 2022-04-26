@@ -1,11 +1,11 @@
 package vava.edo.controllers;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -18,9 +18,9 @@ import vava.edo.models.User;
 
 import java.io.IOException;
 
-import java.util.SimpleTimeZone;
-
 public class MenuScreenController {
+    @FXML
+    public VBox vBoxFeedbackScreen;
     private User user;
     private boolean showPassword = false;
     @FXML
@@ -146,7 +146,6 @@ public class MenuScreenController {
      * This method is called upon the save edit profile button and on press will update the profile setting
      */
     public void handleSaveProfile() {
-
         try {
             user.updateUserCred(textFieldUsername.getText(), textFieldPassword.getText());
             UserHandler.editUser(user);
@@ -182,7 +181,6 @@ public class MenuScreenController {
         hBoxChangingScreen.getChildren().add(new ChatScreenModel(user).getChatScreen());
 
         this.highlightButton("Chat");
-
     }
 
     public void handleFriendsButton() {
@@ -230,9 +228,6 @@ public class MenuScreenController {
         vBoxAboutScreen.setVisible(true);
     }
 
-    public void handleFeedback() {
-    }
-
     public void handleLogout() {
         try {
             AnchorPane loginScreen = FXMLLoader.load(getClass().getResource("/vava/edo/Login.fxml"));
@@ -265,5 +260,25 @@ public class MenuScreenController {
         buttonFriends.setStyle(buttonName.equals("Friends") ? "-fx-background-color: #006DAB" : "-fx-background-color: transparent");
         buttonAdmin.setStyle(buttonName.equals("Admin") ? "-fx-background-color: #006DAB" : "-fx-background-color: transparent");
         buttonSettings.setStyle(buttonName.equals("Settings") ? "-fx-background-color: #006DAB" : "-fx-background-color: transparent");
+    }
+
+    public void handleFeedback() {
+        vBoxFeedbackScreen.setDisable(false);
+        vBoxFeedbackScreen.setVisible(true);
+
+        vBoxSettingsScreen.setDisable(true);
+        vBoxSettingsScreen.setVisible(false);
+    }
+
+    public void handleSendFeedback(MouseEvent mouseEvent) {
+        // TODO
+    }
+
+    public void handleCancelFeedback(MouseEvent mouseEvent) {
+        vBoxFeedbackScreen.setVisible(false);
+        vBoxFeedbackScreen.setDisable(true);
+
+        vBoxSettingsScreen.setDisable(false);
+        vBoxSettingsScreen.setVisible(true);
     }
 }
