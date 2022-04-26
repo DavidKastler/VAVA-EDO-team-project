@@ -14,6 +14,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import vava.edo.Exepctions.HttpStatusExceptions.UnexpectedHttpStatusException;
 import vava.edo.Handlers.RelationshipHandler;
+import vava.edo.Handlers.ReportHandler;
 import vava.edo.Handlers.SearchHandler;
 import vava.edo.controllers.models.FriendRequestScreenModel;
 import vava.edo.controllers.models.FriendsScreenModel;
@@ -61,6 +62,8 @@ public class FriendsController implements Initializable {
     private HBox friends_screen;
 
     private List<Relationship> friends = null;
+
+    private Relationship reportingThisUser;
 
     public FriendsController() {
 
@@ -120,16 +123,17 @@ public class FriendsController implements Initializable {
     @FXML
     private TextArea text_area;
 
-    public void handleReportUserButton(MouseEvent mouseEvent) throws IOException {
+    public void handleReportUserButton(Relationship relationship) {
         reportPopUp.setVisible(true);
         reportPopUp.setDisable(false);
         friends_screen.setDisable(true);
         friends_screen.setVisible(false);
 
+        reportingThisUser = relationship;
     }
 
     public void handleSendReportButton(MouseEvent mouseEvent) {
-        System.out.println(text_area.getText());
+        ReportHandler.createReport(this.model.getUser().getUid(), reportingThisUser.getUserId(), text_area.getText());
         reportPopUp.setVisible(false);
         reportPopUp.setDisable(true);
         friends_screen.setDisable(false);

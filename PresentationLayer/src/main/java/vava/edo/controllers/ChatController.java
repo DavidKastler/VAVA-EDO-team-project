@@ -16,10 +16,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
-import vava.edo.Handlers.GroupHandler;
-import vava.edo.Handlers.MessageHandler;
-import vava.edo.Handlers.RelationshipHandler;
-import vava.edo.Handlers.SearchHandler;
+import vava.edo.Handlers.*;
 import vava.edo.controllers.models.ChatScreenModel;
 import vava.edo.models.*;
 import vava.edo.models.ChatGrayElementModel;
@@ -351,7 +348,6 @@ public class ChatController implements Initializable {
 
 
     public void handleSendReportButton(MouseEvent mouseEvent) {
-        System.out.println(text_area.getText());
         rootPane1.setVisible(false);
         rootPane1.setDisable(true);
         chat_screen_box.setDisable(false);

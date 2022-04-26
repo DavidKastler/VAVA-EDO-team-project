@@ -18,6 +18,8 @@ public class ReportCreate {
     @NonNull
     private String reportMessage;
 
+    public ReportCreate() {}
+
     @Override
     public String toString() {
         return "ReportCreate{" +
