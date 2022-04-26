@@ -105,7 +105,7 @@ public class MenuScreenController {
         labelUsername.setText(this.user.getUsername());
         labelPassword.setText("********");
 
-        if(!user.getUserRole().isAdminRights() || !user.getUserRole().isManagerRights()) {
+        if(!user.getUserRole().isAdminRights() && !user.getUserRole().isManagerRights()) {
             buttonAdmin.setVisible(false);
         }
 
