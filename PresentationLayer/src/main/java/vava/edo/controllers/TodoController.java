@@ -8,8 +8,6 @@ import vava.edo.Exepctions.TodoScreen.TodoDatabaseFail;
 import vava.edo.Handlers.TodoHandler;
 import vava.edo.controllers.models.TodoHBoxModel;
 
-import java.io.IOException;
-
 public class TodoController {
     private TodoHBoxModel model;
 
@@ -37,10 +35,13 @@ public class TodoController {
     }
 
     @FXML
-    protected void handleTodoClicked() throws IOException {
-        System.out.print("Pressed: " + model.getTodo().toString() + "\t->\t");
-        model.getRefresherTodoScreen().setInfoSelectedTodo(model.getTodo());
-        System.out.println("Todo info was printed");
+    protected void handleTodoClicked() {
+        if(model.getRefresherTodoScreen() != null) {
+            model.getRefresherTodoScreen().setInfoSelectedTodo(model.getTodo());
+        }
+        else {
+            model.getRefresherUserScreen().showEditTaskWindow(model.getTodo());
+        }
     }
 
     /**
@@ -48,15 +49,24 @@ public class TodoController {
      */
     @FXML
     public void handleStatusChange() {
-        try {
-            TodoHandler.changeTodoStatus(model.getTodo(), model.getRefresherTodoScreen().getUser().getUid());
-        }catch (TodoDatabaseFail e){
-            e.printStackTrace();
-        }
+        if(model.getRefresherTodoScreen() != null) {
+            try {
+                TodoHandler.changeTodoStatus(model.getTodo(), model.getRefresherTodoScreen().getUser().getUid());
+            }catch (TodoDatabaseFail e){
+                e.printStackTrace();
+            }
 
-        checkBoxTodo.setSelected(model.getTodo().isCompleted());
-        if(model.getRefresherTodoScreen().isTodoSelected(model.getTodo())) {
-            model.getRefresherTodoScreen().setInfoSelectedTodo(model.getTodo());
+            checkBoxTodo.setSelected(model.getTodo().isCompleted());
+            if(model.getRefresherTodoScreen().isTodoSelected(model.getTodo())) {
+                model.getRefresherTodoScreen().setInfoSelectedTodo(model.getTodo());
+            }
+        }
+        else {
+            try {
+                TodoHandler.changeTodoStatus(model.getTodo(), model.getRefresherUserScreen().getUser().getUid());
+            }catch (TodoDatabaseFail e){
+                e.printStackTrace();
+            }
         }
     }
 }

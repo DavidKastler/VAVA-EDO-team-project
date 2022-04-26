@@ -13,7 +13,7 @@
             <Font name="Arial" size="21.0" />
          </font>
       </Label>
-      <Button mnemonicParsing="false" prefHeight="27.0" prefWidth="91.0" text="Delete">
+      <Button fx:id="buttonDeleteFriend" mnemonicParsing="false" onMouseExited="#handleDeleteFriend" prefHeight="27.0" prefWidth="91.0" text="Delete">
          <font>
             <Font name="Arial Bold" size="15.0" />
          </font>

@@ -1,10 +1,9 @@
 package vava.edo.controllers;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
@@ -17,8 +16,6 @@ import vava.edo.controllers.models.*;
 import vava.edo.models.User;
 
 import java.io.IOException;
-
-import java.util.SimpleTimeZone;
 
 public class MenuScreenController {
     private User user;
@@ -97,6 +94,10 @@ public class MenuScreenController {
         // Preloaded information for user profile labels
         labelUsername.setText(this.user.getUsername());
         labelPassword.setText("********");
+
+        if(!user.getUserRole().isAdminRights()) {
+            buttonAdmin.setVisible(false);
+        }
 
         hBoxChangingScreen.getChildren().add(new TodoScreenModel(user).getTodoScreen());
 
