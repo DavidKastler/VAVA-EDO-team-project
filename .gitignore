@@ -7,3 +7,6 @@
 
 # Aplication properties
 /DataLayer/src/main/resources/application.properties
+
+#Serialized data
+/PresentationLayer/src/main/resources/serialization/*

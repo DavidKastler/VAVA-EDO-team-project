@@ -39,7 +39,7 @@ public class TodoController {
     @FXML
     protected void handleTodoClicked() throws IOException {
         System.out.print("Pressed: " + model.getTodo().toString() + "\t->\t");
-        model.getRefresher().setInfoSelectedTodo(model.getTodo());
+        model.getRefresherTodoScreen().setInfoSelectedTodo(model.getTodo());
         System.out.println("Todo info was printed");
     }
 
@@ -49,14 +49,14 @@ public class TodoController {
     @FXML
     public void handleStatusChange() {
         try {
-            TodoHandler.changeTodoStatus(model.getTodo(), model.getRefresher().getUser().getUid());
+            TodoHandler.changeTodoStatus(model.getTodo(), model.getRefresherTodoScreen().getUser().getUid());
         }catch (TodoDatabaseFail e){
             e.printStackTrace();
         }
 
         checkBoxTodo.setSelected(model.getTodo().isCompleted());
-        if(model.getRefresher().isTodoSelected(model.getTodo())) {
-            model.getRefresher().setInfoSelectedTodo(model.getTodo());
+        if(model.getRefresherTodoScreen().isTodoSelected(model.getTodo())) {
+            model.getRefresherTodoScreen().setInfoSelectedTodo(model.getTodo());
         }
     }
 }

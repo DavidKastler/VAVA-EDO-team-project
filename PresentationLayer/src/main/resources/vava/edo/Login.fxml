@@ -87,18 +87,8 @@
                         <Font name="Arial Bold" size="18.0" />
                      </font>
                   </Button>
-                  <Button fx:id="btnLoginGuest" alignment="CENTER" mnemonicParsing="false" style="-fx-background-color: transparent;" text="%Login.asGuest" textAlignment="CENTER" textFill="#3994ff" underline="true">
-                     <font>
-                        <Font name="Arial Bold" size="18.0" />
-                     </font>
-                  </Button>
                </children>
             </HBox>
-            <Button fx:id="btnForgotPassword" alignment="CENTER" mnemonicParsing="false" style="-fx-background-color: transparent;" text="%Login.forgotPass" textAlignment="CENTER" textFill="WHITE">
-               <font>
-                  <Font name="Arial Bold" size="18.0" />
-               </font>
-            </Button>
          </children>
       </VBox>
    </children>

@@ -8,6 +8,6 @@ import java.util.List;
 
 public interface FeedbackRepository extends JpaRepository<Feedback, Integer> {
 
-    @Query("select f from Feedback f where f.status = 'not_seen'")
+    @Query("select f from Feedback f where f.status = 'NOT_SEEN'")
     List<Feedback> findAllByStatusIsNotSeen();
 }

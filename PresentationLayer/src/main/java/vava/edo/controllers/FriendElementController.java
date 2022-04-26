@@ -53,6 +53,6 @@ public class FriendElementController implements Initializable {
     }
 
     public void reportFriend(javafx.scene.input.MouseEvent mouseEvent) {
-        System.out.println(this.getLabel().getText());
+        this.model.getFriendsController().handleReportUserButton(this.model.getRelationship());
     }
 }

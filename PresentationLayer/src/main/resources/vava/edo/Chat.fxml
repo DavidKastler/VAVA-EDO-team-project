@@ -68,7 +68,7 @@
                   </HBox>
                   <VBox prefHeight="645.0" prefWidth="800.0">
                      <children>
-                        <ScrollPane fx:id="chat_pane" hbarPolicy="NEVER" maxHeight="550.0" maxWidth="800.0" prefHeight="550.0" prefWidth="800.0" style="-fx-background-color: transparent;">
+                        <ScrollPane fx:id="chat_pane" hbarPolicy="NEVER" maxWidth="800.0" onScroll="#checkIfOnTop" prefHeight="550.0" prefWidth="800.0" style="-fx-background-color: transparent;">
                            <content>
                               <VBox fx:id="messages_list" prefHeight="550.0" prefWidth="785.0" style="-fx-background-color: #323232;" />
                            </content>
@@ -83,7 +83,7 @@
                                     <Insets left="15.0" top="15.0" />
                                  </HBox.margin>
                               </TextField>
-                              <Button fx:id="send_message_button" contentDisplay="CENTER" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#handleSendMessageButton" prefHeight="70.0" prefWidth="100.0" style="-fx-background-color: #c4c4c4; -fx-font-weight: regular; -fx-background-radius: 40;" text="SEND" textAlignment="CENTER">
+                              <Button fx:id="send_message_button" contentDisplay="CENTER" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#handleSendMessageButton" prefHeight="70.0" prefWidth="100.0" style="-fx-background-color: #c4c4c4; -fx-font-weight: normal; -fx-background-radius: 40;" text="SEND" textAlignment="CENTER">
                                  <font>
                                     <Font name="Arial" size="20.0" />
                                  </font>
@@ -119,42 +119,45 @@
                      <font>
                         <Font name="Arial Bold" size="48.0" />
                      </font>
+                     <VBox.margin>
+                        <Insets top="10.0" />
+                     </VBox.margin>
                   </Label>
-                  <HBox fx:id="report_hbox" maxWidth="-Infinity" prefHeight="427.0" prefWidth="630.0" style="-fx-background-color: #323232;">
+                  <VBox>
                      <children>
                         <TextArea fx:id="text_area" prefHeight="400.0" prefWidth="400.0" promptText="Write report message...">
-                           <HBox.margin>
-                              <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
-                           </HBox.margin>
                            <font>
                               <Font name="Arial" size="20.0" />
                            </font>
+                           <VBox.margin>
+                              <Insets left="20.0" right="20.0" top="10.0" />
+                           </VBox.margin>
                         </TextArea>
-                        <VBox>
-                           <HBox.margin>
-                              <Insets left="30.0" right="30.0" top="150.0" />
-                           </HBox.margin>
+                        <HBox alignment="CENTER">
                            <children>
                               <Button fx:id="report_button" mnemonicParsing="false" onMouseClicked="#handleSendReportButton" prefHeight="50.0" prefWidth="140.0" style="-fx-background-color: #c4c4c4; -fx-background-radius: 40;" text="Report">
                                  <font>
                                     <Font name="Arial" size="24.0" />
                                  </font>
-                                 <VBox.margin>
-                                    <Insets />
-                                 </VBox.margin>
+                                 <HBox.margin>
+                                    <Insets left="30.0" right="30.0" top="15.0" />
+                                 </HBox.margin>
                               </Button>
                               <Button fx:id="cancel_report1" mnemonicParsing="false" onMouseClicked="#handleCancelReport" prefHeight="50.0" prefWidth="140.0" style="-fx-background-color: #c4c4c4; -fx-background-radius: 40;" text="Cancel">
                                  <font>
                                     <Font name="Arial" size="24.0" />
                                  </font>
-                                 <VBox.margin>
-                                    <Insets top="10.0" />
-                                 </VBox.margin>
+                                 <HBox.margin>
+                                    <Insets left="30.0" right="30.0" top="15.0" />
+                                 </HBox.margin>
                               </Button>
                            </children>
-                        </VBox>
+                        </HBox>
                      </children>
-                  </HBox>
+                     <padding>
+                        <Insets bottom="20.0" left="30.0" right="30.0" top="20.0" />
+                     </padding>
+                  </VBox>
                </children>
             </VBox>
          </children>
