@@ -19,6 +19,7 @@ public class Message {
     @NonNull
     private String message;
 
+    public Message() {}
     @Override
     public String toString() {
         return "Message{" +

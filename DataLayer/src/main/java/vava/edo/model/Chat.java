@@ -7,6 +7,7 @@ import lombok.Setter;
 import vava.edo.schema.chats.Message;
 
 import javax.persistence.*;
+import java.time.Instant;
 
 /**
  * Class representing one chat in chat table
@@ -47,6 +48,7 @@ public class Chat {
         Chat chat = new Chat();
         chat.setGroupId(messageDto.getGroupId());
         chat.setMessage(messageDto.getMessage());
+        chat.setTimeSent(Instant.now().getEpochSecond());
         return chat;
     }
 
