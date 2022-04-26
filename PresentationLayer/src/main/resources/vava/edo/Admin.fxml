@@ -19,7 +19,7 @@
                      <children>
                         <HBox alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="120.0" prefWidth="520.0">
                            <children>
-                              <Label text="Username" textFill="WHITE">
+                              <Label text="%Username" textFill="WHITE">
                                  <font>
                                     <Font name="Arial Bold" size="46.0" />
                                  </font>
@@ -37,7 +37,7 @@
                         </HBox>
                         <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="120.0" prefWidth="520.0">
                            <children>
-                              <TextField fx:id="search_users" alignment="CENTER" maxWidth="-Infinity" onKeyTyped="#handleSearchUsers" prefHeight="60.0" prefWidth="300.0" promptText="Search" style="-fx-background-color: #c4c4c4; -fx-background-radius: 40;">
+                              <TextField fx:id="search_users" alignment="CENTER" maxWidth="-Infinity" onKeyTyped="#handleSearchUsers" prefHeight="60.0" prefWidth="300.0" promptText="%Search" style="-fx-background-color: #c4c4c4; -fx-background-radius: 40;">
                                  <font>
                                     <Font name="Arial" size="30.0" />
                                  </font>
@@ -53,7 +53,7 @@
                      <children>
                         <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="80.0" prefWidth="270.0">
                            <children>
-                              <Label text="Username" textFill="WHITE">
+                              <Label text="%Username" textFill="WHITE">
                                  <font>
                                     <Font name="Arial" size="30.0" />
                                  </font>
@@ -65,7 +65,7 @@
                         </HBox>
                         <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="80.0" prefWidth="270.0">
                            <children>
-                              <Label text="Type" textFill="WHITE">
+                              <Label text="%Type" textFill="WHITE">
                                  <font>
                                     <Font name="Arial" size="30.0" />
                                  </font>

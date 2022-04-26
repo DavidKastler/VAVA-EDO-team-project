@@ -31,7 +31,7 @@
                      </image>
                   </ImageView>
                   <Line endX="-100.62132263183594" endY="69.29289245605469" startX="-100.0" startY="17.401981353759766" strokeWidth="3.0" />
-                  <TextField fx:id="textUsername" alignment="CENTER" maxWidth="-Infinity" prefHeight="70.0" prefWidth="389.0" promptText="Username" style="-fx-background-radius: 20; -fx-background-color: transparent;">
+                  <TextField fx:id="textUsername" alignment="CENTER" maxWidth="-Infinity" prefHeight="70.0" prefWidth="389.0" promptText="%Username" style="-fx-background-radius: 20; -fx-background-color: transparent;">
                      <font>
                         <Font name="Arial Bold" size="30.0" />
                      </font>
@@ -65,12 +65,12 @@
                   <Insets top="20.0" />
                </VBox.margin>
             </HBox>
-            <CheckBox fx:id="checkBoxRememberMe" mnemonicParsing="false" onAction="#rememberMe" text="Remember me" textFill="WHITE">
+            <CheckBox fx:id="checkBoxRememberMe" mnemonicParsing="false" onAction="#rememberMe" text="%Login.rememberMe" textFill="WHITE">
                <font>
                   <Font name="Arial Bold" size="20.0" />
                </font>
             </CheckBox>
-            <Button fx:id="btnLogin" mnemonicParsing="false" onMouseClicked="#handleLoginButton" prefHeight="60.0" prefWidth="210.0" style="-fx-background-color: C4C4C4; -fx-background-radius: 30;" text="LOGIN">
+            <Button fx:id="btnLogin" mnemonicParsing="false" onMouseClicked="#handleLoginButton" prefHeight="60.0" prefWidth="210.0" style="-fx-background-color: C4C4C4; -fx-background-radius: 30;" text="%Login.login">
                <font>
                   <Font name="Arial Bold" size="30.0" />
                </font>
@@ -82,7 +82,7 @@
             </Label>
             <HBox alignment="CENTER" maxWidth="-Infinity" prefHeight="41.0" prefWidth="500.0" spacing="80.0">
                <children>
-                  <Button fx:id="btnRegister" alignment="CENTER" mnemonicParsing="false" onAction="#handleRegisterButton" style="-fx-background-color: transparent;" text="Register as new user" textAlignment="CENTER" textFill="#3994ff" underline="true">
+                  <Button fx:id="btnRegister" alignment="CENTER" mnemonicParsing="false" onAction="#handleRegisterButton" style="-fx-background-color: transparent;" text="%Login.newUser" textAlignment="CENTER" textFill="#3994ff" underline="true">
                      <font>
                         <Font name="Arial Bold" size="18.0" />
                      </font>

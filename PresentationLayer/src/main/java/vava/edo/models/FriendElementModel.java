@@ -7,6 +7,7 @@ import vava.edo.controllers.FriendRequestController;
 import vava.edo.controllers.FriendsController;
 
 import java.io.IOException;
+import java.util.ResourceBundle;
 
 public class FriendElementModel {
     private HBox friendElement;
@@ -32,7 +33,7 @@ public class FriendElementModel {
     public FriendElementModel(Relationship relationship, FriendsController friendsController, User user){
 
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/vava/edo/FriendElement.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/vava/edo/FriendElement.fxml"), ResourceBundle.getBundle("Localization Bundle"));
             this.friendElement = loader.load();
             FriendElementController controller = loader.getController();
             this.relationship = relationship;

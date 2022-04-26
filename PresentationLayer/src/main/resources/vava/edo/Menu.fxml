@@ -94,7 +94,7 @@
          <children>
             <VBox fx:id="vBoxProfileWindow" alignment="TOP_CENTER" maxWidth="-Infinity" prefHeight="330.0" prefWidth="548.0" spacing="20.0" style="-fx-background-color: black;">
                <children>
-                  <Label alignment="TOP_CENTER" prefHeight="41.0" prefWidth="508.0" style="-fx-border-color: #888888; -fx-border-width: 0 0 1 0;" text="Profile" textFill="WHITE">
+                  <Label alignment="TOP_CENTER" prefHeight="41.0" prefWidth="508.0" style="-fx-border-color: #888888; -fx-border-width: 0 0 1 0;" text="%Menu.profile" textFill="WHITE">
                      <font>
                         <Font name="Arial Bold" size="25.0" />
                      </font>
@@ -104,12 +104,12 @@
                   </Label>
                   <HBox alignment="CENTER_LEFT" maxWidth="-Infinity" prefHeight="45.0" prefWidth="480.0">
                      <children>
-                        <Label prefHeight="23.0" prefWidth="120.0" text="Username: " textFill="WHITE">
+                        <Label prefHeight="23.0" prefWidth="120.0" text="%Register.username" textFill="WHITE">
                            <font>
                               <Font name="Arial Bold" size="20.0" />
                            </font>
                         </Label>
-                        <Label fx:id="labelUsername" prefHeight="23.0" prefWidth="260.0" text="&lt;User_name&gt;" textFill="WHITE">
+                        <Label fx:id="labelUsername" prefHeight="23.0" prefWidth="260.0" text="%Menu.username" textFill="WHITE">
                            <font>
                               <Font name="Arial Bold" size="20.0" />
                            </font>
@@ -118,17 +118,17 @@
                   </HBox>
                   <HBox alignment="CENTER_LEFT" maxWidth="-Infinity" prefHeight="45.0" prefWidth="480.0">
                      <children>
-                        <Label prefHeight="23.0" prefWidth="120.0" text="Password: " textFill="WHITE">
+                        <Label prefHeight="23.0" prefWidth="120.0" text="%Register.password" textFill="WHITE">
                            <font>
                               <Font name="Arial Bold" size="20.0" />
                            </font>
                         </Label>
-                        <Label fx:id="labelPassword" prefHeight="23.0" prefWidth="260.0" text="&lt;User_password&gt;" textFill="WHITE">
+                        <Label fx:id="labelPassword" prefHeight="23.0" prefWidth="260.0" text="&lt;%Menu.password&gt;" textFill="WHITE">
                            <font>
                               <Font name="Arial Bold" size="20.0" />
                            </font>
                         </Label>
-                        <Button fx:id="buttonShowPassword" mnemonicParsing="false" onMouseClicked="#handleShowPassword" prefHeight="45.0" prefWidth="85.0" style="-fx-background-color: transparent;" text="Show" textFill="#3994ff">
+                        <Button fx:id="buttonShowPassword" mnemonicParsing="false" onMouseClicked="#handleShowPassword" prefHeight="45.0" prefWidth="85.0" style="-fx-background-color: transparent;" text="%Menu.show" textFill="#3994ff">
                            <font>
                               <Font name="Arial Bold" size="20.0" />
                            </font>
@@ -137,12 +137,12 @@
                   </HBox>
                   <HBox alignment="CENTER" maxWidth="-Infinity" prefHeight="59.0" prefWidth="315.0" spacing="50.0">
                      <children>
-                        <Button fx:id="buttonCancelProfile" mnemonicParsing="false" onMouseClicked="#handleCancelProfile" prefHeight="50.0" prefWidth="130.0" style="-fx-background-color: #ff0021;" text="Cancel" textFill="WHITE">
+                        <Button fx:id="buttonCancelProfile" mnemonicParsing="false" onMouseClicked="#handleCancelProfile" prefHeight="50.0" prefWidth="130.0" style="-fx-background-color: #ff0021;" text="%Cancel" textFill="WHITE">
                            <font>
                               <Font name="Arial Bold" size="20.0" />
                            </font>
                         </Button>
-                        <Button fx:id="buttonEditProfile" mnemonicParsing="false" onMouseClicked="#handleEditProfile" prefHeight="50.0" prefWidth="130.0" style="-fx-background-color: #009933;" text="Edit" textFill="WHITE">
+                        <Button fx:id="buttonEditProfile" mnemonicParsing="false" onMouseClicked="#handleEditProfile" prefHeight="50.0" prefWidth="130.0" style="-fx-background-color: #009933;" text="%Edit" textFill="WHITE">
                            <font>
                               <Font name="Arial Bold" size="20.0" />
                            </font>
@@ -160,7 +160,7 @@
          <children>
             <VBox fx:id="vBoxEditProfileWindow" alignment="TOP_CENTER" maxWidth="-Infinity" prefHeight="330.0" prefWidth="548.0" spacing="20.0" style="-fx-background-color: black;">
                <children>
-                  <Label alignment="TOP_CENTER" prefHeight="41.0" prefWidth="508.0" style="-fx-border-color: #888888; -fx-border-width: 0 0 1 0;" text="Profile edit" textFill="WHITE">
+                  <Label alignment="TOP_CENTER" prefHeight="41.0" prefWidth="508.0" style="-fx-border-color: #888888; -fx-border-width: 0 0 1 0;" text="%Menu.profileEdit" textFill="WHITE">
                      <font>
                         <Font name="Arial Bold" size="25.0" />
                      </font>
@@ -170,7 +170,7 @@
                   </Label>
                   <HBox alignment="CENTER_LEFT" maxWidth="-Infinity" prefHeight="45.0" prefWidth="397.0" spacing="20.0">
                      <children>
-                        <Label prefHeight="23.0" prefWidth="120.0" text="Username: " textFill="WHITE">
+                        <Label prefHeight="23.0" prefWidth="120.0" text="%Register.username" textFill="WHITE">
                            <font>
                               <Font name="Arial Bold" size="20.0" />
                            </font>
@@ -184,7 +184,7 @@
                   </HBox>
                   <HBox alignment="CENTER_LEFT" maxWidth="-Infinity" prefHeight="45.0" prefWidth="397.0" spacing="20.0">
                      <children>
-                        <Label prefHeight="23.0" prefWidth="120.0" text="Password: " textFill="WHITE">
+                        <Label prefHeight="23.0" prefWidth="120.0" text="%Register.password" textFill="WHITE">
                            <font>
                               <Font name="Arial Bold" size="20.0" />
                            </font>
@@ -198,12 +198,12 @@
                   </HBox>
                   <HBox alignment="CENTER" maxWidth="-Infinity" prefHeight="59.0" prefWidth="315.0" spacing="50.0">
                      <children>
-                        <Button fx:id="buttonCancelProfileEdit" mnemonicParsing="false" onMouseClicked="#handleCancelProfileEdit" prefHeight="50.0" prefWidth="130.0" style="-fx-background-color: #ff0021;" text="Cancel" textFill="WHITE">
+                        <Button fx:id="buttonCancelProfileEdit" mnemonicParsing="false" onMouseClicked="#handleCancelProfileEdit" prefHeight="50.0" prefWidth="130.0" style="-fx-background-color: #ff0021;" text="%Cancel" textFill="WHITE">
                            <font>
                               <Font name="Arial Bold" size="20.0" />
                            </font>
                         </Button>
-                        <Button fx:id="buttonSaveProfile" mnemonicParsing="false" onMouseClicked="#handleSaveProfile" prefHeight="50.0" prefWidth="130.0" style="-fx-background-color: #009933;" text="Save" textFill="WHITE">
+                        <Button fx:id="buttonSaveProfile" mnemonicParsing="false" onMouseClicked="#handleSaveProfile" prefHeight="50.0" prefWidth="130.0" style="-fx-background-color: #009933;" text="%Save" textFill="WHITE">
                            <font>
                               <Font name="Arial Bold" size="20.0" />
                            </font>
@@ -221,7 +221,7 @@
          <children>
             <VBox fx:id="vBoxSettingsWindow" alignment="TOP_CENTER" maxWidth="-Infinity" prefHeight="355.0" prefWidth="548.0" spacing="20.0" style="-fx-background-color: black;">
                <children>
-                  <Label alignment="TOP_CENTER" prefHeight="41.0" prefWidth="508.0" style="-fx-border-color: #888888; -fx-border-width: 0 0 1 0;" text="Settings" textFill="WHITE">
+                  <Label alignment="TOP_CENTER" prefHeight="41.0" prefWidth="508.0" style="-fx-border-color: #888888; -fx-border-width: 0 0 1 0;" text="%Menu.settings" textFill="WHITE">
                      <font>
                         <Font name="Arial Bold" size="25.0" />
                      </font>
@@ -231,7 +231,7 @@
                   </Label>
                   <HBox alignment="CENTER_LEFT" maxWidth="-Infinity" prefHeight="45.0" prefWidth="440.0">
                      <children>
-                        <Label prefHeight="23.0" prefWidth="120.0" text="Language: " textFill="WHITE">
+                        <Label prefHeight="23.0" prefWidth="120.0" text="%Menu.language" textFill="WHITE">
                            <font>
                               <Font name="Arial Bold" size="20.0" />
                            </font>
@@ -240,13 +240,13 @@
                   </HBox>
                   <HBox alignment="CENTER_LEFT" maxWidth="-Infinity" prefHeight="45.0" prefWidth="480.0">
                      <children>
-                        <Button fx:id="buttonAbout" mnemonicParsing="false" onMouseClicked="#handleAbout" prefHeight="45.0" prefWidth="102.0" style="-fx-background-color: transparent;" text="About" textFill="#3994ff">
+                        <Button fx:id="buttonAbout" mnemonicParsing="false" onMouseClicked="#handleAbout" prefHeight="45.0" prefWidth="102.0" style="-fx-background-color: transparent;" text="%Menu.about" textFill="#3994ff">
                            <font>
                               <Font name="Arial Bold" size="20.0" />
                            </font>
                         </Button>
                         <HBox prefHeight="45.0" prefWidth="249.0" />
-                        <Button fx:id="buttonFeedback" mnemonicParsing="false" onMouseClicked="#handleFeedback" prefHeight="45.0" prefWidth="130.0" style="-fx-background-color: transparent;" text="Feedback" textFill="#3994ff">
+                        <Button fx:id="buttonFeedback" mnemonicParsing="false" onMouseClicked="#handleFeedback" prefHeight="45.0" prefWidth="130.0" style="-fx-background-color: transparent;" text="%Menu.feedback" textFill="#3994ff">
                            <font>
                               <Font name="Arial Bold" size="20.0" />
                            </font>
@@ -255,12 +255,12 @@
                   </HBox>
                   <HBox alignment="CENTER" maxWidth="-Infinity" prefHeight="59.0" prefWidth="315.0" spacing="50.0">
                      <children>
-                        <Button fx:id="buttonCancelSettings" mnemonicParsing="false" onMouseClicked="#handleCancelSettings" prefHeight="50.0" prefWidth="130.0" style="-fx-background-color: #ff0021;" text="Cancel" textFill="WHITE">
+                        <Button fx:id="buttonCancelSettings" mnemonicParsing="false" onMouseClicked="#handleCancelSettings" prefHeight="50.0" prefWidth="130.0" style="-fx-background-color: #ff0021;" text="%Cancel" textFill="WHITE">
                            <font>
                               <Font name="Arial Bold" size="20.0" />
                            </font>
                         </Button>
-                        <Button fx:id="buttonLogout" mnemonicParsing="false" onMouseClicked="#handleLogout" prefHeight="50.0" prefWidth="130.0" style="-fx-background-color: #a4a4a4;" text="Logout">
+                        <Button fx:id="buttonLogout" mnemonicParsing="false" onMouseClicked="#handleLogout" prefHeight="50.0" prefWidth="130.0" style="-fx-background-color: #a4a4a4;" text="%Logout">
                            <font>
                               <Font name="Arial Bold" size="20.0" />
                            </font>
@@ -281,13 +281,13 @@
                   <Insets bottom="20.0" left="20.0" right="20.0" top="10.0" />
                </padding>
                <children>
-                  <Label prefHeight="37.0" prefWidth="700.0" text="O projekte" textFill="WHITE">
+                  <Label prefHeight="37.0" prefWidth="700.0" text="%Menu.aboutProject" textFill="WHITE">
                      <font>
                         <Font name="Arial Bold" size="20.0" />
                      </font>
                   </Label>
                   <TextArea editable="false" prefHeight="296.0" prefWidth="725.0" style="-fx-background-color: transparent;" text="© 2022 Fakulta informatiky a informačných technológií&#10;&#10;Tento projekt slúži ako platforma pre organizáciu a komunikovanie medzi používateľmi. Je vytvorený hlavne pre študentov, čo bola aj naša cieľová skupina.&#10;&#10;Základný list funkcionalít:&#10;- vytváranie todos&#10;    - v rozhraní listu&#10;    - v rozhraní kalendára&#10;- chatovanie s priateľmi alebo v skupinách&#10;    - pre teamlidrov je podpora vytvárania tímov&#10;    - priateľov si vie používateľ pridať cez okno na pridanie priateľov&#10;- nahlasovanie porušovania pravidiel a nevhodného správania&#10;- dávanie spätnej väzby o aplikácií&#10;- správcovské functionality&#10;    - vie kontrolovať nahlásenia&#10;    - prijaté nahlásenia správcom automaticky vymažú užívateľa&#10;- administrátorské functionality&#10;    - má práva pozerať na všetko&#10;    - môže mazať rôzne veci používateľom&#10;    - vie zmeniť rolu používateľom&#10;&#10;Na tomto projekte sa podieľali:&#10;- David Kastler (team leader)&#10;    - manažovanie tímu&#10;    - návrh databázy&#10;    - návrh stacku pre backend&#10;    - organizácia a finalizácia backendu&#10;- Peter Koszorús (zástupca teamleadera)&#10;    - návrh štruktúry frontendu&#10;    - organizácia frontendu&#10;    - podielanie sa na aplikačnej logike frontednu pre login, todo, calendar, admin okná&#10;- Adam Koričanský&#10;    - podieľanie sa na tvorbe backendu&#10;    - tvorba aplikačnej logiky pre chat, friend requests, reports a feedback okná&#10;    - testovanie a analýza edge casov v databáze&#10;- Juraj Glatz&#10;    - podieľanie sa na dizajne aplikácie&#10;    - register, chat, friend requests, reports a feedback okná frontende&#10;- Mário Kolenič&#10;    - hlavný dizajnér frontendu&#10;    - návrh wireframu a mockupu&#10;    - login, todo, calendar, admin okná na frontende&#10;- Martin Beňa&#10;    - podieľanie sa na práci s databázou&#10;    - podieľanie sa na tvorbe backendu&#10;    - testovanie a analýza edge casov v databáze" wrapText="true" />
-                  <Button fx:id="buttonCancelAbout" mnemonicParsing="false" onMouseClicked="#handleCancelAbout" prefHeight="50.0" prefWidth="130.0" style="-fx-background-color: #ff0021;" text="Cancel" textFill="WHITE">
+                  <Button fx:id="buttonCancelAbout" mnemonicParsing="false" onMouseClicked="#handleCancelAbout" prefHeight="50.0" prefWidth="130.0" style="-fx-background-color: #ff0021;" text="%Cancel" textFill="WHITE">
                      <font>
                         <Font name="Arial Bold" size="20.0" />
                      </font>
@@ -314,7 +314,7 @@
             </Label>
             <VBox>
                <children>
-                  <TextArea fx:id="feedbackTextArea" prefHeight="400.0" prefWidth="400.0" promptText="Write feedback message...">
+                  <TextArea fx:id="textArea" prefHeight="400.0" prefWidth="400.0" promptText="%Feedback.writeFeedbackMessage">
                      <font>
                         <Font name="Arial" size="20.0" />
                      </font>
@@ -324,7 +324,7 @@
                   </TextArea>
                   <HBox alignment="CENTER">
                      <children>
-                        <Button fx:id="sendFeedback" mnemonicParsing="false" onMouseClicked="#handleSendFeedback" prefHeight="50.0" prefWidth="140.0" style="-fx-background-color: #c4c4c4; -fx-background-radius: 40;" text="Send">
+                        <Button fx:id="sendFeedback" mnemonicParsing="false" onMouseClicked="#handleSendFeedback" prefHeight="50.0" prefWidth="140.0" style="-fx-background-color: #c4c4c4; -fx-background-radius: 40;" text="%Send">
                            <font>
                               <Font name="Arial" size="24.0" />
                            </font>
@@ -332,7 +332,7 @@
                               <Insets left="30.0" right="30.0" top="15.0" />
                            </HBox.margin>
                         </Button>
-                        <Button fx:id="cancelFeedback" mnemonicParsing="false" onMouseClicked="#handleCancelFeedback" prefHeight="50.0" prefWidth="140.0" style="-fx-background-color: #c4c4c4; -fx-background-radius: 40;" text="Cancel">
+                        <Button fx:id="cancelFeedback" mnemonicParsing="false" onMouseClicked="#handleCancelFeedback" prefHeight="50.0" prefWidth="140.0" style="-fx-background-color: #c4c4c4; -fx-background-radius: 40;" text="%Cancel">
                            <font>
                               <Font name="Arial" size="24.0" />
                            </font>

@@ -21,8 +21,12 @@ import java.time.*;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Locale;
+import java.util.ResourceBundle;
 
 public class TodoHandler {
+
+    static ResourceBundle resourceBundle = ResourceBundle.getBundle("Localization Bundle", Locale.getDefault());
 
     /**
      * This method runs all of the necessary methods to prepare the user data for display
@@ -118,8 +122,8 @@ public class TodoHandler {
                                         throws TodoDatabaseFail, MandatoryFieldNotInputted{
 
         if(toTime.getValue() == null || fromTime.getValue() == null || todoName.getText().equals("")){
-            throw new MandatoryFieldNotInputted("One/ All of the mandatory fields weren't inputted " +
-                    "(mandatory: toTime, fromTime, todoName");
+            resourceBundle = ResourceBundle.getBundle("Localization Bundle", Locale.getDefault());
+            throw new MandatoryFieldNotInputted(resourceBundle.getString("TodoHandler.mandatoryFieldNotInputted"));
         }
 
         Todo new_todo = createTodo(user, todoName.getText(), todoDesc.getText(),
@@ -132,7 +136,8 @@ public class TodoHandler {
             user.addTodo(new_todo);
         }
         else {
-            throw new TodoDatabaseFail("Failed to create a new ToDo");
+            resourceBundle = ResourceBundle.getBundle("Localization Bundle", Locale.getDefault());
+            throw new TodoDatabaseFail(resourceBundle.getString("TodoHandler.todoDatabaseFailCreate"));
         }
 
     }
@@ -201,8 +206,9 @@ public class TodoHandler {
                                 DatePicker toTime, TextField groupName) throws MandatoryFieldNotInputted, TodoDatabaseFail{
 
         if(toTime.getValue() == null || fromTime.getValue() == null || todoName.getText().equals("")){
-            throw new MandatoryFieldNotInputted("One/ All of the mandatory fields weren't inputted " +
-                    "(mandatory: toTime, fromTime, todoName");
+            resourceBundle = ResourceBundle.getBundle("Localization Bundle", Locale.getDefault());
+            throw new MandatoryFieldNotInputted(resourceBundle.getString("TodoHandler.mandatoryFieldNotInputted"));
+
         }
 
         Todo updated_todo = editTodoPut(todoId, user, todoName.getText(), todoDesc.getText(),
@@ -216,7 +222,8 @@ public class TodoHandler {
             return updated_todo;
         }
         else {
-            throw new TodoDatabaseFail("Failed to edit the TODO");
+            resourceBundle = ResourceBundle.getBundle("Localization Bundle", Locale.getDefault());
+            throw new TodoDatabaseFail(resourceBundle.getString("TodoHandler.todoDatabaseFailEdit"));
         }
     }
 
@@ -244,7 +251,8 @@ public class TodoHandler {
                 user.removeTodo(deletedTodo);
             }
             else {
-                throw new TodoDatabaseFail("Couldn't delete TODO check the DELETE request");
+                resourceBundle = ResourceBundle.getBundle("Localization Bundle", Locale.getDefault());
+                throw new TodoDatabaseFail(resourceBundle.getString("TodoHandler.todoDatabaseFailDelete"));
             }
 
         }catch (UnirestException e){
@@ -366,7 +374,8 @@ public class TodoHandler {
             if(completed_todo.getTodoName() != null){
                 todo.setCompleted(completed_todo.isCompleted());
             }else {
-                throw new TodoDatabaseFail("Failed to change the status of the todo");
+                resourceBundle = ResourceBundle.getBundle("Localization Bundle", Locale.getDefault());
+                throw new TodoDatabaseFail(resourceBundle.getString("TodoHandler.todoDatabaseFailChangeStatus"));
             }
 
         }catch (UnirestException e){

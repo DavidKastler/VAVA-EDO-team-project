@@ -13,6 +13,7 @@ import vava.edo.models.User;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.URL;
+import java.util.Locale;
 import java.util.ResourceBundle;
 
 public class LoginScreenController implements Initializable {
@@ -42,6 +43,7 @@ public class LoginScreenController implements Initializable {
 
     @FXML
     private Button btnForgotPassword;
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -87,7 +89,8 @@ public class LoginScreenController implements Initializable {
                 new PrintWriter(UserHandler.getPATH()).close();
             }
 
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/vava/edo/Menu.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/vava/edo/Menu.fxml"),
+                    ResourceBundle.getBundle("Localization Bundle"));
             AnchorPane todoScreen = loader.load();
             MenuScreenController menuScreen = loader.getController();
             menuScreen.initialize(user, rootPane);
@@ -108,13 +111,15 @@ public class LoginScreenController implements Initializable {
         this.rememberMeState = !this.rememberMeState;
     }
 
+
+
     /**
      *
      */
     public void handleRegisterButton() {
         try {
-
-            AnchorPane registerScreen = FXMLLoader.load(getClass().getResource("/vava/edo/Register.fxml"));
+            AnchorPane registerScreen = FXMLLoader.load(getClass().getResource("/vava/edo/Register.fxml"),
+                    ResourceBundle.getBundle("Localization Bundle"));
 
             rootPane.getChildren().setAll(registerScreen);
 

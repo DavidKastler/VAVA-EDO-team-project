@@ -7,6 +7,7 @@ import vava.edo.controllers.CalendarTodoItemController;
 import vava.edo.models.Todo;
 
 import java.io.IOException;
+import java.util.ResourceBundle;
 
 public class CalendarTodoItemModel {
     private Button button;
@@ -18,7 +19,8 @@ public class CalendarTodoItemModel {
         this.todo = todo;
 
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/vava/edo/CalendarTodoItem.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/vava/edo/CalendarTodoItem.fxml"),
+                    ResourceBundle.getBundle("Localization Bundle"));
             button = loader.load();
             CalendarTodoItemController controller = loader.getController();
             controller.setModel(this, refresher);

@@ -7,6 +7,7 @@ import vava.edo.controllers.MenuScreenController;
 import vava.edo.models.User;
 
 import java.io.IOException;
+import java.util.ResourceBundle;
 
 public class FriendRequestScreenModel {
     private AnchorPane requestScreen;
@@ -16,7 +17,8 @@ public class FriendRequestScreenModel {
         this.user = user;
 
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/vava/edo/FriendRequests.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/vava/edo/FriendRequests.fxml"),
+                    ResourceBundle.getBundle("Localization Bundle"));
             this.requestScreen = loader.load();
             FriendRequestController controller = loader.getController();
             controller.setModel(this);

@@ -32,7 +32,7 @@
       <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="250.0" />
       <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="230.0">
          <children>
-            <Label fx:id="status" text="Pending" textFill="WHITE">
+            <Label fx:id="status" text="%Manager.pending" textFill="WHITE">
                <font>
                   <Font name="Arial Bold" size="36.0" />
                </font>

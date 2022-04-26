@@ -6,6 +6,7 @@ import vava.edo.controllers.AdminViewElementController;
 import vava.edo.controllers.ChatGrayElementController;
 
 import java.io.IOException;
+import java.util.ResourceBundle;
 
 public class ChatGrayElementModel {
     private HBox messageBox;
@@ -44,7 +45,7 @@ public class ChatGrayElementModel {
     public ChatGrayElementModel(String message, String author, String time){
 
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/vava/edo/ChatGrayElement.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/vava/edo/ChatGrayElement.fxml"), ResourceBundle.getBundle("Localization Bundle"));
             this.messageBox = loader.load();
             ChatGrayElementController controller = loader.getController();
             setMessageText(message);

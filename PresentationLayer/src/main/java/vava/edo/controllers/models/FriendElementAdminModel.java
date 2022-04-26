@@ -5,6 +5,7 @@ import javafx.scene.layout.HBox;
 import vava.edo.controllers.FriendElementAdminController;
 
 import java.io.IOException;
+import java.util.ResourceBundle;
 
 public class FriendElementAdminModel {
     private HBox friendHBox;
@@ -14,7 +15,7 @@ public class FriendElementAdminModel {
         this.friendName = friendName;
 
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/vava/edo/FriendElementAdmin.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/vava/edo/FriendElementAdmin.fxml"), ResourceBundle.getBundle("Localization Bundle"));
             this.friendHBox = loader.load();
             FriendElementAdminController controller = loader.getController();
             controller.setModel(this);

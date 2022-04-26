@@ -1,12 +1,12 @@
 package vava.edo.controllers;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -20,6 +20,9 @@ import vava.edo.controllers.models.*;
 import vava.edo.models.User;
 
 import java.io.IOException;
+
+import java.util.ResourceBundle;
+import java.util.SimpleTimeZone;
 
 public class MenuScreenController {
     @FXML
@@ -236,7 +239,8 @@ public class MenuScreenController {
 
     public void handleLogout() {
         try {
-            AnchorPane loginScreen = FXMLLoader.load(getClass().getResource("/vava/edo/Login.fxml"));
+            AnchorPane loginScreen = FXMLLoader.load(getClass().getResource("/vava/edo/Login.fxml"),
+                    ResourceBundle.getBundle("Localization Bundle"));
 
             rootPane.getChildren().setAll(loginScreen);
         } catch (IOException e) {

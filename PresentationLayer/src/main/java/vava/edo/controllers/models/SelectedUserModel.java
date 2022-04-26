@@ -7,6 +7,7 @@ import vava.edo.controllers.SelectedUserController;
 import vava.edo.models.User;
 
 import java.io.IOException;
+import java.util.ResourceBundle;
 
 public class SelectedUserModel {
     private AnchorPane selectedUserScreen;
@@ -21,7 +22,7 @@ public class SelectedUserModel {
         this.menuScreenController = menuScreenController;
 
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/vava/edo/SelectedUser.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/vava/edo/SelectedUser.fxml"), ResourceBundle.getBundle("Localization Bundle"));
             this.selectedUserScreen = loader.load();
             SelectedUserController controller = loader.getController();
             controller.setModel(this);

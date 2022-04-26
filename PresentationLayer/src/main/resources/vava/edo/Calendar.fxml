@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="calendarScreen" maxHeight="750.0" maxWidth="1040.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1040.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="vava.edo.controllers.CalendarScreenController">
+<AnchorPane fx:id="calendarScreen" maxHeight="750.0" maxWidth="1040.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1040.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="vava.edo.controllers.CalendarScreenController">
    <children>
       <VBox maxHeight="750.0" maxWidth="1040.0" prefHeight="750.0" prefWidth="1040.0" style="-fx-background-color: #323232;">
          <children>
@@ -36,7 +36,7 @@
                         <Font name="Arial Bold" size="20.0" />
                      </font>
                   </Button>
-                  <Button fx:id="buttonShowToday" mnemonicParsing="false" onMouseClicked="#handleShowToday" prefHeight="40.0" prefWidth="110.0" style="-fx-background-radius: 20; -fx-background-color: #C4C4C4;" text="Today">
+                  <Button fx:id="buttonShowToday" mnemonicParsing="false" onMouseClicked="#handleShowToday" prefHeight="40.0" prefWidth="110.0" style="-fx-background-radius: 20; -fx-background-color: #C4C4C4;" text="%Calendar.today">
                      <font>
                         <Font name="Arial Bold" size="20.0" />
                      </font>
@@ -57,37 +57,37 @@
                <children>
                   <HBox prefHeight="20.0" prefWidth="1040.0">
                      <children>
-                        <Label alignment="CENTER" maxWidth="1.7976931348623157E308" prefHeight="20.0" prefWidth="148.1" text="Mon" textFill="WHITE">
+                        <Label alignment="CENTER" maxWidth="1.7976931348623157E308" prefHeight="20.0" prefWidth="148.1" text="%Calendar.mon" textFill="WHITE">
                            <font>
                               <Font name="Arial Bold" size="15.0" />
                            </font>
                         </Label>
-                        <Label alignment="CENTER" maxWidth="1.7976931348623157E308" prefHeight="20.0" prefWidth="148.1" text="Tue" textFill="WHITE">
+                        <Label alignment="CENTER" maxWidth="1.7976931348623157E308" prefHeight="20.0" prefWidth="148.1" text="%Calendar.tue" textFill="WHITE">
                            <font>
                               <Font name="Arial Bold" size="15.0" />
                            </font>
                         </Label>
-                        <Label alignment="CENTER" maxWidth="1.7976931348623157E308" prefHeight="20.0" prefWidth="148.1" text="Wed" textFill="WHITE">
+                        <Label alignment="CENTER" maxWidth="1.7976931348623157E308" prefHeight="20.0" prefWidth="148.1" text="%Calendar.wed" textFill="WHITE">
                            <font>
                               <Font name="Arial Bold" size="15.0" />
                            </font>
                         </Label>
-                        <Label alignment="CENTER" maxWidth="1.7976931348623157E308" prefHeight="20.0" prefWidth="148.1" text="Thu" textFill="WHITE">
+                        <Label alignment="CENTER" maxWidth="1.7976931348623157E308" prefHeight="20.0" prefWidth="148.1" text="%Calendar.thu" textFill="WHITE">
                            <font>
                               <Font name="Arial Bold" size="15.0" />
                            </font>
                         </Label>
-                        <Label alignment="CENTER" maxWidth="1.7976931348623157E308" prefHeight="20.0" prefWidth="148.1" text="Fri" textFill="WHITE">
+                        <Label alignment="CENTER" maxWidth="1.7976931348623157E308" prefHeight="20.0" prefWidth="148.1" text="%Calendar.fri" textFill="WHITE">
                            <font>
                               <Font name="Arial Bold" size="15.0" />
                            </font>
                         </Label>
-                        <Label alignment="CENTER" maxWidth="1.7976931348623157E308" prefHeight="20.0" prefWidth="148.1" text="Sat" textFill="WHITE">
+                        <Label alignment="CENTER" maxWidth="1.7976931348623157E308" prefHeight="20.0" prefWidth="148.1" text="%Calendar.sat" textFill="WHITE">
                            <font>
                               <Font name="Arial Bold" size="15.0" />
                            </font>
                         </Label>
-                        <Label alignment="CENTER" maxWidth="1.7976931348623157E308" prefHeight="20.0" prefWidth="148.1" text="Sun" textFill="WHITE">
+                        <Label alignment="CENTER" maxWidth="1.7976931348623157E308" prefHeight="20.0" prefWidth="148.1" text="%Calendar.sun" textFill="WHITE">
                            <font>
                               <Font name="Arial Bold" size="15.0" />
                            </font>
@@ -111,19 +111,19 @@
          <children>
             <VBox fx:id="vBoxNewTaskWindow" alignment="CENTER" maxWidth="-Infinity" prefHeight="441.0" prefWidth="548.0" spacing="10.0" style="-fx-background-color: black;">
                <children>
-                  <Label fx:id="labelTitleWindow" alignment="TOP_CENTER" prefHeight="41.0" prefWidth="508.0" style="-fx-border-color: #888888; -fx-border-width: 0 0 1 0;" text="New Todo" textFill="WHITE">
+                  <Label fx:id="labelTitleWindow" alignment="TOP_CENTER" prefHeight="41.0" prefWidth="508.0" style="-fx-border-color: #888888; -fx-border-width: 0 0 1 0;" text="%Todo.newTodo" textFill="WHITE">
                      <font>
                         <Font name="Arial Bold" size="25.0" />
                      </font>
                   </Label>
                   <HBox alignment="CENTER_LEFT" maxWidth="-Infinity" prefHeight="45.0" prefWidth="397.0" spacing="20.0">
                      <children>
-                        <Label text="Task name: " textFill="WHITE">
+                        <Label text="%Todo.taskName" textFill="WHITE">
                            <font>
                               <Font name="Arial Bold" size="20.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="textFieldTaskName" prefHeight="26.0" prefWidth="240.0" promptText="Enter task name">
+                        <TextField fx:id="textFieldTaskName" prefHeight="26.0" prefWidth="240.0" promptText="%Todo.enterTaskName">
                            <font>
                               <Font name="Arial" size="13.0" />
                            </font>
@@ -132,12 +132,12 @@
                   </HBox>
                   <HBox maxWidth="-Infinity" prefHeight="86.0" prefWidth="508.0" spacing="20.0">
                      <children>
-                        <Label text="Task description: " textFill="WHITE">
+                        <Label text="%Todo.taskDescription" textFill="WHITE">
                            <font>
                               <Font name="Arial Bold" size="20.0" />
                            </font>
                         </Label>
-                        <TextArea fx:id="textAreaTaskDescription" prefHeight="116.0" prefWidth="288.0" promptText="Enter task description" wrapText="true">
+                        <TextArea fx:id="textAreaTaskDescription" prefHeight="116.0" prefWidth="288.0" promptText="%Todo.enterTaskDescription" wrapText="true">
                            <font>
                               <Font name="Arial" size="13.0" />
                            </font>
@@ -146,12 +146,12 @@
                   </HBox>
                   <HBox alignment="CENTER_LEFT" maxWidth="-Infinity" prefHeight="39.0" prefWidth="408.0" spacing="20.0">
                      <children>
-                        <Label text="Task group: " textFill="WHITE">
+                        <Label text="%Todo.taskGroup" textFill="WHITE">
                            <font>
                               <Font name="Arial Bold" size="20.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="textFieldTaskGroup" prefHeight="26.0" prefWidth="240.0" promptText="Enter task group">
+                        <TextField fx:id="textFieldTaskGroup" prefHeight="26.0" prefWidth="240.0" promptText="%Todo.enterTaskGroup">
                            <font>
                               <Font name="Arial" size="13.0" />
                            </font>
@@ -160,39 +160,39 @@
                   </HBox>
                   <HBox alignment="CENTER" maxWidth="-Infinity" prefHeight="34.0" prefWidth="305.0">
                      <children>
-                        <Label text="From: " textFill="WHITE">
+                        <Label text="%From" textFill="WHITE">
                            <font>
                               <Font name="Arial Bold" size="20.0" />
                            </font>
                         </Label>
-                        <DatePicker fx:id="datePickerTaskFrom" promptText="Enter from date" style="-fx-font-family: 'Arial'" />
+                        <DatePicker fx:id="datePickerTaskFrom" promptText="%Todo.enterFromDate" style="-fx-font-family: 'Arial'" />
                      </children>
                   </HBox>
                   <HBox alignment="CENTER" maxWidth="-Infinity" prefHeight="34.0" prefWidth="305.0">
                      <children>
-                        <Label prefHeight="23.0" prefWidth="62.0" text="To: " textFill="WHITE">
+                        <Label prefHeight="23.0" prefWidth="62.0" text="%To" textFill="WHITE">
                            <font>
                               <Font name="Arial Bold" size="20.0" />
                            </font>
                         </Label>
-                        <DatePicker fx:id="datePickerTaskTo" promptText="Enter to date" style="-fx-font-family: 'Arial'" />
+                        <DatePicker fx:id="datePickerTaskTo" promptText="%Todo.enterToDate" style="-fx-font-family: 'Arial'" />
                      </children>
                   </HBox>
                   <HBox alignment="CENTER" maxWidth="-Infinity" prefHeight="59.0" prefWidth="315.0" spacing="50.0">
                      <children>
-                        <Button fx:id="buttonCancelTodo" mnemonicParsing="false" onMouseClicked="#handleCancelTodo" prefHeight="50.0" prefWidth="130.0" style="-fx-background-color: #ff0021;" text="Cancel" textFill="WHITE">
+                        <Button fx:id="buttonCancelTodo" mnemonicParsing="false" onMouseClicked="#handleCancelTodo" prefHeight="50.0" prefWidth="130.0" style="-fx-background-color: #ff0021;" text="%Cancel" textFill="WHITE">
                            <font>
                               <Font name="Arial Bold" size="20.0" />
                            </font>
                         </Button>
                         <AnchorPane prefHeight="0.0" prefWidth="130.0">
                            <children>
-                              <Button fx:id="buttonAcceptTodo" layoutY="5.0" mnemonicParsing="false" onMouseClicked="#handleAcceptTodo" prefHeight="50.0" prefWidth="130.0" style="-fx-background-color: #009933;" text="Add" textFill="WHITE">
+                              <Button fx:id="buttonAcceptTodo" layoutY="5.0" mnemonicParsing="false" onMouseClicked="#handleAcceptTodo" prefHeight="50.0" prefWidth="130.0" style="-fx-background-color: #009933;" text="%Add" textFill="WHITE">
                                  <font>
                                     <Font name="Arial Bold" size="20.0" />
                                  </font>
                               </Button>
-                              <Button fx:id="buttonEditTodo" layoutY="5.0" mnemonicParsing="false" onMouseClicked="#handleEditTodo" prefHeight="50.0" prefWidth="130.0" style="-fx-background-color: #009933;" text="Edit" textFill="WHITE">
+                              <Button fx:id="buttonEditTodo" layoutY="5.0" mnemonicParsing="false" onMouseClicked="#handleEditTodo" prefHeight="50.0" prefWidth="130.0" style="-fx-background-color: #009933;" text="%Edit" textFill="WHITE">
                                  <font>
                                     <Font name="Arial Bold" size="20.0" />
                                  </font>

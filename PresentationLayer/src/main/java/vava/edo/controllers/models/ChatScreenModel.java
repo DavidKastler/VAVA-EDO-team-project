@@ -7,6 +7,7 @@ import vava.edo.controllers.ChatController;
 import vava.edo.models.User;
 
 import java.io.IOException;
+import java.util.ResourceBundle;
 
 public class ChatScreenModel {
     private AnchorPane chatScreen;
@@ -16,7 +17,8 @@ public class ChatScreenModel {
         this.user = user;
 
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/vava/edo/Chat.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/vava/edo/Chat.fxml"),
+                    ResourceBundle.getBundle("Localization Bundle"));
             this.chatScreen= loader.load();
             ChatController controller = loader.getController();
             controller.setModel(this);

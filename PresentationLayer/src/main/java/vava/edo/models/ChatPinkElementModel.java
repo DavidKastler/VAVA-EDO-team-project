@@ -6,6 +6,7 @@ import vava.edo.controllers.ChatGrayElementController;
 import vava.edo.controllers.ChatPinkElementController;
 
 import java.io.IOException;
+import java.util.ResourceBundle;
 
 public class ChatPinkElementModel {
     private HBox messageBox;
@@ -44,7 +45,7 @@ public class ChatPinkElementModel {
     public ChatPinkElementModel(String message, String author, String time){
 
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/vava/edo/ChatPinkElement.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/vava/edo/ChatPinkElement.fxml"), ResourceBundle.getBundle("Localization Bundle"));
             this.messageBox = loader.load();
             ChatPinkElementController controller = loader.getController();
             setMessageText(message);
