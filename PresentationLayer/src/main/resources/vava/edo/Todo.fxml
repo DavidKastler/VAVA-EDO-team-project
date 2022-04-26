@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
-<HBox fx:id="hBoxTodoAll" alignment="CENTER_LEFT" prefHeight="40.0" prefWidth="442.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="vava.edo.controllers.TodoController">
+<HBox fx:id="hBoxTodoAll" alignment="CENTER_LEFT" prefHeight="40.0" prefWidth="442.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="vava.edo.controllers.TodoController">
    <children>
       <CheckBox fx:id="checkBoxTodo" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onAction="#handleStatusChange" prefHeight="40.0" prefWidth="20.0" textAlignment="CENTER" textOverrun="CLIP">
          <font>

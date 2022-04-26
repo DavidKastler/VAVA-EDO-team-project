@@ -13,6 +13,8 @@ import java.time.Month;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Locale;
+import java.util.ResourceBundle;
 
 public class RefreshCalendarScreen {
     private User user;
@@ -34,6 +36,7 @@ public class RefreshCalendarScreen {
     private DatePicker datePickerTaskFrom;
     private DatePicker datePickerTaskTo;
 
+    ResourceBundle resourceBundle = ResourceBundle.getBundle("Localization Bundle", Locale.getDefault());
 
     public RefreshCalendarScreen(User user, VBox vBoxNewTaskScreen, VBox vBoxWeeks, Label labelTitleWindow,
                                  TextField textFieldTaskName, TextField textFieldTaskGroup,
@@ -200,8 +203,8 @@ public class RefreshCalendarScreen {
      */
     public void setEditWindow(Todo todo) {
         editingTodo = todo;
-        labelTitleWindow.setText("Edit Todo");
-        textFieldTaskName.setText(todo.getTodoName());
+        labelTitleWindow.setText(resourceBundle.getString("Todo.editTodo"));
+//        textFieldTaskName.setText(todo.getTodoName());
         textAreaTaskDescription.setText(todo.getTodoDescription());
         textFieldTaskGroup.setText(todo.getGroupName());
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");

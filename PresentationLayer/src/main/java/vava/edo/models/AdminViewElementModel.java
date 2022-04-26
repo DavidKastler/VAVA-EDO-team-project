@@ -7,6 +7,7 @@ import vava.edo.controllers.AdminViewElementController;
 import vava.edo.controllers.FriendElementController;
 
 import java.io.IOException;
+import java.util.ResourceBundle;
 
 public class AdminViewElementModel {
     public HBox getAdminViewElement() {
@@ -37,7 +38,7 @@ public class AdminViewElementModel {
     public AdminViewElementModel(User user, User displayedUser, AdminController adminController){
 
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/vava/edo/AdminViewElement.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/vava/edo/AdminViewElement.fxml"), ResourceBundle.getBundle("Localization Bundle"));
             this.adminViewElement = loader.load();
             AdminViewElementController controller = loader.getController();
             this.user = user;

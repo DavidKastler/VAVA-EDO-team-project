@@ -1,11 +1,11 @@
 package vava.edo.controllers;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -17,6 +17,9 @@ import vava.edo.controllers.models.*;
 import vava.edo.models.User;
 
 import java.io.IOException;
+
+import java.util.ResourceBundle;
+import java.util.SimpleTimeZone;
 
 public class MenuScreenController {
     @FXML
@@ -270,11 +273,11 @@ public class MenuScreenController {
         vBoxSettingsScreen.setVisible(false);
     }
 
-    public void handleSendFeedback(MouseEvent mouseEvent) {
+    public void handleSendFeedback() {
         // TODO
     }
 
-    public void handleCancelFeedback(MouseEvent mouseEvent) {
+    public void handleCancelFeedback() {
         vBoxFeedbackScreen.setVisible(false);
         vBoxFeedbackScreen.setDisable(true);
 

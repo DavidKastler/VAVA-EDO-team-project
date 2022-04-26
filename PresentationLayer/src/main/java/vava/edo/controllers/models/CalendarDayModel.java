@@ -10,6 +10,7 @@ import vava.edo.models.User;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.ResourceBundle;
 
 public class CalendarDayModel {
     private VBox dayVBox;
@@ -29,7 +30,8 @@ public class CalendarDayModel {
         this.dayTodos = dayTodos;
 
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/vava/edo/CalendarDayCell.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/vava/edo/CalendarDayCell.fxml"),
+                    ResourceBundle.getBundle("Localization Bundle"));
             dayVBox = loader.load();
             CalendarDayController controller = loader.getController();
             controller.setModel(this);

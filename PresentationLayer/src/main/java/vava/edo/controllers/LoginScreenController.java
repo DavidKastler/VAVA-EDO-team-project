@@ -90,7 +90,8 @@ public class LoginScreenController implements Initializable {
                 new PrintWriter(UserHandler.getPATH()).close();
             }
 
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/vava/edo/Menu.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/vava/edo/Menu.fxml"),
+                    ResourceBundle.getBundle("Localization Bundle"));
             AnchorPane todoScreen = loader.load();
             MenuScreenController menuScreen = loader.getController();
             menuScreen.initialize(user, rootPane);

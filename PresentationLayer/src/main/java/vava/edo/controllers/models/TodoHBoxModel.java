@@ -8,6 +8,7 @@ import vava.edo.controllers.TodoController;
 import vava.edo.models.Todo;
 
 import java.io.IOException;
+import java.util.ResourceBundle;
 
 public class TodoHBoxModel {
     private HBox todoHBox;
@@ -16,12 +17,14 @@ public class TodoHBoxModel {
     private RefreshTodoScreen refresherTodoScreen;
     private RefreshUserScreen refresherUserScreen;
 
+
     public TodoHBoxModel(Todo todo, RefreshTodoScreen refresher) {
         this.todo = todo;
         this.refresherTodoScreen = refresher;
 
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/vava/edo/Todo.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/vava/edo/Todo.fxml"),
+                    ResourceBundle.getBundle("Localization Bundle"));
             todoHBox = loader.load();
             TodoController controller = loader.getController();
             controller.setModel(this);

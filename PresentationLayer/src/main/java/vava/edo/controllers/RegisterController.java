@@ -61,7 +61,7 @@ public class RegisterController{
         try {
             UserHandler.registerUser(this.textUsername, this.textPassword1, this.textPassword2, this.wrongInput);
 
-            AnchorPane loginScreen = FXMLLoader.load(getClass().getResource("/vava/edo/Login.fxml"));
+            AnchorPane loginScreen = FXMLLoader.load(getClass().getResource("/vava/edo/Login.fxml"),ResourceBundle.getBundle("Localization Bundle"));
 
             this.rootPane.getChildren().setAll(new Node[]{loginScreen});
 

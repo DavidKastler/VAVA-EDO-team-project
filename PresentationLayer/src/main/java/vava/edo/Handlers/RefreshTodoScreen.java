@@ -9,6 +9,8 @@ import vava.edo.models.Todo;
 import vava.edo.models.User;
 
 import java.util.ArrayList;
+import java.util.Locale;
+import java.util.ResourceBundle;
 
 public class RefreshTodoScreen {
     private User user;
@@ -23,6 +25,7 @@ public class RefreshTodoScreen {
     private Label labelTodoInfoGroup;
     private Button buttonEdit;
     private Button buttonDelete;
+    ResourceBundle resourceBundle = ResourceBundle.getBundle("Localization Bundle", Locale.getDefault());
 
     public RefreshTodoScreen(User user, VBox vBoxTodos, CheckBox checkBoxTodoInfo, Label labelTodoInfoDueTIme,
                              Label labelTodoInfoName, Label labelTodoInfoDescription, Label labelTodoInfoGroup,
@@ -104,7 +107,7 @@ public class RefreshTodoScreen {
         this.selectedTodo = null;
         this.checkBoxTodoInfo.setSelected(false);
         this.labelTodoInfoDueTIme.setText("");
-        this.labelTodoInfoName.setText("Sorry, user has no todos!");
+        this.labelTodoInfoName.setText(resourceBundle.getString("Todos.emptyList"));
         this.labelTodoInfoDescription.setText("");
         this.labelTodoInfoGroup.setText("");
         this.buttonEdit.setVisible(false);
@@ -117,11 +120,12 @@ public class RefreshTodoScreen {
 
     public void setInfoSelectedTodo(Todo todo) {
         this.selectedTodo = todo;
+        if(todo != null){
         this.checkBoxTodoInfo.setSelected(todo.isCompleted());
         this.labelTodoInfoDueTIme.setText(todo.getToTime());
         this.labelTodoInfoName.setText(todo.getTodoName());
         this.labelTodoInfoDescription.setText(todo.getTodoDescription());
-        this.labelTodoInfoGroup.setText(todo.getGroupName());
+        this.labelTodoInfoGroup.setText(todo.getGroupName());}
     }
 
     public Todo getSelectedTodo() {

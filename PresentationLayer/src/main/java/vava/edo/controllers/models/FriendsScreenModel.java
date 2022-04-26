@@ -8,6 +8,7 @@ import vava.edo.controllers.TodosScreenController;
 import vava.edo.models.User;
 
 import java.io.IOException;
+import java.util.ResourceBundle;
 
 public class FriendsScreenModel {
     private AnchorPane friendsScreen;
@@ -17,7 +18,8 @@ public class FriendsScreenModel {
         this.user = user;
 
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/vava/edo/Friends.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/vava/edo/Friends.fxml"),
+                    ResourceBundle.getBundle("Localization Bundle"));
             this.friendsScreen = loader.load();
             FriendsController controller = loader.getController();
             controller.setModel(this);

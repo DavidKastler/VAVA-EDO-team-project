@@ -84,7 +84,7 @@
                   </Label>
                   <VBox>
                      <children>
-                        <TextArea fx:id="text_area" prefHeight="400.0" prefWidth="400.0" promptText="Write report message...">
+                        <TextArea fx:id="text_area" prefHeight="400.0" prefWidth="400.0" promptText="%ReportScreen.writeReportMessage">
                            <font>
                               <Font name="Arial" size="20.0" />
                            </font>
@@ -102,7 +102,7 @@
                                     <Insets left="30.0" right="30.0" top="15.0" />
                                  </HBox.margin>
                               </Button>
-                              <Button fx:id="cancel_report1" mnemonicParsing="false" onMouseClicked="#handleCancelReport" prefHeight="50.0" prefWidth="140.0" style="-fx-background-color: #c4c4c4; -fx-background-radius: 40;" text="Cancel">
+                              <Button fx:id="cancel_report1" mnemonicParsing="false" onMouseClicked="#handleCancelReport" prefHeight="50.0" prefWidth="140.0" style="-fx-background-color: #c4c4c4; -fx-background-radius: 40;" text="%Cancel">
                                  <font>
                                     <Font name="Arial" size="24.0" />
                                  </font>

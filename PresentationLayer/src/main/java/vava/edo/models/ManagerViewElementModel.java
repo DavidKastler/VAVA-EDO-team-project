@@ -7,6 +7,7 @@ import vava.edo.controllers.ManagerViewElementController;
 import vava.edo.controllers.MenuScreenController;
 
 import java.io.IOException;
+import java.util.ResourceBundle;
 
 
 public class ManagerViewElementModel {
@@ -45,7 +46,7 @@ public class ManagerViewElementModel {
         this.menuScreenController = menuScreenController;
 
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/vava/edo/ManagerViewElement.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/vava/edo/ManagerViewElement.fxml"), ResourceBundle.getBundle("Localization Bundle"));
             this.element = loader.load();
             ManagerViewElementController controller = loader.getController();
             controller.setModel(this);

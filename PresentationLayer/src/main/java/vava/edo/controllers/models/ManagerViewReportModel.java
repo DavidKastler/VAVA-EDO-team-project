@@ -9,6 +9,7 @@ import vava.edo.models.Report;
 import vava.edo.models.User;
 
 import java.io.IOException;
+import java.util.ResourceBundle;
 
 @Getter
 public class ManagerViewReportModel {
@@ -23,7 +24,7 @@ public class ManagerViewReportModel {
         this.report = report;
 
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/vava/edo/ManagerSelectedReport.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/vava/edo/ManagerSelectedReport.fxml"), ResourceBundle.getBundle("Localization Bundle"));
             this.viewReportScreen = loader.load();
             ManagerSelectedReportController controller = loader.getController();
             controller.setModel(this);

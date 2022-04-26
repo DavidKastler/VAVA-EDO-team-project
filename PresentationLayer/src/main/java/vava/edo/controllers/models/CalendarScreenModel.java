@@ -6,6 +6,7 @@ import vava.edo.controllers.CalendarScreenController;
 import vava.edo.models.User;
 
 import java.io.IOException;
+import java.util.ResourceBundle;
 
 public class CalendarScreenModel {
     private AnchorPane calendarScreen;
@@ -15,7 +16,8 @@ public class CalendarScreenModel {
         this.user = user;
 
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/vava/edo/Calendar.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/vava/edo/Calendar.fxml"),
+                    ResourceBundle.getBundle("Localization Bundle"));
             this.calendarScreen = loader.load();
             CalendarScreenController controller = loader.getController();
             controller.setModel(this);

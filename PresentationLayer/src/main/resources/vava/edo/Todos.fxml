@@ -15,7 +15,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="todoScreen" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1040.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="vava.edo.controllers.TodosScreenController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1040.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="vava.edo.controllers.TodosScreenController">
    <children>
       <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1100.0" style="-fx-background-color: #323232;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -220,19 +220,19 @@
          <children>
             <VBox fx:id="vBoxNewTaskWindow" alignment="CENTER" maxWidth="-Infinity" prefHeight="441.0" prefWidth="548.0" spacing="10.0" style="-fx-background-color: black;">
                <children>
-                  <Label fx:id="labelTitleWindow" alignment="TOP_CENTER" prefHeight="41.0" prefWidth="508.0" style="-fx-border-color: #888888; -fx-border-width: 0 0 1 0;" text="New Todo" textFill="WHITE">
+                  <Label fx:id="labelTitleWindow" alignment="TOP_CENTER" prefHeight="41.0" prefWidth="508.0" style="-fx-border-color: #888888; -fx-border-width: 0 0 1 0;" text="%Todo.newTodo" textFill="WHITE">
                      <font>
                         <Font name="Arial Bold" size="25.0" />
                      </font>
                   </Label>
                   <HBox alignment="CENTER_LEFT" maxWidth="-Infinity" prefHeight="45.0" prefWidth="397.0" spacing="20.0">
                      <children>
-                        <Label text="Task name: " textFill="WHITE">
+                        <Label text="%Todo.taskName" textFill="WHITE">
                            <font>
                               <Font name="Arial Bold" size="20.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="textFieldTaskName" prefHeight="26.0" prefWidth="240.0" promptText="Enter task name">
+                        <TextField fx:id="textFieldTaskName" prefHeight="26.0" prefWidth="240.0" promptText="%Todo.enterTaskName">
                            <font>
                               <Font name="Arial" size="13.0" />
                            </font>
@@ -241,12 +241,12 @@
                   </HBox>
                   <HBox maxWidth="-Infinity" prefHeight="86.0" prefWidth="508.0" spacing="20.0">
                      <children>
-                        <Label text="Task description: " textFill="WHITE">
+                        <Label text="%Todo.taskDescription" textFill="WHITE">
                            <font>
                               <Font name="Arial Bold" size="20.0" />
                            </font>
                         </Label>
-                        <TextArea fx:id="textAreaTaskDescription" prefHeight="116.0" prefWidth="288.0" promptText="Enter task description" wrapText="true">
+                        <TextArea fx:id="textAreaTaskDescription" prefHeight="116.0" prefWidth="288.0" promptText="%Todo.enterTaskDescription" wrapText="true">
                            <font>
                               <Font name="Arial" size="13.0" />
                            </font>
@@ -255,12 +255,12 @@
                   </HBox>
                   <HBox alignment="CENTER_LEFT" maxWidth="-Infinity" prefHeight="39.0" prefWidth="408.0" spacing="20.0">
                      <children>
-                        <Label text="Task group: " textFill="WHITE">
+                        <Label text="%Todo.taskGroup" textFill="WHITE">
                            <font>
                               <Font name="Arial Bold" size="20.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="textFieldTaskGroup" prefHeight="26.0" prefWidth="240.0" promptText="Enter task group">
+                        <TextField fx:id="textFieldTaskGroup" prefHeight="26.0" prefWidth="240.0" promptText="%Todo.enterTaskGroup">
                            <font>
                               <Font name="Arial" size="13.0" />
                            </font>
@@ -269,39 +269,39 @@
                   </HBox>
                   <HBox alignment="CENTER" maxWidth="-Infinity" prefHeight="34.0" prefWidth="305.0">
                      <children>
-                        <Label text="From: " textFill="WHITE">
+                        <Label text="%From" textFill="WHITE">
                            <font>
                               <Font name="Arial Bold" size="20.0" />
                            </font>
                         </Label>
-                        <DatePicker fx:id="datePickerTaskFrom" promptText="Enter from date" style="-fx-font-family: 'Arial'" />
+                        <DatePicker fx:id="datePickerTaskFrom" promptText="%Todo.enterFromDate" style="-fx-font-family: 'Arial'" />
                      </children>
                   </HBox>
                   <HBox alignment="CENTER" maxWidth="-Infinity" prefHeight="34.0" prefWidth="305.0">
                      <children>
-                        <Label prefHeight="23.0" prefWidth="62.0" text="To: " textFill="WHITE">
+                        <Label prefHeight="23.0" prefWidth="62.0" text="%To" textFill="WHITE">
                            <font>
                               <Font name="Arial Bold" size="20.0" />
                            </font>
                         </Label>
-                        <DatePicker fx:id="datePickerTaskTo" promptText="Enter to date" style="-fx-font-family: 'Arial'" />
+                        <DatePicker fx:id="datePickerTaskTo" promptText="%Todo.enterToDate" style="-fx-font-family: 'Arial'" />
                      </children>
                   </HBox>
                   <HBox alignment="CENTER" maxWidth="-Infinity" prefHeight="59.0" prefWidth="315.0" spacing="50.0">
                      <children>
-                        <Button fx:id="buttonCancelTodo" mnemonicParsing="false" onMouseClicked="#handleCancelTodo" prefHeight="50.0" prefWidth="130.0" style="-fx-background-color: #ff0021;" text="Cancel" textFill="WHITE">
+                        <Button fx:id="buttonCancelTodo" mnemonicParsing="false" onMouseClicked="#handleCancelTodo" prefHeight="50.0" prefWidth="130.0" style="-fx-background-color: #ff0021;" text="%Cancel" textFill="WHITE">
                            <font>
                               <Font name="Arial Bold" size="20.0" />
                            </font>
                         </Button>
                         <AnchorPane prefHeight="0.0" prefWidth="130.0">
                            <children>
-                              <Button fx:id="buttonAcceptTodo" layoutY="5.0" mnemonicParsing="false" onMouseClicked="#handleAcceptTodo" prefHeight="50.0" prefWidth="130.0" style="-fx-background-color: #009933;" text="Add" textFill="WHITE">
+                              <Button fx:id="buttonAcceptTodo" layoutY="5.0" mnemonicParsing="false" onMouseClicked="#handleAcceptTodo" prefHeight="50.0" prefWidth="130.0" style="-fx-background-color: #009933;" text="%Add" textFill="WHITE">
                                  <font>
                                     <Font name="Arial Bold" size="20.0" />
                                  </font>
                               </Button>
-                              <Button fx:id="buttonEditTodo" layoutY="5.0" mnemonicParsing="false" onMouseClicked="#handleEditTodo" prefHeight="50.0" prefWidth="130.0" style="-fx-background-color: #009933;" text="Edit" textFill="WHITE">
+                              <Button fx:id="buttonEditTodo" layoutY="5.0" mnemonicParsing="false" onMouseClicked="#handleEditTodo" prefHeight="50.0" prefWidth="130.0" style="-fx-background-color: #009933;" text="%Edit" textFill="WHITE">
                                  <font>
                                     <Font name="Arial Bold" size="20.0" />
                                  </font>

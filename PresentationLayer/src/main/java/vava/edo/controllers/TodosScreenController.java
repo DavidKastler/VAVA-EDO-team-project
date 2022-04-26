@@ -2,6 +2,7 @@ package vava.edo.controllers;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import vava.edo.Exepctions.TodoScreen.MandatoryFieldNotInputted;
 import vava.edo.Exepctions.TodoScreen.TodoDatabaseFail;
@@ -11,6 +12,7 @@ import vava.edo.controllers.models.TodoScreenModel;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ResourceBundle;
 
 
 public class TodosScreenController {
@@ -94,6 +96,7 @@ public class TodosScreenController {
     @FXML
     private Button buttonEditTodo;
 
+    ResourceBundle resourceBundle = ResourceBundle.getBundle("Localization Bundle");
     public void setModel(TodoScreenModel model) {
         this.model = model;
         this.refresher = new RefreshTodoScreen(model.getUser(), vBoxTodos, checkBoxTodoInfo, labelTodoInfoDueTIme,
@@ -109,7 +112,7 @@ public class TodosScreenController {
     }
 
     public void handleAllTodos() {
-        labelTodoGroupName.setText("All");
+        labelTodoGroupName.setText(resourceBundle.getString("Todos.all"));
         actualSelectedGroup = 1;
 
         refresher.setActualGroupTodos(model.getUser().getTodos());
@@ -119,7 +122,7 @@ public class TodosScreenController {
     }
 
     public void handleTodayTodos() {
-        labelTodoGroupName.setText("Today");
+        labelTodoGroupName.setText(resourceBundle.getString("Todos.today"));
         actualSelectedGroup = 2;
         refresher.setActualGroupTodos(TodoHandler.getTodayTodos(model.getUser()));
         refresher.refreshTodos(actualSelectedGroup);
@@ -128,7 +131,7 @@ public class TodosScreenController {
     }
 
     public void handleTomorrowTodos() {
-        labelTodoGroupName.setText("Tomorrow");
+        labelTodoGroupName.setText(resourceBundle.getString("Todos.tomorrow"));
         actualSelectedGroup = 3;
         refresher.setActualGroupTodos(TodoHandler.getTomorrowTodos(model.getUser()));
         refresher.refreshTodos(actualSelectedGroup);
@@ -138,7 +141,7 @@ public class TodosScreenController {
     }
 
     public void handleCompletedTodos() {
-        labelTodoGroupName.setText("Completed");
+        labelTodoGroupName.setText(resourceBundle.getString("Todos.completed"));
         actualSelectedGroup = 4;
         refresher.setActualGroupTodos(TodoHandler.getCompletedTodos(model.getUser()));
         refresher.refreshTodos(actualSelectedGroup);
@@ -151,7 +154,7 @@ public class TodosScreenController {
         System.out.println("Clicked add new task button (Todo screen)");
 
         // Have to be emptied before use
-        labelTitleWindow.setText("New Todo");
+        labelTitleWindow.setText(resourceBundle.getString("Todo.newTodo"));
         textFieldTaskName.setText("");
         textAreaTaskDescription.setText("");
         textFieldTaskGroup.setText("");
@@ -190,7 +193,7 @@ public class TodosScreenController {
 
     @FXML
     public void handleEditTodoInfo() {
-        labelTitleWindow.setText("Edit Todo");
+        labelTitleWindow.setText(resourceBundle.getString("Todo.editTodo"));
         textFieldTaskName.setText(labelTodoInfoName.getText());
         textAreaTaskDescription.setText(labelTodoInfoDescription.getText());
         textFieldTaskGroup.setText(labelTodoInfoGroup.getText());

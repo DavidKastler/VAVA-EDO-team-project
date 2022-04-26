@@ -7,6 +7,7 @@ import vava.edo.controllers.MenuScreenController;
 import vava.edo.models.User;
 
 import java.io.IOException;
+import java.util.ResourceBundle;
 
 public class ManagerScreenModel {
     private AnchorPane managerScreen;
@@ -18,7 +19,8 @@ public class ManagerScreenModel {
         this.menuScreenController = menuScreenController;
 
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/vava/edo/Manager.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/vava/edo/Manager.fxml"),
+                    ResourceBundle.getBundle("Localization Bundle"));
             this.managerScreen = loader.load();
             ManagerController controller = loader.getController();
             controller.setModel(this);

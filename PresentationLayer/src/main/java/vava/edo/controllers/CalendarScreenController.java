@@ -9,6 +9,8 @@ import vava.edo.Handlers.RefreshCalendarScreen;
 import vava.edo.Handlers.TodoHandler;
 import vava.edo.controllers.models.CalendarScreenModel;
 
+import java.util.ResourceBundle;
+
 public class CalendarScreenController {
     private CalendarScreenModel model;
     private RefreshCalendarScreen refresher;
@@ -52,6 +54,8 @@ public class CalendarScreenController {
     @FXML
     private ScrollPane scrollPaneCalendar;
 
+    ResourceBundle resourceBundle = ResourceBundle.getBundle("Localization Bundle");
+
     public void setModel(CalendarScreenModel model) {
         this.model = model;
         this.refresher = new RefreshCalendarScreen(model.getUser(), vBoxNewTaskScreen, vBoxWeeks, labelTitleWindow,
@@ -85,7 +89,7 @@ public class CalendarScreenController {
         System.out.println("Clicked add new task button (Calendar screen)");
 
         // Have to be emptied before use
-        labelTitleWindow.setText("New Todo");
+        labelTitleWindow.setText(resourceBundle.getString("Todo.newTodo"));
         textFieldTaskName.setText("");
         textAreaTaskDescription.setText("");
         textFieldTaskGroup.setText("");
