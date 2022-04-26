@@ -1,14 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.CheckBox?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ScrollPane?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
 <AnchorPane fx:id="rootPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1040.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="vava.edo.controllers.ManagerController">
    <children>
@@ -41,22 +36,6 @@
                               <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="120.0" prefWidth="260.0">
                                  <children>
                                     <CheckBox fx:id="pending" mnemonicParsing="false" onAction="#refreshReportList" prefHeight="30.0" prefWidth="160.0" text="%Manager.pending" textFill="WHITE">
-                                       <font>
-                                          <Font name="Arial Bold" size="20.0" />
-                                       </font>
-                                       <VBox.margin>
-                                          <Insets top="10.0" />
-                                       </VBox.margin>
-                                    </CheckBox>
-                                    <CheckBox fx:id="accepted" layoutX="60.0" layoutY="60.0" mnemonicParsing="false" onAction="#refreshReportList" prefHeight="30.0" prefWidth="160.0" text="%Manager.accepted" textFill="WHITE">
-                                       <font>
-                                          <Font name="Arial Bold" size="20.0" />
-                                       </font>
-                                       <VBox.margin>
-                                          <Insets top="10.0" />
-                                       </VBox.margin>
-                                    </CheckBox>
-                                    <CheckBox fx:id="rejected" layoutX="60.0" layoutY="76.0" mnemonicParsing="false" onAction="#refreshReportList" prefHeight="30.0" prefWidth="160.0" text="%Manager.rejected" textFill="WHITE">
                                        <font>
                                           <Font name="Arial Bold" size="20.0" />
                                        </font>
