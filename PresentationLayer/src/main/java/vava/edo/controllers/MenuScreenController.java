@@ -5,12 +5,15 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import vava.edo.Exepctions.MenuScreen.FailedToUpdateUser;
+import vava.edo.Exepctions.MenuScreen.FeedbackCreationError;
 import vava.edo.Exepctions.TodoScreen.MandatoryFieldNotInputted;
+import vava.edo.Handlers.FeedbackHandler;
 import vava.edo.Handlers.TodoHandler;
 import vava.edo.Handlers.UserHandler;
 import vava.edo.controllers.models.*;
@@ -76,6 +79,9 @@ public class MenuScreenController {
 
     @FXML
     private Label labelPassword;
+
+    @FXML
+    private TextArea feedbackTextArea;
 
     public void setUser(User user){this.user = user;}
 
@@ -274,7 +280,21 @@ public class MenuScreenController {
     }
 
     public void handleSendFeedback() {
-        // TODO
+
+        try {
+            FeedbackHandler.sendFeedback(user.getUid(), feedbackTextArea.getText());
+
+            // Closing of the feedback window after successfully sending feedback
+            vBoxFeedbackScreen.setVisible(false);
+            vBoxFeedbackScreen.setDisable(true);
+
+            vBoxSettingsScreen.setDisable(false);
+            vBoxSettingsScreen.setVisible(true);
+
+        }catch (FeedbackCreationError e){
+            e.printStackTrace();
+        }
+
     }
 
     public void handleCancelFeedback() {

@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="rootPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="vava.edo.controllers.MenuScreenController">
+<AnchorPane fx:id="rootPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="vava.edo.controllers.MenuScreenController">
    <children>
       <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1100.0" style="-fx-background-color: #323232;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -123,7 +123,7 @@
                               <Font name="Arial Bold" size="20.0" />
                            </font>
                         </Label>
-                        <Label fx:id="labelPassword" prefHeight="23.0" prefWidth="260.0" text="%Menu.password" textFill="WHITE">
+                        <Label fx:id="labelPassword" prefHeight="23.0" prefWidth="260.0" text="&lt;%Menu.password&gt;" textFill="WHITE">
                            <font>
                               <Font name="Arial Bold" size="20.0" />
                            </font>
