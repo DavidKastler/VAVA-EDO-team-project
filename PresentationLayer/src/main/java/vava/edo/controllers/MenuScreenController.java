@@ -3,8 +3,8 @@ package vava.edo.controllers;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
-import javafx.scene.control.TextArea;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
@@ -19,9 +19,7 @@ import vava.edo.controllers.models.*;
 import vava.edo.models.User;
 
 import java.io.IOException;
-
 import java.util.ResourceBundle;
-import java.util.SimpleTimeZone;
 
 public class MenuScreenController {
     @FXML
@@ -106,7 +104,7 @@ public class MenuScreenController {
         labelUsername.setText(this.user.getUsername());
         labelPassword.setText("********");
 
-        if(!user.getUserRole().isAdminRights()) {
+        if(!user.getUserRole().isAdminRights() || !user.getUserRole().isManagerRights()) {
             buttonAdmin.setVisible(false);
         }
 
