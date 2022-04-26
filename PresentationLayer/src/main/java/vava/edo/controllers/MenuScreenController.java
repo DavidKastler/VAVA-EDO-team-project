@@ -231,7 +231,7 @@ public class MenuScreenController {
             hBoxChangingScreen.getChildren().add(new AdminScreenModel(user, this).getAdminScreen());
             this.highlightButton("Admin");
         }
-        else if (this.user.getUserRole().getRoleName().equals("account_manager")) {
+        else if (this.user.getUserRole().getRoleName().equals("account_manager") || this.user.getUserRole().getRoleName().equals("Account manager")) {
             hBoxChangingScreen.getChildren().clear();
             hBoxChangingScreen.getChildren().add(new ManagerScreenModel(user, this).getManagerScreen());
             this.highlightButton("Admin");
