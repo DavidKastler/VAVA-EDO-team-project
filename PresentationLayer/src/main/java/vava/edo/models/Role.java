@@ -13,11 +13,11 @@ public class Role implements Serializable {
 
 
     public int getrId() {
-        return rId;
+        return this.rid;
     }
 
     public void setrId(int rId) {
-        this.rId = rId;
+        this.rid = rId;
     }
 
     public String getRoleName() {
@@ -66,7 +66,7 @@ public class Role implements Serializable {
         return "Role{" +
                 "rId=" + rid +
                 ", roleName='" + roleName + '\'' +
-                ", basicRights=" + basicRights +
+                ", basicRights=" + managerRights +
                 ", todoAccessRights=" + todoAccessRights +
                 ", teamLeaderRights=" + teamLeaderRights +
                 ", adminRights=" + adminRights +

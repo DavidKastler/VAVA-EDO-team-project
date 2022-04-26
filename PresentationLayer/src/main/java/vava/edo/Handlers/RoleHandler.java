@@ -24,15 +24,15 @@ public class RoleHandler {
                     .asJson();
 
             Role returnedRole = new Gson().fromJson(apiResponse.getBody().toString(), Role.class);
-
+            System.out.println(returnedRole);
             if(returnedRole.getRoleName() != null){
 
                 role.setrId(returnedRole.getrId());
                 role.setRoleName(returnedRole.getRoleName());
-                role.setBasicRights(returnedRole.isBasicRights());
+                role.setManagerRights(returnedRole.isManagerRights());
                 role.setTodoAccessRights(returnedRole.isTodoAccessRights());
                 role.setTeamLeaderRights(returnedRole.isTeamLeaderRights());
-                role.setTeamLeaderRights(returnedRole.isTeamLeaderRights());
+                role.setAdminRights(returnedRole.isAdminRights());
 
             } else {
                 throw new FailedToAcquireRole("Failed to acquire sample role from the database");

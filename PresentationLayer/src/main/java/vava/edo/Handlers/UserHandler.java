@@ -153,7 +153,7 @@ public class UserHandler extends UserSerializationHandler {
      *
      * @param user User object with the updated parameters
      */
-    public static void editUser(User user) throws FailedToUpdateUser {
+    public static void editUser(User user, int uId) throws FailedToUpdateUser {
 
         JSONObject newCred = new JSONObject();
         newCred.put("username", user.getUsername());
@@ -164,7 +164,7 @@ public class UserHandler extends UserSerializationHandler {
             HttpResponse<JsonNode> apiResponse = Unirest.put("http://localhost:8080/" +
                             "users/edit/{userId}/?token={token}")
                     .routeParam("userId", String.valueOf(user.getUid()))
-                    .routeParam("token", String.valueOf(user.getUid()))
+                    .routeParam("token", String.valueOf(uId))
                     .header("Content-Type", "application/json")
                     .body(newCred)
                     .asJson();
