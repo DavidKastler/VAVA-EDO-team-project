@@ -158,7 +158,7 @@ public class GroupService {
         }
         for (Group group : creatorsGroups) {
             // due to cyclic import has to be repo
-            if (groupMembersRepository.existsByGroupIdAndMemberId(group.getGrId(), userId)) {
+            if (groupMembersRepository.existsByGroupIdAndMemberId(group.getGroupId(), userId)) {
                 return true;
             }
         }

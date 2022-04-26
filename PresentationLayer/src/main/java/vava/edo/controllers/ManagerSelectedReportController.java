@@ -6,6 +6,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import vava.edo.Handlers.ReportHandler;
 import vava.edo.controllers.models.ManagerScreenModel;
@@ -66,6 +67,11 @@ public class ManagerSelectedReportController implements Initializable {
 
     public void acceptReport(javafx.scene.input.MouseEvent mouseEvent) {
         ReportHandler.acceptReport(this.model.getUser().getUid(), this.model.getReport().getReportId());
+        this.model.getMenuScreenController().gethBoxChangingScreen().getChildren().clear();
+        this.model.getMenuScreenController().gethBoxChangingScreen().getChildren().add(new ManagerScreenModel(this.model.getUser(), this.model.getMenuScreenController()).getManagerScreen());
+    }
+
+    public void returnToPreviousScreen(MouseEvent mouseEvent) {
         this.model.getMenuScreenController().gethBoxChangingScreen().getChildren().clear();
         this.model.getMenuScreenController().gethBoxChangingScreen().getChildren().add(new ManagerScreenModel(this.model.getUser(), this.model.getMenuScreenController()).getManagerScreen());
     }

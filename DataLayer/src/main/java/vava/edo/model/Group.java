@@ -24,7 +24,7 @@ public class Group implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "gr_id", nullable = false)
-    private Integer grId;
+    private Integer groupId;
     @Column(name = "group_name", nullable = false)
     private String groupName;
     @ManyToOne(fetch = FetchType.EAGER)
@@ -59,7 +59,7 @@ public class Group implements Serializable {
     @Override
     public String toString() {
         return "Group{" +
-                "grId=" + grId +
+                "grId=" + groupId +
                 ", group_name='" + groupName + '\'' +
                 ", group_creator_id=" + groupCreator +
                 '}';

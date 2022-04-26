@@ -85,9 +85,9 @@ public class GroupController {
     public ResponseEntity<Group> updateGroup(@RequestParam(value = "token") Integer token,
                                              @PathVariable String group_id,
                                              @RequestBody GroupCreate updatedGroup) {
-        log.info("Updating group.");
+        log.info("Updating group's name.");
         if (updatedGroup.getCreatorId() != token) {
-            log.warn("Request failed, only group owner can update group.");
+            log.warn("Request failed, only group owner can update groups names.");
             throw new ResponseStatusException(HttpStatus.FORBIDDEN, "You are not the creator");
         }
         log.info("Group successfully updated.");

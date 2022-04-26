@@ -4,6 +4,8 @@ package vava.edo.controllers;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
@@ -12,6 +14,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import vava.edo.Exepctions.HttpStatusExceptions.UnexpectedHttpStatusException;
 import vava.edo.Handlers.RelationshipHandler;
+import vava.edo.Handlers.ReportHandler;
 import vava.edo.Handlers.SearchHandler;
 import vava.edo.controllers.models.FriendRequestScreenModel;
 import vava.edo.controllers.models.FriendsScreenModel;
@@ -52,6 +55,15 @@ public class FriendsController implements Initializable {
     }
 
 
+    @FXML
+    private AnchorPane reportPopUp;
+
+    @FXML
+    private HBox friends_screen;
+
+    private List<Relationship> friends = null;
+
+    private Relationship reportingThisUser;
 
     public FriendsController() {
 
@@ -86,7 +98,6 @@ public class FriendsController implements Initializable {
     }
 
     public void handleSearchNewFriend(KeyEvent keyEvent) throws IOException {
-        System.out.println(search_field_new_friend.getText());
     }
 
     public void addFriend() {
@@ -106,5 +117,33 @@ public class FriendsController implements Initializable {
     public void switchRequestsScreen(MouseEvent mouseEvent) {
         this.menuScreenController.gethBoxChangingScreen().getChildren().clear();
         this.menuScreenController.gethBoxChangingScreen().getChildren().add(new FriendRequestScreenModel(this.model.getUser(), this.menuScreenController).getFriendRequestScreen());
+    }
+
+
+    @FXML
+    private TextArea text_area;
+
+    public void handleReportUserButton(Relationship relationship) {
+        reportPopUp.setVisible(true);
+        reportPopUp.setDisable(false);
+        friends_screen.setDisable(true);
+        friends_screen.setVisible(false);
+
+        reportingThisUser = relationship;
+    }
+
+    public void handleSendReportButton(MouseEvent mouseEvent) {
+        ReportHandler.createReport(this.model.getUser().getUid(), reportingThisUser.getUserId(), text_area.getText());
+        reportPopUp.setVisible(false);
+        reportPopUp.setDisable(true);
+        friends_screen.setDisable(false);
+        friends_screen.setVisible(true);
+    }
+
+    public void handleCancelReport(MouseEvent mouseEvent) {
+        reportPopUp.setVisible(false);
+        reportPopUp.setDisable(true);
+        friends_screen.setDisable(false);
+        friends_screen.setVisible(true);
     }
 }

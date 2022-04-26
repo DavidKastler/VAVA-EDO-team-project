@@ -10,13 +10,13 @@ import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.input.ScrollEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
-import vava.edo.Handlers.GroupHandler;
-import vava.edo.Handlers.MessageHandler;
+import vava.edo.Handlers.*;
 import vava.edo.controllers.models.ChatScreenModel;
 import vava.edo.models.*;
 import vava.edo.models.ChatGrayElementModel;
@@ -25,11 +25,26 @@ import vava.edo.models.ChatPinkElementModel;
 import java.io.IOException;
 import java.net.URL;
 import java.net.URLConnection;
+import java.text.SimpleDateFormat;
 import java.time.Instant;
+import java.time.LocalDateTime;
+import java.time.ZoneOffset;
 import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.ResourceBundle;
 
 
 public class ChatController implements Initializable {
+    public MouseEvent getEvent() {
+        return event;
+    }
+
+    public void setEvent(MouseEvent event) {
+        this.event = event;
+    }
+
+    private MouseEvent event;
 
     @FXML
     private AnchorPane rootPane;
@@ -74,6 +89,10 @@ public class ChatController implements Initializable {
     private TextArea text_area;
 
     @FXML
+    private TextArea text_area1;
+
+
+    @FXML
     private Label chat_name_error;
 
     private ChatScreenModel model;
@@ -81,6 +100,12 @@ public class ChatController implements Initializable {
     public void setModel(ChatScreenModel model) {
         this.model = model;
     }
+
+    List<Group> currentlyShownGroups = null;
+
+    private int messagesToLoad;
+
+    private Integer currentGroup;
 
 
     public ChatController() {
@@ -108,6 +133,7 @@ public class ChatController implements Initializable {
         button.setOnMouseClicked(event -> {
             try {
                 handleViewChatButton(event, groupId);
+                this.currentGroup = groupId;
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -155,22 +181,6 @@ public class ChatController implements Initializable {
         return box;
     }
 
-    public void writeChatList(List<Group> usernames){
-        for (int i = 0; i < usernames.size(); i++){
-            //System.out.println(id1);
-            Button button = new Button();
-            Boolean color;
-            if (i % 2 == 0){
-                color = false;
-            } else {
-                color = true;
-            }
-            editButton(button, usernames.get(i).getGroupName(), color, usernames.get(i).getGroupId());
-
-            this.chat_list_pane.getChildren().add(button);
-        }
-    }
-
     public void refreshColorsOfChats(ObservableList<Node> chats){
         for (Integer i = 0; i < chats.size(); i++){
             if ((i % 2) == 1){
@@ -206,23 +216,59 @@ public class ChatController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        try {
+            URL checkConnectionURL = new URL("http://www.google.com");
+            URLConnection checkConnection = checkConnectionURL.openConnection();
+            checkConnection.connect();
+            System.out.println("Internet is connected");
+        } catch (IOException e) {
+            System.out.println("Internet is not connected");
+        }
+        messages_list.heightProperty().addListener(observable -> chat_pane.setVvalue(1D));
 
     }
 
     public void loadAllGroups() {
-        List<Group> allUsersGroups = GroupHandler.getAllGroups(this.model.getUser().getUid());
-        writeChatList(allUsersGroups);
+        this.currentlyShownGroups = GroupHandler.getAllGroups(this.model.getUser().getUid());
+        reloadAllGroups();
+    }
+
+    public void reloadAllGroups() {
+
+        try {
+            List<Group> searchedGroups = (List<Group>) (List) SearchHandler.searchInList(currentlyShownGroups, "groupName", search_field.getText());
+            writeChatList(searchedGroups);
+        } catch (Exception e) {};
+
+    }
+
+    public void writeChatList(List<Group> usernames){
+        this.chat_list_pane.getChildren().clear();
+        for (int i = 0; i < usernames.size(); i++){
+            //System.out.println(id1);
+            Button button = new Button();
+            Boolean color;
+            String username;
+            if (i % 2 == 0){
+                color = false;
+            } else {
+                color = true;
+            }
+            editButton(button, usernames.get(i).getGroupName(), color, usernames.get(i).getGroupId());
+
+            this.chat_list_pane.getChildren().add(button);
+        }
     }
 
     @FXML
     public void handleViewChatButton(MouseEvent mouseEvent, Integer groupId) throws IOException {
 
+        this.messagesToLoad = 5;
         messages_list.getChildren().clear();
         refreshColorsOfChats(this.chat_list_pane.getChildren());
 
-        //metoda na vratenie userov v danych chatoch/groupach
         Button actualButton = ((Button)mouseEvent.getSource());
-        //System.out.println("Skuska");
+
         for (Integer i = 0; i < this.chat_list_pane.getChildren().size(); i++){
             if (actualButton.equals(this.chat_list_pane.getChildren().get(i))){
                 this.chat_list_pane.getChildren().get(i).setStyle("-fx-background-color:  #ff9797");
@@ -232,44 +278,46 @@ public class ChatController implements Initializable {
         chat_name.setStyle("-fx-text-fill: #000000");
         chat_name.setText(actualButton.getText());
 
-        List<Message> allChatMessages = MessageHandler.getAllMessagesInGroup(this.model.getUser().getUid(), groupId, 0, 200);
+        loadMessages(messagesToLoad, groupId);
+
+    }
+
+    public void loadMessages(int amount, Integer groupId) {
+        messages_list.getChildren().clear();
+        List<Message> allChatMessages = MessageHandler.getAllMessagesInGroup(this.model.getUser().getUid(), groupId, 0, amount);
         Collections.reverse(allChatMessages);
 
         for (Integer i = 0; i < allChatMessages.size(); i++){
             if (allChatMessages.get(i).getSender().getUid() == this.model.getUser().getUid()){
-                ChatGrayElementModel element = new ChatGrayElementModel(allChatMessages.get(i).getMessage(), allChatMessages.get(i).getSender().getUsername(), Instant.ofEpochSecond(allChatMessages.get(i).getTimeSent()).toString());
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-dd-MM HH:mm:ss");
+                Date messageDate = Date.from(Instant.ofEpochSecond(allChatMessages.get(i).getTimeSent()));
+                String currentDate = sdf.format(messageDate);
+                ChatGrayElementModel element = new ChatGrayElementModel(allChatMessages.get(i).getMessage(), allChatMessages.get(i).getSender().getUsername(), currentDate);
                 HBox hbox = element.getMessageBox();
 
 
                 messages_list.getChildren().add(hbox);
             } else {
-                ChatPinkElementModel element = new ChatPinkElementModel(allChatMessages.get(i).getMessage(), allChatMessages.get(i).getSender().getUsername(), Instant.ofEpochSecond(allChatMessages.get(i).getTimeSent()).toString());
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-dd-MM HH:mm:ss");
+                Date messageDate = Date.from(Instant.ofEpochSecond(allChatMessages.get(i).getTimeSent()));
+                String currentDate = sdf.format(messageDate);
+                ChatPinkElementModel element = new ChatPinkElementModel(allChatMessages.get(i).getMessage(), allChatMessages.get(i).getSender().getUsername(), currentDate);
                 HBox hbox = element.getMessageBox();
                 messages_list.getChildren().add(hbox);
             }
 
-        }
-
-        chat_pane.vvalueProperty().bind(messages_list.heightProperty());
 
         }
+    }
 
     @FXML
     public void handleSearchChatButton(KeyEvent keyEvent) throws IOException {
-        //tu bude zavolana metoda writeChatList(argument); a ako argument bude pouzita metoda na vratenie vyhovujucich vzoriek do ktorej pojde argument search_field.getText()
+        reloadAllGroups();
         System.out.println(search_field.getText());
     }
 
     @FXML
     public void handleNewChatButton(MouseEvent mouseEvent) throws IOException {
-        //ak je dobry nazov chatu
-        //chat_name.setText(search_field.getText());
-        //chat_name.setVisible(true);
-        //chat_name_error.setStyle("-fx-text-fill: transparent");
-
-        //ak neni dobry nazov chatu
-        //chat_name_error.setStyle("-fx-text-fill: red");
-
         rootPane11.setVisible(true);
         rootPane11.setDisable(false);
         chat_screen_box.setDisable(true);
@@ -285,6 +333,7 @@ public class ChatController implements Initializable {
         rootPane1.setDisable(false);
         chat_screen_box.setDisable(true);
         //chat_screen_box.setVisible(false);
+
     }
 
 
@@ -292,13 +341,13 @@ public class ChatController implements Initializable {
 
     @FXML
     public void handleSendMessageButton(MouseEvent mouseEvent) throws IOException {
-        System.out.println(chat_message.getText());
-        //zavolanie metody ktora dostane ako argument id usera a text spravy
+        MessageHandler.sendMessage(this.model.getUser().getUid(), currentGroup, chat_message.getText());
+        loadMessages(messagesToLoad, currentGroup);
+        chat_message.clear();
     }
 
 
     public void handleSendReportButton(MouseEvent mouseEvent) {
-        System.out.println(text_area.getText());
         rootPane1.setVisible(false);
         rootPane1.setDisable(true);
         chat_screen_box.setDisable(false);
@@ -307,24 +356,35 @@ public class ChatController implements Initializable {
 
     public void handleSendChatNameButton(MouseEvent mouseEvent) {
         System.out.println(text_area.getText());
-        List<String> friends = new ArrayList<>();
-        friends = checkedFriends();
-        System.out.println(friends);
+        List<Integer> selectedFriends = returnSelectedFriends();
+        Integer[] friendsInt = new Integer[selectedFriends.size()+1];
+
+        for (int i = 0; i < selectedFriends.size(); i++) {
+            friendsInt[i] = selectedFriends.get(i);
+        }
+        friendsInt[friendsInt.length-1] = this.model.getUser().getUid();
+
+        GroupHandler.createGroup(this.model.getUser().getUid(), friendsInt, text_area1.getText());
+
         rootPane11.setVisible(false);
         rootPane11.setDisable(true);
         chat_screen_box.setDisable(false);
         chat_screen_box.setVisible(true);
 
+        loadAllGroups();
+
     }
 
-    private List<String> checkedFriends() {
-        List<String> friends = new ArrayList<>();
-        List<Node> hboxes = new ArrayList<>();
-        hboxes = friends_vbox.getChildren();
+    private List<Integer> returnSelectedFriends() {
+        List<Integer> friends = new ArrayList<>();
+        List<HBoxWithProperty> hboxes = new ArrayList<>();
+        hboxes = (List)friends_vbox.getChildren();
 
         for (Integer i = 0; i < hboxes.size(); i++){
-            if (((CheckBox)((HBox)hboxes.get(i)).getChildren().get(1)).isSelected()){
-                friends.add(((Label)((HBox)hboxes.get(i)).getChildren().get(0)).getText());
+            if (((CheckBox)(hboxes.get(i)).getChildren().get(1)).isSelected()){
+                try {
+                    friends.add(hboxes.get(i).getProperty().getUserId());
+                } catch (Exception e) {};
             }
 
         }
@@ -335,33 +395,29 @@ public class ChatController implements Initializable {
 
     @FXML
     private VBox friends_vbox;
-    public void loadFriends(){
-        List<String> usernames = new ArrayList<>();
-        usernames.add("Jano");
-        usernames.add("Fero");
-        usernames.add("Jano");
-        usernames.add("Fero");
-        usernames.add("Jano");
 
-        for (Integer i = 0; i < usernames.size(); i++){
-            HBox hBox = createFriendBox(usernames.get(i));
+    public void loadFriends(){
+        friends_vbox.getChildren().clear();
+        List <Relationship> friends = RelationshipHandler.getAllFriends(this.model.getUser().getUid());
+
+        for (Integer i = 0; i < friends.size(); i++){
+            HBoxWithProperty hBox = createFriendBox(friends.get(i));
             friends_vbox.getChildren().add(hBox);
         }
 
     }
 
-    public HBox createFriendBox(String username){
-        HBox hbox = new HBox();
+    public HBoxWithProperty createFriendBox(Relationship relationship){
+
+        HBoxWithProperty hbox = new HBoxWithProperty();
         Label label = new Label();
-        CheckBox checkhbox = new CheckBox();
-        label.setText(username);
+        CheckBox checkBox = new CheckBox();
+        label.setText(relationship.getUserName());
 
         label.setMinWidth(419);
         label.prefWidth(419);
         label.prefHeight(46);
         label.setPadding(new Insets(10, 0, 0, 30));
-
-
 
         label.setStyle("-fx-font-weight: bold");
         label.setAlignment(Pos.CENTER_LEFT);
@@ -369,12 +425,13 @@ public class ChatController implements Initializable {
         label.setStyle("-fx-text-fill: white");
 
 
-        checkhbox.setStyle("-fx-font-family: Arial");
-        checkhbox.setStyle("-fx-font-size: 22");
-        checkhbox.setAlignment(Pos.CENTER_LEFT);
-        checkhbox.setPadding(new Insets(10, 0, 0, 0));
+        checkBox.setStyle("-fx-font-family: Arial");
+        checkBox.setStyle("-fx-font-size: 22");
+        checkBox.setAlignment(Pos.CENTER_LEFT);
+        checkBox.setPadding(new Insets(10, 0, 0, 0));
         hbox.getChildren().add(label);
-        hbox.getChildren().add(checkhbox);
+        hbox.getChildren().add(checkBox);
+        hbox.setProperty(relationship);
 
         return hbox;
     }
@@ -394,4 +451,13 @@ public class ChatController implements Initializable {
     }
 
 
+    public void checkIfOnTop(ScrollEvent scrollEvent) {
+
+        if (chat_pane.getVvalue() == chat_pane.getVmin()){
+            messagesToLoad += 5;
+            loadMessages(messagesToLoad, currentGroup);
+            chat_pane.setVvalue(1D);
+        }
+
+    }
 }
