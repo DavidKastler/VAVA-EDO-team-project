@@ -100,7 +100,7 @@ public class RelationshipController {
         if (otherWayRelationship != null) {
             relationshipService.deleteRelationship(otherWayRelationship.getRelationshipId());
         }
-        log.info("Request form {} to user {} accepted.",
+        log.info("Request form {} to user {} has been accepted.",
                 relationship.getFirstUser().getUsername(), relationship.getSecondUser().getUsername());
         return new ResponseEntity<>(relationshipService.acceptRelationshipRequest(relationshipId), HttpStatus.OK);
     }
@@ -165,7 +165,7 @@ public class RelationshipController {
     public ResponseEntity<List<RelationshipRequest>> getAllFriends(@RequestParam(value = "token") Integer token) {
         // verification if user is in database
         userService.getUser(token);
-        log.info("Get list of all friends.");
+        log.info("Getting list of all friends.");
         return new ResponseEntity<>(relationshipService.getAllFriends(token), HttpStatus.OK);
     }
 
@@ -179,7 +179,7 @@ public class RelationshipController {
     public ResponseEntity<List<RelationshipRequest>> getAllFriendRequests(@RequestParam(value = "token") Integer token) {
         // verification if user is in database
         userService.getUser(token);
-        log.info("Get list of all friend requests.");
+        log.info("Getting list of all friend requests.");
         return new ResponseEntity<>(relationshipService.getAllPendingRequests(token), HttpStatus.OK);
     }
 }

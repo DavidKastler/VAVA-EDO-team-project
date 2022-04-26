@@ -13,6 +13,7 @@ import vava.edo.schema.users.UserLogin;
 import vava.edo.service.UserService;
 
 import java.util.List;
+import java.util.Objects;
 
 /**
  * Class that provides endpoints for user operations
@@ -124,6 +125,10 @@ public class UserController {
         if (!(userService.isAccountManager(token))) {
             log.warn("Deleted request rejected, insufficient rights to delete user.");
             throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "This action requires admin privileges.");
+        }
+        if (Objects.equals(token, userId)) {
+            log.info("{} tried to delete himself.", getAllUsers(token));
+            throw new ResponseStatusException(HttpStatus.CONFLICT, "Account manager cant delete himself.");
         }
         return new ResponseEntity<>(userService.deleteUser(userId), HttpStatus.NO_CONTENT);
     }
