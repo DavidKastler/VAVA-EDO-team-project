@@ -314,7 +314,7 @@
             </Label>
             <VBox>
                <children>
-                  <TextArea fx:id="textArea" prefHeight="400.0" prefWidth="400.0" promptText="Write feedback message...">
+                  <TextArea fx:id="feedbackTextArea" prefHeight="400.0" prefWidth="400.0" promptText="Write feedback message...">
                      <font>
                         <Font name="Arial" size="20.0" />
                      </font>
