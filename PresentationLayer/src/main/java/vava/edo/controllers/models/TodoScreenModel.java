@@ -13,13 +13,12 @@ public class TodoScreenModel {
     private AnchorPane todoScreen;
     private final User user;
 
-    ResourceBundle resourceBundle = ResourceBundle.getBundle("Localization Bundle");
-
     public TodoScreenModel(User user) {
         this.user = user;
 
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/vava/edo/Todos.fxml"), resourceBundle);
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/vava/edo/Todos.fxml"),
+                    ResourceBundle.getBundle("Localization Bundle"));
             this.todoScreen = loader.load();
             TodosScreenController controller = loader.getController();
             controller.setModel(this);

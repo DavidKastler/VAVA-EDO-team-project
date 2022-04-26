@@ -120,12 +120,11 @@ public class RefreshTodoScreen {
 
     public void setInfoSelectedTodo(Todo todo) {
         this.selectedTodo = todo;
-        if(todo != null){
         this.checkBoxTodoInfo.setSelected(todo.isCompleted());
         this.labelTodoInfoDueTIme.setText(todo.getToTime());
         this.labelTodoInfoName.setText(todo.getTodoName());
         this.labelTodoInfoDescription.setText(todo.getTodoDescription());
-        this.labelTodoInfoGroup.setText(todo.getGroupName());}
+        this.labelTodoInfoGroup.setText(todo.getGroupName());
     }
 
     public Todo getSelectedTodo() {

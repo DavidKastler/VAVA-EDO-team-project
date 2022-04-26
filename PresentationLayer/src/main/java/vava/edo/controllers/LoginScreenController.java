@@ -44,7 +44,6 @@ public class LoginScreenController implements Initializable {
     @FXML
     private Button btnForgotPassword;
 
-    ResourceBundle resourceBundle = ResourceBundle.getBundle("Localization Bundle");
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -119,7 +118,8 @@ public class LoginScreenController implements Initializable {
      */
     public void handleRegisterButton() {
         try {
-            AnchorPane registerScreen = FXMLLoader.load(getClass().getResource("/vava/edo/Register.fxml"), resourceBundle);
+            AnchorPane registerScreen = FXMLLoader.load(getClass().getResource("/vava/edo/Register.fxml"),
+                    ResourceBundle.getBundle("Localization Bundle"));
 
             rootPane.getChildren().setAll(registerScreen);
 

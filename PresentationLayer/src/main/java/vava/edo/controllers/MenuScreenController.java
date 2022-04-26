@@ -239,7 +239,8 @@ public class MenuScreenController {
 
     public void handleLogout() {
         try {
-            AnchorPane loginScreen = FXMLLoader.load(getClass().getResource("/vava/edo/Login.fxml"), ResourceBundle.getBundle("Localization Bundle"));
+            AnchorPane loginScreen = FXMLLoader.load(getClass().getResource("/vava/edo/Login.fxml"),
+                    ResourceBundle.getBundle("Localization Bundle"));
 
             rootPane.getChildren().setAll(loginScreen);
         } catch (IOException e) {

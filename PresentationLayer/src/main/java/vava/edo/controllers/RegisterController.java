@@ -47,8 +47,6 @@ public class RegisterController{
     @FXML
     private Button btnBackToLogin;
 
-    ResourceBundle resourceBundle = ResourceBundle.getBundle("Localization Bundle");
-
     public RegisterController() {
     }
 
@@ -61,7 +59,8 @@ public class RegisterController{
         try {
             UserHandler.registerUser(this.textUsername, this.textPassword1, this.textPassword2, this.wrongInput);
 
-            AnchorPane loginScreen = FXMLLoader.load(getClass().getResource("/vava/edo/Login.fxml"),ResourceBundle.getBundle("Localization Bundle"));
+            AnchorPane loginScreen = FXMLLoader.load(getClass().getResource("/vava/edo/Login.fxml"),
+                    ResourceBundle.getBundle("Localization Bundle"));
 
             this.rootPane.getChildren().setAll(new Node[]{loginScreen});
 
@@ -79,7 +78,8 @@ public class RegisterController{
             Locale.setDefault(new Locale("sk", "SK"));
         }
         try {
-            AnchorPane registerScreen = FXMLLoader.load(getClass().getResource("/vava/edo/Register.fxml"), resourceBundle);
+            AnchorPane registerScreen = FXMLLoader.load(getClass().getResource("/vava/edo/Register.fxml"),
+                    ResourceBundle.getBundle("Localization Bundle"));
 
             rootPane.getChildren().setAll(registerScreen);
 
@@ -93,7 +93,8 @@ public class RegisterController{
         Node node = (Node) mouseEvent.getSource();
         Stage stage = (Stage) node.getScene().getWindow();
 
-        AnchorPane loginScreen = FXMLLoader.load(getClass().getResource("/vava/edo/Login.fxml"),resourceBundle);
+        AnchorPane loginScreen = FXMLLoader.load(getClass().getResource("/vava/edo/Login.fxml"),
+                ResourceBundle.getBundle("Localization Bundle"));
 
         this.rootPane.getChildren().setAll(new Node[]{loginScreen});
 
