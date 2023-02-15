@@ -22,7 +22,7 @@ import java.util.List;
 @Table(name = "groups")
 public class Group implements Serializable {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "gr_id", nullable = false)
     private Integer groupId;
     @Column(name = "group_name", nullable = false)
@@ -47,6 +47,7 @@ public class Group implements Serializable {
      */
     public static Group from(GroupCreate groupCreate) {
         Group group = new Group();
+        group.setGroupId(0);
         group.setGroupName(groupCreate.getGroupName());
         return group;
     }

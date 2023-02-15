@@ -19,7 +19,7 @@ import javax.persistence.*;
 @Table(name = "reports")
 public class Report {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "rep_id", nullable = false)
     private Integer reportId;
     @ManyToOne(fetch = FetchType.EAGER)
@@ -43,6 +43,7 @@ public class Report {
      */
     public static Report from(ReportCreate reportDto) {
         Report report = new Report();
+        report.setReportId(0);
         report.setReportMessage(reportDto.getReportMessage());
         return report;
     }

@@ -19,7 +19,7 @@ import javax.persistence.*;
 public class GroupMember {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "gm_id")
     private Integer gmId;
     @ManyToOne(fetch = FetchType.EAGER)
@@ -31,6 +31,7 @@ public class GroupMember {
     private User member;
 
     public GroupMember(Group group, User user) {
+        this.gmId = 0;
         this.group = group;
         this.member = user;
     }

@@ -20,7 +20,7 @@ import javax.persistence.*;
 @Table(name = "feedback")
 public class Feedback {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "fb_id", nullable = false)
     private Integer feedbackId;
     @ManyToOne(fetch = FetchType.EAGER)

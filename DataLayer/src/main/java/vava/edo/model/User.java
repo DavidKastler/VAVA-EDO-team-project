@@ -69,6 +69,7 @@ public class User {
      */
     public static User from(UserEdit userEdit) {
         User user = new User();
+        user.setUId(0);
         user.setUsername(userEdit.getUsername());
         user.setPassword(userEdit.getPassword());
         return user;
@@ -82,6 +83,7 @@ public class User {
      */
     public static User from(UserLogin userEdit) {
         User user = new User();
+        user.setUId(0);
         user.setUsername(userEdit.getUsername());
         user.setPassword(userEdit.getPassword());
         return user;

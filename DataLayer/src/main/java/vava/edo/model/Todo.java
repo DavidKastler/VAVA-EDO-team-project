@@ -18,7 +18,7 @@ import javax.persistence.*;
 @Table(name = "todos")
 public class Todo {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "td_id", nullable = false)
     private Integer todoId;
     @Column(name = "user_id", nullable = false)
@@ -49,6 +49,7 @@ public class Todo {
      */
     public static Todo from(TodoCreate taskDto) {
         Todo todo = new Todo();
+        todo.setTodoId(0);
         todo.setUserId(taskDto.getUserId());
         todo.setTodoName(taskDto.getTodoName());
         todo.setTodoDescription(taskDto.getTodoDescription());

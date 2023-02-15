@@ -2,7 +2,7 @@
 <!--https://lankydan.dev/2019/01/09/configuring-logback-with-spring-boot-->
 <configuration>
 
-    <property name="LOGS" value="./Datalayer/src/main/resources/log/" />
+    <property name="LOGS" value="./DataLayer/src/main/resources/log/" />
 
     <!--Logger for console-->
     <appender name="Console"

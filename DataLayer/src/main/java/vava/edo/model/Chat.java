@@ -19,7 +19,7 @@ import java.time.Instant;
 @Table(name = "chat")
 public class Chat {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ch_id", nullable = false)
     private Integer chatId;
     @Column(name = "group_id", nullable = false)
@@ -46,9 +46,11 @@ public class Chat {
      */
     public static Chat from(Message messageDto) {
         Chat chat = new Chat();
+        chat.setChatId(0);
         chat.setGroupId(messageDto.getGroupId());
         chat.setMessage(messageDto.getMessage());
         chat.setTimeSent(Instant.now().getEpochSecond());
+
         return chat;
     }
 

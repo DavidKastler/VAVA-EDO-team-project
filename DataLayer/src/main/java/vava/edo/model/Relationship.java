@@ -20,7 +20,7 @@ import javax.persistence.*;
 @Table(name = "relationships")
 public class Relationship {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "rel_id")
     private Integer relationshipId;
     @ManyToOne(fetch = FetchType.EAGER)
@@ -37,6 +37,7 @@ public class Relationship {
     private Long since;
 
     public Relationship(User firstUserId, User secondUserId) {
+        this.relationshipId = 0;
         this.firstUser = firstUserId;
         this.secondUser = secondUserId;
         this.since = System.currentTimeMillis() / 1000L;
